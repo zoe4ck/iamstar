@@ -1,0 +1,2828 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>MY IDOL CARD</title>
+
+<style>
+
+/* =========================================================
+   기본 설정
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+    font-family:
+        "Arial",
+        "Noto Sans KR",
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            #fff,
+            #fff4fb 45%,
+            #f7e5f3 100%
+        );
+
+    color: #5d4260;
+    overflow-x: hidden;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+}
+
+
+/* =========================================================
+   화면 공통
+========================================================= */
+
+.screen {
+    display: none;
+
+    width: 100%;
+    min-height: 100vh;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.screen.active {
+    display: flex;
+}
+
+
+/* =========================================================
+   배경 장식
+========================================================= */
+
+.sparkle {
+    position: absolute;
+
+    color: white;
+
+    text-shadow:
+        0 0 8px #fff,
+        0 0 15px #ff9edb;
+
+    animation: sparkleFloat 3s infinite ease-in-out;
+
+    pointer-events: none;
+}
+
+.sparkle.s1 {
+    top: 12%;
+    left: 10%;
+    font-size: 24px;
+}
+
+.sparkle.s2 {
+    top: 25%;
+    right: 12%;
+    font-size: 17px;
+    animation-delay: .8s;
+}
+
+.sparkle.s3 {
+    bottom: 20%;
+    left: 15%;
+    font-size: 20px;
+    animation-delay: 1.5s;
+}
+
+.sparkle.s4 {
+    bottom: 15%;
+    right: 20%;
+    font-size: 28px;
+    animation-delay: .4s;
+}
+
+@keyframes sparkleFloat {
+
+    0%,
+    100% {
+        transform: translateY(0) scale(1);
+        opacity: .6;
+    }
+
+    50% {
+        transform: translateY(-12px) scale(1.2);
+        opacity: 1;
+    }
+}
+
+
+/* =========================================================
+   1. 오프닝
+========================================================= */
+
+#opening {
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            #ffffff 0%,
+            #fff7fc 30%,
+            #f7d9ed 100%
+        );
+}
+
+.opening-content {
+    width: min(90%, 600px);
+
+    text-align: center;
+
+    position: relative;
+    z-index: 2;
+
+    animation: openingAppear 1.2s ease;
+}
+
+@keyframes openingAppear {
+
+    from {
+        opacity: 0;
+        transform: translateY(20px) scale(.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+.logo-small {
+    font-size: 14px;
+    letter-spacing: 7px;
+
+    color: #c58bb9;
+
+    margin-bottom: 14px;
+}
+
+.main-logo {
+    font-size: clamp(55px, 13vw, 100px);
+
+    font-weight: 900;
+
+    font-style: italic;
+
+    letter-spacing: -6px;
+
+    color: #f08bc6;
+
+    text-shadow:
+        3px 3px 0 white,
+        6px 6px 0 #e5a1cf,
+        0 0 20px rgba(255, 140, 211, .4);
+}
+
+.logo-sub {
+    margin-top: 5px;
+
+    font-size: 14px;
+
+    letter-spacing: 5px;
+
+    color: #92738e;
+}
+
+.star-logo {
+    font-size: 35px;
+
+    color: #ffd34d;
+
+    display: inline-block;
+
+    margin-left: 5px;
+
+    animation: starSpin 4s linear infinite;
+}
+
+@keyframes starSpin {
+
+    from {
+        transform: rotate(0);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.opening-description {
+    margin-top: 35px;
+
+    color: #876f84;
+
+    line-height: 1.8;
+
+    font-size: 14px;
+}
+
+.start-button {
+    margin-top: 40px;
+
+    padding: 16px 65px;
+
+    border-radius: 50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff91ce,
+            #e879ba
+        );
+
+    color: white;
+
+    font-weight: 800;
+
+    font-size: 17px;
+
+    letter-spacing: 2px;
+
+    box-shadow:
+        0 8px 25px rgba(222, 116, 182, .35);
+
+    transition: .25s;
+}
+
+.start-button:hover {
+    transform: translateY(-4px) scale(1.03);
+
+    box-shadow:
+        0 12px 30px rgba(222, 116, 182, .45);
+}
+
+.start-button:active {
+    transform: scale(.96);
+}
+
+
+/* =========================================================
+   공통 헤더
+========================================================= */
+
+.page-header {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 75px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 0 30px;
+
+    z-index: 20;
+
+    background:
+        rgba(255,255,255,.65);
+
+    backdrop-filter: blur(10px);
+
+    border-bottom:
+        1px solid rgba(219,164,205,.3);
+}
+
+.header-title {
+    font-weight: 900;
+
+    color: #d47ab2;
+
+    letter-spacing: 2px;
+}
+
+.header-step {
+    font-size: 12px;
+
+    color: #aa91a7;
+}
+
+
+/* =========================================================
+   2. 커스터마이징
+========================================================= */
+
+#customize {
+    flex-direction: column;
+
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            #fff,
+            #fff4fb 50%,
+            #f3dceb
+        );
+}
+
+.customize-container {
+
+    width: min(1200px, 94%);
+
+    margin: auto;
+
+    padding-top: 95px;
+    padding-bottom: 35px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(280px, 1fr)
+        minmax(300px, 1fr);
+
+    gap: 40px;
+
+    align-items: center;
+}
+
+
+/* 캐릭터 영역 */
+
+.character-area {
+
+    min-height: 620px;
+
+    display: flex;
+
+    justify-content: center;
+    align-items: center;
+
+    position: relative;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(255,255,255,.95),
+            rgba(255,238,249,.6)
+        );
+
+    border-radius: 40px;
+
+    border:
+        1px solid rgba(214,150,197,.25);
+
+    box-shadow:
+        inset 0 0 50px rgba(255,255,255,.7),
+        0 15px 40px rgba(194,130,178,.08);
+}
+
+.character-platform {
+
+    position: absolute;
+
+    bottom: 35px;
+
+    width: 210px;
+    height: 28px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(213,146,195,.2);
+
+    filter: blur(3px);
+}
+
+
+/* =========================================================
+   캐릭터
+========================================================= */
+
+.character {
+
+    width: 210px;
+    height: 500px;
+
+    position: relative;
+
+    transform-origin: center bottom;
+
+    animation:
+        characterIdle 4s ease-in-out infinite;
+}
+
+@keyframes characterIdle {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-6px);
+    }
+}
+
+
+/* 머리 */
+
+.character-head {
+
+    position: absolute;
+
+    width: 150px;
+    height: 175px;
+
+    left: 30px;
+    top: 55px;
+
+    background: var(--skin);
+
+    border-radius:
+        48%
+        48%
+        45%
+        45%;
+
+    z-index: 5;
+
+    border:
+        1px solid rgba(150,90,70,.1);
+}
+
+
+/* 귀 */
+
+.character-head::before,
+.character-head::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 22px;
+    height: 40px;
+
+    background: var(--skin);
+
+    top: 65px;
+
+    border-radius: 50%;
+
+    z-index: -1;
+}
+
+.character-head::before {
+    left: -12px;
+}
+
+.character-head::after {
+    right: -12px;
+}
+
+
+/* 목 */
+
+.character-neck {
+
+    position: absolute;
+
+    top: 205px;
+
+    left: 82px;
+
+    width: 45px;
+    height: 50px;
+
+    background: var(--skin);
+
+    border-radius: 0 0 15px 15px;
+
+    z-index: 3;
+}
+
+
+/* 몸 */
+
+.character-body {
+
+    position: absolute;
+
+    top: 235px;
+
+    left: 45px;
+
+    width: 120px;
+    height: 155px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f3a2cc,
+            #e779b7
+        );
+
+    border-radius:
+        45px 45px 20px 20px;
+
+    z-index: 4;
+
+    transition: .4s;
+}
+
+
+/* 치마 */
+
+.character-skirt {
+
+    position: absolute;
+
+    top: 350px;
+
+    left: 32px;
+
+    width: 150px;
+
+    height: 90px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8badb,
+            #ed84bd
+        );
+
+    clip-path:
+        polygon(
+            20% 0,
+            80% 0,
+            100% 100%,
+            0 100%
+        );
+
+    z-index: 4;
+
+    transition: .4s;
+}
+
+
+/* 다리 */
+
+.character-leg {
+
+    position: absolute;
+
+    top: 425px;
+
+    width: 32px;
+    height: 65px;
+
+    background: var(--skin);
+
+    border-radius: 10px 10px 15px 15px;
+
+    z-index: 2;
+}
+
+.character-leg.left {
+    left: 68px;
+}
+
+.character-leg.right {
+    right: 68px;
+}
+
+
+/* 신발 */
+
+.character-shoe {
+
+    position: absolute;
+
+    top: 475px;
+
+    width: 52px;
+    height: 25px;
+
+    background: #e783b9;
+
+    border-radius: 15px 20px 10px 10px;
+
+    z-index: 3;
+}
+
+.character-shoe.left {
+    left: 52px;
+}
+
+.character-shoe.right {
+    right: 52px;
+}
+
+
+/* =========================================================
+   눈
+========================================================= */
+
+.eye {
+
+    position: absolute;
+
+    top: 120px;
+
+    width: 25px;
+    height: 32px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    z-index: 8;
+
+    border:
+        2px solid rgba(100,60,80,.15);
+
+    transition: .3s;
+}
+
+.eye::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 12px;
+    height: 17px;
+
+    left: 50%;
+    top: 6px;
+
+    transform: translateX(-50%);
+
+    border-radius: 50%;
+
+    background: var(--eye-color);
+
+    box-shadow:
+        inset 2px 2px 0 rgba(255,255,255,.7);
+}
+
+.eye.left {
+    left: 60px;
+}
+
+.eye.right {
+    right: 60px;
+}
+
+
+/* 눈 모양 */
+
+.eyes-round .eye {
+    height: 34px;
+}
+
+.eyes-slim .eye {
+    height: 18px;
+
+    top: 128px;
+
+    border-radius: 50% 50% 40% 40%;
+}
+
+.eyes-droopy .eye {
+    height: 27px;
+
+    top: 125px;
+
+    transform: rotate(5deg);
+}
+
+.eyes-sharp .eye {
+    height: 25px;
+
+    top: 124px;
+
+    transform: rotate(-7deg);
+
+    border-radius: 40% 60% 50% 50%;
+}
+
+.eyes-happy .eye {
+    height: 14px;
+
+    top: 132px;
+
+    background: transparent;
+
+    border:
+        3px solid var(--eye-color);
+
+    border-bottom: 0;
+
+    border-left-color: transparent;
+    border-right-color: transparent;
+
+    border-radius: 50%;
+
+}
+
+.eyes-happy .eye::after {
+    display: none;
+}
+
+
+/* =========================================================
+   입
+========================================================= */
+
+.mouth {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 170px;
+
+    transform: translateX(-50%);
+
+    width: 30px;
+    height: 15px;
+
+    z-index: 9;
+
+    transition: .3s;
+}
+
+.mouth-smile {
+
+    border-bottom:
+        3px solid #c76583;
+
+    border-radius: 0 0 50% 50%;
+}
+
+.mouth-small {
+
+    width: 15px;
+    height: 8px;
+
+    border-bottom:
+        3px solid #c76583;
+
+    border-radius: 50%;
+}
+
+.mouth-open {
+
+    width: 23px;
+    height: 17px;
+
+    background: #b95d79;
+
+    border-radius: 50%;
+}
+
+.mouth-surprised {
+
+    width: 18px;
+    height: 22px;
+
+    background: #bd6982;
+
+    border-radius: 50%;
+}
+
+.mouth-neutral {
+
+    width: 25px;
+
+    border-bottom:
+        2px solid #b96883;
+}
+
+
+/* =========================================================
+   머리카락
+========================================================= */
+
+.hair-back {
+
+    position: absolute;
+
+    width: 175px;
+    height: 245px;
+
+    left: 17px;
+    top: 20px;
+
+    background: var(--hair);
+
+    border-radius:
+        48%
+        48%
+        35%
+        35%;
+
+    z-index: 1;
+
+    transition: .4s;
+}
+
+.hair-front {
+
+    position: absolute;
+
+    width: 165px;
+    height: 105px;
+
+    left: 22px;
+    top: 35px;
+
+    background: var(--hair);
+
+    border-radius:
+        55%
+        55%
+        20%
+        20%;
+
+    z-index: 7;
+
+    transition: .4s;
+}
+
+
+/* 머리 스타일 */
+
+.hair-long .hair-back {
+    height: 300px;
+}
+
+.hair-long .hair-front {
+    height: 95px;
+}
+
+.hair-bob .hair-back {
+    height: 200px;
+}
+
+.hair-bob .hair-front {
+    height: 100px;
+}
+
+.hair-wave .hair-back {
+    height: 285px;
+
+    border-radius:
+        45%
+        45%
+        25%
+        35%;
+}
+
+.hair-ponytail .hair-back::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 70px;
+    height: 150px;
+
+    background: var(--hair);
+
+    right: -45px;
+    top: 45px;
+
+    border-radius: 50%;
+}
+
+.hair-twin .hair-back::before,
+.hair-twin .hair-back::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 65px;
+    height: 150px;
+
+    background: var(--hair);
+
+    top: 25px;
+
+    border-radius: 50%;
+}
+
+.hair-twin .hair-back::before {
+    left: -42px;
+}
+
+.hair-twin .hair-back::after {
+    right: -42px;
+}
+
+
+/* 앞머리 */
+
+.hair-front::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 55px;
+    bottom: -25px;
+
+    width: 55px;
+    height: 50px;
+
+    background: var(--hair);
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 100%
+        );
+}
+
+
+/* =========================================================
+   커스터마이징 패널
+========================================================= */
+
+.custom-panel {
+
+    background:
+        rgba(255,255,255,.78);
+
+    backdrop-filter: blur(15px);
+
+    border:
+        1px solid rgba(210,155,198,.3);
+
+    border-radius: 30px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 15px 40px rgba(150,100,140,.1);
+}
+
+.panel-title {
+
+    font-size: 24px;
+
+    font-weight: 900;
+
+    color: #c76aa9;
+
+    margin-bottom: 5px;
+}
+
+.panel-subtitle {
+
+    font-size: 12px;
+
+    color: #a18b9d;
+
+    margin-bottom: 22px;
+}
+
+.option-group {
+
+    margin-bottom: 18px;
+}
+
+.option-title {
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    margin-bottom: 9px;
+
+    color: #765c72;
+}
+
+.options {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+}
+
+.option-button {
+
+    padding: 8px 12px;
+
+    background: #fff;
+
+    border:
+        1px solid #ead8e7;
+
+    border-radius: 12px;
+
+    color: #806b7d;
+
+    font-size: 12px;
+
+    transition: .2s;
+}
+
+.option-button:hover {
+
+    transform: translateY(-2px);
+
+    border-color: #df8ec3;
+}
+
+.option-button.selected {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff9ed1,
+            #e983ba
+        );
+
+    color: white;
+
+    border-color: transparent;
+
+    box-shadow:
+        0 4px 10px rgba(221,125,181,.25);
+}
+
+
+/* 색상 선택 */
+
+.color-button {
+
+    width: 32px;
+    height: 32px;
+
+    border-radius: 50%;
+
+    border:
+        3px solid white;
+
+    box-shadow:
+        0 0 0 1px #dfd1dc;
+
+    transition: .2s;
+}
+
+.color-button.selected {
+
+    box-shadow:
+        0 0 0 2px #db78b4,
+        0 0 0 5px white;
+}
+
+
+/* 완료 버튼 */
+
+.custom-next {
+
+    width: 100%;
+
+    margin-top: 5px;
+
+    padding: 14px;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff92ca,
+            #df73b1
+        );
+
+    color: white;
+
+    font-weight: 900;
+
+    font-size: 15px;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 8px 18px rgba(216,113,175,.25);
+
+    transition: .2s;
+}
+
+.custom-next:hover {
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   3. 카드 선택 화면
+========================================================= */
+
+#cards {
+
+    flex-direction: column;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            #fff,
+            #fff3fb 55%,
+            #f4ddeb
+        );
+}
+
+.cards-container {
+
+    width: min(1150px, 94%);
+
+    margin: auto;
+
+    padding-top: 100px;
+
+    padding-bottom: 40px;
+}
+
+.cards-heading {
+
+    text-align: center;
+
+    margin-bottom: 25px;
+}
+
+.cards-heading h1 {
+
+    font-size: 30px;
+
+    color: #c66eaa;
+}
+
+.cards-heading p {
+
+    margin-top: 7px;
+
+    color: #9b8497;
+
+    font-size: 13px;
+}
+
+
+/* 카드 카테고리 */
+
+.card-tabs {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 25px;
+}
+
+.card-tab {
+
+    padding: 9px 18px;
+
+    border-radius: 30px;
+
+    background: white;
+
+    border:
+        1px solid #ead9e7;
+
+    color: #886e82;
+
+    font-size: 12px;
+
+    transition: .2s;
+}
+
+.card-tab.active {
+
+    background: #e989bd;
+
+    color: white;
+
+    border-color: transparent;
+}
+
+
+/* 카드 목록 */
+
+.card-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(auto-fit, minmax(150px, 1fr));
+
+    gap: 18px;
+
+    max-height: 480px;
+
+    overflow-y: auto;
+
+    padding: 8px;
+
+}
+
+
+/* 카드 */
+
+.fashion-card {
+
+    min-height: 220px;
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 10px;
+
+    border:
+        2px solid transparent;
+
+    box-shadow:
+        0 7px 20px rgba(150,100,140,.1);
+
+    cursor: pointer;
+
+    transition: .25s;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.fashion-card:hover {
+
+    transform:
+        translateY(-5px)
+        rotate(-1deg);
+
+    box-shadow:
+        0 12px 25px rgba(150,100,140,.16);
+}
+
+.fashion-card.selected {
+
+    border-color: #ed82bd;
+
+    box-shadow:
+        0 0 0 4px rgba(237,130,189,.15),
+        0 12px 25px rgba(150,100,140,.16);
+}
+
+.card-art {
+
+    height: 160px;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff5fb,
+            #f7dcec
+        );
+}
+
+
+/* 카드에 표시되는 옷 */
+
+.card-clothing {
+
+    position: relative;
+
+    transition: .3s;
+}
+
+.top-art {
+
+    width: 70px;
+    height: 80px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff9fcf,
+            #df6faf
+        );
+
+    border-radius:
+        25px 25px 15px 15px;
+
+}
+
+.top-art::before,
+.top-art::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 25px;
+    height: 55px;
+
+    background: inherit;
+
+    top: 5px;
+
+    border-radius: 15px;
+}
+
+.top-art::before {
+    left: -17px;
+    transform: rotate(20deg);
+}
+
+.top-art::after {
+    right: -17px;
+    transform: rotate(-20deg);
+}
+
+.skirt-art {
+
+    width: 100px;
+    height: 75px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7a9d0,
+            #c879ba
+        );
+
+    clip-path:
+        polygon(
+            25% 0,
+            75% 0,
+            100% 100%,
+            0 100%
+        );
+}
+
+.shoe-art {
+
+    width: 80px;
+    height: 25px;
+
+    background: #e684b8;
+
+    border-radius: 20px 25px 10px 10px;
+
+    transform: rotate(-8deg);
+}
+
+.accessory-art {
+
+    width: 75px;
+    height: 45px;
+
+    border:
+        7px solid #f0b94d;
+
+    border-radius: 50%;
+
+    position: relative;
+}
+
+.accessory-art::after {
+
+    content: "✦";
+
+    position: absolute;
+
+    top: -25px;
+    left: 20px;
+
+    color: #f2c452;
+
+    font-size: 30px;
+}
+
+.card-name {
+
+    margin-top: 10px;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    color: #745c70;
+}
+
+.card-type {
+
+    margin-top: 4px;
+
+    font-size: 10px;
+
+    color: #b08ba7;
+}
+
+.selected-check {
+
+    position: absolute;
+
+    top: 8px;
+    right: 8px;
+
+    width: 25px;
+    height: 25px;
+
+    border-radius: 50%;
+
+    background: #e77eb9;
+
+    color: white;
+
+    display: none;
+
+    align-items: center;
+    justify-content: center;
+
+    font-size: 13px;
+}
+
+.fashion-card.selected .selected-check {
+
+    display: flex;
+}
+
+
+/* 선택 결과 */
+
+.selected-summary {
+
+    margin-top: 25px;
+
+    background:
+        rgba(255,255,255,.85);
+
+    border-radius: 20px;
+
+    padding: 18px;
+
+    text-align: center;
+
+    box-shadow:
+        0 8px 20px rgba(150,100,140,.08);
+}
+
+.selected-summary strong {
+
+    color: #cf72ac;
+}
+
+.selected-items {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+    margin-top: 10px;
+}
+
+.selected-chip {
+
+    padding: 6px 10px;
+
+    border-radius: 20px;
+
+    background: #fff0f9;
+
+    color: #ad7298;
+
+    font-size: 11px;
+}
+
+.card-next {
+
+    display: block;
+
+    margin: 20px auto 0;
+
+    padding: 14px 45px;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff94ca,
+            #df70af
+        );
+
+    color: white;
+
+    font-weight: 900;
+
+    box-shadow:
+        0 8px 18px rgba(216,113,175,.25);
+
+    transition: .2s;
+}
+
+.card-next:hover {
+
+    transform: translateY(-2px);
+}
+
+
+/* =========================================================
+   모바일
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .page-header {
+        height: 62px;
+        padding: 0 18px;
+    }
+
+    .customize-container {
+
+        grid-template-columns: 1fr;
+
+        width: 94%;
+
+        gap: 20px;
+
+        padding-top: 80px;
+    }
+
+    .character-area {
+
+        min-height: 500px;
+
+        border-radius: 25px;
+    }
+
+    .character {
+
+        transform: scale(.83);
+    }
+
+    .custom-panel {
+
+        padding: 20px;
+    }
+
+    .card-grid {
+
+        grid-template-columns:
+            repeat(2, 1fr);
+
+        max-height: none;
+    }
+
+    .fashion-card {
+
+        min-height: 200px;
+    }
+
+    .card-art {
+
+        height: 135px;
+    }
+
+    .main-logo {
+
+        font-size: 62px;
+    }
+
+    .opening-description {
+
+        padding: 0 20px;
+    }
+}
+
+</style>
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     1. OPENING
+===================================================== -->
+
+<section id="opening" class="screen active">
+
+    <div class="sparkle s1">✦</div>
+    <div class="sparkle s2">✧</div>
+    <div class="sparkle s3">✦</div>
+    <div class="sparkle s4">✧</div>
+
+    <div class="opening-content">
+
+        <div class="logo-small">
+            MY ORIGINAL
+        </div>
+
+        <div class="main-logo">
+            IDOL<span class="star-logo">★</span>
+        </div>
+
+        <div class="logo-sub">
+            CARD DRESS UP
+        </div>
+
+        <p class="opening-description">
+            나만의 아이돌을 만들고<br>
+            특별한 카드를 골라보세요.
+        </p>
+
+        <button
+            class="start-button"
+            onclick="goToCustomize()"
+        >
+            START
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     2. CUSTOMIZE
+===================================================== -->
+
+<section id="customize" class="screen">
+
+    <header class="page-header">
+
+        <div class="header-title">
+            MY IDOL
+        </div>
+
+        <div class="header-step">
+            STEP 1 · CHARACTER
+        </div>
+
+    </header>
+
+
+    <div class="customize-container">
+
+
+        <!-- 캐릭터 -->
+
+        <div class="character-area">
+
+            <div class="character-platform"></div>
+
+            <div
+                id="character"
+                class="character
+                       eyes-round
+                       hair-long"
+                style="
+                    --skin:#f6c7aa;
+                    --eye-color:#69485d;
+                    --hair:#5a3b4d;
+                "
+            >
+
+                <div class="hair-back"></div>
+
+                <div class="character-head">
+
+                    <div class="eye left"></div>
+                    <div class="eye right"></div>
+
+                    <div
+                        id="mouth"
+                        class="mouth mouth-smile"
+                    ></div>
+
+                </div>
+
+                <div class="hair-front"></div>
+
+                <div class="character-neck"></div>
+
+                <div class="character-body"></div>
+
+                <div class="character-skirt"></div>
+
+                <div class="character-leg left"></div>
+                <div class="character-leg right"></div>
+
+                <div class="character-shoe left"></div>
+                <div class="character-shoe right"></div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- 커스터마이징 -->
+
+        <div class="custom-panel">
+
+            <div class="panel-title">
+                CREATE YOUR IDOL
+            </div>
+
+            <div class="panel-subtitle">
+                나만의 아이돌을 만들어보세요.
+            </div>
+
+
+            <!-- 피부색 -->
+
+            <div class="option-group">
+
+                <div class="option-title">
+                    피부색
+                </div>
+
+                <div class="options">
+
+                    <button
+                        class="color-button selected"
+                        style="background:#f6c7aa"
+                        data-type="skin"
+                        data-value="#f6c7aa"
+                    ></button>
+
+                    <button
+                        class="color-button"
+                        style="background:#edb18f"
+                        data-type="skin"
+                        data-value="#edb18f"
+                    ></button>
+
+                    <button
+                        class="color-button"
+                        style="background:#d98e68"
+                        data-type="skin"
+                        data-value="#d98e68"
+                    ></button>
+
+                    <button
+                        class="color-button"
+                        style="background:#a9674b"
+                        data-type="skin"
+                        data-value="#a9674b"
+                    ></button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- 눈 모양 -->
+
+            <div class="option-group">
+
+                <div class="option-title">
+                    눈 모양
+                </div>
+
+                <div class="options">
+
+                    <button
+                        class="option-button selected"
+                        data-type="eyes"
+                        data-value="eyes-round"
+                    >
+                        동그란 눈
+                    </button>
+
+                    <button
+                        class="option-button"
+                        data-type="eyes"
+                        data-value="eyes-slim"
+                    >
+                        길쭉한 눈
+                    </button>
+
+                    <button
+                        class="option-button"
+                        data-type="eyes"
+                        data-value="eyes-droopy"
+                    >
+                        처진 눈
+                    </button>
+
+                    <button
+                        class="option-button"
+                        data-type="eyes"
+                        data-value="eyes-sharp"
+                    >
+                        올라간 눈
+                    </button>
+
+                    <button
+                        class="option-button"
+                        data-type="eyes"
+                        data-value="eyes-happy"
+                    >
+                        반달눈
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- 눈 색 -->
+
+            <div class="option-group">
+
+                <div class="option-title">
+                    눈 색
+                </div>
+
+                <div class="options">
+
+                    <button
+                        class="color-button selected"
+                        style="background:#69485d"
+                        data-type="eye"
+                        data-value="#69485d"
+                    ></button>
+
+                    <button
+                        class="color-button"
+                        style="background:#33251f"
+                        data-type="eye"
+                        data-value="#33251f"
+                    ></button>
+
+                    <button
+                        class="color-button"
+                        style="background:#5c82c7"
+                        data-type="eye"
+                        data-value="#5c82c7"
+                    ></button>
+
+                    <button
+                        class="color-button"
+                        style="background:#6aa86b"
+                        data-type="eye"
+                        data-value="#6aa86b"
+                    ></button>
+
+                    <button
+                        class="color-button"
+                        style="background:#9c68bb"
+                        data-type="eye"
+                        data-value="#9c68bb"
+                    ></button>
+
+                    <button
+                        class="color-button"
+                        style="background:#db77aa"
+                        data-type="eye"
+                        data-value="#db77aa"
+                    ></button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- 입 -->
+
+            <div class="option-group">
+
+                <div class="option-title">
+                    표정
+                </div>
+
+                <div class="options">
+
+                    <button
+                        class="option-button selected"
+                        data-type="mouth"
+                        data-value="mouth-smile"
+                    >
+                        미소
+                    </button>
+
+                    <button
+                        class="option-button"
+                        data-type="mouth"
+                        data-value="mouth-small"
+                    >
+                        작은 입
+                    </button>
+
+                    <button
+                        class="option-button"
+                        data-type="mouth"
+                        data-value="mouth-open"
+                    >
+                        활짝 웃음
+                    </button>
+
+                    <button
+                        class="option-button"
+                        data-type="mouth"
+                        data-value="mouth-surprised"
+                    >
+                        놀람
+                    </button>
+
+                    <button
+                        class="option-button"
+                        data-type="mouth"
+                        data-value="mouth-neutral"
+                    >
+                        무표정
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- 머리 모양 -->
+
+            <div class="option-group">
+
+                <div class="option-title">
+                    머리 모양
+                </div>
+
+                <div class="options">
+
+                    <button
+                        class="option-button selected"
+                        data-type="hair"
+                        data-value="hair-long"
+                    >
+                        긴 생머리
+                    </button>
+
+                    <button
+                        class="option-button"
+                        data-type="hair"
+                        data-value="hair-bob"
+                    >
+                        단발
+                    </button>
+
+                    <button
+                        class="option-button"
+                        data-type="hair"
+                        data-value="hair-wave"
+                    >
+                        웨이브
+                    </button>
+
+                    <button
+                        class="option-button"
+                        data-type="hair"
+                        data-value="hair-ponytail"
+                    >
+                        포니테일
+                    </button>
+
+                    <button
+                        class="option-button"
+                        data-type="hair"
+                        data-value="hair-twin"
+                    >
+                        트윈테일
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- 머리 색 -->
+
+            <div class="option-group">
+
+                <div class="option-title">
+                    머리 색
+                </div>
+
+                <div class="options">
+
+                    <button
+                        class="color-button selected"
+                        style="background:#5a3b4d"
+                        data-type="haircolor"
+                        data-value="#5a3b4d"
+                    ></button>
+
+                    <button
+                        class="color-button"
+                        style="background:#211b20"
+                        data-type="haircolor"
+                        data-value="#211b20"
+                    ></button>
+
+                    <button
+                        class="color-button"
+                        style="background:#8b5c3f"
+                        data-type="haircolor"
+                        data-value="#8b5c3f"
+                    ></button>
+
+                    <button
+                        class="color-button"
+                        style="background:#e2b96c"
+                        data-type="haircolor"
+                        data-value="#e2b96c"
+                    ></button>
+
+                    <button
+                        class="color-button"
+                        style="background:#d77eb7"
+                        data-type="haircolor"
+                        data-value="#d77eb7"
+                    ></button>
+
+                    <button
+                        class="color-button"
+                        style="background:#8170c9"
+                        data-type="haircolor"
+                        data-value="#8170c9"
+                    ></button>
+
+                    <button
+                        class="color-button"
+                        style="background:#6b9ed1"
+                        data-type="haircolor"
+                        data-value="#6b9ed1"
+                    ></button>
+
+                </div>
+
+            </div>
+
+
+            <button
+                class="custom-next"
+                onclick="finishCharacter()"
+            >
+                ✦ 아이돌 완성하기 ✦
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     3. CARD SELECT
+===================================================== -->
+
+<section id="cards" class="screen">
+
+    <header class="page-header">
+
+        <div class="header-title">
+            IDOL CARD
+        </div>
+
+        <div class="header-step">
+            STEP 2 · CARD SELECT
+        </div>
+
+    </header>
+
+
+    <div class="cards-container">
+
+        <div class="cards-heading">
+
+            <h1>
+                ✦ SELECT YOUR CARDS ✦
+            </h1>
+
+            <p>
+                원하는 카드를 선택해 다음 단계로 이동하세요.
+            </p>
+
+        </div>
+
+
+        <!-- 카테고리 -->
+
+        <div class="card-tabs">
+
+            <button
+                class="card-tab active"
+                data-category="all"
+            >
+                ALL
+            </button>
+
+            <button
+                class="card-tab"
+                data-category="top"
+            >
+                TOP
+            </button>
+
+            <button
+                class="card-tab"
+                data-category="skirt"
+            >
+                BOTTOM
+            </button>
+
+            <button
+                class="card-tab"
+                data-category="shoe"
+            >
+                SHOES
+            </button>
+
+            <button
+                class="card-tab"
+                data-category="accessory"
+            >
+                ACCESSORY
+            </button>
+
+        </div>
+
+
+        <!-- 카드 -->
+
+        <div
+            id="cardGrid"
+            class="card-grid"
+        ></div>
+
+
+        <!-- 선택 상태 -->
+
+        <div class="selected-summary">
+
+            <div>
+                선택한 카드
+                <strong id="selectedCount">
+                    0
+                </strong>
+                장
+            </div>
+
+            <div
+                id="selectedItems"
+                class="selected-items"
+            >
+                <span class="selected-chip">
+                    아직 선택한 카드가 없습니다.
+                </span>
+            </div>
+
+        </div>
+
+
+        <button
+            class="card-next"
+            onclick="goToMachine()"
+        >
+            카드 기계로 이동 →
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<script>
+
+/* =========================================================
+   캐릭터 상태
+========================================================= */
+
+const characterState = {
+
+    skin: "#f6c7aa",
+
+    eyes: "eyes-round",
+
+    eyeColor: "#69485d",
+
+    mouth: "mouth-smile",
+
+    hair: "hair-long",
+
+    hairColor: "#5a3b4d"
+
+};
+
+
+/* =========================================================
+   화면 이동
+========================================================= */
+
+function showScreen(id) {
+
+    document
+        .querySelectorAll(".screen")
+        .forEach(screen => {
+
+            screen.classList.remove("active");
+
+        });
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+    window.scrollTo(0, 0);
+}
+
+
+function goToCustomize() {
+
+    showScreen("customize");
+
+}
+
+
+function finishCharacter() {
+
+    showScreen("cards");
+
+}
+
+
+/* =========================================================
+   캐릭터 업데이트
+========================================================= */
+
+const character =
+    document.getElementById("character");
+
+const mouth =
+    document.getElementById("mouth");
+
+
+function updateCharacter() {
+
+    /* 피부 */
+
+    character.style.setProperty(
+        "--skin",
+        characterState.skin
+    );
+
+
+    /* 눈 색 */
+
+    character.style.setProperty(
+        "--eye-color",
+        characterState.eyeColor
+    );
+
+
+    /* 머리 색 */
+
+    character.style.setProperty(
+        "--hair",
+        characterState.hairColor
+    );
+
+
+    /* 눈 모양 */
+
+    character.classList.remove(
+        "eyes-round",
+        "eyes-slim",
+        "eyes-droopy",
+        "eyes-sharp",
+        "eyes-happy"
+    );
+
+    character.classList.add(
+        characterState.eyes
+    );
+
+
+    /* 머리 모양 */
+
+    character.classList.remove(
+        "hair-long",
+        "hair-bob",
+        "hair-wave",
+        "hair-ponytail",
+        "hair-twin"
+    );
+
+    character.classList.add(
+        characterState.hair
+    );
+
+
+    /* 입 */
+
+    mouth.className =
+        "mouth " + characterState.mouth;
+
+}
+
+
+/* =========================================================
+   옵션 버튼
+========================================================= */
+
+document
+    .querySelectorAll(".option-button, .color-button")
+    .forEach(button => {
+
+        button.addEventListener(
+            "click",
+            () => {
+
+                const type =
+                    button.dataset.type;
+
+                const value =
+                    button.dataset.value;
+
+
+                /* 같은 종류의 선택만 해제 */
+
+                document
+                    .querySelectorAll(
+                        `[data-type="${type}"]`
+                    )
+                    .forEach(item => {
+
+                        item.classList.remove(
+                            "selected"
+                        );
+
+                    });
+
+
+                button.classList.add("selected");
+
+
+                /* 상태 저장 */
+
+                if (type === "skin") {
+
+                    characterState.skin = value;
+
+                }
+
+                if (type === "eyes") {
+
+                    characterState.eyes = value;
+
+                }
+
+                if (type === "eye") {
+
+                    characterState.eyeColor = value;
+
+                }
+
+                if (type === "mouth") {
+
+                    characterState.mouth = value;
+
+                }
+
+                if (type === "hair") {
+
+                    characterState.hair = value;
+
+                }
+
+                if (type === "haircolor") {
+
+                    characterState.hairColor = value;
+
+                }
+
+
+                updateCharacter();
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   카드 데이터
+========================================================= */
+
+const cards = [
+
+    {
+        id: 1,
+        name: "핑크 리본 톱",
+        category: "top",
+        type: "TOP",
+        art: "top-art"
+    },
+
+    {
+        id: 2,
+        name: "화이트 프릴 톱",
+        category: "top",
+        type: "TOP",
+        art: "top-art"
+    },
+
+    {
+        id: 3,
+        name: "블루 스타 톱",
+        category: "top",
+        type: "TOP",
+        art: "top-art"
+    },
+
+    {
+        id: 4,
+        name: "핑크 플레어 스커트",
+        category: "skirt",
+        type: "BOTTOM",
+        art: "skirt-art"
+    },
+
+    {
+        id: 5,
+        name: "화이트 레이스 스커트",
+        category: "skirt",
+        type: "BOTTOM",
+        art: "skirt-art"
+    },
+
+    {
+        id: 6,
+        name: "블루 스타 스커트",
+        category: "skirt",
+        type: "BOTTOM",
+        art: "skirt-art"
+    },
+
+    {
+        id: 7,
+        name: "리본 부츠",
+        category: "shoe",
+        type: "SHOES",
+        art: "shoe-art"
+    },
+
+    {
+        id: 8,
+        name: "스타 힐",
+        category: "shoe",
+        type: "SHOES",
+        art: "shoe-art"
+    },
+
+    {
+        id: 9,
+        name: "화이트 앵클부츠",
+        category: "shoe",
+        type: "SHOES",
+        art: "shoe-art"
+    },
+
+    {
+        id: 10,
+        name: "스타 헤어리본",
+        category: "accessory",
+        type: "ACCESSORY",
+        art: "accessory-art"
+    },
+
+    {
+        id: 11,
+        name: "핑크 크라운",
+        category: "accessory",
+        type: "ACCESSORY",
+        art: "accessory-art"
+    },
+
+    {
+        id: 12,
+        name: "하트 헤어핀",
+        category: "accessory",
+        type: "ACCESSORY",
+        art: "accessory-art"
+    }
+
+];
+
+
+/* =========================================================
+   선택한 카드
+========================================================= */
+
+let selectedCards = [];
+
+
+/* =========================================================
+   카드 렌더링
+========================================================= */
+
+const cardGrid =
+    document.getElementById("cardGrid");
+
+
+function renderCards(category = "all") {
+
+    cardGrid.innerHTML = "";
+
+
+    const filteredCards =
+        category === "all"
+            ? cards
+            : cards.filter(
+                card =>
+                    card.category === category
+            );
+
+
+    filteredCards.forEach(card => {
+
+        const element =
+            document.createElement("div");
+
+
+        element.className =
+            "fashion-card";
+
+
+        if (
+            selectedCards.some(
+                item => item.id === card.id
+            )
+        ) {
+
+            element.classList.add(
+                "selected"
+            );
+
+        }
+
+
+        element.innerHTML = `
+
+            <div class="selected-check">
+                ✓
+            </div>
+
+            <div class="card-art">
+
+                <div
+                    class="card-clothing ${card.art}"
+                ></div>
+
+            </div>
+
+            <div class="card-name">
+                ${card.name}
+            </div>
+
+            <div class="card-type">
+                ${card.type}
+            </div>
+
+        `;
+
+
+        element.addEventListener(
+            "click",
+            () => selectCard(card)
+        );
+
+
+        cardGrid.appendChild(element);
+
+    });
+
+}
+
+
+/* =========================================================
+   카드 선택
+========================================================= */
+
+function selectCard(card) {
+
+    const exists =
+        selectedCards.some(
+            item => item.id === card.id
+        );
+
+
+    if (exists) {
+
+        selectedCards =
+            selectedCards.filter(
+                item => item.id !== card.id
+            );
+
+    } else {
+
+        selectedCards.push(card);
+
+    }
+
+
+    renderCards(
+        document
+            .querySelector(".card-tab.active")
+            .dataset.category
+    );
+
+
+    updateSelectedSummary();
+
+}
+
+
+/* =========================================================
+   선택 카드 표시
+========================================================= */
+
+function updateSelectedSummary() {
+
+    const count =
+        document.getElementById(
+            "selectedCount"
+        );
+
+    const items =
+        document.getElementById(
+            "selectedItems"
+        );
+
+
+    count.textContent =
+        selectedCards.length;
+
+
+    if (selectedCards.length === 0) {
+
+        items.innerHTML = `
+            <span class="selected-chip">
+                아직 선택한 카드가 없습니다.
+            </span>
+        `;
+
+        return;
+
+    }
+
+
+    items.innerHTML =
+        selectedCards
+            .map(
+                card => `
+                    <span class="selected-chip">
+                        ${card.name}
+                    </span>
+                `
+            )
+            .join("");
+
+}
+
+
+/* =========================================================
+   카테고리 탭
+========================================================= */
+
+document
+    .querySelectorAll(".card-tab")
+    .forEach(tab => {
+
+        tab.addEventListener(
+            "click",
+            () => {
+
+                document
+                    .querySelectorAll(
+                        ".card-tab"
+                    )
+                    .forEach(item => {
+
+                        item.classList.remove(
+                            "active"
+                        );
+
+                    });
+
+
+                tab.classList.add("active");
+
+
+                renderCards(
+                    tab.dataset.category
+                );
+
+            }
+        );
+
+    });
+
+
+/* =========================================================
+   카드 기계 이동
+   현재는 테스트용 알림.
+   다음 버전에서 실제 기계 화면으로 교체.
+========================================================= */
+
+function goToMachine() {
+
+    if (selectedCards.length === 0) {
+
+        alert(
+            "먼저 카드를 하나 이상 선택해주세요! ✨"
+        );
+
+        return;
+
+    }
+
+
+    alert(
+        "카드 기계 화면은 다음 단계에서 만들어볼게요! 💗\n\n" +
+        "현재 선택한 카드: " +
+        selectedCards.length +
+        "장"
+    );
+
+}
+
+
+/* =========================================================
+   초기 실행
+========================================================= */
+
+renderCards();
+
+updateSelectedSummary();
+
+</script>
+
+</body>
+</html>
