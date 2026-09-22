@@ -17,28 +17,32 @@
 }
 
 :root{
-    --navy:#080b29;
-    --deep:#11133d;
-    --purple:#35216b;
-    --violet:#7d58d8;
-    --pink:#eaa8e9;
-    --gold:#e7c77b;
+    --navy:#07091f;
+    --deep:#101231;
+    --purple:#30205e;
+    --violet:#7957d7;
+    --pink:#e5a9e8;
+    --gold:#ead083;
     --white:#fff;
-    --glass:rgba(255,255,255,.09);
-    --line:rgba(255,255,255,.22);
+    --line:rgba(255,255,255,.18);
+}
+
+html{
+    min-height:100%;
 }
 
 body{
-    font-family:'Noto Sans KR',sans-serif;
-    background:
-        radial-gradient(circle at 50% 20%,#34327b 0%,#11133d 35%,#07091f 100%);
-    color:white;
     min-height:100vh;
+    font-family:'Noto Sans KR',sans-serif;
+    color:white;
+    background:
+        radial-gradient(circle at 50% 8%,#3b397e 0%,#181942 28%,#090b24 68%,#050615 100%);
     overflow-x:hidden;
 }
 
 button{
     font-family:inherit;
+    -webkit-tap-highlight-color:transparent;
 }
 
 .screen{
@@ -52,65 +56,92 @@ button{
     display:flex;
 }
 
-/* =========================
-   STAR BACKGROUND
-========================= */
+/* =====================================================
+   BACKGROUND
+===================================================== */
+
+.magic-bg{
+    position:fixed;
+    inset:0;
+    pointer-events:none;
+    overflow:hidden;
+    z-index:0;
+}
+
+.magic-bg::before{
+    content:"";
+    position:absolute;
+    width:650px;
+    height:650px;
+    left:50%;
+    top:40%;
+    transform:translate(-50%,-50%);
+    border-radius:50%;
+    background:
+        radial-gradient(circle,
+        rgba(129,94,218,.22),
+        rgba(129,94,218,.06) 45%,
+        transparent 70%);
+}
 
 .stars{
     position:absolute;
     inset:0;
-    pointer-events:none;
-    overflow:hidden;
 }
 
 .star{
     position:absolute;
     width:3px;
     height:3px;
-    background:white;
     border-radius:50%;
-    box-shadow:0 0 8px white;
-    animation:twinkle 2.5s infinite alternate;
+    background:white;
+    box-shadow:0 0 10px white;
+    animation:twinkle 2.4s ease-in-out infinite alternate;
 }
 
-.star:nth-child(1){left:8%;top:13%}
-.star:nth-child(2){left:18%;top:72%}
-.star:nth-child(3){left:29%;top:20%}
-.star:nth-child(4){left:42%;top:8%}
-.star:nth-child(5){left:55%;top:28%}
-.star:nth-child(6){left:67%;top:12%}
-.star:nth-child(7){left:78%;top:67%}
-.star:nth-child(8){left:91%;top:23%}
-.star:nth-child(9){left:12%;top:42%}
-.star:nth-child(10){left:87%;top:83%}
-.star:nth-child(11){left:47%;top:84%}
-.star:nth-child(12){left:72%;top:42%}
+.star:nth-child(1){left:7%;top:13%}
+.star:nth-child(2){left:15%;top:67%;animation-delay:.4s}
+.star:nth-child(3){left:25%;top:22%;animation-delay:1s}
+.star:nth-child(4){left:38%;top:9%;animation-delay:.7s}
+.star:nth-child(5){left:51%;top:31%;animation-delay:1.3s}
+.star:nth-child(6){left:65%;top:12%;animation-delay:.2s}
+.star:nth-child(7){left:76%;top:71%;animation-delay:1.1s}
+.star:nth-child(8){left:91%;top:26%;animation-delay:.5s}
+.star:nth-child(9){left:11%;top:42%;animation-delay:1.5s}
+.star:nth-child(10){left:87%;top:83%;animation-delay:.9s}
+.star:nth-child(11){left:48%;top:88%;animation-delay:.3s}
+.star:nth-child(12){left:72%;top:45%;animation-delay:1.7s}
+.star:nth-child(13){left:58%;top:62%;animation-delay:.8s}
+.star:nth-child(14){left:33%;top:73%;animation-delay:1.4s}
 
 @keyframes twinkle{
-    from{opacity:.25;transform:scale(.7)}
-    to{opacity:1;transform:scale(1.4)}
+    from{
+        opacity:.2;
+        transform:scale(.65);
+    }
+    to{
+        opacity:1;
+        transform:scale(1.5);
+    }
 }
-
-/* =========================
-   COMMON
-========================= */
 
 .magic-panel{
     background:
         linear-gradient(145deg,
-        rgba(255,255,255,.14),
-        rgba(255,255,255,.04));
-    border:1px solid rgba(231,199,123,.35);
+        rgba(255,255,255,.12),
+        rgba(255,255,255,.035));
+    border:1px solid rgba(234,208,131,.34);
     box-shadow:
-        0 20px 60px rgba(0,0,0,.35),
-        inset 0 0 30px rgba(255,255,255,.035);
+        0 22px 65px rgba(0,0,0,.38),
+        inset 0 0 35px rgba(255,255,255,.025);
     backdrop-filter:blur(18px);
-    border-radius:24px;
+    -webkit-backdrop-filter:blur(18px);
+    border-radius:26px;
 }
 
 .title{
     font-family:'Cinzel',serif;
-    letter-spacing:5px;
+    letter-spacing:4px;
     text-align:center;
 }
 
@@ -118,9 +149,9 @@ button{
     color:var(--gold);
 }
 
-/* =========================
+/* =====================================================
    OPENING
-========================= */
+===================================================== */
 
 #opening{
     align-items:center;
@@ -129,112 +160,130 @@ button{
 }
 
 .opening-content{
+    width:min(650px,92%);
     position:relative;
     z-index:2;
-    width:min(600px,90%);
 }
 
-.academy-symbol{
-    width:110px;
-    height:110px;
+.academy-emblem{
+    width:125px;
+    height:125px;
     margin:0 auto 28px;
-    border:2px solid var(--gold);
+    position:relative;
+    border:1px solid rgba(234,208,131,.8);
     border-radius:50%;
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:43px;
-    color:var(--gold);
     box-shadow:
-        0 0 25px rgba(231,199,123,.35),
-        inset 0 0 20px rgba(231,199,123,.1);
+        0 0 35px rgba(234,208,131,.18),
+        inset 0 0 25px rgba(234,208,131,.1);
+}
+
+.academy-emblem::before{
+    content:"";
+    position:absolute;
+    inset:9px;
+    border:1px solid rgba(234,208,131,.4);
+    border-radius:50%;
+}
+
+.emblem-star{
+    font-size:48px;
+    color:var(--gold);
+    text-shadow:0 0 20px rgba(234,208,131,.65);
 }
 
 .opening-small{
     font-family:'Cinzel',serif;
-    letter-spacing:7px;
     font-size:13px;
-    color:#d7d1ed;
-    margin-bottom:13px;
+    letter-spacing:7px;
+    color:#d8d2ec;
+    margin-bottom:15px;
 }
 
 .opening-title{
     font-family:'Cinzel',serif;
-    font-size:clamp(38px,8vw,72px);
+    font-size:clamp(38px,8vw,74px);
+    line-height:1;
     letter-spacing:5px;
-    line-height:1.05;
-    background:linear-gradient(180deg,#fff,#e5c7ff 55%,#cba5ff);
+    background:
+        linear-gradient(180deg,#ffffff,#eadcff 52%,#bf9bea);
     -webkit-background-clip:text;
+    background-clip:text;
     color:transparent;
-    text-shadow:0 0 35px rgba(192,153,255,.4);
+    text-shadow:0 0 35px rgba(185,148,255,.35);
 }
 
 .opening-sub{
-    margin-top:15px;
+    margin-top:18px;
+    color:#c9c5df;
+    font-size:12px;
     letter-spacing:4px;
-    color:#cfc9e9;
-    font-size:13px;
 }
 
 .start-btn,
 .primary-btn{
-    margin-top:42px;
-    padding:17px 55px;
-    border-radius:999px;
     border:1px solid var(--gold);
     color:white;
-    font-weight:700;
-    letter-spacing:3px;
     background:
-        linear-gradient(135deg,#7450b8,#a76fd0);
-    box-shadow:
-        0 8px 30px rgba(116,80,184,.4),
-        inset 0 1px 0 rgba(255,255,255,.3);
+        linear-gradient(135deg,#6747aa,#a36ecb);
+    border-radius:999px;
+    padding:16px 48px;
+    margin-top:38px;
+    font-weight:800;
+    letter-spacing:3px;
     cursor:pointer;
-    transition:.25s;
+    box-shadow:
+        0 9px 30px rgba(100,70,170,.38),
+        inset 0 1px 0 rgba(255,255,255,.25);
+    transition:.25s ease;
 }
 
 .start-btn:hover,
 .primary-btn:hover{
     transform:translateY(-3px);
-    box-shadow:0 12px 35px rgba(154,104,220,.55);
+    box-shadow:
+        0 14px 38px rgba(145,98,215,.5),
+        inset 0 1px 0 rgba(255,255,255,.3);
 }
 
-/* =========================
-   HEADER
-========================= */
+/* =====================================================
+   PAGE
+===================================================== */
 
 .page{
     width:min(1450px,94%);
     margin:auto;
     position:relative;
     z-index:2;
-    padding:25px 0;
+    padding:25px 0 35px;
 }
 
 .page-header{
     display:flex;
     justify-content:space-between;
     align-items:center;
-    margin-bottom:18px;
+    gap:20px;
+    margin-bottom:20px;
 }
 
 .logo-mini{
     font-family:'Cinzel',serif;
-    letter-spacing:3px;
     color:var(--gold);
-    font-size:17px;
+    font-size:16px;
+    letter-spacing:3px;
 }
 
 .step{
-    font-size:12px;
+    color:#bdb8d4;
+    font-size:11px;
     letter-spacing:2px;
-    color:#c9c4dd;
 }
 
-/* =========================
+/* =====================================================
    CUSTOMIZE
-========================= */
+===================================================== */
 
 #customize{
     align-items:flex-start;
@@ -242,36 +291,44 @@ button{
 
 .customize-layout{
     display:grid;
-    grid-template-columns:470px 1fr;
+    grid-template-columns:500px minmax(0,1fr);
     gap:25px;
-    min-height:calc(100vh - 90px);
 }
 
 .character-stage{
-    min-height:780px;
+    min-height:850px;
+    position:relative;
     display:flex;
     align-items:center;
     justify-content:center;
-    position:relative;
     overflow:hidden;
 }
 
 .character-stage::before{
     content:"";
     position:absolute;
-    width:380px;
-    height:380px;
+    width:500px;
+    height:500px;
     border-radius:50%;
-    background:radial-gradient(circle,rgba(161,120,255,.25),transparent 68%);
+    background:
+        radial-gradient(circle,
+        rgba(137,103,226,.24),
+        transparent 68%);
 }
 
-/* =========================
-   SVG CHARACTER
-========================= */
+.character-stage::after{
+    content:"✦";
+    position:absolute;
+    color:rgba(234,208,131,.55);
+    font-size:24px;
+    top:30px;
+    right:38px;
+    text-shadow:0 0 15px rgba(234,208,131,.5);
+}
 
 .character-wrap{
-    width:300px;
-    height:780px;
+    width:320px;
+    height:820px;
     position:relative;
     z-index:2;
 }
@@ -282,71 +339,72 @@ button{
     overflow:visible;
 }
 
-/* outfit */
+/* =====================================================
+   CHARACTER SVG
+===================================================== */
 
-.outfit-fill{
-    fill:#6f55c7;
-}
-
-.skin{
+.skinPart{
     fill:#f4c9ad;
 }
 
-.hair{
+.hairPart{
     fill:#35274d;
 }
 
-.hair-light{
-    fill:#4c386c;
+.hairLightPart{
+    fill:#4d3b68;
 }
 
-.eye-white{
-    fill:white;
+.eyeWhite{
+    fill:#fff;
 }
 
-.eye-iris{
+.eyeIris{
     fill:#6542a9;
 }
 
-.eye-pupil{
-    fill:#161025;
+.eyePupil{
+    fill:#171223;
 }
 
-.mouth-fill{
-    fill:#b65c7b;
+.mouthPink{
+    fill:#c45e7f;
 }
 
-.mouth-dark{
-    fill:#54243a;
+.mouthDark{
+    fill:#59253c;
 }
 
 .character-svg path,
 .character-svg ellipse,
-.character-svg circle,
-.character-svg rect{
-    transition:all .22s ease;
+.character-svg circle{
+    transition:
+        d .22s ease,
+        fill .22s ease,
+        transform .22s ease,
+        opacity .22s ease;
 }
 
-/* =========================
-   OPTIONS
-========================= */
+/* =====================================================
+   OPTION PANEL
+===================================================== */
 
 .option-panel{
     padding:25px;
-    overflow:auto;
-    max-height:calc(100vh - 110px);
+    max-height:calc(100vh - 105px);
+    overflow-y:auto;
 }
 
 .option-section{
-    margin-bottom:25px;
+    margin-bottom:24px;
 }
 
 .option-title{
-    font-size:12px;
-    letter-spacing:2px;
     color:var(--gold);
-    margin-bottom:12px;
-    font-weight:700;
+    font-size:11px;
+    letter-spacing:2px;
+    font-weight:800;
+    margin-bottom:11px;
 }
 
 .option-grid{
@@ -356,55 +414,58 @@ button{
 }
 
 .option-btn{
-    min-height:55px;
+    min-height:52px;
     padding:7px;
-    border:1px solid rgba(255,255,255,.14);
-    background:rgba(255,255,255,.05);
-    color:white;
     border-radius:12px;
+    border:1px solid rgba(255,255,255,.13);
+    background:rgba(255,255,255,.045);
+    color:white;
     cursor:pointer;
     font-size:11px;
     transition:.2s;
 }
 
 .option-btn:hover{
-    background:rgba(255,255,255,.11);
+    background:rgba(255,255,255,.1);
 }
 
 .option-btn.selected{
     border-color:var(--gold);
-    background:linear-gradient(135deg,rgba(126,86,205,.5),rgba(234,168,233,.15));
-    box-shadow:0 0 15px rgba(231,199,123,.18);
+    background:
+        linear-gradient(135deg,
+        rgba(122,84,204,.5),
+        rgba(229,169,232,.12));
+    box-shadow:0 0 15px rgba(234,208,131,.14);
 }
 
 .color-grid{
-    display:grid;
-    grid-template-columns:repeat(7,1fr);
-    gap:10px;
+    display:flex;
+    flex-wrap:wrap;
+    gap:11px;
 }
 
 .color-btn{
     width:35px;
     height:35px;
     border-radius:50%;
-    border:2px solid rgba(255,255,255,.2);
+    border:2px solid rgba(255,255,255,.18);
     cursor:pointer;
     transition:.2s;
 }
 
 .color-btn.selected{
     border-color:white;
-    transform:scale(1.13);
-    box-shadow:0 0 12px rgba(255,255,255,.4);
+    transform:scale(1.14);
+    box-shadow:0 0 13px rgba(255,255,255,.45);
 }
 
 .continue-row{
     text-align:right;
 }
 
-/* =========================
+/* =====================================================
    CARDS
-========================= */
+===================================================== */
 
 #cards{
     align-items:flex-start;
@@ -415,29 +476,30 @@ button{
     margin:auto;
     position:relative;
     z-index:2;
-    padding:30px 0;
+    padding:30px 0 40px;
 }
 
 .category-tabs{
     display:flex;
     gap:8px;
     flex-wrap:wrap;
-    margin:20px 0;
+    margin:22px 0;
 }
 
 .tab{
-    padding:11px 19px;
-    border:1px solid rgba(255,255,255,.16);
-    background:rgba(255,255,255,.05);
-    color:#d8d3e9;
+    padding:10px 18px;
     border-radius:999px;
+    border:1px solid rgba(255,255,255,.15);
+    background:rgba(255,255,255,.045);
+    color:#d0cbdf;
     cursor:pointer;
+    transition:.2s;
 }
 
 .tab.active{
     color:white;
     border-color:var(--gold);
-    background:rgba(126,86,205,.4);
+    background:rgba(119,82,203,.38);
 }
 
 .card-grid{
@@ -451,12 +513,12 @@ button{
     aspect-ratio:.7;
     padding:10px;
     border-radius:20px;
-    border:1px solid rgba(231,199,123,.3);
+    border:1px solid rgba(234,208,131,.25);
     background:
-        linear-gradient(145deg,#282153,#111331);
+        linear-gradient(145deg,#292052,#10122e);
     cursor:pointer;
-    transition:.2s;
     user-select:none;
+    transition:.22s ease;
 }
 
 .fashion-card:hover{
@@ -465,21 +527,37 @@ button{
 
 .fashion-card.selected{
     border:2px solid var(--gold);
-    box-shadow:
-        0 0 22px rgba(231,199,123,.3),
-        inset 0 0 25px rgba(126,86,205,.2);
     transform:translateY(-5px);
+    box-shadow:
+        0 0 25px rgba(234,208,131,.25),
+        inset 0 0 25px rgba(121,87,215,.15);
+}
+
+.fashion-card.selected::after{
+    content:"✓";
+    position:absolute;
+    top:9px;
+    right:10px;
+    width:25px;
+    height:25px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:var(--gold);
+    color:#261b43;
+    font-weight:900;
 }
 
 .card-ribbon{
     position:absolute;
-    top:10px;
     left:10px;
-    font-size:9px;
-    letter-spacing:1px;
+    top:10px;
     padding:4px 7px;
-    background:rgba(0,0,0,.35);
     border-radius:5px;
+    background:rgba(0,0,0,.35);
+    font-size:8px;
+    letter-spacing:1px;
 }
 
 .card-art{
@@ -488,21 +566,23 @@ button{
     display:flex;
     align-items:center;
     justify-content:center;
-    font-size:72px;
     background:
-        radial-gradient(circle,rgba(255,255,255,.15),transparent 65%);
+        radial-gradient(circle,
+        rgba(255,255,255,.14),
+        transparent 65%);
+    font-size:70px;
 }
 
 .card-name{
-    font-weight:700;
-    margin-top:9px;
-    font-size:13px;
+    margin-top:8px;
+    font-size:12px;
+    font-weight:800;
 }
 
 .card-type{
-    font-size:10px;
-    color:#aaa5c3;
     margin-top:3px;
+    color:#a9a4c0;
+    font-size:9px;
 }
 
 .selected-summary{
@@ -512,27 +592,26 @@ button{
 
 .summary-items{
     display:flex;
-    gap:10px;
+    gap:9px;
     flex-wrap:wrap;
 }
 
 .summary-chip{
-    padding:8px 12px;
+    padding:8px 11px;
     border-radius:10px;
-    background:rgba(255,255,255,.07);
-    font-size:11px;
+    background:rgba(255,255,255,.06);
     border:1px solid rgba(255,255,255,.12);
+    font-size:10px;
 }
 
 .cards-bottom{
     display:flex;
     justify-content:flex-end;
-    margin-top:20px;
 }
 
-/* =========================
+/* =====================================================
    MACHINE
-========================= */
+===================================================== */
 
 #machine{
     align-items:center;
@@ -547,150 +626,197 @@ button{
 
 .machine-layout{
     display:grid;
-    grid-template-columns:350px 1fr;
-    gap:25px;
+    grid-template-columns:330px minmax(0,1fr);
+    gap:24px;
 }
 
 .selected-cards-panel{
     padding:20px;
 }
 
+.selected-machine-card{
+    padding:14px;
+    margin-bottom:10px;
+    border-radius:15px;
+    border:1px solid rgba(255,255,255,.13);
+    background:
+        linear-gradient(135deg,#302457,#14152f);
+}
+
 .drag-card{
     position:relative;
-    padding:13px;
+    padding:14px;
     margin-bottom:10px;
-    border-radius:14px;
-    background:linear-gradient(135deg,#302458,#161631);
-    border:1px solid rgba(255,255,255,.15);
+    border-radius:15px;
+    border:1px solid rgba(255,255,255,.17);
+    background:
+        linear-gradient(135deg,#392962,#17172f);
     cursor:grab;
     touch-action:none;
     user-select:none;
+    -webkit-user-select:none;
+    transition:transform .12s ease,opacity .12s ease;
+}
+
+.drag-card:active{
+    cursor:grabbing;
 }
 
 .drag-card.dragging{
-    opacity:.35;
+    opacity:.25;
+    transform:scale(.97);
+}
+
+.drag-card small{
+    display:block;
+    color:#aaa5c2;
+    font-size:9px;
+    margin-top:4px;
 }
 
 .drag-ghost{
     position:fixed;
-    z-index:9999;
-    width:150px;
+    z-index:99999;
+    width:170px;
     pointer-events:none;
-    transform:translate(-50%,-50%) rotate(3deg);
-    box-shadow:0 20px 50px rgba(0,0,0,.5);
+    transform:translate(-50%,-50%) rotate(3deg) scale(1.03);
+    box-shadow:0 25px 55px rgba(0,0,0,.6);
 }
 
 .machine{
     min-height:650px;
-    padding:30px;
-    border-radius:35px;
-    border:2px solid rgba(231,199,123,.4);
+    padding:28px;
+    border-radius:34px;
+    border:2px solid rgba(234,208,131,.38);
     background:
-        linear-gradient(145deg,#242052,#10112f);
+        linear-gradient(145deg,#25204f,#10122f);
     box-shadow:
-        0 30px 70px rgba(0,0,0,.4),
-        inset 0 0 60px rgba(126,86,205,.12);
+        0 30px 80px rgba(0,0,0,.4),
+        inset 0 0 65px rgba(122,87,215,.12);
 }
 
 .machine-title{
     text-align:center;
+    color:var(--gold);
     font-family:'Cinzel',serif;
     letter-spacing:5px;
-    color:var(--gold);
     margin-bottom:25px;
+}
+
+.machine-subtitle{
+    text-align:center;
+    color:#aaa6c0;
+    font-size:10px;
+    margin-top:-16px;
+    margin-bottom:24px;
 }
 
 .slots{
     display:grid;
     grid-template-columns:repeat(2,1fr);
-    gap:18px;
+    gap:17px;
 }
 
 .slot{
-    min-height:210px;
-    border:2px dashed rgba(231,199,123,.35);
+    min-height:205px;
+    border:2px dashed rgba(234,208,131,.34);
     border-radius:22px;
+    position:relative;
     display:flex;
     align-items:center;
     justify-content:center;
     text-align:center;
-    color:#85809d;
-    position:relative;
-    transition:.2s;
+    color:#7f7a98;
+    transition:.18s ease;
 }
 
 .slot.hover{
     border-color:var(--gold);
-    background:rgba(231,199,123,.08);
-    transform:scale(1.02);
+    background:rgba(234,208,131,.09);
+    transform:scale(1.025);
+    box-shadow:0 0 25px rgba(234,208,131,.12);
 }
 
 .slot-title{
     position:absolute;
-    top:12px;
+    top:11px;
     left:0;
     right:0;
-    font-family:'Cinzel',serif;
     color:var(--gold);
-    font-size:14px;
+    font-family:'Cinzel',serif;
     letter-spacing:2px;
+    font-size:13px;
 }
 
 .inserted-card{
-    width:130px;
-    aspect-ratio:.7;
+    width:125px;
+    min-height:145px;
+    padding:12px;
     border-radius:13px;
-    background:linear-gradient(145deg,#3b2b67,#161633);
     border:1px solid var(--gold);
-    padding:10px;
-    color:white;
+    background:
+        linear-gradient(145deg,#43316d,#15152e);
     display:flex;
     flex-direction:column;
     justify-content:center;
     align-items:center;
+    text-align:center;
+    animation:insertCard .3s ease;
 }
 
 .inserted-card .icon{
-    font-size:45px;
-    margin-bottom:8px;
+    font-size:42px;
+    margin-bottom:7px;
+}
+
+.inserted-card strong{
+    font-size:10px;
+}
+
+@keyframes insertCard{
+    from{
+        opacity:0;
+        transform:scale(.7) translateY(15px);
+    }
+    to{
+        opacity:1;
+        transform:scale(1) translateY(0);
+    }
 }
 
 .machine-help{
     text-align:center;
-    color:#aaa6c1;
-    font-size:12px;
-    margin:20px 0;
+    margin:19px 0;
+    color:#aaa5c0;
+    font-size:11px;
+    line-height:1.7;
 }
-
-/* =========================
-   TRANSFORM
-========================= */
 
 .transform-btn{
     width:100%;
+    margin-top:22px;
     padding:17px;
-    border:none;
+    border:1px solid rgba(255,255,255,.2);
     border-radius:999px;
-    background:linear-gradient(135deg,#8060d6,#d48cd5);
-    color:white;
+    background:linear-gradient(135deg,#46365e,#29243e);
+    color:#8e899f;
     font-weight:800;
     letter-spacing:3px;
-    cursor:pointer;
-    opacity:.45;
+    cursor:not-allowed;
+    transition:.25s;
 }
 
 .transform-btn.ready{
-    opacity:1;
-    box-shadow:0 0 25px rgba(212,140,213,.35);
+    color:white;
+    border-color:var(--gold);
+    background:linear-gradient(135deg,#7657cf,#cf8ed4);
+    box-shadow:0 0 28px rgba(207,142,212,.35);
+    cursor:pointer;
 }
 
-.transform-btn:disabled{
-    cursor:not-allowed;
-}
-
-/* =========================
+/* =====================================================
    RESULT
-========================= */
+===================================================== */
 
 #result{
     align-items:center;
@@ -704,28 +830,31 @@ button{
     z-index:2;
 }
 
-.result-character{
-    height:650px;
-    margin:auto;
-    position:relative;
-}
-
 .result-title{
     font-family:'Cinzel',serif;
     color:var(--gold);
-    letter-spacing:5px;
     font-size:25px;
+    letter-spacing:4px;
 }
 
 .result-sub{
     margin-top:10px;
-    color:#c9c5dd;
-    font-size:13px;
+    color:#c6c1d8;
+    font-size:12px;
+    letter-spacing:2px;
+}
+
+.result-character{
+    height:650px;
+    margin:15px auto 0;
+    display:flex;
+    justify-content:center;
+    align-items:center;
 }
 
 .restart-btn{
-    margin-top:20px;
     padding:13px 35px;
+    margin-top:10px;
     border:1px solid var(--gold);
     border-radius:999px;
     background:transparent;
@@ -733,18 +862,21 @@ button{
     cursor:pointer;
 }
 
-/* =========================
-   MAGIC TRANSFORMATION
-========================= */
+/* =====================================================
+   TRANSFORMATION
+===================================================== */
 
 .magic-overlay{
     position:fixed;
     inset:0;
-    background:radial-gradient(circle,rgba(136,92,224,.45),rgba(8,9,31,.97));
     z-index:5000;
     display:none;
     align-items:center;
     justify-content:center;
+    background:
+        radial-gradient(circle,
+        rgba(145,101,235,.48),
+        rgba(7,8,29,.98) 72%);
 }
 
 .magic-overlay.active{
@@ -752,30 +884,52 @@ button{
 }
 
 .magic-ring{
-    width:280px;
-    height:280px;
-    border:2px solid rgba(231,199,123,.8);
+    width:285px;
+    height:285px;
     border-radius:50%;
+    border:2px solid rgba(234,208,131,.9);
     box-shadow:
-        0 0 40px rgba(200,155,255,.6),
-        inset 0 0 40px rgba(200,155,255,.2);
-    animation:spinMagic 1.3s linear infinite;
+        0 0 45px rgba(205,166,255,.65),
+        inset 0 0 40px rgba(205,166,255,.22);
+    animation:spinMagic 1.25s linear infinite;
+}
+
+.magic-ring::before,
+.magic-ring::after{
+    content:"✦";
+    position:absolute;
+    left:50%;
+    top:50%;
+    color:var(--gold);
+    font-size:70px;
+    transform:translate(-50%,-50%);
+    text-shadow:0 0 25px rgba(234,208,131,.8);
+}
+
+.magic-ring::after{
+    content:"✧";
+    font-size:145px;
+    opacity:.28;
 }
 
 @keyframes spinMagic{
-    to{transform:rotate(360deg)}
+    to{
+        transform:rotate(360deg);
+    }
 }
 
 .spark{
     position:absolute;
-    font-size:25px;
-    animation:spark 1.2s ease-out forwards;
+    font-size:26px;
+    color:white;
+    animation:spark .95s ease-out forwards;
+    text-shadow:0 0 15px white;
 }
 
 @keyframes spark{
     from{
         opacity:0;
-        transform:translate(0,0) scale(.3);
+        transform:translate(0,0) scale(.2);
     }
     to{
         opacity:1;
@@ -783,26 +937,22 @@ button{
     }
 }
 
-/* =========================
+/* =====================================================
    MOBILE
-========================= */
+===================================================== */
 
-@media(max-width:850px){
+@media(max-width:900px){
 
     .customize-layout{
         grid-template-columns:1fr;
     }
 
     .character-stage{
-        min-height:620px;
+        min-height:700px;
     }
 
     .option-panel{
         max-height:none;
-    }
-
-    .card-grid{
-        grid-template-columns:repeat(2,1fr);
     }
 
     .machine-layout{
@@ -810,30 +960,51 @@ button{
     }
 
     .machine{
-        padding:18px;
+        min-height:auto;
+    }
+
+    .card-grid{
+        grid-template-columns:repeat(3,1fr);
     }
 }
 
-@media(max-width:520px){
+@media(max-width:600px){
 
     .page{
         width:94%;
+        padding-top:18px;
+    }
+
+    .page-header{
+        margin-bottom:14px;
+    }
+
+    .logo-mini{
+        font-size:12px;
+    }
+
+    .step{
+        font-size:8px;
+    }
+
+    .character-stage{
+        min-height:680px;
+    }
+
+    .character-wrap{
+        transform:scale(.83);
     }
 
     .option-grid{
         grid-template-columns:repeat(3,1fr);
     }
 
-    .color-grid{
-        grid-template-columns:repeat(7,1fr);
-    }
-
-    .character-wrap{
-        transform:scale(.85);
+    .card-grid{
+        grid-template-columns:repeat(2,1fr);
+        gap:12px;
     }
 
     .slots{
-        grid-template-columns:1fr 1fr;
         gap:9px;
     }
 
@@ -841,8 +1012,18 @@ button{
         min-height:175px;
     }
 
+    .inserted-card{
+        width:105px;
+        min-height:130px;
+    }
+
     .opening-title{
-        font-size:35px;
+        font-size:34px;
+    }
+
+    .opening-small{
+        font-size:10px;
+        letter-spacing:5px;
     }
 }
 </style>
@@ -850,25 +1031,43 @@ button{
 
 <body>
 
-<!-- 별 배경 -->
-<div class="stars">
-    <span class="star"></span><span class="star"></span>
-    <span class="star"></span><span class="star"></span>
-    <span class="star"></span><span class="star"></span>
-    <span class="star"></span><span class="star"></span>
-    <span class="star"></span><span class="star"></span>
-    <span class="star"></span><span class="star"></span>
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
+
+<div class="magic-bg">
+
+    <div class="stars">
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+        <span class="star"></span>
+    </div>
+
 </div>
 
-<!-- =========================
+
+<!-- =====================================================
      OPENING
-========================= -->
+===================================================== -->
 
 <section id="opening" class="screen active">
 
     <div class="opening-content">
 
-        <div class="academy-symbol">✦</div>
+        <div class="academy-emblem">
+            <div class="emblem-star">✦</div>
+        </div>
 
         <div class="opening-small">
             MAGIC ACADEMY
@@ -886,7 +1085,8 @@ button{
             CREATE YOUR OWN STAR
         </div>
 
-        <button class="start-btn" onclick="showScreen('customize')">
+        <button class="start-btn"
+                onclick="showScreen('customize')">
             START
         </button>
 
@@ -895,22 +1095,31 @@ button{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      CUSTOMIZE
-========================= -->
+===================================================== -->
 
 <section id="customize" class="screen">
 
 <div class="page">
 
     <div class="page-header">
-        <div class="logo-mini">MAGIC ACADEMY</div>
-        <div class="step">01 · CHARACTER CREATION</div>
+
+        <div class="logo-mini">
+            MAGIC ACADEMY
+        </div>
+
+        <div class="step">
+            01 · CHARACTER CREATION
+        </div>
+
     </div>
+
 
     <div class="customize-layout">
 
-        <!-- 캐릭터 -->
+
+        <!-- ================= CHARACTER ================= -->
 
         <div class="character-stage magic-panel">
 
@@ -923,241 +1132,421 @@ button{
                     xmlns="http://www.w3.org/2000/svg"
                 >
 
-                    <!-- =================
+
+                    <!-- ==================================
                          BACK HAIR
-                    ================= -->
+                    ================================== -->
 
                     <g id="backHair">
 
-                        <!-- long -->
-                        <path id="hairLong"
-                              class="hair"
-                              d="M65 160
-                                 Q42 190 43 320
-                                 L32 545
-                                 Q48 590 72 570
-                                 L90 350
-                                 Q150 390 210 350
-                                 L228 570
-                                 Q252 590 268 545
-                                 L257 320
-                                 Q258 190 235 160
-                                 Z"/>
 
-                        <!-- bob -->
-                        <path id="hairBob"
-                              class="hair"
-                              d="M58 165
-                                 Q35 210 43 340
-                                 Q48 420 80 440
-                                 L100 325
-                                 Q150 350 200 325
-                                 L220 440
-                                 Q252 420 257 340
-                                 Q265 210 242 165
-                                 Z"
-                              style="display:none"/>
+                        <!-- LONG -->
+                        <path
+                            id="hairLong"
+                            class="hairPart"
+                            d="
+                            M68 135
+                            Q43 160 44 270
+                            L32 525
+                            Q40 580 76 598
+                            L93 345
+                            Q150 375 207 345
+                            L224 598
+                            Q260 580 268 525
+                            L256 270
+                            Q257 160 232 135
+                            Z
+                            "
+                        />
 
-                        <!-- wave -->
-                        <path id="hairWave"
-                              class="hair"
-                              d="M55 165
-                                 Q25 230 48 330
-                                 Q25 410 62 480
-                                 Q38 540 85 575
-                                 L103 340
-                                 Q150 365 197 340
-                                 L215 575
-                                 Q262 540 238 480
-                                 Q275 410 252 330
-                                 Q275 230 245 165
-                                 Z"
-                              style="display:none"/>
 
-                        <!-- ponytail -->
-                        <path id="hairPony"
-                              class="hair"
-                              d="M225 180
-                                 Q275 155 278 220
-                                 Q285 290 235 305
-                                 L216 270
-                                 Z"
-                              style="display:none"/>
+                        <!-- BOB -->
+                        <path
+                            id="hairBob"
+                            class="hairPart"
+                            style="display:none"
+                            d="
+                            M67 138
+                            Q39 170 45 275
+                            Q48 385 72 425
+                            Q91 454 108 432
+                            L113 329
+                            Q150 350 187 329
+                            L192 432
+                            Q209 454 228 425
+                            Q252 385 255 275
+                            Q261 170 233 138
+                            Z
+                            "
+                        />
 
-                        <!-- twin -->
-                        <path id="hairTwin"
-                              class="hair"
-                              d="M65 180
-                                 Q20 155 20 230
-                                 Q20 290 58 310
-                                 L78 275
-                                 Z
-                                 M235 180
-                                 Q280 155 280 230
-                                 Q280 290 242 310
-                                 L222 275
-                                 Z"
-                              style="display:none"/>
+
+                        <!-- WAVE -->
+                        <path
+                            id="hairWave"
+                            class="hairPart"
+                            style="display:none"
+                            d="
+                            M66 140
+                            Q35 180 48 270
+                            Q28 335 52 390
+                            Q28 455 63 505
+                            Q39 555 80 592
+                            L101 350
+                            Q150 377 199 350
+                            L220 592
+                            Q261 555 237 505
+                            Q272 455 248 390
+                            Q272 335 252 270
+                            Q265 180 234 140
+                            Z
+                            "
+                        />
+
+
+                        <!-- PONYTAIL BASE -->
+                        <path
+                            id="hairPonyBase"
+                            class="hairPart"
+                            style="display:none"
+                            d="
+                            M69 140
+                            Q43 175 47 270
+                            L58 470
+                            Q72 510 102 525
+                            L112 342
+                            Q150 365 188 342
+                            L198 525
+                            Q228 510 242 470
+                            L253 270
+                            Q257 175 231 140
+                            Z
+                            "
+                        />
+
+
+                        <!-- PONYTAIL -->
+                        <path
+                            id="hairPony"
+                            class="hairPart"
+                            style="display:none"
+                            d="
+                            M224 157
+                            Q276 126 286 185
+                            Q299 260 248 323
+                            Q229 337 210 300
+                            L220 245
+                            Q246 218 224 157
+                            Z
+                            "
+                        />
+
+
+                        <!-- TWIN BASE -->
+                        <path
+                            id="hairTwinBase"
+                            class="hairPart"
+                            style="display:none"
+                            d="
+                            M69 140
+                            Q42 177 48 275
+                            L64 500
+                            Q78 530 100 532
+                            L108 345
+                            Q150 365 192 345
+                            L200 532
+                            Q222 530 236 500
+                            L252 275
+                            Q258 177 231 140
+                            Z
+                            "
+                        />
+
+
+                        <!-- LEFT TWIN -->
+                        <path
+                            id="hairTwinLeft"
+                            class="hairPart"
+                            style="display:none"
+                            d="
+                            M72 170
+                            Q20 145 18 215
+                            Q14 290 60 333
+                            Q82 346 98 313
+                            L88 258
+                            Q55 232 72 170
+                            Z
+                            "
+                        />
+
+
+                        <!-- RIGHT TWIN -->
+                        <path
+                            id="hairTwinRight"
+                            class="hairPart"
+                            style="display:none"
+                            d="
+                            M228 170
+                            Q280 145 282 215
+                            Q286 290 240 333
+                            Q218 346 202 313
+                            L212 258
+                            Q245 232 228 170
+                            Z
+                            "
+                        />
 
                     </g>
 
 
-                    <!-- =================
+                    <!-- ==================================
                          BODY
-                    ================= -->
+                    ================================== -->
 
                     <g id="body">
 
-                        <!-- neck -->
+
+                        <!-- NECK -->
                         <path
-                            class="skin"
-                            d="M130 330 L170 330 L170 390 L130 390 Z"
+                            id="neck"
+                            class="skinPart"
+                            d="
+                            M130 319
+                            L170 319
+                            L170 380
+                            L130 380
+                            Z
+                            "
                         />
 
-                        <!-- torso -->
+
+                        <!-- TOP -->
                         <path
                             id="topBody"
-                            class="outfit-fill"
-                            d="M105 375
-                               Q150 355 195 375
-                               L218 510
-                               L82 510
-                               Z"
+                            d="
+                            M106 365
+                            Q150 345 194 365
+                            L216 505
+                            L84 505
+                            Z
+                            "
+                            fill="#6f55c7"
                         />
 
-                        <!-- skirt -->
+
+                        <!-- SKIRT -->
                         <path
                             id="skirtBody"
+                            d="
+                            M83 495
+                            Q150 515 217 495
+                            L250 610
+                            Q150 650 50 610
+                            Z
+                            "
                             fill="#c56bb5"
-                            d="M82 500
-                               Q150 520 218 500
-                               L250 610
-                               Q150 645 50 610
-                               Z"
                         />
 
-                        <!-- left leg -->
+
+                        <!-- LEFT LEG -->
                         <path
-                            class="skin"
-                            d="M90 610 L138 610 L132 750 L87 750 Z"
+                            class="skinPart"
+                            d="
+                            M91 605
+                            L137 605
+                            L132 748
+                            L87 748
+                            Z
+                            "
                         />
 
-                        <!-- right leg -->
+
+                        <!-- RIGHT LEG -->
                         <path
-                            class="skin"
-                            d="M162 610 L210 610 L213 750 L168 750 Z"
+                            class="skinPart"
+                            d="
+                            M163 605
+                            L209 605
+                            L213 748
+                            L168 748
+                            Z
+                            "
                         />
 
-                        <!-- shoes -->
+
+                        <!-- LEFT SHOE -->
                         <path
+                            id="leftShoe"
+                            d="
+                            M82 733
+                            Q110 722 137 741
+                            L142 766
+                            L72 766
+                            Q70 748 82 733
+                            Z
+                            "
                             fill="#241a40"
-                            d="M82 735
-                               Q110 725 137 742
-                               L142 765
-                               L72 765
-                               Q70 747 82 735 Z"
                         />
 
+
+                        <!-- RIGHT SHOE -->
                         <path
+                            id="rightShoe"
+                            d="
+                            M163 741
+                            Q190 722 218 733
+                            Q230 748 228 766
+                            L158 766
+                            Z
+                            "
                             fill="#241a40"
-                            d="M162 742
-                               Q190 725 218 735
-                               Q230 747 228 765
-                               L158 765
-                               Z"
                         />
 
                     </g>
 
 
-                    <!-- =================
+                    <!-- ==================================
                          FACE
-                    ================= -->
+                    ================================== -->
 
                     <g id="face">
 
-                        <!-- face base -->
+
+                        <!-- FACE -->
                         <path
                             id="faceShape"
-                            class="skin"
-                            d="M75 105
-                               Q150 55 225 105
-                               L225 235
-                               Q218 305 150 335
-                               Q82 305 75 235
-                               Z"
+                            class="skinPart"
+                            d="
+                            M77 98
+                            Q150 53 223 98
+                            L223 224
+                            Q217 292 150 325
+                            Q83 292 77 224
+                            Z
+                            "
                         />
 
-                        <!-- ears -->
-                        <circle class="skin" cx="72" cy="210" r="13"/>
-                        <circle class="skin" cx="228" cy="210" r="13"/>
+
+                        <!-- EARS -->
+                        <circle
+                            id="leftEar"
+                            class="skinPart"
+                            cx="75"
+                            cy="204"
+                            r="12"
+                        />
+
+                        <circle
+                            id="rightEar"
+                            class="skinPart"
+                            cx="225"
+                            cy="204"
+                            r="12"
+                        />
 
 
-                        <!-- EYES -->
+                        <!-- ==========================
+                             LEFT EYE
+                        ========================== -->
 
-                        <g id="leftEye" transform="translate(0,0)">
+                        <g id="leftEye">
+
                             <path
                                 id="leftEyeWhite"
-                                class="eye-white"
-                                d="M91 195
-                                   Q112 175 133 195
-                                   Q112 218 91 195 Z"
+                                class="eyeWhite"
+                                d="
+                                M92 166
+                                Q112 145 132 166
+                                Q112 189 92 166
+                                Z
+                                "
                             />
 
                             <ellipse
                                 id="leftIris"
-                                class="eye-iris"
+                                class="eyeIris"
                                 cx="112"
-                                cy="195"
+                                cy="166"
                                 rx="9"
                                 ry="12"
                             />
 
                             <circle
                                 id="leftPupil"
-                                class="eye-pupil"
+                                class="eyePupil"
                                 cx="112"
-                                cy="195"
+                                cy="166"
                                 r="4"
                             />
+
                         </g>
 
 
-                        <g id="rightEye" transform="translate(0,0)">
+                        <!-- ==========================
+                             RIGHT EYE
+                        ========================== -->
+
+                        <g id="rightEye">
+
                             <path
                                 id="rightEyeWhite"
-                                class="eye-white"
-                                d="M167 195
-                                   Q188 175 209 195
-                                   Q188 218 167 195 Z"
+                                class="eyeWhite"
+                                d="
+                                M168 166
+                                Q188 145 208 166
+                                Q188 189 168 166
+                                Z
+                                "
                             />
 
                             <ellipse
                                 id="rightIris"
-                                class="eye-iris"
+                                class="eyeIris"
                                 cx="188"
-                                cy="195"
+                                cy="166"
                                 rx="9"
                                 ry="12"
                             />
 
                             <circle
                                 id="rightPupil"
-                                class="eye-pupil"
+                                class="eyePupil"
                                 cx="188"
-                                cy="195"
+                                cy="166"
                                 r="4"
                             />
+
                         </g>
 
 
-                        <!-- NOSE -->
+                        <!-- EYELASH -->
+                        <path
+                            id="leftLash"
+                            d="M91 157 Q112 138 133 157"
+                            fill="none"
+                            stroke="#241b31"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                        />
 
                         <path
+                            id="rightLash"
+                            d="M167 157 Q188 138 209 157"
+                            fill="none"
+                            stroke="#241b31"
+                            stroke-width="3"
+                            stroke-linecap="round"
+                        />
+
+
+                        <!-- NOSE -->
+                        <path
                             id="nose"
-                            d="M150 211
-                               Q143 232 150 236
-                               Q157 232 150 229"
+                            d="
+                            M150 193
+                            Q144 207 150 211
+                            Q156 208 153 204
+                            "
                             fill="none"
                             stroke="#b47771"
                             stroke-width="2"
@@ -1165,32 +1554,41 @@ button{
                         />
 
 
-                        <!-- MOUTH -->
-
+                        <!-- SMILE -->
                         <g id="mouthSmile">
 
-                            <!-- open happy mouth -->
                             <path
-                                d="M124 257
-                                   Q150 280 176 257
-                                   Q171 300 150 301
-                                   Q129 300 124 257 Z"
-                                class="mouth-fill"
+                                d="
+                                M124 229
+                                Q150 253 176 229
+                                Q172 270 150 273
+                                Q128 270 124 229
+                                Z
+                                "
+                                class="mouthPink"
                             />
 
                             <path
-                                d="M132 266
-                                   Q150 274 168 266
-                                   Q163 274 150 276
-                                   Q137 274 132 266 Z"
+                                d="
+                                M131 238
+                                Q150 247 169 238
+                                Q166 247 150 250
+                                Q134 247 131 238
+                                Z
+                                "
                                 fill="white"
                             />
 
                         </g>
 
+
+                        <!-- NEUTRAL -->
                         <path
                             id="mouthNeutral"
-                            d="M136 268 Q150 272 164 268"
+                            d="
+                            M137 241
+                            Q150 245 163 241
+                            "
                             fill="none"
                             stroke="#9d536f"
                             stroke-width="4"
@@ -1198,80 +1596,102 @@ button{
                             style="display:none"
                         />
 
-                        <ellipse
-                            id="mouthOpen"
-                            cx="150"
-                            cy="273"
-                            rx="12"
-                            ry="15"
-                            class="mouth-dark"
+
+                        <!-- SMALL OPEN -->
+                        <path
+                            id="mouthSmall"
+                            d="
+                            M140 239
+                            Q150 234 160 239
+                            Q159 252 150 255
+                            Q141 252 140 239
+                            Z
+                            "
+                            class="mouthDark"
                             style="display:none"
                         />
 
                     </g>
 
 
-                    <!-- =================
-                         FRONT HAIR
-                    ================= -->
+                    <!-- ==================================
+                         FRONT HAIR / BANGS
+                    ================================== -->
 
                     <g id="frontHair">
 
-                        <!-- none -->
+
+                        <!-- NO BANGS:
+                             이마가 보이도록 옆쪽만 살짝 -->
                         <path
                             id="bangNone"
-                            d="M76 140
-                               Q150 55 224 140
-                               L215 160
-                               Q150 105 85 160 Z"
-                            class="hair"
+                            class="hairPart"
+                            d="
+                            M76 140
+                            Q150 52 224 140
+                            L216 153
+                            Q150 100 84 153
+                            Z
+                            "
                         />
 
-                        <!-- full bang -->
+
+                        <!-- FULL BANG -->
                         <path
                             id="bangFull"
-                            class="hair"
-                            d="M73 145
-                               Q150 60 227 145
-                               L224 205
-                               Q208 188 193 202
-                               L181 173
-                               Q165 190 150 170
-                               Q135 190 119 173
-                               Q104 195 88 203
-                               Z"
+                            class="hairPart"
                             style="display:none"
+                            d="
+                            M74 140
+                            Q150 55 226 140
+                            L224 198
+                            Q211 183 198 195
+                            Q187 170 175 191
+                            Q163 168 150 190
+                            Q137 168 125 191
+                            Q113 170 102 195
+                            Q89 182 76 198
+                            Z
+                            "
                         />
 
-                        <!-- see-through bang -->
+
+                        <!-- SEE THROUGH -->
                         <path
                             id="bangSee"
-                            class="hair-light"
-                            d="M77 143
-                               Q150 62 223 143
-                               L217 184
-                               Q203 170 191 181
-                               Q177 162 164 179
-                               Q150 158 137 178
-                               Q122 161 109 181
-                               Q94 169 83 184
-                               Z"
-                            opacity=".85"
+                            class="hairLightPart"
                             style="display:none"
+                            opacity=".7"
+                            d="
+                            M77 140
+                            Q150 56 223 140
+                            L218 181
+                            Q207 169 197 181
+                            Q185 158 174 178
+                            Q162 157 150 178
+                            Q138 157 126 178
+                            Q115 158 103 181
+                            Q93 169 82 181
+                            Z
+                            "
                         />
 
-                        <!-- side bang -->
+
+                        <!-- SIDE BANG -->
                         <path
                             id="bangSide"
-                            class="hair"
-                            d="M78 137
-                               Q150 58 226 140
-                               L220 175
-                               Q200 158 184 166
-                               Q166 145 147 164
-                               Q124 147 96 188
-                               Z"
+                            class="hairPart"
                             style="display:none"
+                            d="
+                            M76 139
+                            Q150 53 225 140
+                            L220 179
+                            Q199 157 184 167
+                            Q169 146 151 166
+                            Q128 148 99 192
+                            Q87 179 76 179
+                            Z
+                            "
                         />
 
                     </g>
@@ -1283,13 +1703,17 @@ button{
         </div>
 
 
-        <!-- 옵션 -->
+        <!-- ================= OPTIONS ================= -->
 
         <div class="option-panel magic-panel">
 
+
+            <!-- FACE -->
             <div class="option-section">
 
-                <div class="option-title">FACE SHAPE</div>
+                <div class="option-title">
+                    FACE SHAPE
+                </div>
 
                 <div class="option-grid">
 
@@ -1318,9 +1742,12 @@ button{
             </div>
 
 
+            <!-- SKIN -->
             <div class="option-section">
 
-                <div class="option-title">SKIN</div>
+                <div class="option-title">
+                    SKIN
+                </div>
 
                 <div class="color-grid">
 
@@ -1349,9 +1776,12 @@ button{
             </div>
 
 
+            <!-- EYES -->
             <div class="option-section">
 
-                <div class="option-title">EYE SHAPE</div>
+                <div class="option-title">
+                    EYE SHAPE
+                </div>
 
                 <div class="option-grid">
 
@@ -1385,9 +1815,12 @@ button{
             </div>
 
 
+            <!-- EYE COLOR -->
             <div class="option-section">
 
-                <div class="option-title">EYE COLOR</div>
+                <div class="option-title">
+                    EYE COLOR
+                </div>
 
                 <div class="color-grid">
 
@@ -1426,9 +1859,12 @@ button{
             </div>
 
 
+            <!-- MOUTH -->
             <div class="option-section">
 
-                <div class="option-title">EXPRESSION</div>
+                <div class="option-title">
+                    EXPRESSION
+                </div>
 
                 <div class="option-grid">
 
@@ -1443,7 +1879,7 @@ button{
                     </button>
 
                     <button class="option-btn"
-                            onclick="setOption('mouth','open',this)">
+                            onclick="setOption('mouth','small',this)">
                         작은 입
                     </button>
 
@@ -1452,9 +1888,12 @@ button{
             </div>
 
 
+            <!-- HAIR -->
             <div class="option-section">
 
-                <div class="option-title">HAIR STYLE</div>
+                <div class="option-title">
+                    HAIR STYLE
+                </div>
 
                 <div class="option-grid">
 
@@ -1488,9 +1927,12 @@ button{
             </div>
 
 
+            <!-- BANG -->
             <div class="option-section">
 
-                <div class="option-title">BANGS</div>
+                <div class="option-title">
+                    BANGS
+                </div>
 
                 <div class="option-grid">
 
@@ -1519,9 +1961,12 @@ button{
             </div>
 
 
+            <!-- HAIR COLOR -->
             <div class="option-section">
 
-                <div class="option-title">HAIR COLOR</div>
+                <div class="option-title">
+                    HAIR COLOR
+                </div>
 
                 <div class="color-grid">
 
@@ -1583,17 +2028,24 @@ button{
 </section>
 
 
-<!-- =========================
-     CARDS
-========================= -->
+<!-- =====================================================
+     CARD COLLECTION
+===================================================== -->
 
 <section id="cards" class="screen">
 
 <div class="cards-page">
 
     <div class="page-header">
-        <div class="logo-mini">MAGIC ACADEMY</div>
-        <div class="step">02 · SELECT YOUR COORDINATION</div>
+
+        <div class="logo-mini">
+            MAGIC ACADEMY
+        </div>
+
+        <div class="step">
+            02 · FASHION CARD COLLECTION
+        </div>
+
     </div>
 
     <h1 class="title">
@@ -1629,8 +2081,9 @@ button{
 
     </div>
 
-
-    <div id="cardGrid" class="card-grid"></div>
+    <div id="cardGrid"
+         class="card-grid">
+    </div>
 
 
     <div class="selected-summary magic-panel">
@@ -1639,7 +2092,9 @@ button{
             YOUR COORDINATION
         </div>
 
-        <div id="summaryItems" class="summary-items"></div>
+        <div id="summaryItems"
+             class="summary-items">
+        </div>
 
     </div>
 
@@ -1658,44 +2113,67 @@ button{
 </section>
 
 
-<!-- =========================
-     MACHINE
-========================= -->
+<!-- =====================================================
+     CARD MACHINE
+===================================================== -->
 
 <section id="machine" class="screen">
 
 <div class="machine-page">
 
     <div class="page-header">
-        <div class="logo-mini">MAGIC ACADEMY</div>
-        <div class="step">03 · CARD INSERT</div>
+
+        <div class="logo-mini">
+            MAGIC ACADEMY
+        </div>
+
+        <div class="step">
+            03 · CARD INSERT
+        </div>
+
     </div>
+
 
     <div class="machine-layout">
 
+
+        <!-- SELECTED CARDS -->
         <div class="selected-cards-panel magic-panel">
 
             <div class="option-title">
                 SELECTED CARDS
             </div>
 
-            <div id="dragCards"></div>
+            <div id="dragCards">
+            </div>
 
             <div class="machine-help">
-                카드를 하나씩 해당 투입구로<br>
-                드래그해서 넣어주세요.
+                카드를 길게 누른 뒤<br>
+                알맞은 투입구로 드래그하세요.
+                <br><br>
+                상의 → TOP<br>
+                하의 → BOTTOM<br>
+                신발 → SHOES<br>
+                액세서리 → ACCESSORY
             </div>
 
         </div>
 
 
+        <!-- MACHINE -->
         <div class="machine">
 
             <div class="machine-title">
                 MAGIC CARD MACHINE
             </div>
 
+            <div class="machine-subtitle">
+                PLACE EACH CARD INTO THE CORRECT SLOT
+            </div>
+
+
             <div class="slots">
+
 
                 <div class="slot"
                      data-accept="top">
@@ -1771,9 +2249,9 @@ button{
 </section>
 
 
-<!-- =========================
+<!-- =====================================================
      RESULT
-========================= -->
+===================================================== -->
 
 <section id="result" class="screen">
 
@@ -1801,26 +2279,48 @@ button{
 </section>
 
 
-<!-- MAGIC OVERLAY -->
+<!-- =====================================================
+     MAGIC OVERLAY
+===================================================== -->
 
-<div id="magicOverlay" class="magic-overlay">
+<div id="magicOverlay"
+     class="magic-overlay">
 
     <div class="magic-ring"></div>
 
-    <div class="spark" style="--x:-160px;--y:-150px">✦</div>
-    <div class="spark" style="--x:160px;--y:-130px">✧</div>
-    <div class="spark" style="--x:-190px;--y:80px">✦</div>
-    <div class="spark" style="--x:190px;--y:100px">✧</div>
-    <div class="spark" style="--x:0px;--y:-190px">✦</div>
+    <div class="spark"
+         style="--x:-160px;--y:-150px">
+        ✦
+    </div>
+
+    <div class="spark"
+         style="--x:160px;--y:-130px">
+        ✧
+    </div>
+
+    <div class="spark"
+         style="--x:-190px;--y:80px">
+        ✦
+    </div>
+
+    <div class="spark"
+         style="--x:190px;--y:100px">
+        ✧
+    </div>
+
+    <div class="spark"
+         style="--x:0px;--y:-190px">
+        ✦
+    </div>
 
 </div>
 
 
 <script>
 
-/* =========================================================
+/* =====================================================
    CHARACTER STATE
-========================================================= */
+===================================================== */
 
 const characterState = {
 
@@ -1843,9 +2343,9 @@ const characterState = {
 };
 
 
-/* =========================================================
+/* =====================================================
    SCREEN
-========================================================= */
+===================================================== */
 
 function showScreen(id){
 
@@ -1854,154 +2354,217 @@ function showScreen(id){
             screen.classList.remove('active');
         });
 
-    document.getElementById(id)
-        .classList.add('active');
+    const target=document.getElementById(id);
 
-    window.scrollTo(0,0);
+    if(target){
+        target.classList.add('active');
+    }
+
+    window.scrollTo({
+        top:0,
+        behavior:'instant'
+    });
+
 }
 
 
-/* =========================================================
+/* =====================================================
    OPTION
-========================================================= */
+===================================================== */
 
 function setOption(type,value,button){
 
     characterState[type]=value;
 
-    const parent=button.parentElement;
-
-    parent.querySelectorAll('.option-btn')
-        .forEach(btn=>btn.classList.remove('selected'));
+    button.parentElement
+        .querySelectorAll('.option-btn')
+        .forEach(btn=>{
+            btn.classList.remove('selected');
+        });
 
     button.classList.add('selected');
 
     updateCharacter();
+
 }
 
 
-/* =========================================================
+/* =====================================================
    COLOR
-========================================================= */
+===================================================== */
 
 function setColor(type,value,button){
 
     characterState[type]=value;
 
-    const parent=button.parentElement;
-
-    parent.querySelectorAll('.color-btn')
-        .forEach(btn=>btn.classList.remove('selected'));
+    button.parentElement
+        .querySelectorAll('.color-btn')
+        .forEach(btn=>{
+            btn.classList.remove('selected');
+        });
 
     button.classList.add('selected');
 
     updateCharacter();
+
 }
 
 
-/* =========================================================
+/* =====================================================
    FACE
-========================================================= */
+===================================================== */
 
 function updateFace(){
 
-    const face=document.getElementById('faceShape');
-
-    /*
-      각각 완전히 다른 path를 사용해서
-      계란형/둥근형이 뒤집히는 문제 방지
-    */
+    const face=
+        document.getElementById('faceShape');
 
     const faces={
 
-        egg:
-        `M75 105
-         Q150 55 225 105
-         L225 235
-         Q218 305 150 335
-         Q82 305 75 235
-         Z`,
 
-        round:
-        `M72 125
-         Q150 70 228 125
-         Q245 185 228 250
-         Q210 315 150 328
-         Q90 315 72 250
-         Q55 185 72 125
-         Z`,
+        egg:`
+        M77 98
+        Q150 53 223 98
+        L223 224
+        Q217 292 150 325
+        Q83 292 77 224
+        Z
+        `,
 
-        heart:
-        `M150 330
-         Q115 315 82 265
-         Q58 225 72 160
-         Q82 112 122 105
-         Q143 102 150 120
-         Q157 102 178 105
-         Q218 112 228 160
-         Q242 225 218 265
-         Q185 315 150 330
-         Z`,
 
-        long:
-        `M82 92
-         Q150 48 218 92
-         L218 250
-         Q207 315 150 345
-         Q93 315 82 250
-         Z`
+        round:`
+        M75 116
+        Q150 65 225 116
+        Q245 170 231 239
+        Q215 304 150 325
+        Q85 304 69 239
+        Q55 170 75 116
+        Z
+        `,
+
+
+        heart:`
+        M150 325
+        Q118 315 84 266
+        Q59 229 68 168
+        Q76 112 119 104
+        Q141 100 150 119
+        Q159 100 181 104
+        Q224 112 232 168
+        Q241 229 216 266
+        Q182 315 150 325
+        Z
+        `,
+
+
+        long:`
+        M87 84
+        Q150 47 213 84
+        L213 238
+        Q205 306 150 338
+        Q95 306 87 238
+        Z
+        `
+
     };
 
-    face.setAttribute('d',faces[characterState.face]);
+    face.setAttribute(
+        'd',
+        faces[characterState.face]
+    );
 
 }
 
 
-/* =========================================================
+/* =====================================================
    EYES
-========================================================= */
+===================================================== */
 
 function updateEyes(){
 
-    const leftWhite=document.getElementById('leftEyeWhite');
-    const rightWhite=document.getElementById('rightEyeWhite');
+    const leftWhite=
+        document.getElementById('leftEyeWhite');
 
-    const leftIris=document.getElementById('leftIris');
-    const rightIris=document.getElementById('rightIris');
+    const rightWhite=
+        document.getElementById('rightEyeWhite');
 
-    const leftPupil=document.getElementById('leftPupil');
-    const rightPupil=document.getElementById('rightPupil');
+    const leftIris=
+        document.getElementById('leftIris');
 
-    const left=document.getElementById('leftEye');
-    const right=document.getElementById('rightEye');
+    const rightIris=
+        document.getElementById('rightIris');
 
-    /*
-      눈동자는 항상 eye group 내부의 중심 좌표를 사용.
-      따라서 눈 모양 변경 때 눈동자가 따로 놀지 않음.
-    */
+    const leftPupil=
+        document.getElementById('leftPupil');
 
-    left.setAttribute('transform','');
-    right.setAttribute('transform','');
+    const rightPupil=
+        document.getElementById('rightPupil');
+
+    const leftLash=
+        document.getElementById('leftLash');
+
+    const rightLash=
+        document.getElementById('rightLash');
+
+
+    /* 초기화 */
 
     leftIris.style.display='';
     rightIris.style.display='';
+
     leftPupil.style.display='';
     rightPupil.style.display='';
+
+    leftLash.style.display='';
+    rightLash.style.display='';
+
+    leftWhite.setAttribute('fill','white');
+    rightWhite.setAttribute('fill','white');
+
+    leftWhite.setAttribute('stroke','none');
+    rightWhite.setAttribute('stroke','none');
+
+    leftWhite.setAttribute('stroke-width','0');
+    rightWhite.setAttribute('stroke-width','0');
+
+
+    /* 눈동자 중심은 항상 112 / 188 */
+
+    leftIris.setAttribute('cx','112');
+    rightIris.setAttribute('cx','188');
+
+    leftIris.setAttribute('cy','166');
+    rightIris.setAttribute('cy','166');
+
+    leftPupil.setAttribute('cx','112');
+    rightPupil.setAttribute('cx','188');
+
+    leftPupil.setAttribute('cy','166');
+    rightPupil.setAttribute('cy','166');
+
+
+    /* ROUND */
 
     if(characterState.eyes==='round'){
 
         leftWhite.setAttribute(
             'd',
-            `M91 195
-             Q112 168 133 195
-             Q112 224 91 195 Z`
+            `
+            M91 166
+            Q112 139 133 166
+            Q112 193 91 166
+            Z
+            `
         );
 
         rightWhite.setAttribute(
             'd',
-            `M167 195
-             Q188 168 209 195
-             Q188 224 167 195 Z`
+            `
+            M167 166
+            Q188 139 209 166
+            Q188 193 167 166
+            Z
+            `
         );
 
         leftIris.setAttribute('rx','10');
@@ -2012,16 +2575,29 @@ function updateEyes(){
 
     }
 
+
+    /* SLIM */
+
     else if(characterState.eyes==='slim'){
 
         leftWhite.setAttribute(
             'd',
-            `M91 198 Q112 184 133 198 Q112 209 91 198 Z`
+            `
+            M91 168
+            Q112 154 133 168
+            Q112 180 91 168
+            Z
+            `
         );
 
         rightWhite.setAttribute(
             'd',
-            `M167 198 Q188 184 209 198 Q188 209 167 198 Z`
+            `
+            M167 168
+            Q188 154 209 168
+            Q188 180 167 168
+            Z
+            `
         );
 
         leftIris.setAttribute('rx','7');
@@ -2032,16 +2608,29 @@ function updateEyes(){
 
     }
 
+
+    /* DROOP */
+
     else if(characterState.eyes==='droop'){
 
         leftWhite.setAttribute(
             'd',
-            `M91 190 Q112 178 133 202 Q112 218 91 190 Z`
+            `
+            M91 160
+            Q112 150 133 173
+            Q112 191 91 160
+            Z
+            `
         );
 
         rightWhite.setAttribute(
             'd',
-            `M167 202 Q188 178 209 190 Q188 218 167 202 Z`
+            `
+            M167 173
+            Q188 150 209 160
+            Q188 191 167 173
+            Z
+            `
         );
 
         leftIris.setAttribute('rx','9');
@@ -2050,21 +2639,34 @@ function updateEyes(){
         leftIris.setAttribute('ry','11');
         rightIris.setAttribute('ry','11');
 
-        leftIris.setAttribute('cy','198');
-        rightIris.setAttribute('cy','198');
+        leftIris.setAttribute('cy','169');
+        rightIris.setAttribute('cy','169');
 
     }
+
+
+    /* SHARP */
 
     else if(characterState.eyes==='sharp'){
 
         leftWhite.setAttribute(
             'd',
-            `M91 204 Q112 174 133 187 Q112 208 91 204 Z`
+            `
+            M91 174
+            Q112 145 133 157
+            Q112 181 91 174
+            Z
+            `
         );
 
         rightWhite.setAttribute(
             'd',
-            `M167 187 Q188 174 209 204 Q188 208 167 187 Z`
+            `
+            M167 157
+            Q188 145 209 174
+            Q188 181 167 157
+            Z
+            `
         );
 
         leftIris.setAttribute('rx','8');
@@ -2073,211 +2675,299 @@ function updateEyes(){
         leftIris.setAttribute('ry','10');
         rightIris.setAttribute('ry','10');
 
-        leftIris.setAttribute('cy','194');
-        rightIris.setAttribute('cy','194');
+        leftIris.setAttribute('cy','164');
+        rightIris.setAttribute('cy','164');
 
     }
+
+
+    /* CRESCENT */
 
     else if(characterState.eyes==='crescent'){
 
         /*
-          반달눈은 아예 흰자/동공을 숨기고
-          실제 곡선 모양으로 표시
-        */
+         * 흰자/동공 제거
+         * 실제 곡선으로 반달눈을 만듦
+         */
 
         leftIris.style.display='none';
         rightIris.style.display='none';
+
         leftPupil.style.display='none';
         rightPupil.style.display='none';
 
+        leftLash.style.display='none';
+        rightLash.style.display='none';
+
         leftWhite.setAttribute(
             'd',
-            `M91 202 Q112 177 133 202`
+            `
+            M91 173
+            Q112 145 133 173
+            `
         );
 
         rightWhite.setAttribute(
             'd',
-            `M167 202 Q188 177 209 202`
+            `
+            M167 173
+            Q188 145 209 173
+            `
         );
 
-        leftWhite.setAttribute('fill','none');
-        rightWhite.setAttribute('fill','none');
+        leftWhite.setAttribute(
+            'fill',
+            'none'
+        );
 
-        leftWhite.setAttribute('stroke','#241b31');
-        rightWhite.setAttribute('stroke','#241b31');
+        rightWhite.setAttribute(
+            'fill',
+            'none'
+        );
 
-        leftWhite.setAttribute('stroke-width','6');
-        rightWhite.setAttribute('stroke-width','6');
+        leftWhite.setAttribute(
+            'stroke',
+            '#241b31'
+        );
 
-        leftWhite.setAttribute('stroke-linecap','round');
-        rightWhite.setAttribute('stroke-linecap','round');
+        rightWhite.setAttribute(
+            'stroke',
+            '#241b31'
+        );
 
-    }
+        leftWhite.setAttribute(
+            'stroke-width',
+            '7'
+        );
 
-    /*
-      반달눈이 아닌 경우 fill/stroke 원상복구
-    */
+        rightWhite.setAttribute(
+            'stroke-width',
+            '7'
+        );
 
-    if(characterState.eyes!=='crescent'){
+        leftWhite.setAttribute(
+            'stroke-linecap',
+            'round'
+        );
 
-        leftWhite.setAttribute('fill','white');
-        rightWhite.setAttribute('fill','white');
-
-        leftWhite.setAttribute('stroke','none');
-        rightWhite.setAttribute('stroke','none');
-
-    }
-
-    /*
-      눈동자 위치 초기화
-    */
-
-    if(characterState.eyes!=='droop' &&
-       characterState.eyes!=='sharp'){
-
-        leftIris.setAttribute('cy','195');
-        rightIris.setAttribute('cy','195');
+        rightWhite.setAttribute(
+            'stroke-linecap',
+            'round'
+        );
 
     }
 
 }
 
 
-/* =========================================================
+/* =====================================================
    MOUTH
-========================================================= */
+===================================================== */
 
 function updateMouth(){
 
-    document.getElementById('mouthSmile').style.display='none';
-    document.getElementById('mouthNeutral').style.display='none';
-    document.getElementById('mouthOpen').style.display='none';
+    const smile=
+        document.getElementById('mouthSmile');
+
+    const neutral=
+        document.getElementById('mouthNeutral');
+
+    const small=
+        document.getElementById('mouthSmall');
+
+
+    smile.style.display='none';
+    neutral.style.display='none';
+    small.style.display='none';
+
 
     if(characterState.mouth==='smile'){
-
-        document.getElementById('mouthSmile').style.display='block';
-
+        smile.style.display='block';
     }
 
-    else if(characterState.mouth==='neutral'){
-
-        document.getElementById('mouthNeutral').style.display='block';
-
+    if(characterState.mouth==='neutral'){
+        neutral.style.display='block';
     }
 
-    else if(characterState.mouth==='open'){
-
-        document.getElementById('mouthOpen').style.display='block';
-
+    if(characterState.mouth==='small'){
+        small.style.display='block';
     }
 
 }
 
 
-/* =========================================================
+/* =====================================================
    HAIR
-========================================================= */
+===================================================== */
 
 function updateHair(){
 
-    const types=[
+    const hairIds=[
         'hairLong',
         'hairBob',
         'hairWave',
+        'hairPonyBase',
         'hairPony',
-        'hairTwin'
+        'hairTwinBase',
+        'hairTwinLeft',
+        'hairTwinRight'
     ];
 
-    types.forEach(id=>{
-        document.getElementById(id).style.display='none';
+
+    hairIds.forEach(id=>{
+        document.getElementById(id)
+            .style.display='none';
     });
 
-    const map={
-        long:'hairLong',
-        bob:'hairBob',
-        wave:'hairWave',
-        pony:'hairLong',
-        twin:'hairLong'
-    };
 
-    document.getElementById(map[characterState.hair])
-        .style.display='block';
+    if(characterState.hair==='long'){
 
-    /*
-      포니테일 / 트윈테일은 롱 헤어에 추가 파츠
-    */
+        document.getElementById('hairLong')
+            .style.display='block';
 
-    document.getElementById('hairPony').style.display=
-        characterState.hair==='pony'?'block':'none';
-
-    document.getElementById('hairTwin').style.display=
-        characterState.hair==='twin'?'block':'none';
+    }
 
 
-    /*
-      모든 머리카락 색 변경
-    */
+    if(characterState.hair==='bob'){
 
-    document.querySelectorAll('.hair,.hair-light')
-        .forEach(el=>{
-            el.style.fill=characterState.hairColor;
-        });
+        document.getElementById('hairBob')
+            .style.display='block';
+
+    }
+
+
+    if(characterState.hair==='wave'){
+
+        document.getElementById('hairWave')
+            .style.display='block';
+
+    }
+
+
+    if(characterState.hair==='pony'){
+
+        document.getElementById('hairPonyBase')
+            .style.display='block';
+
+        document.getElementById('hairPony')
+            .style.display='block';
+
+    }
+
+
+    if(characterState.hair==='twin'){
+
+        document.getElementById('hairTwinBase')
+            .style.display='block';
+
+        document.getElementById('hairTwinLeft')
+            .style.display='block';
+
+        document.getElementById('hairTwinRight')
+            .style.display='block';
+
+    }
+
+
+    document.querySelectorAll(
+        '.hairPart,.hairLightPart'
+    ).forEach(el=>{
+
+        el.style.fill=
+            characterState.hairColor;
+
+    });
 
 }
 
 
-/* =========================================================
+/* =====================================================
    BANGS
-========================================================= */
+===================================================== */
 
 function updateBangs(){
 
-    document.getElementById('bangNone').style.display='none';
-    document.getElementById('bangFull').style.display='none';
-    document.getElementById('bangSee').style.display='none';
-    document.getElementById('bangSide').style.display='none';
+    const ids=[
+        'bangNone',
+        'bangFull',
+        'bangSee',
+        'bangSide'
+    ];
 
-    if(characterState.bang==='none'){
-        document.getElementById('bangNone').style.display='block';
+
+    ids.forEach(id=>{
+
+        document.getElementById(id)
+            .style.display='none';
+
+    });
+
+
+    const selected=
+        document.getElementById(
+            'bang'+
+            characterState.bang
+                .charAt(0)
+                .toUpperCase()+
+            characterState.bang.slice(1)
+        );
+
+
+    if(selected){
+        selected.style.display='block';
     }
 
-    if(characterState.bang==='full'){
-        document.getElementById('bangFull').style.display='block';
-    }
 
-    if(characterState.bang==='see'){
-        document.getElementById('bangSee').style.display='block';
-    }
+    document.querySelectorAll(
+        '#frontHair path'
+    ).forEach(el=>{
 
-    if(characterState.bang==='side'){
-        document.getElementById('bangSide').style.display='block';
-    }
+        if(
+            el.classList.contains('hairPart') ||
+            el.classList.contains('hairLightPart')
+        ){
+
+            el.style.fill=
+                characterState.hairColor;
+
+        }
+
+    });
 
 }
 
 
-/* =========================================================
-   COLOR
-========================================================= */
+/* =====================================================
+   COLORS
+===================================================== */
 
 function updateColors(){
 
-    document.querySelectorAll('.skin')
-        .forEach(el=>{
-            el.style.fill=characterState.skin;
-        });
+    document.querySelectorAll(
+        '.skinPart'
+    ).forEach(el=>{
 
-    document.querySelectorAll('.eye-iris')
-        .forEach(el=>{
-            el.style.fill=characterState.eye;
-        });
+        el.style.fill=
+            characterState.skin;
+
+    });
+
+
+    document.querySelectorAll(
+        '.eyeIris'
+    ).forEach(el=>{
+
+        el.style.fill=
+            characterState.eye;
+
+    });
 
 }
 
 
-/* =========================================================
+/* =====================================================
    UPDATE CHARACTER
-========================================================= */
+===================================================== */
 
 function updateCharacter(){
 
@@ -2291,9 +2981,9 @@ function updateCharacter(){
 }
 
 
-/* =========================================================
-   CARDS DATA
-========================================================= */
+/* =====================================================
+   CARD DATA
+===================================================== */
 
 const cards=[
 
@@ -2301,106 +2991,127 @@ const cards=[
         id:1,
         category:'top',
         name:'Moonlight Blouse',
-        icon:'👗'
+        icon:'👗',
+        color:'#7561d1'
     },
 
     {
         id:2,
         category:'top',
         name:'Royal Academy',
-        icon:'🎀'
+        icon:'🎀',
+        color:'#b66bc8'
     },
 
     {
         id:3,
         category:'top',
         name:'Starry Ribbon',
-        icon:'✨'
+        icon:'✨',
+        color:'#4e82d4'
     },
+
 
     {
         id:4,
         category:'bottom',
         name:'Lavender Skirt',
-        icon:'💜'
+        icon:'💜',
+        color:'#a96bc4'
     },
 
     {
         id:5,
         category:'bottom',
         name:'Moon Pleats',
-        icon:'🌙'
+        icon:'🌙',
+        color:'#596bbd'
     },
 
     {
         id:6,
         category:'bottom',
         name:'Academy Tutu',
-        icon:'🩰'
+        icon:'🩰',
+        color:'#d58bc9'
     },
+
 
     {
         id:7,
         category:'shoes',
         name:'Crystal Heels',
-        icon:'👠'
+        icon:'👠',
+        color:'#b67acb'
     },
 
     {
         id:8,
         category:'shoes',
         name:'Magic Boots',
-        icon:'🥾'
+        icon:'🥾',
+        color:'#4d4d82'
     },
 
     {
         id:9,
         category:'shoes',
         name:'Star Pumps',
-        icon:'⭐'
+        icon:'⭐',
+        color:'#7563c9'
     },
+
 
     {
         id:10,
         category:'accessory',
         name:'Moon Tiara',
-        icon:'👑'
+        icon:'👑',
+        color:'#e4c66d'
     },
 
     {
         id:11,
         category:'accessory',
         name:'Magic Ribbon',
-        icon:'🎀'
+        icon:'🎀',
+        color:'#d77ac4'
     },
 
     {
         id:12,
         category:'accessory',
         name:'Star Wand',
-        icon:'🪄'
+        icon:'🪄',
+        color:'#8164d2'
     }
 
 ];
 
 
-/*
-   카테고리당 하나만 저장
-*/
+/* =====================================================
+   ONE CARD PER CATEGORY
+===================================================== */
 
 const selectedCards={
+
     top:null,
+
     bottom:null,
+
     shoes:null,
+
     accessory:null
+
 };
 
 
-/* =========================================================
+/* =====================================================
    CARD SCREEN
-========================================================= */
+===================================================== */
 
 let currentFilter='all';
+
 
 function goCards(){
 
@@ -2413,30 +3124,49 @@ function goCards(){
 }
 
 
-/* =========================================================
+/* =====================================================
    RENDER CARDS
-========================================================= */
+===================================================== */
 
 function renderCards(){
 
-    const grid=document.getElementById('cardGrid');
+    const grid=
+        document.getElementById(
+            'cardGrid'
+        );
 
     grid.innerHTML='';
 
-    const visible=cards.filter(card=>
-        currentFilter==='all' ||
-        card.category===currentFilter
-    );
+
+    const visible=
+        cards.filter(card=>{
+
+            return(
+                currentFilter==='all' ||
+                card.category===currentFilter
+            );
+
+        });
+
 
     visible.forEach(card=>{
 
-        const div=document.createElement('div');
+        const div=
+            document.createElement('div');
+
 
         div.className='fashion-card';
 
-        if(selectedCards[card.category]===card.id){
+
+        if(
+            selectedCards[card.category]===
+            card.id
+        ){
+
             div.classList.add('selected');
+
         }
+
 
         div.innerHTML=`
 
@@ -2458,7 +3188,14 @@ function renderCards(){
 
         `;
 
-        div.onclick=()=>selectCard(card);
+
+        div.addEventListener(
+            'click',
+            ()=>{
+                selectCard(card);
+            }
+        );
+
 
         grid.appendChild(div);
 
@@ -2467,35 +3204,45 @@ function renderCards(){
 }
 
 
-/* =========================================================
+/* =====================================================
    CATEGORY NAME
-========================================================= */
+===================================================== */
 
 function categoryName(category){
 
     const names={
+
         top:'상의',
+
         bottom:'하의',
+
         shoes:'신발',
+
         accessory:'액세서리'
+
     };
+
 
     return names[category];
 
 }
 
 
-/* =========================================================
+/* =====================================================
    SELECT CARD
-========================================================= */
+===================================================== */
 
 function selectCard(card){
 
     /*
-      핵심:
-      같은 카테고리의 기존 카드가 있으면
-      새 카드로 자동 교체.
-    */
+     * 같은 카테고리의 카드가 이미 있다면
+     * 새 카드로 교체.
+     *
+     * 따라서 상의 1장,
+     * 하의 1장,
+     * 신발 1장,
+     * 액세서리 1장만 유지됨.
+     */
 
     selectedCards[card.category]=card.id;
 
@@ -2506,80 +3253,106 @@ function selectCard(card){
 }
 
 
-/* =========================================================
+/* =====================================================
    FILTER
-========================================================= */
+===================================================== */
 
 function filterCards(category,button){
 
     currentFilter=category;
 
-    document.querySelectorAll('.tab')
-        .forEach(tab=>tab.classList.remove('active'));
 
-    button.classList.add('active');
+    document.querySelectorAll(
+        '.tab'
+    ).forEach(tab=>{
+
+        tab.classList.remove(
+            'active'
+        );
+
+    });
+
+
+    button.classList.add(
+        'active'
+    );
+
 
     renderCards();
 
 }
 
 
-/* =========================================================
+/* =====================================================
    SUMMARY
-========================================================= */
+===================================================== */
 
 function renderSummary(){
 
-    const box=document.getElementById('summaryItems');
+    const box=
+        document.getElementById(
+            'summaryItems'
+        );
 
     box.innerHTML='';
 
-    Object.keys(selectedCards).forEach(category=>{
 
-        const id=selectedCards[category];
+    Object.keys(selectedCards)
+        .forEach(category=>{
 
-        if(!id){
+            const id=
+                selectedCards[category];
 
-            const empty=document.createElement('div');
 
-            empty.className='summary-chip';
+            const chip=
+                document.createElement(
+                    'div'
+                );
 
-            empty.textContent=
-                `${categoryName(category)} · 선택 안 함`;
+            chip.className=
+                'summary-chip';
 
-            box.appendChild(empty);
 
-            return;
+            if(!id){
 
-        }
+                chip.textContent=
+                    `${categoryName(category)} · 선택 안 함`;
 
-        const card=cards.find(c=>c.id===id);
+            }else{
 
-        const chip=document.createElement('div');
+                const card=
+                    cards.find(
+                        c=>c.id===id
+                    );
 
-        chip.className='summary-chip';
+                chip.textContent=
+                    `${categoryName(category)} · ${card.name}`;
 
-        chip.textContent=
-            `${categoryName(category)} · ${card.name}`;
+            }
 
-        box.appendChild(chip);
 
-    });
+            box.appendChild(chip);
+
+        });
 
 }
 
 
-/* =========================================================
-   MACHINE
-========================================================= */
+/* =====================================================
+   GO MACHINE
+===================================================== */
 
 function goMachine(){
 
     const missing=
         Object.keys(selectedCards)
-        .filter(category=>selectedCards[category]===null);
+            .filter(
+                category=>
+                    selectedCards[category]===null
+            );
 
-    if(missing.length){
+
+    if(missing.length>0){
 
         alert(
             '상의, 하의, 신발, 액세서리를 각각 하나씩 선택해주세요.'
@@ -2589,7 +3362,10 @@ function goMachine(){
 
     }
 
+
     showScreen('machine');
+
+    resetMachine();
 
     renderDragCards();
 
@@ -2598,118 +3374,228 @@ function goMachine(){
 }
 
 
-/* =========================================================
-   DRAG CARD RENDER
-========================================================= */
+/* =====================================================
+   RESET MACHINE
+===================================================== */
 
-function renderDragCards(){
+function resetMachine(){
 
-    const container=document.getElementById('dragCards');
+    document.querySelectorAll(
+        '.slot'
+    ).forEach(slot=>{
 
-    container.innerHTML='';
+        const category=
+            slot.dataset.accept;
 
-    Object.keys(selectedCards).forEach(category=>{
 
-        const id=selectedCards[category];
+        slot.dataset.inserted=
+            'false';
 
-        if(!id)return;
 
-        const card=cards.find(c=>c.id===id);
+        slot.classList.remove(
+            'hover'
+        );
 
-        const div=document.createElement('div');
 
-        div.className='drag-card';
+        slot.innerHTML=`
 
-        div.dataset.category=category;
-
-        div.innerHTML=`
-            <strong>${card.icon} ${card.name}</strong>
-            <div style="
-                font-size:10px;
-                color:#aaa5c3;
-                margin-top:4px;
-            ">
-                ${categoryName(category)} 카드
+            <div class="slot-title">
+                ${category.toUpperCase()}
             </div>
+
+            <span>
+                ${category.toUpperCase()} CARD
+            </span>
+
         `;
 
-        container.appendChild(div);
-
     });
+
+
+    updateTransformButton();
 
 }
 
 
-/* =========================================================
-   DRAG & DROP
-   Pointer Events 기반
-========================================================= */
+/* =====================================================
+   RENDER DRAG CARDS
+===================================================== */
 
-let dragState=null;
-let ghost=null;
-let animationFrame=null;
+function renderDragCards(){
 
-function setupDragAndDrop(){
+    const container=
+        document.getElementById(
+            'dragCards'
+        );
 
-    document.querySelectorAll('.drag-card')
-        .forEach(card=>{
+    container.innerHTML='';
 
-            card.addEventListener(
-                'pointerdown',
-                startDrag
-            );
+
+    Object.keys(selectedCards)
+        .forEach(category=>{
+
+            const id=
+                selectedCards[category];
+
+
+            if(!id)return;
+
+
+            const card=
+                cards.find(
+                    c=>c.id===id
+                );
+
+
+            const div=
+                document.createElement(
+                    'div'
+                );
+
+
+            div.className=
+                'drag-card';
+
+
+            div.dataset.category=
+                category;
+
+
+            div.dataset.id=
+                card.id;
+
+
+            div.innerHTML=`
+
+                <strong>
+                    ${card.icon}
+                    ${card.name}
+                </strong>
+
+                <small>
+                    ${categoryName(category)} 카드
+                </small>
+
+            `;
+
+
+            container.appendChild(div);
 
         });
 
 }
 
 
-/* =========================
-   POINTER DOWN
-========================= */
+/* =====================================================
+   DRAG SYSTEM
+===================================================== */
+
+let dragState=null;
+
+let ghost=null;
+
+let animationFrame=null;
+
+
+function setupDragAndDrop(){
+
+    document.querySelectorAll(
+        '.drag-card'
+    ).forEach(card=>{
+
+        card.onpointerdown=
+            startDrag;
+
+    });
+
+}
+
+
+/* =====================================================
+   START DRAG
+===================================================== */
 
 function startDrag(e){
 
-    if(e.button!==undefined && e.button!==0){
+    if(
+        e.pointerType==='mouse' &&
+        e.button!==0
+    ){
         return;
     }
 
-    const card=e.currentTarget;
+
+    const card=
+        e.currentTarget;
+
 
     e.preventDefault();
 
-    card.setPointerCapture(e.pointerId);
 
-    const rect=card.getBoundingClientRect();
+    card.setPointerCapture(
+        e.pointerId
+    );
 
-    ghost=card.cloneNode(true);
 
-    ghost.classList.add('drag-ghost');
+    const rect=
+        card.getBoundingClientRect();
 
-    ghost.style.left=rect.left+rect.width/2+'px';
-    ghost.style.top=rect.top+rect.height/2+'px';
 
-    document.body.appendChild(ghost);
+    ghost=
+        card.cloneNode(true);
 
-    card.classList.add('dragging');
+
+    ghost.classList.add(
+        'drag-ghost'
+    );
+
+
+    ghost.style.left=
+        (rect.left+rect.width/2)+'px';
+
+
+    ghost.style.top=
+        (rect.top+rect.height/2)+'px';
+
+
+    document.body.appendChild(
+        ghost
+    );
+
+
+    card.classList.add(
+        'dragging'
+    );
+
 
     dragState={
+
         card:card,
-        category:card.dataset.category,
-        pointerId:e.pointerId,
+
+        category:
+            card.dataset.category,
+
+        pointerId:
+            e.pointerId,
+
         x:e.clientX,
+
         y:e.clientY
+
     };
+
 
     card.addEventListener(
         'pointermove',
         moveDrag
     );
 
+
     card.addEventListener(
         'pointerup',
         endDrag
     );
+
 
     card.addEventListener(
         'pointercancel',
@@ -2719,121 +3605,150 @@ function startDrag(e){
 }
 
 
-/* =========================
-   POINTER MOVE
-========================= */
+/* =====================================================
+   MOVE DRAG
+===================================================== */
 
 function moveDrag(e){
 
     if(!dragState)return;
 
+
     e.preventDefault();
 
-    dragState.x=e.clientX;
-    dragState.y=e.clientY;
+
+    dragState.x=
+        e.clientX;
+
+    dragState.y=
+        e.clientY;
+
 
     if(animationFrame){
         return;
     }
 
-    animationFrame=requestAnimationFrame(()=>{
 
-        if(ghost){
+    animationFrame=
+        requestAnimationFrame(()=>{
 
-            ghost.style.left=
-                dragState.x+'px';
 
-            ghost.style.top=
-                dragState.y+'px';
+            if(ghost){
 
-        }
+                ghost.style.left=
+                    dragState.x+'px';
 
-        highlightSlot(
-            dragState.x,
-            dragState.y
+                ghost.style.top=
+                    dragState.y+'px';
+
+            }
+
+
+            highlightSlot(
+                dragState.x,
+                dragState.y
+            );
+
+
+            animationFrame=null;
+
+        });
+
+}
+
+
+/* =====================================================
+   HIGHLIGHT SLOT
+===================================================== */
+
+function highlightSlot(x,y){
+
+    document.querySelectorAll(
+        '.slot'
+    ).forEach(slot=>{
+
+        slot.classList.remove(
+            'hover'
         );
 
-        animationFrame=null;
+
+        const rect=
+            slot.getBoundingClientRect();
+
+
+        const inside=
+            x>=rect.left &&
+            x<=rect.right &&
+            y>=rect.top &&
+            y<=rect.bottom;
+
+
+        if(
+            inside &&
+            slot.dataset.accept===
+            dragState.category &&
+            slot.dataset.inserted!=='true'
+        ){
+
+            slot.classList.add(
+                'hover'
+            );
+
+        }
 
     });
 
 }
 
 
-/* =========================
-   SLOT HIGHLIGHT
-========================= */
-
-function highlightSlot(x,y){
-
-    document.querySelectorAll('.slot')
-        .forEach(slot=>{
-
-            slot.classList.remove('hover');
-
-            const rect=
-                slot.getBoundingClientRect();
-
-            if(
-                x>=rect.left &&
-                x<=rect.right &&
-                y>=rect.top &&
-                y<=rect.bottom
-            ){
-
-                if(
-                    slot.dataset.accept===
-                    dragState.category
-                ){
-
-                    slot.classList.add('hover');
-
-                }
-
-            }
-
-        });
-
-}
-
-
-/* =========================
-   POINTER UP
-========================= */
+/* =====================================================
+   END DRAG
+===================================================== */
 
 function endDrag(e){
 
-    if(!dragState)return;
+    if(!dragState){
+        return;
+    }
+
+
+    e.preventDefault();
+
 
     const x=e.clientX;
+
     const y=e.clientY;
 
-    let target=null;
 
-    document.querySelectorAll('.slot')
-        .forEach(slot=>{
+    /*
+     * elementFromPoint를 이용해
+     * 실제 손가락 아래에 있는 요소를 찾음.
+     */
 
-            const rect=
-                slot.getBoundingClientRect();
+    let element=
+        document.elementFromPoint(
+            x,
+            y
+        );
 
-            if(
-                x>=rect.left &&
-                x<=rect.right &&
-                y>=rect.top &&
-                y<=rect.bottom
-            ){
 
-                target=slot;
+    let target=
+        element
+        ?
+        element.closest('.slot')
+        :
+        null;
 
-            }
 
-        });
-
+    /*
+     * 카테고리가 맞는 경우에만 삽입
+     */
 
     if(
         target &&
         target.dataset.accept===
-        dragState.category
+        dragState.category &&
+        target.dataset.inserted!=='true'
     ){
 
         insertCard(
@@ -2849,35 +3764,55 @@ function endDrag(e){
 }
 
 
-/* =========================================================
+/* =====================================================
    INSERT CARD
-========================================================= */
+===================================================== */
 
-function insertCard(slot,card){
+function insertCard(slot,dragCard){
 
-    /*
-      이미 들어간 카드가 있으면 교체
-    */
+    const category=
+        slot.dataset.accept;
 
-    slot.innerHTML=`
-        <div class="slot-title">
-            ${slot.dataset.accept.toUpperCase()}
-        </div>
-    `;
+
+    const cardId=
+        Number(
+            dragCard.dataset.id
+        );
+
 
     const cardData=
         cards.find(
-            c=>c.id===Number(
-                selectedCards[
-                    slot.dataset.accept
-                ]
-            )
+            c=>c.id===cardId
         );
 
-    const inserted=
-        document.createElement('div');
 
-    inserted.className='inserted-card';
+    if(!cardData){
+        return;
+    }
+
+
+    /*
+     * 슬롯 내용을 초기화.
+     */
+
+    slot.innerHTML=`
+
+        <div class="slot-title">
+            ${category.toUpperCase()}
+        </div>
+
+    `;
+
+
+    const inserted=
+        document.createElement(
+            'div'
+        );
+
+
+    inserted.className=
+        'inserted-card';
+
 
     inserted.innerHTML=`
 
@@ -2891,25 +3826,37 @@ function insertCard(slot,card){
 
     `;
 
-    slot.appendChild(inserted);
 
-    slot.dataset.inserted='true';
+    slot.appendChild(
+        inserted
+    );
+
+
+    slot.dataset.inserted=
+        'true';
+
 
     updateTransformButton();
 
 }
 
 
-/* =========================================================
+/* =====================================================
    CLEANUP DRAG
-========================================================= */
+===================================================== */
 
 function cleanupDrag(){
 
     if(animationFrame){
-        cancelAnimationFrame(animationFrame);
+
+        cancelAnimationFrame(
+            animationFrame
+        );
+
         animationFrame=null;
+
     }
+
 
     if(dragState){
 
@@ -2917,15 +3864,18 @@ function cleanupDrag(){
             'dragging'
         );
 
+
         dragState.card.removeEventListener(
             'pointermove',
             moveDrag
         );
 
+
         dragState.card.removeEventListener(
             'pointerup',
             endDrag
         );
+
 
         dragState.card.removeEventListener(
             'pointercancel',
@@ -2934,41 +3884,62 @@ function cleanupDrag(){
 
     }
 
+
     if(ghost){
 
         ghost.remove();
+
         ghost=null;
 
     }
 
-    document.querySelectorAll('.slot')
-        .forEach(slot=>{
-            slot.classList.remove('hover');
-        });
+
+    document.querySelectorAll(
+        '.slot'
+    ).forEach(slot=>{
+
+        slot.classList.remove(
+            'hover'
+        );
+
+    });
+
 
     dragState=null;
 
 }
 
 
-/* =========================================================
+/* =====================================================
    TRANSFORM BUTTON
-========================================================= */
+===================================================== */
 
 function updateTransformButton(){
 
     const slots=
-        document.querySelectorAll('.slot');
+        [...document.querySelectorAll(
+            '.slot'
+        )];
+
 
     const complete=
-        [...slots].every(
-            slot=>slot.dataset.inserted==='true'
+        slots.length===4 &&
+        slots.every(
+            slot=>
+                slot.dataset.inserted===
+                'true'
         );
 
-    const button=
-        document.getElementById('transformBtn');
 
-    button.disabled=!complete;
+    const button=
+        document.getElementById(
+            'transformBtn'
+        );
+
+
+    button.disabled=
+        !complete;
+
 
     button.classList.toggle(
         'ready',
@@ -2978,65 +3949,249 @@ function updateTransformButton(){
 }
 
 
-/* =========================================================
+/* =====================================================
    TRANSFORMATION
-========================================================= */
+===================================================== */
 
 function transformCharacter(){
 
     const button=
-        document.getElementById('transformBtn');
+        document.getElementById(
+            'transformBtn'
+        );
 
-    if(button.disabled)return;
+
+    if(button.disabled){
+        return;
+    }
+
 
     const overlay=
-        document.getElementById('magicOverlay');
+        document.getElementById(
+            'magicOverlay'
+        );
 
-    overlay.classList.add('active');
+
+    overlay.classList.add(
+        'active'
+    );
+
 
     setTimeout(()=>{
 
-        overlay.classList.remove('active');
+        overlay.classList.remove(
+            'active'
+        );
+
 
         createResult();
 
-        showScreen('result');
+
+        showScreen(
+            'result'
+        );
+
 
     },1800);
 
 }
 
 
-/* =========================================================
-   RESULT CHARACTER
-========================================================= */
+/* =====================================================
+   RESULT
+===================================================== */
 
 function createResult(){
 
     const box=
-        document.getElementById('resultCharacter');
+        document.getElementById(
+            'resultCharacter'
+        );
+
 
     box.innerHTML='';
 
+
     const original=
-        document.getElementById('characterSVG');
+        document.getElementById(
+            'characterSVG'
+        );
+
 
     const clone=
         original.cloneNode(true);
 
-    clone.removeAttribute('id');
 
-    clone.style.height='650px';
-    clone.style.width='250px';
+    clone.removeAttribute(
+        'id'
+    );
 
-    box.appendChild(clone);
+
+    clone.style.width=
+        '250px';
+
+    clone.style.height=
+        '650px';
+
+
+    /*
+     * 선택된 카드에 따라
+     * 결과 의상 색 변경
+     */
+
+    const topCard=
+        cards.find(
+            c=>c.id===selectedCards.top
+        );
+
+    const bottomCard=
+        cards.find(
+            c=>c.id===selectedCards.bottom
+        );
+
+    const shoesCard=
+        cards.find(
+            c=>c.id===selectedCards.shoes
+        );
+
+    const accessoryCard=
+        cards.find(
+            c=>c.id===selectedCards.accessory
+        );
+
+
+    if(topCard){
+
+        const top=
+            clone.querySelector(
+                '#topBody'
+            );
+
+        if(top){
+            top.setAttribute(
+                'fill',
+                topCard.color
+            );
+        }
+
+    }
+
+
+    if(bottomCard){
+
+        const bottom=
+            clone.querySelector(
+                '#skirtBody'
+            );
+
+        if(bottom){
+
+            bottom.setAttribute(
+                'fill',
+                bottomCard.color
+            );
+
+        }
+
+    }
+
+
+    if(shoesCard){
+
+        const left=
+            clone.querySelector(
+                '#leftShoe'
+            );
+
+        const right=
+            clone.querySelector(
+                '#rightShoe'
+            );
+
+
+        if(left){
+            left.setAttribute(
+                'fill',
+                shoesCard.color
+            );
+        }
+
+
+        if(right){
+            right.setAttribute(
+                'fill',
+                shoesCard.color
+            );
+        }
+
+    }
+
+
+    /*
+     * 액세서리 카드는 결과 화면에서
+     * 작은 별 장식으로 표시.
+     */
+
+    if(accessoryCard){
+
+        const decoration=
+            document.createElementNS(
+                'http://www.w3.org/2000/svg',
+                'text'
+            );
+
+
+        decoration.setAttribute(
+            'x',
+            '150'
+        );
+
+
+        decoration.setAttribute(
+            'y',
+            '75'
+        );
+
+
+        decoration.setAttribute(
+            'text-anchor',
+            'middle'
+        );
+
+
+        decoration.setAttribute(
+            'font-size',
+            '30'
+        );
+
+
+        decoration.setAttribute(
+            'fill',
+            accessoryCard.color
+        );
+
+
+        decoration.textContent=
+            accessoryCard.icon;
+
+
+        clone.appendChild(
+            decoration
+        );
+
+    }
+
+
+    box.appendChild(
+        clone
+    );
 
 }
 
 
-/* =========================================================
+/* =====================================================
    INITIAL
-========================================================= */
+===================================================== */
 
 updateCharacter();
 
