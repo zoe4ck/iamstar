@@ -1,0 +1,5941 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+>
+
+<title>MY IDOL CARD</title>
+
+
+<style>
+
+/* =========================================================
+   기본 설정
+========================================================= */
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html,
+body {
+    width: 100%;
+    min-height: 100%;
+}
+
+body {
+
+    font-family:
+        Arial,
+        "Noto Sans KR",
+        sans-serif;
+
+    background:
+        radial-gradient(
+            circle at 50% 30%,
+            #fff,
+            #fff4fb 45%,
+            #f7e5f3 100%
+        );
+
+    color: #5d4260;
+
+    overflow-x: hidden;
+}
+
+button {
+
+    font-family: inherit;
+
+    cursor: pointer;
+
+    border: none;
+
+    -webkit-tap-highlight-color: transparent;
+}
+
+
+/* =========================================================
+   화면
+========================================================= */
+
+.screen {
+
+    display: none;
+
+    width: 100%;
+
+    min-height: 100vh;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.screen.active {
+
+    display: flex;
+}
+
+
+/* =========================================================
+   배경 반짝이
+========================================================= */
+
+.sparkle {
+
+    position: absolute;
+
+    color: white;
+
+    text-shadow:
+        0 0 8px #fff,
+        0 0 15px #ff9edb;
+
+    animation:
+        sparkleFloat 3s infinite ease-in-out;
+
+    pointer-events: none;
+}
+
+.sparkle.s1 {
+
+    top: 12%;
+    left: 10%;
+
+    font-size: 24px;
+}
+
+.sparkle.s2 {
+
+    top: 25%;
+    right: 12%;
+
+    font-size: 17px;
+
+    animation-delay: .8s;
+}
+
+.sparkle.s3 {
+
+    bottom: 20%;
+    left: 15%;
+
+    font-size: 20px;
+
+    animation-delay: 1.5s;
+}
+
+.sparkle.s4 {
+
+    bottom: 15%;
+    right: 20%;
+
+    font-size: 28px;
+
+    animation-delay: .4s;
+}
+
+@keyframes sparkleFloat {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0)
+            scale(1);
+
+        opacity: .6;
+    }
+
+    50% {
+
+        transform:
+            translateY(-12px)
+            scale(1.2);
+
+        opacity: 1;
+    }
+
+}
+
+
+/* =========================================================
+   1. OPENING
+========================================================= */
+
+#opening {
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at 50% 35%,
+            #ffffff 0%,
+            #fff7fc 30%,
+            #f7d9ed 100%
+        );
+}
+
+.opening-content {
+
+    width: min(90%, 600px);
+
+    text-align: center;
+
+    position: relative;
+
+    z-index: 2;
+
+    animation:
+        openingAppear 1.2s ease;
+}
+
+@keyframes openingAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(20px)
+            scale(.96);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+
+}
+
+.logo-small {
+
+    font-size: 14px;
+
+    letter-spacing: 7px;
+
+    color: #c58bb9;
+
+    margin-bottom: 14px;
+}
+
+.main-logo {
+
+    font-size:
+        clamp(
+            55px,
+            13vw,
+            100px
+        );
+
+    font-weight: 900;
+
+    font-style: italic;
+
+    letter-spacing: -6px;
+
+    color: #f08bc6;
+
+    text-shadow:
+        3px 3px 0 white,
+        6px 6px 0 #e5a1cf,
+        0 0 20px rgba(
+            255,
+            140,
+            211,
+            .4
+        );
+}
+
+.logo-sub {
+
+    margin-top: 5px;
+
+    font-size: 14px;
+
+    letter-spacing: 5px;
+
+    color: #92738e;
+}
+
+.star-logo {
+
+    font-size: 35px;
+
+    color: #ffd34d;
+
+    display: inline-block;
+
+    margin-left: 5px;
+
+    animation:
+        starSpin 4s linear infinite;
+}
+
+@keyframes starSpin {
+
+    from {
+
+        transform:
+            rotate(0);
+    }
+
+    to {
+
+        transform:
+            rotate(360deg);
+    }
+
+}
+
+.opening-description {
+
+    margin-top: 35px;
+
+    color: #876f84;
+
+    line-height: 1.8;
+
+    font-size: 14px;
+}
+
+.start-button {
+
+    margin-top: 40px;
+
+    padding:
+        16px 65px;
+
+    border-radius: 50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff91ce,
+            #e879ba
+        );
+
+    color: white;
+
+    font-weight: 800;
+
+    font-size: 17px;
+
+    letter-spacing: 2px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(
+            222,
+            116,
+            182,
+            .35
+        );
+
+    transition: .25s;
+}
+
+.start-button:hover {
+
+    transform:
+        translateY(-4px)
+        scale(1.03);
+}
+
+.start-button:active {
+
+    transform:
+        scale(.96);
+}
+
+
+/* =========================================================
+   공통 헤더
+========================================================= */
+
+.page-header {
+
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    width: 100%;
+
+    height: 75px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    padding:
+        0 30px;
+
+    z-index: 50;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .65
+        );
+
+    backdrop-filter:
+        blur(10px);
+
+    border-bottom:
+        1px solid
+        rgba(
+            219,
+            164,
+            205,
+            .3
+        );
+}
+
+.header-title {
+
+    font-weight: 900;
+
+    color: #d47ab2;
+
+    letter-spacing: 2px;
+}
+
+.header-step {
+
+    font-size: 12px;
+
+    color: #aa91a7;
+}
+
+
+/* =========================================================
+   2. CUSTOMIZE
+========================================================= */
+
+#customize {
+
+    flex-direction: column;
+
+    background:
+        radial-gradient(
+            circle at 30% 30%,
+            #fff,
+            #fff4fb 50%,
+            #f3dceb
+        );
+}
+
+.customize-container {
+
+    width:
+        min(
+            1200px,
+            94%
+        );
+
+    margin: auto;
+
+    padding-top: 95px;
+
+    padding-bottom: 35px;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(
+            280px,
+            1fr
+        )
+        minmax(
+            300px,
+            1fr
+        );
+
+    gap: 40px;
+
+    align-items: center;
+}
+
+
+/* =========================================================
+   캐릭터 영역
+========================================================= */
+
+.character-area {
+
+    min-height: 620px;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    position: relative;
+
+    background:
+        radial-gradient(
+            ellipse,
+            rgba(
+                255,
+                255,
+                255,
+                .95
+            ),
+            rgba(
+                255,
+                238,
+                249,
+                .6
+            )
+        );
+
+    border-radius: 40px;
+
+    border:
+        1px solid
+        rgba(
+            214,
+            150,
+            197,
+            .25
+        );
+
+    box-shadow:
+        inset 0 0 50px
+        rgba(
+            255,
+            255,
+            255,
+            .7
+        ),
+        0 15px 40px
+        rgba(
+            194,
+            130,
+            178,
+            .08
+        );
+}
+
+.character-platform {
+
+    position: absolute;
+
+    bottom: 35px;
+
+    width: 210px;
+
+    height: 28px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(
+            213,
+            146,
+            195,
+            .2
+        );
+
+    filter: blur(3px);
+}
+
+
+/* =========================================================
+   캐릭터 본체
+========================================================= */
+
+.character {
+
+    width: 210px;
+
+    height: 500px;
+
+    position: relative;
+
+    transform-origin:
+        center bottom;
+
+    animation:
+        characterIdle
+        4s ease-in-out infinite;
+}
+
+@keyframes characterIdle {
+
+    0%,
+    100% {
+
+        transform:
+            translateY(0);
+    }
+
+    50% {
+
+        transform:
+            translateY(-6px);
+    }
+
+}
+
+
+/* =========================================================
+   헤어 백
+========================================================= */
+
+.hair-back {
+
+    position: absolute;
+
+    width: 175px;
+
+    height: 245px;
+
+    left: 17px;
+
+    top: 20px;
+
+    background:
+        var(--hair);
+
+    border-radius:
+        48%
+        48%
+        35%
+        35%;
+
+    z-index: 1;
+
+    transition: .4s;
+}
+
+
+/* =========================================================
+   귀
+========================================================= */
+
+.character-head::before,
+.character-head::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 22px;
+
+    height: 40px;
+
+    background:
+        var(--skin);
+
+    top: 65px;
+
+    border-radius: 50%;
+
+    z-index: -1;
+}
+
+.character-head::before {
+
+    left: -12px;
+}
+
+.character-head::after {
+
+    right: -12px;
+}
+
+
+/* =========================================================
+   머리
+========================================================= */
+
+.character-head {
+
+    position: absolute;
+
+    width: 150px;
+
+    height: 175px;
+
+    left: 30px;
+
+    top: 55px;
+
+    background:
+        var(--skin);
+
+    border-radius:
+        48%
+        48%
+        45%
+        45%;
+
+    z-index: 5;
+
+    border:
+        1px solid
+        rgba(
+            150,
+            90,
+            70,
+            .1
+        );
+}
+
+
+/* =========================================================
+   목
+========================================================= */
+
+.character-neck {
+
+    position: absolute;
+
+    top: 205px;
+
+    left: 82px;
+
+    width: 45px;
+
+    height: 50px;
+
+    background:
+        var(--skin);
+
+    border-radius:
+        0 0 15px 15px;
+
+    z-index: 3;
+}
+
+
+/* =========================================================
+   몸
+========================================================= */
+
+.character-body {
+
+    position: absolute;
+
+    top: 235px;
+
+    left: 45px;
+
+    width: 120px;
+
+    height: 155px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f3a2cc,
+            #e779b7
+        );
+
+    border-radius:
+        45px 45px
+        20px 20px;
+
+    z-index: 4;
+
+    transition: .4s;
+}
+
+
+/* =========================================================
+   치마
+========================================================= */
+
+.character-skirt {
+
+    position: absolute;
+
+    top: 350px;
+
+    left: 32px;
+
+    width: 150px;
+
+    height: 90px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f8badb,
+            #ed84bd
+        );
+
+    clip-path:
+        polygon(
+            20% 0,
+            80% 0,
+            100% 100%,
+            0 100%
+        );
+
+    z-index: 4;
+
+    transition: .4s;
+}
+
+
+/* =========================================================
+   다리
+========================================================= */
+
+.character-leg {
+
+    position: absolute;
+
+    top: 425px;
+
+    width: 32px;
+
+    height: 65px;
+
+    background:
+        var(--skin);
+
+    border-radius:
+        10px 10px
+        15px 15px;
+
+    z-index: 2;
+}
+
+.character-leg.left {
+
+    left: 68px;
+}
+
+.character-leg.right {
+
+    right: 68px;
+}
+
+
+/* =========================================================
+   신발
+========================================================= */
+
+.character-shoe {
+
+    position: absolute;
+
+    top: 475px;
+
+    width: 52px;
+
+    height: 25px;
+
+    background:
+        #e783b9;
+
+    border-radius:
+        15px 20px
+        10px 10px;
+
+    z-index: 3;
+
+    transition: .3s;
+}
+
+.character-shoe.left {
+
+    left: 52px;
+}
+
+.character-shoe.right {
+
+    right: 52px;
+}
+
+
+/* =========================================================
+   눈
+   ★ 중요: 눈은 character-head 안에 있으므로
+   머리 기준 좌표를 사용
+========================================================= */
+
+.eye {
+
+    position: absolute;
+
+    top: 60px;
+
+    width: 25px;
+
+    height: 32px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    z-index: 10;
+
+    border:
+        2px solid
+        rgba(
+            100,
+            60,
+            80,
+            .15
+        );
+
+    transition: .3s;
+}
+
+.eye::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 12px;
+
+    height: 17px;
+
+    left: 50%;
+
+    top: 6px;
+
+    transform:
+        translateX(-50%);
+
+    border-radius: 50%;
+
+    background:
+        var(--eye-color);
+
+    box-shadow:
+        inset 2px 2px 0
+        rgba(
+            255,
+            255,
+            255,
+            .7
+        );
+}
+
+.eye.left {
+
+    left: 42px;
+}
+
+.eye.right {
+
+    right: 42px;
+}
+
+
+/* =========================================================
+   눈 모양
+========================================================= */
+
+.eyes-round .eye {
+
+    height: 34px;
+}
+
+.eyes-slim .eye {
+
+    height: 18px;
+
+    top: 68px;
+
+    border-radius:
+        50%
+        50%
+        40%
+        40%;
+}
+
+.eyes-droopy .eye {
+
+    height: 27px;
+
+    top: 65px;
+
+    transform:
+        rotate(5deg);
+}
+
+.eyes-sharp .eye {
+
+    height: 25px;
+
+    top: 64px;
+
+    transform:
+        rotate(-7deg);
+
+    border-radius:
+        40%
+        60%
+        50%
+        50%;
+}
+
+.eyes-happy .eye {
+
+    height: 14px;
+
+    top: 73px;
+
+    background: transparent;
+
+    border:
+        3px solid
+        var(--eye-color);
+
+    border-bottom: 0;
+
+    border-left-color:
+        transparent;
+
+    border-right-color:
+        transparent;
+
+    border-radius: 50%;
+}
+
+.eyes-happy .eye::after {
+
+    display: none;
+}
+
+
+/* =========================================================
+   코
+========================================================= */
+
+.nose {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 100px;
+
+    transform:
+        translateX(-50%);
+
+    width: 9px;
+
+    height: 7px;
+
+    border-left:
+        2px solid
+        rgba(
+            170,
+            100,
+            95,
+            .45
+        );
+
+    border-bottom:
+        2px solid
+        rgba(
+            170,
+            100,
+            95,
+            .45
+        );
+
+    border-radius:
+        0 0 0 6px;
+
+    z-index: 10;
+}
+
+
+/* =========================================================
+   입
+   ★ 머리 기준 위치로 수정
+========================================================= */
+
+.mouth {
+
+    position: absolute;
+
+    left: 50%;
+
+    top: 114px;
+
+    transform:
+        translateX(-50%);
+
+    z-index: 11;
+
+    transition: .3s;
+}
+
+.mouth-smile {
+
+    width: 30px;
+
+    height: 15px;
+
+    border-bottom:
+        3px solid
+        #c76583;
+
+    border-radius:
+        0 0 50% 50%;
+}
+
+.mouth-small {
+
+    width: 15px;
+
+    height: 8px;
+
+    border-bottom:
+        3px solid
+        #c76583;
+
+    border-radius: 50%;
+}
+
+.mouth-open {
+
+    width: 23px;
+
+    height: 17px;
+
+    background:
+        #b95d79;
+
+    border-radius: 50%;
+}
+
+.mouth-surprised {
+
+    width: 18px;
+
+    height: 22px;
+
+    background:
+        #bd6982;
+
+    border-radius: 50%;
+}
+
+.mouth-neutral {
+
+    width: 25px;
+
+    height: 5px;
+
+    border-bottom:
+        2px solid
+        #b96883;
+}
+
+
+/* =========================================================
+   앞머리
+   ★ 눈보다 위에 위치하도록 수정
+========================================================= */
+
+.hair-front {
+
+    position: absolute;
+
+    width: 165px;
+
+    height: 70px;
+
+    left: 22px;
+
+    top: 25px;
+
+    background:
+        var(--hair);
+
+    border-radius:
+        55%
+        55%
+        20%
+        20%;
+
+    z-index: 7;
+
+    transition: .4s;
+
+    pointer-events: none;
+}
+
+
+/* 앞머리 끝 */
+
+.hair-front::after {
+
+    content: "";
+
+    position: absolute;
+
+    left: 55px;
+
+    bottom: -15px;
+
+    width: 55px;
+
+    height: 30px;
+
+    background:
+        var(--hair);
+
+    clip-path:
+        polygon(
+            0 0,
+            100% 0,
+            50% 100%
+        );
+}
+
+
+/* =========================================================
+   헤어 스타일
+========================================================= */
+
+.hair-long .hair-back {
+
+    height: 300px;
+}
+
+.hair-long .hair-front {
+
+    height: 70px;
+}
+
+.hair-bob .hair-back {
+
+    height: 200px;
+}
+
+.hair-bob .hair-front {
+
+    height: 72px;
+}
+
+.hair-wave .hair-back {
+
+    height: 285px;
+
+    border-radius:
+        45%
+        45%
+        25%
+        35%;
+}
+
+.hair-wave .hair-front {
+
+    height: 70px;
+
+    border-radius:
+        50%
+        50%
+        25%
+        25%;
+}
+
+.hair-ponytail .hair-back::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 70px;
+
+    height: 150px;
+
+    background:
+        var(--hair);
+
+    right: -45px;
+
+    top: 45px;
+
+    border-radius: 50%;
+}
+
+.hair-twin .hair-back::before,
+.hair-twin .hair-back::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 65px;
+
+    height: 150px;
+
+    background:
+        var(--hair);
+
+    top: 25px;
+
+    border-radius: 50%;
+}
+
+.hair-twin .hair-back::before {
+
+    left: -42px;
+}
+
+.hair-twin .hair-back::after {
+
+    right: -42px;
+}
+
+
+/* =========================================================
+   커스터마이징 패널
+========================================================= */
+
+.custom-panel {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .78
+        );
+
+    backdrop-filter:
+        blur(15px);
+
+    border:
+        1px solid
+        rgba(
+            210,
+            155,
+            198,
+            .3
+        );
+
+    border-radius: 30px;
+
+    padding: 25px;
+
+    box-shadow:
+        0 15px 40px
+        rgba(
+            150,
+            100,
+            140,
+            .1
+        );
+}
+
+.panel-title {
+
+    font-size: 24px;
+
+    font-weight: 900;
+
+    color: #c76aa9;
+
+    margin-bottom: 5px;
+}
+
+.panel-subtitle {
+
+    font-size: 12px;
+
+    color: #a18b9d;
+
+    margin-bottom: 22px;
+}
+
+.option-group {
+
+    margin-bottom: 18px;
+}
+
+.option-title {
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    margin-bottom: 9px;
+
+    color: #765c72;
+}
+
+.options {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 7px;
+}
+
+.option-button {
+
+    padding:
+        8px 12px;
+
+    background: #fff;
+
+    border:
+        1px solid
+        #ead8e7;
+
+    border-radius: 12px;
+
+    color: #806b7d;
+
+    font-size: 12px;
+
+    transition: .2s;
+}
+
+.option-button:hover {
+
+    transform:
+        translateY(-2px);
+
+    border-color:
+        #df8ec3;
+}
+
+.option-button.selected {
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff9ed1,
+            #e983ba
+        );
+
+    color: white;
+
+    border-color:
+        transparent;
+
+    box-shadow:
+        0 4px 10px
+        rgba(
+            221,
+            125,
+            181,
+            .25
+        );
+}
+
+
+/* 색상 버튼 */
+
+.color-button {
+
+    width: 32px;
+
+    height: 32px;
+
+    border-radius: 50%;
+
+    border:
+        3px solid white;
+
+    box-shadow:
+        0 0 0 1px
+        #dfd1dc;
+
+    transition: .2s;
+}
+
+.color-button.selected {
+
+    box-shadow:
+        0 0 0 2px
+        #db78b4,
+        0 0 0 5px
+        white;
+}
+
+
+/* 완료 버튼 */
+
+.custom-next {
+
+    width: 100%;
+
+    margin-top: 5px;
+
+    padding: 14px;
+
+    border-radius: 15px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff92ca,
+            #df73b1
+        );
+
+    color: white;
+
+    font-weight: 900;
+
+    font-size: 15px;
+
+    letter-spacing: 1px;
+
+    box-shadow:
+        0 8px 18px
+        rgba(
+            216,
+            113,
+            175,
+            .25
+        );
+
+    transition: .2s;
+}
+
+.custom-next:hover {
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   3. CARD SELECT
+========================================================= */
+
+#cards {
+
+    flex-direction: column;
+
+    background:
+        radial-gradient(
+            circle at 50% 20%,
+            #fff,
+            #fff3fb 55%,
+            #f4ddeb
+        );
+}
+
+.cards-container {
+
+    width:
+        min(
+            1150px,
+            94%
+        );
+
+    margin: auto;
+
+    padding-top: 100px;
+
+    padding-bottom: 40px;
+}
+
+.cards-heading {
+
+    text-align: center;
+
+    margin-bottom: 25px;
+}
+
+.cards-heading h1 {
+
+    font-size: 30px;
+
+    color: #c66eaa;
+}
+
+.cards-heading p {
+
+    margin-top: 7px;
+
+    color: #9b8497;
+
+    font-size: 13px;
+}
+
+.card-tabs {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+    margin-bottom: 25px;
+}
+
+.card-tab {
+
+    padding:
+        9px 18px;
+
+    border-radius: 30px;
+
+    background: white;
+
+    border:
+        1px solid
+        #ead9e7;
+
+    color: #886e82;
+
+    font-size: 12px;
+
+    transition: .2s;
+}
+
+.card-tab.active {
+
+    background:
+        #e989bd;
+
+    color: white;
+
+    border-color:
+        transparent;
+}
+
+.card-grid {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            auto-fit,
+            minmax(
+                150px,
+                1fr
+            )
+        );
+
+    gap: 18px;
+
+    max-height: 480px;
+
+    overflow-y: auto;
+
+    padding: 8px;
+}
+
+.fashion-card {
+
+    min-height: 220px;
+
+    background: white;
+
+    border-radius: 18px;
+
+    padding: 10px;
+
+    border:
+        2px solid
+        transparent;
+
+    box-shadow:
+        0 7px 20px
+        rgba(
+            150,
+            100,
+            140,
+            .1
+        );
+
+    cursor: pointer;
+
+    transition: .25s;
+
+    position: relative;
+
+    overflow: hidden;
+}
+
+.fashion-card:hover {
+
+    transform:
+        translateY(-5px)
+        rotate(-1deg);
+
+    box-shadow:
+        0 12px 25px
+        rgba(
+            150,
+            100,
+            140,
+            .16
+        );
+}
+
+.fashion-card.selected {
+
+    border-color:
+        #ed82bd;
+
+    box-shadow:
+        0 0 0 4px
+        rgba(
+            237,
+            130,
+            189,
+            .15
+        ),
+        0 12px 25px
+        rgba(
+            150,
+            100,
+            140,
+            .16
+        );
+}
+
+.card-art {
+
+    height: 160px;
+
+    border-radius: 12px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    position: relative;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff5fb,
+            #f7dcec
+        );
+}
+
+.card-clothing {
+
+    position: relative;
+
+    transition: .3s;
+}
+
+.top-art {
+
+    width: 70px;
+
+    height: 80px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff9fcf,
+            #df6faf
+        );
+
+    border-radius:
+        25px 25px
+        15px 15px;
+}
+
+.top-art::before,
+.top-art::after {
+
+    content: "";
+
+    position: absolute;
+
+    width: 25px;
+
+    height: 55px;
+
+    background:
+        inherit;
+
+    top: 5px;
+
+    border-radius: 15px;
+}
+
+.top-art::before {
+
+    left: -17px;
+
+    transform:
+        rotate(20deg);
+}
+
+.top-art::after {
+
+    right: -17px;
+
+    transform:
+        rotate(-20deg);
+}
+
+.skirt-art {
+
+    width: 100px;
+
+    height: 75px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7a9d0,
+            #c879ba
+        );
+
+    clip-path:
+        polygon(
+            25% 0,
+            75% 0,
+            100% 100%,
+            0 100%
+        );
+}
+
+.shoe-art {
+
+    width: 80px;
+
+    height: 25px;
+
+    background:
+        #e684b8;
+
+    border-radius:
+        20px 25px
+        10px 10px;
+
+    transform:
+        rotate(-8deg);
+}
+
+.accessory-art {
+
+    width: 75px;
+
+    height: 45px;
+
+    border:
+        7px solid
+        #f0b94d;
+
+    border-radius: 50%;
+
+    position: relative;
+}
+
+.accessory-art::after {
+
+    content: "✦";
+
+    position: absolute;
+
+    top: -25px;
+
+    left: 20px;
+
+    color: #f2c452;
+
+    font-size: 30px;
+}
+
+.card-name {
+
+    margin-top: 10px;
+
+    font-size: 12px;
+
+    font-weight: 800;
+
+    color: #745c70;
+}
+
+.card-type {
+
+    margin-top: 4px;
+
+    font-size: 10px;
+
+    color: #b08ba7;
+}
+
+.selected-check {
+
+    position: absolute;
+
+    top: 8px;
+
+    right: 8px;
+
+    width: 25px;
+
+    height: 25px;
+
+    border-radius: 50%;
+
+    background:
+        #e77eb9;
+
+    color: white;
+
+    display: none;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-size: 13px;
+}
+
+.fashion-card.selected
+.selected-check {
+
+    display: flex;
+}
+
+.selected-summary {
+
+    margin-top: 25px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .85
+        );
+
+    border-radius: 20px;
+
+    padding: 18px;
+
+    text-align: center;
+
+    box-shadow:
+        0 8px 20px
+        rgba(
+            150,
+            100,
+            140,
+            .08
+        );
+}
+
+.selected-summary strong {
+
+    color:
+        #cf72ac;
+}
+
+.selected-items {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    flex-wrap: wrap;
+
+    margin-top: 10px;
+}
+
+.selected-chip {
+
+    padding:
+        6px 10px;
+
+    border-radius: 20px;
+
+    background:
+        #fff0f9;
+
+    color:
+        #ad7298;
+
+    font-size: 11px;
+}
+
+.card-next {
+
+    display: block;
+
+    margin:
+        20px auto 0;
+
+    padding:
+        14px 45px;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff94ca,
+            #df70af
+        );
+
+    color: white;
+
+    font-weight: 900;
+
+    box-shadow:
+        0 8px 18px
+        rgba(
+            216,
+            113,
+            175,
+            .25
+        );
+
+    transition: .2s;
+}
+
+.card-next:hover {
+
+    transform:
+        translateY(-2px);
+}
+
+
+/* =========================================================
+   4. CARD MACHINE
+========================================================= */
+
+#machine {
+
+    flex-direction: column;
+
+    background:
+        radial-gradient(
+            circle at 50% 25%,
+            #ffffff,
+            #fff1fa 48%,
+            #ead5e9 100%
+        );
+}
+
+.machine-container {
+
+    width:
+        min(
+            1100px,
+            94%
+        );
+
+    margin: auto;
+
+    padding-top: 95px;
+
+    padding-bottom: 40px;
+
+    position: relative;
+}
+
+.machine-title {
+
+    text-align: center;
+
+    margin-bottom: 22px;
+}
+
+.machine-title h1 {
+
+    color:
+        #c66eaa;
+
+    font-size:
+        30px;
+}
+
+.machine-title p {
+
+    color:
+        #9b8497;
+
+    font-size:
+        13px;
+
+    margin-top: 7px;
+}
+
+
+/* 기계 */
+
+.machine {
+
+    width:
+        min(
+            650px,
+            100%
+        );
+
+    min-height: 330px;
+
+    margin:
+        0 auto 25px;
+
+    padding: 25px;
+
+    border-radius: 35px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff,
+            #f7d8ed
+        );
+
+    border:
+        2px solid
+        rgba(
+            214,
+            139,
+            194,
+            .35
+        );
+
+    box-shadow:
+        0 20px 45px
+        rgba(
+            130,
+            80,
+            130,
+            .15
+        ),
+        inset 0 0 30px
+        rgba(
+            255,
+            255,
+            255,
+            .8
+        );
+
+    position: relative;
+}
+
+.machine-screen {
+
+    width: 80%;
+
+    height: 65px;
+
+    margin: auto;
+
+    border-radius: 18px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #5b4567,
+            #9a6290
+        );
+
+    border: 5px solid white;
+
+    box-shadow:
+        0 5px 15px
+        rgba(
+            100,
+            60,
+            100,
+            .2
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    letter-spacing: 2px;
+}
+
+.card-slot {
+
+    width: 80%;
+
+    height: 110px;
+
+    margin:
+        25px auto;
+
+    border-radius: 20px;
+
+    border:
+        3px dashed
+        #d995c4;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .65
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    color:
+        #b78aa9;
+
+    font-size: 13px;
+
+    transition: .3s;
+
+    position: relative;
+
+    text-align: center;
+
+    padding: 10px;
+}
+
+.card-slot.drag-over {
+
+    background:
+        #ffe5f5;
+
+    border-color:
+        #df70b0;
+
+    transform:
+        scale(1.03);
+
+    box-shadow:
+        0 0 25px
+        rgba(
+            230,
+            120,
+            185,
+            .3
+        );
+}
+
+.slot-card {
+
+    width: 75px;
+
+    height: 92px;
+
+    border-radius: 10px;
+
+    background: white;
+
+    border:
+        2px solid
+        #ed8bc1;
+
+    box-shadow:
+        0 5px 15px
+        rgba(
+            120,
+            70,
+            110,
+            .15
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    text-align: center;
+
+    padding: 5px;
+
+    color:
+        #93657f;
+
+    font-size: 9px;
+
+    font-weight: 800;
+
+    animation:
+        cardInsert .45s ease;
+}
+
+@keyframes cardInsert {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(-30px)
+            scale(.7)
+            rotate(-8deg);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1)
+            rotate(0);
+    }
+
+}
+
+
+/* 기계 슬롯 */
+
+.machine-slots {
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(
+            4,
+            1fr
+        );
+
+    gap: 10px;
+
+    margin-top: 15px;
+}
+
+.machine-slot {
+
+    min-height: 75px;
+
+    border-radius: 15px;
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .75
+        );
+
+    border:
+        1px solid
+        #ead3e5;
+
+    padding: 9px;
+
+    text-align: center;
+
+    font-size: 10px;
+
+    color:
+        #a17d98;
+}
+
+.machine-slot.filled {
+
+    background:
+        #fff0f8;
+
+    border-color:
+        #e58abc;
+
+    color:
+        #c56ca4;
+}
+
+.slot-label {
+
+    font-weight: 900;
+
+    margin-bottom: 6px;
+}
+
+
+/* 카드 목록 */
+
+.machine-cards {
+
+    background:
+        rgba(
+            255,
+            255,
+            255,
+            .8
+        );
+
+    border-radius: 25px;
+
+    padding: 18px;
+
+    box-shadow:
+        0 10px 30px
+        rgba(
+            140,
+            90,
+            130,
+            .1
+        );
+}
+
+.machine-cards-title {
+
+    text-align: center;
+
+    font-size: 13px;
+
+    font-weight: 900;
+
+    color:
+        #9c6b91;
+
+    margin-bottom: 12px;
+}
+
+.machine-card-list {
+
+    display: flex;
+
+    gap: 12px;
+
+    overflow-x: auto;
+
+    padding:
+        8px 5px
+        12px;
+
+    touch-action:
+        pan-x;
+}
+
+.machine-card {
+
+    flex:
+        0 0 90px;
+
+    height: 120px;
+
+    border-radius: 14px;
+
+    background: white;
+
+    border:
+        2px solid
+        #ead5e5;
+
+    box-shadow:
+        0 6px 15px
+        rgba(
+            130,
+            80,
+            120,
+            .12
+        );
+
+    padding: 7px;
+
+    text-align: center;
+
+    font-size: 9px;
+
+    color:
+        #80667b;
+
+    cursor: grab;
+
+    user-select: none;
+
+    -webkit-user-select: none;
+
+    touch-action: none;
+
+    transition: .2s;
+
+    position: relative;
+}
+
+.machine-card:active {
+
+    cursor:
+        grabbing;
+}
+
+.machine-card.used {
+
+    opacity: .3;
+
+    transform:
+        scale(.9);
+
+    pointer-events: none;
+}
+
+.machine-mini-art {
+
+    height: 75px;
+
+    margin-bottom: 5px;
+
+    border-radius: 9px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fff4fb,
+            #f3d8e9
+        );
+}
+
+.machine-mini-art
+.card-clothing {
+
+    transform:
+        scale(.55);
+}
+
+
+/* 변신 버튼 */
+
+.transform-button {
+
+    display: block;
+
+    margin:
+        20px auto 0;
+
+    padding:
+        15px 55px;
+
+    border-radius: 50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffb3df,
+            #d96aae
+        );
+
+    color: white;
+
+    font-size: 16px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+
+    box-shadow:
+        0 8px 25px
+        rgba(
+            213,
+            105,
+            172,
+            .3
+        );
+
+    transition: .25s;
+
+    opacity: .45;
+
+    pointer-events: none;
+}
+
+.transform-button.ready {
+
+    opacity: 1;
+
+    pointer-events: auto;
+
+    animation:
+        transformButtonPulse
+        1.2s infinite;
+}
+
+@keyframes transformButtonPulse {
+
+    0%,
+    100% {
+
+        transform:
+            scale(1);
+    }
+
+    50% {
+
+        transform:
+            scale(1.04);
+    }
+
+}
+
+
+/* =========================================================
+   5. TRANSFORMATION
+========================================================= */
+
+#transform {
+
+    align-items: center;
+
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle,
+            #fff,
+            #ffdff2 45%,
+            #e9c6e5 100%
+        );
+}
+
+.transform-content {
+
+    text-align: center;
+
+    position: relative;
+
+    z-index: 10;
+}
+
+.transform-word {
+
+    font-size:
+        clamp(
+            42px,
+            12vw,
+            90px
+        );
+
+    font-weight: 900;
+
+    font-style: italic;
+
+    color: white;
+
+    text-shadow:
+        0 0 10px #e777b7,
+        0 0 30px #e777b7,
+        4px 4px 0 #c96ba8;
+
+    animation:
+        transformWord
+        2.5s ease forwards;
+}
+
+@keyframes transformWord {
+
+    0% {
+
+        opacity: 0;
+
+        transform:
+            scale(.2)
+            rotate(-15deg);
+    }
+
+    35% {
+
+        opacity: 1;
+
+        transform:
+            scale(1.15)
+            rotate(5deg);
+    }
+
+    70% {
+
+        transform:
+            scale(.95)
+            rotate(-2deg);
+    }
+
+    100% {
+
+        transform:
+            scale(1)
+            rotate(0);
+    }
+
+}
+
+.magic-circle {
+
+    position: absolute;
+
+    width: 500px;
+
+    height: 500px;
+
+    left: 50%;
+
+    top: 50%;
+
+    transform:
+        translate(
+            -50%,
+            -50%
+        );
+
+    border-radius: 50%;
+
+    border:
+        3px solid
+        rgba(
+            255,
+            255,
+            255,
+            .8
+        );
+
+    box-shadow:
+        0 0 30px #fff,
+        0 0 70px #f39bce,
+        inset 0 0 40px #fff;
+
+    animation:
+        magicSpin
+        2.5s linear infinite;
+}
+
+@keyframes magicSpin {
+
+    from {
+
+        transform:
+            translate(
+                -50%,
+                -50%
+            )
+            rotate(0);
+    }
+
+    to {
+
+        transform:
+            translate(
+                -50%,
+                -50%
+            )
+            rotate(360deg);
+    }
+
+}
+
+
+/* =========================================================
+   6. RESULT
+========================================================= */
+
+#result {
+
+    flex-direction: column;
+
+    background:
+        radial-gradient(
+            circle at 50% 25%,
+            #fff,
+            #fff1fa 55%,
+            #ecd6e9
+        );
+}
+
+.result-container {
+
+    width:
+        min(
+            1000px,
+            94%
+        );
+
+    margin: auto;
+
+    padding-top: 95px;
+
+    text-align: center;
+}
+
+.result-title {
+
+    color:
+        #c66eaa;
+
+    font-size: 30px;
+
+    font-weight: 900;
+}
+
+.result-subtitle {
+
+    color:
+        #9b8497;
+
+    font-size: 13px;
+
+    margin-top: 7px;
+}
+
+.result-stage {
+
+    min-height: 550px;
+
+    margin-top: 25px;
+
+    border-radius: 35px;
+
+    background:
+        radial-gradient(
+            circle,
+            #fff,
+            #fff0f8
+        );
+
+    box-shadow:
+        0 15px 40px
+        rgba(
+            140,
+            90,
+            130,
+            .1
+        );
+
+    position: relative;
+
+    overflow: hidden;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+}
+
+.result-character {
+
+    transform:
+        scale(1.05);
+
+    animation:
+        resultAppear
+        1s ease;
+}
+
+@keyframes resultAppear {
+
+    from {
+
+        opacity: 0;
+
+        transform:
+            translateY(80px)
+            scale(.7);
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1.05);
+    }
+
+}
+
+.result-accessory {
+
+    position: absolute;
+
+    z-index: 20;
+
+    top: 0;
+
+    left: 50%;
+
+    transform:
+        translateX(-50%);
+
+    font-size: 38px;
+
+    pointer-events: none;
+}
+
+.result-info {
+
+    margin-top: 18px;
+
+    color:
+        #896c83;
+
+    font-size: 13px;
+
+    line-height: 1.8;
+}
+
+.restart-button {
+
+    margin-top: 18px;
+
+    padding:
+        13px 35px;
+
+    border-radius: 30px;
+
+    background:
+        #e987bb;
+
+    color: white;
+
+    font-weight: 900;
+}
+
+
+/* =========================================================
+   모바일
+========================================================= */
+
+@media (max-width: 800px) {
+
+    .page-header {
+
+        height: 62px;
+
+        padding:
+            0 18px;
+    }
+
+    .customize-container {
+
+        grid-template-columns:
+            1fr;
+
+        width: 94%;
+
+        gap: 20px;
+
+        padding-top: 80px;
+    }
+
+    .character-area {
+
+        min-height: 500px;
+
+        border-radius: 25px;
+    }
+
+    .character {
+
+        transform:
+            scale(.83);
+    }
+
+    .custom-panel {
+
+        padding: 20px;
+    }
+
+    .card-grid {
+
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
+
+        max-height: none;
+    }
+
+    .fashion-card {
+
+        min-height: 200px;
+    }
+
+    .card-art {
+
+        height: 135px;
+    }
+
+    .main-logo {
+
+        font-size: 62px;
+    }
+
+    .opening-description {
+
+        padding:
+            0 20px;
+    }
+
+    .machine {
+
+        padding: 16px;
+    }
+
+    .machine-slots {
+
+        grid-template-columns:
+            repeat(
+                2,
+                1fr
+            );
+    }
+
+    .machine-card {
+
+        flex-basis: 82px;
+
+        height: 112px;
+    }
+
+    .machine-mini-art {
+
+        height: 68px;
+    }
+
+    .magic-circle {
+
+        width: 320px;
+
+        height: 320px;
+    }
+
+    .result-stage {
+
+        min-height: 520px;
+    }
+
+}
+
+
+/* =========================================================
+   아주 작은 휴대폰
+========================================================= */
+
+@media (max-width: 390px) {
+
+    .option-button {
+
+        font-size: 11px;
+
+        padding:
+            7px 9px;
+    }
+
+    .custom-panel {
+
+        padding: 16px;
+    }
+
+    .machine-title h1 {
+
+        font-size: 24px;
+    }
+
+    .machine-screen {
+
+        width: 90%;
+
+        font-size: 11px;
+    }
+
+    .card-slot {
+
+        width: 90%;
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     1. OPENING
+===================================================== -->
+
+<section
+    id="opening"
+    class="screen active"
+>
+
+    <div class="sparkle s1">
+        ✦
+    </div>
+
+    <div class="sparkle s2">
+        ✧
+    </div>
+
+    <div class="sparkle s3">
+        ✦
+    </div>
+
+    <div class="sparkle s4">
+        ✧
+    </div>
+
+
+    <div class="opening-content">
+
+        <div class="logo-small">
+            MY ORIGINAL
+        </div>
+
+        <div class="main-logo">
+
+            IDOL
+
+            <span class="star-logo">
+                ★
+            </span>
+
+        </div>
+
+        <div class="logo-sub">
+            CARD DRESS UP
+        </div>
+
+        <p class="opening-description">
+
+            나만의 아이돌을 만들고
+            <br>
+
+            특별한 카드를 골라보세요.
+
+        </p>
+
+
+        <button
+            class="start-button"
+            onclick="goToCustomize()"
+        >
+            START
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     2. CUSTOMIZE
+===================================================== -->
+
+<section
+    id="customize"
+    class="screen"
+>
+
+    <header class="page-header">
+
+        <div class="header-title">
+            MY IDOL
+        </div>
+
+        <div class="header-step">
+            STEP 1 · CHARACTER
+        </div>
+
+    </header>
+
+
+    <div class="customize-container">
+
+
+        <!-- 캐릭터 -->
+
+        <div class="character-area">
+
+            <div class="character-platform"></div>
+
+
+            <div
+                id="character"
+                class="
+                    character
+                    eyes-round
+                    hair-long
+                "
+                style="
+                    --skin:#f6c7aa;
+                    --eye-color:#69485d;
+                    --hair:#5a3b4d;
+                "
+            >
+
+                <!-- 뒤 머리 -->
+
+                <div
+                    class="hair-back"
+                ></div>
+
+
+                <!-- 머리 -->
+
+                <div
+                    class="character-head"
+                >
+
+                    <div
+                        class="eye left"
+                    ></div>
+
+                    <div
+                        class="eye right"
+                    ></div>
+
+
+                    <div
+                        class="nose"
+                    ></div>
+
+
+                    <div
+                        id="mouth"
+                        class="
+                            mouth
+                            mouth-smile
+                        "
+                    ></div>
+
+                </div>
+
+
+                <!-- 앞머리 -->
+
+                <div
+                    class="hair-front"
+                ></div>
+
+
+                <!-- 목 -->
+
+                <div
+                    class="character-neck"
+                ></div>
+
+
+                <!-- 몸 -->
+
+                <div
+                    class="character-body"
+                ></div>
+
+
+                <!-- 치마 -->
+
+                <div
+                    class="character-skirt"
+                ></div>
+
+
+                <!-- 다리 -->
+
+                <div
+                    class="
+                        character-leg
+                        left
+                    "
+                ></div>
+
+                <div
+                    class="
+                        character-leg
+                        right
+                    "
+                ></div>
+
+
+                <!-- 신발 -->
+
+                <div
+                    class="
+                        character-shoe
+                        left
+                    "
+                ></div>
+
+                <div
+                    class="
+                        character-shoe
+                        right
+                    "
+                ></div>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- =================================================
+             커스터마이징
+        ================================================= -->
+
+        <div class="custom-panel">
+
+
+            <div class="panel-title">
+                CREATE YOUR IDOL
+            </div>
+
+            <div class="panel-subtitle">
+                나만의 아이돌을 만들어보세요.
+            </div>
+
+
+            <!-- 피부색 -->
+
+            <div class="option-group">
+
+                <div class="option-title">
+                    피부색
+                </div>
+
+                <div class="options">
+
+
+                    <button
+                        class="
+                            color-button
+                            selected
+                        "
+                        style="
+                            background:#f6c7aa
+                        "
+                        data-type="skin"
+                        data-value="#f6c7aa"
+                    ></button>
+
+
+                    <button
+                        class="color-button"
+                        style="
+                            background:#edb18f
+                        "
+                        data-type="skin"
+                        data-value="#edb18f"
+                    ></button>
+
+
+                    <button
+                        class="color-button"
+                        style="
+                            background:#d98e68
+                        "
+                        data-type="skin"
+                        data-value="#d98e68"
+                    ></button>
+
+
+                    <button
+                        class="color-button"
+                        style="
+                            background:#a9674b
+                        "
+                        data-type="skin"
+                        data-value="#a9674b"
+                    ></button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- 눈 모양 -->
+
+            <div class="option-group">
+
+                <div class="option-title">
+                    눈 모양
+                </div>
+
+
+                <div class="options">
+
+
+                    <button
+                        class="
+                            option-button
+                            selected
+                        "
+                        data-type="eyes"
+                        data-value="eyes-round"
+                    >
+                        동그란 눈
+                    </button>
+
+
+                    <button
+                        class="option-button"
+                        data-type="eyes"
+                        data-value="eyes-slim"
+                    >
+                        길쭉한 눈
+                    </button>
+
+
+                    <button
+                        class="option-button"
+                        data-type="eyes"
+                        data-value="eyes-droopy"
+                    >
+                        처진 눈
+                    </button>
+
+
+                    <button
+                        class="option-button"
+                        data-type="eyes"
+                        data-value="eyes-sharp"
+                    >
+                        올라간 눈
+                    </button>
+
+
+                    <button
+                        class="option-button"
+                        data-type="eyes"
+                        data-value="eyes-happy"
+                    >
+                        반달눈
+                    </button>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- 눈 색 -->
+
+            <div class="option-group">
+
+                <div class="option-title">
+                    눈 색
+                </div>
+
+
+                <div class="options">
+
+
+                    <button
+                        class="
+                            color-button
+                            selected
+                        "
+                        style="
+                            background:#69485d
+                        "
+                        data-type="eye"
+                        data-value="#69485d"
+                    ></button>
+
+
+                    <button
+                        class="color-button"
+                        style="
+                            background:#33251f
+                        "
+                        data-type="eye"
+                        data-value="#33251f"
+                    ></button>
+
+
+                    <button
+                        class="color-button"
+                        style="
+                            background:#5c82c7
+                        "
+                        data-type="eye"
+                        data-value="#5c82c7"
+                    ></button>
+
+
+                    <button
+                        class="color-button"
+                        style="
+                            background:#6aa86b
+                        "
+                        data-type="eye"
+                        data-value="#6aa86b"
+                    ></button>
+
+
+                    <button
+                        class="color-button"
+                        style="
+                            background:#9c68bb
+                        "
+                        data-type="eye"
+                        data-value="#9c68bb"
+                    ></button>
+
+
+                    <button
+                        class="color-button"
+                        style="
+                            background:#db77aa
+                        "
+                        data-type="eye"
+                        data-value="#db77aa"
+                    ></button>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- 표정 -->
+
+            <div class="option-group">
+
+                <div class="option-title">
+                    표정
+                </div>
+
+
+                <div class="options">
+
+
+                    <button
+                        class="
+                            option-button
+                            selected
+                        "
+                        data-type="mouth"
+                        data-value="mouth-smile"
+                    >
+                        미소
+                    </button>
+
+
+                    <button
+                        class="option-button"
+                        data-type="mouth"
+                        data-value="mouth-small"
+                    >
+                        작은 입
+                    </button>
+
+
+                    <button
+                        class="option-button"
+                        data-type="mouth"
+                        data-value="mouth-open"
+                    >
+                        활짝 웃음
+                    </button>
+
+
+                    <button
+                        class="option-button"
+                        data-type="mouth"
+                        data-value="mouth-surprised"
+                    >
+                        놀람
+                    </button>
+
+
+                    <button
+                        class="option-button"
+                        data-type="mouth"
+                        data-value="mouth-neutral"
+                    >
+                        무표정
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- 헤어 -->
+
+            <div class="option-group">
+
+                <div class="option-title">
+                    머리 모양
+                </div>
+
+
+                <div class="options">
+
+
+                    <button
+                        class="
+                            option-button
+                            selected
+                        "
+                        data-type="hair"
+                        data-value="hair-long"
+                    >
+                        긴 생머리
+                    </button>
+
+
+                    <button
+                        class="option-button"
+                        data-type="hair"
+                        data-value="hair-bob"
+                    >
+                        단발
+                    </button>
+
+
+                    <button
+                        class="option-button"
+                        data-type="hair"
+                        data-value="hair-wave"
+                    >
+                        웨이브
+                    </button>
+
+
+                    <button
+                        class="option-button"
+                        data-type="hair"
+                        data-value="hair-ponytail"
+                    >
+                        포니테일
+                    </button>
+
+
+                    <button
+                        class="option-button"
+                        data-type="hair"
+                        data-value="hair-twin"
+                    >
+                        트윈테일
+                    </button>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- 머리 색 -->
+
+            <div class="option-group">
+
+                <div class="option-title">
+                    머리 색
+                </div>
+
+
+                <div class="options">
+
+
+                    <button
+                        class="
+                            color-button
+                            selected
+                        "
+                        style="
+                            background:#5a3b4d
+                        "
+                        data-type="haircolor"
+                        data-value="#5a3b4d"
+                    ></button>
+
+
+                    <button
+                        class="color-button"
+                        style="
+                            background:#211b20
+                        "
+                        data-type="haircolor"
+                        data-value="#211b20"
+                    ></button>
+
+
+                    <button
+                        class="color-button"
+                        style="
+                            background:#8b5c3f
+                        "
+                        data-type="haircolor"
+                        data-value="#8b5c3f"
+                    ></button>
+
+
+                    <button
+                        class="color-button"
+                        style="
+                            background:#e2b96c
+                        "
+                        data-type="haircolor"
+                        data-value="#e2b96c"
+                    ></button>
+
+
+                    <button
+                        class="color-button"
+                        style="
+                            background:#d77eb7
+                        "
+                        data-type="haircolor"
+                        data-value="#d77eb7"
+                    ></button>
+
+
+                    <button
+                        class="color-button"
+                        style="
+                            background:#8170c9
+                        "
+                        data-type="haircolor"
+                        data-value="#8170c9"
+                    ></button>
+
+
+                    <button
+                        class="color-button"
+                        style="
+                            background:#6b9ed1
+                        "
+                        data-type="haircolor"
+                        data-value="#6b9ed1"
+                    ></button>
+
+
+                </div>
+
+            </div>
+
+
+
+            <button
+                class="custom-next"
+                onclick="finishCharacter()"
+            >
+                ✦ 아이돌 완성하기 ✦
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     3. CARD SELECT
+===================================================== -->
+
+<section
+    id="cards"
+    class="screen"
+>
+
+    <header class="page-header">
+
+        <div class="header-title">
+            IDOL CARD
+        </div>
+
+        <div class="header-step">
+            STEP 2 · CARD SELECT
+        </div>
+
+    </header>
+
+
+    <div class="cards-container">
+
+
+        <div class="cards-heading">
+
+            <h1>
+                ✦ SELECT YOUR CARDS ✦
+            </h1>
+
+            <p>
+                원하는 카드를 선택해
+                다음 단계로 이동하세요.
+            </p>
+
+        </div>
+
+
+        <!-- 카테고리 -->
+
+        <div class="card-tabs">
+
+
+            <button
+                class="
+                    card-tab
+                    active
+                "
+                data-category="all"
+            >
+                ALL
+            </button>
+
+
+            <button
+                class="card-tab"
+                data-category="top"
+            >
+                TOP
+            </button>
+
+
+            <button
+                class="card-tab"
+                data-category="skirt"
+            >
+                BOTTOM
+            </button>
+
+
+            <button
+                class="card-tab"
+                data-category="shoe"
+            >
+                SHOES
+            </button>
+
+
+            <button
+                class="card-tab"
+                data-category="accessory"
+            >
+                ACCESSORY
+            </button>
+
+
+        </div>
+
+
+        <!-- 카드 -->
+
+        <div
+            id="cardGrid"
+            class="card-grid"
+        ></div>
+
+
+        <!-- 선택 결과 -->
+
+        <div class="selected-summary">
+
+            <div>
+
+                선택한 카드
+
+                <strong
+                    id="selectedCount"
+                >
+                    0
+                </strong>
+
+                장
+
+            </div>
+
+
+            <div
+                id="selectedItems"
+                class="selected-items"
+            >
+
+                <span
+                    class="selected-chip"
+                >
+                    아직 선택한 카드가 없습니다.
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <button
+            class="card-next"
+            onclick="goToMachine()"
+        >
+            카드 기계로 이동 →
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     4. CARD MACHINE
+===================================================== -->
+
+<section
+    id="machine"
+    class="screen"
+>
+
+    <header class="page-header">
+
+        <div class="header-title">
+            CARD MACHINE
+        </div>
+
+        <div class="header-step">
+            STEP 3 · CARD INSERT
+        </div>
+
+    </header>
+
+
+    <div class="machine-container">
+
+
+        <div class="machine-title">
+
+            <h1>
+                ✦ INSERT YOUR CARDS ✦
+            </h1>
+
+            <p>
+                카드를 손가락으로 끌어서
+                기계에 넣어주세요.
+            </p>
+
+        </div>
+
+
+        <!-- 기계 -->
+
+        <div class="machine">
+
+
+            <div class="machine-screen">
+                SELECTED CARD SYSTEM ★
+            </div>
+
+
+            <div
+                id="cardSlot"
+                class="card-slot"
+            >
+                카드를 이곳으로 끌어주세요 ✦
+            </div>
+
+
+            <div class="machine-slots">
+
+
+                <div
+                    id="slot-top"
+                    class="machine-slot"
+                >
+
+                    <div class="slot-label">
+                        TOP
+                    </div>
+
+                    미투입
+
+                </div>
+
+
+                <div
+                    id="slot-skirt"
+                    class="machine-slot"
+                >
+
+                    <div class="slot-label">
+                        BOTTOM
+                    </div>
+
+                    미투입
+
+                </div>
+
+
+                <div
+                    id="slot-shoe"
+                    class="machine-slot"
+                >
+
+                    <div class="slot-label">
+                        SHOES
+                    </div>
+
+                    미투입
+
+                </div>
+
+
+                <div
+                    id="slot-accessory"
+                    class="machine-slot"
+                >
+
+                    <div class="slot-label">
+                        ACCESSORY
+                    </div>
+
+                    미투입
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <!-- 선택한 카드 -->
+
+        <div class="machine-cards">
+
+
+            <div class="machine-cards-title">
+                선택한 카드를 끌어서 넣어주세요
+            </div>
+
+
+            <div
+                id="machineCardList"
+                class="machine-card-list"
+            ></div>
+
+        </div>
+
+
+        <button
+            id="transformButton"
+            class="transform-button"
+            onclick="startTransformation()"
+        >
+            ✨ TRANSFORM ✨
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     5. TRANSFORMATION
+===================================================== -->
+
+<section
+    id="transform"
+    class="screen"
+>
+
+    <div
+        class="magic-circle"
+    ></div>
+
+
+    <div class="transform-content">
+
+        <div class="transform-word">
+            TRANSFORM!
+        </div>
+
+    </div>
+
+</section>
+
+
+
+<!-- =====================================================
+     6. RESULT
+===================================================== -->
+
+<section
+    id="result"
+    class="screen"
+>
+
+    <header class="page-header">
+
+        <div class="header-title">
+            MY IDOL
+        </div>
+
+        <div class="header-step">
+            COMPLETE ★
+        </div>
+
+    </header>
+
+
+    <div class="result-container">
+
+
+        <div class="result-title">
+            ✦ YOUR IDOL ✦
+        </div>
+
+
+        <div class="result-subtitle">
+            나만의 스타일이 완성되었습니다.
+        </div>
+
+
+        <div class="result-stage">
+
+
+            <div
+                id="resultCharacter"
+                class="
+                    character
+                    result-character
+                    eyes-round
+                    hair-long
+                "
+                style="
+                    --skin:#f6c7aa;
+                    --eye-color:#69485d;
+                    --hair:#5a3b4d;
+                "
+            >
+
+
+                <div
+                    class="hair-back"
+                ></div>
+
+
+                <div
+                    class="character-head"
+                >
+
+                    <div
+                        class="eye left"
+                    ></div>
+
+                    <div
+                        class="eye right"
+                    ></div>
+
+
+                    <div
+                        class="nose"
+                    ></div>
+
+
+                    <div
+                        id="resultMouth"
+                        class="
+                            mouth
+                            mouth-smile
+                        "
+                    ></div>
+
+                </div>
+
+
+                <div
+                    class="hair-front"
+                ></div>
+
+
+                <div
+                    class="character-neck"
+                ></div>
+
+
+                <div
+                    class="character-body"
+                ></div>
+
+
+                <div
+                    class="character-skirt"
+                ></div>
+
+
+                <div
+                    class="
+                        character-leg
+                        left
+                    "
+                ></div>
+
+                <div
+                    class="
+                        character-leg
+                        right
+                    "
+                ></div>
+
+
+                <div
+                    class="
+                        character-shoe
+                        left
+                    "
+                ></div>
+
+                <div
+                    class="
+                        character-shoe
+                        right
+                    "
+                ></div>
+
+            </div>
+
+        </div>
+
+
+        <div
+            id="resultInfo"
+            class="result-info"
+        ></div>
+
+
+        <button
+            class="restart-button"
+            onclick="showScreen('cards')"
+        >
+            다시 카드 선택하기
+        </button>
+
+    </div>
+
+</section>
+
+
+
+<script>
+
+/* =========================================================
+   캐릭터 상태
+========================================================= */
+
+const characterState = {
+
+    skin:
+        "#f6c7aa",
+
+    eyes:
+        "eyes-round",
+
+    eyeColor:
+        "#69485d",
+
+    mouth:
+        "mouth-smile",
+
+    hair:
+        "hair-long",
+
+    hairColor:
+        "#5a3b4d"
+
+};
+
+
+/* =========================================================
+   화면 이동
+========================================================= */
+
+function showScreen(id) {
+
+    document
+        .querySelectorAll(".screen")
+        .forEach(
+            screen => {
+
+                screen.classList.remove(
+                    "active"
+                );
+
+            }
+        );
+
+
+    const target =
+        document.getElementById(id);
+
+
+    if (!target) {
+
+        return;
+
+    }
+
+
+    target.classList.add(
+        "active"
+    );
+
+
+    window.scrollTo(
+        0,
+        0
+    );
+
+}
+
+
+function goToCustomize() {
+
+    showScreen(
+        "customize"
+    );
+
+}
+
+
+function finishCharacter() {
+
+    showScreen(
+        "cards"
+    );
+
+}
+
+
+/* =========================================================
+   캐릭터 DOM
+========================================================= */
+
+const character =
+    document.getElementById(
+        "character"
+    );
+
+const mouth =
+    document.getElementById(
+        "mouth"
+    );
+
+
+/* =========================================================
+   캐릭터 업데이트
+========================================================= */
+
+function updateCharacter() {
+
+
+    /* 피부 */
+
+    character.style.setProperty(
+        "--skin",
+        characterState.skin
+    );
+
+
+    /* 눈 색 */
+
+    character.style.setProperty(
+        "--eye-color",
+        characterState.eyeColor
+    );
+
+
+    /* 머리 */
+
+    character.style.setProperty(
+        "--hair",
+        characterState.hairColor
+    );
+
+
+    /* 눈 모양 */
+
+    character.classList.remove(
+        "eyes-round",
+        "eyes-slim",
+        "eyes-droopy",
+        "eyes-sharp",
+        "eyes-happy"
+    );
+
+
+    character.classList.add(
+        characterState.eyes
+    );
+
+
+    /* 헤어 */
+
+    character.classList.remove(
+        "hair-long",
+        "hair-bob",
+        "hair-wave",
+        "hair-ponytail",
+        "hair-twin"
+    );
+
+
+    character.classList.add(
+        characterState.hair
+    );
+
+
+    /* 입 */
+
+    mouth.className =
+        "mouth " +
+        characterState.mouth;
+
+}
+
+
+/* =========================================================
+   옵션 버튼
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".option-button, .color-button"
+    )
+    .forEach(
+        button => {
+
+            button.addEventListener(
+                "click",
+                () => {
+
+                    const type =
+                        button.dataset.type;
+
+
+                    const value =
+                        button.dataset.value;
+
+
+                    /* 같은 종류 선택 해제 */
+
+                    document
+                        .querySelectorAll(
+                            `[data-type="${type}"]`
+                        )
+                        .forEach(
+                            item => {
+
+                                item.classList.remove(
+                                    "selected"
+                                );
+
+                            }
+                        );
+
+
+                    button.classList.add(
+                        "selected"
+                    );
+
+
+                    /* 상태 저장 */
+
+                    if (
+                        type === "skin"
+                    ) {
+
+                        characterState.skin =
+                            value;
+
+                    }
+
+
+                    if (
+                        type === "eyes"
+                    ) {
+
+                        characterState.eyes =
+                            value;
+
+                    }
+
+
+                    if (
+                        type === "eye"
+                    ) {
+
+                        characterState.eyeColor =
+                            value;
+
+                    }
+
+
+                    if (
+                        type === "mouth"
+                    ) {
+
+                        characterState.mouth =
+                            value;
+
+                    }
+
+
+                    if (
+                        type === "hair"
+                    ) {
+
+                        characterState.hair =
+                            value;
+
+                    }
+
+
+                    if (
+                        type === "haircolor"
+                    ) {
+
+                        characterState.hairColor =
+                            value;
+
+                    }
+
+
+                    updateCharacter();
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   카드 데이터
+========================================================= */
+
+const cards = [
+
+    {
+        id: 1,
+        name: "핑크 리본 톱",
+        category: "top",
+        type: "TOP",
+        art: "top-art"
+    },
+
+    {
+        id: 2,
+        name: "화이트 프릴 톱",
+        category: "top",
+        type: "TOP",
+        art: "top-art"
+    },
+
+    {
+        id: 3,
+        name: "블루 스타 톱",
+        category: "top",
+        type: "TOP",
+        art: "top-art"
+    },
+
+    {
+        id: 4,
+        name: "핑크 플레어 스커트",
+        category: "skirt",
+        type: "BOTTOM",
+        art: "skirt-art"
+    },
+
+    {
+        id: 5,
+        name: "화이트 레이스 스커트",
+        category: "skirt",
+        type: "BOTTOM",
+        art: "skirt-art"
+    },
+
+    {
+        id: 6,
+        name: "블루 스타 스커트",
+        category: "skirt",
+        type: "BOTTOM",
+        art: "skirt-art"
+    },
+
+    {
+        id: 7,
+        name: "리본 부츠",
+        category: "shoe",
+        type: "SHOES",
+        art: "shoe-art"
+    },
+
+    {
+        id: 8,
+        name: "스타 힐",
+        category: "shoe",
+        type: "SHOES",
+        art: "shoe-art"
+    },
+
+    {
+        id: 9,
+        name: "화이트 앵클부츠",
+        category: "shoe",
+        type: "SHOES",
+        art: "shoe-art"
+    },
+
+    {
+        id: 10,
+        name: "스타 헤어리본",
+        category: "accessory",
+        type: "ACCESSORY",
+        art: "accessory-art"
+    },
+
+    {
+        id: 11,
+        name: "핑크 크라운",
+        category: "accessory",
+        type: "ACCESSORY",
+        art: "accessory-art"
+    },
+
+    {
+        id: 12,
+        name: "하트 헤어핀",
+        category: "accessory",
+        type: "ACCESSORY",
+        art: "accessory-art"
+    }
+
+];
+
+
+/* =========================================================
+   선택 카드
+========================================================= */
+
+let selectedCards = [];
+
+
+/* =========================================================
+   카드 렌더링
+========================================================= */
+
+const cardGrid =
+    document.getElementById(
+        "cardGrid"
+    );
+
+
+function renderCards(
+    category = "all"
+) {
+
+    cardGrid.innerHTML =
+        "";
+
+
+    const filteredCards =
+        category === "all"
+            ? cards
+            : cards.filter(
+                card =>
+                    card.category === category
+            );
+
+
+    filteredCards.forEach(
+        card => {
+
+            const element =
+                document.createElement(
+                    "div"
+                );
+
+
+            element.className =
+                "fashion-card";
+
+
+            if (
+                selectedCards.some(
+                    item =>
+                        item.id === card.id
+                )
+            ) {
+
+                element.classList.add(
+                    "selected"
+                );
+
+            }
+
+
+            element.innerHTML = `
+
+                <div
+                    class="selected-check"
+                >
+                    ✓
+                </div>
+
+                <div
+                    class="card-art"
+                >
+
+                    <div
+                        class="
+                            card-clothing
+                            ${card.art}
+                        "
+                    ></div>
+
+                </div>
+
+                <div
+                    class="card-name"
+                >
+                    ${card.name}
+                </div>
+
+                <div
+                    class="card-type"
+                >
+                    ${card.type}
+                </div>
+
+            `;
+
+
+            element.addEventListener(
+                "click",
+                () =>
+                    selectCard(card)
+            );
+
+
+            cardGrid.appendChild(
+                element
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   카드 선택
+========================================================= */
+
+function selectCard(card) {
+
+    const exists =
+        selectedCards.some(
+            item =>
+                item.id === card.id
+        );
+
+
+    if (exists) {
+
+        selectedCards =
+            selectedCards.filter(
+                item =>
+                    item.id !== card.id
+            );
+
+    } else {
+
+        selectedCards.push(
+            card
+        );
+
+    }
+
+
+    const activeTab =
+        document.querySelector(
+            ".card-tab.active"
+        );
+
+
+    renderCards(
+        activeTab
+            ? activeTab.dataset.category
+            : "all"
+    );
+
+
+    updateSelectedSummary();
+
+}
+
+
+/* =========================================================
+   선택 카드 요약
+========================================================= */
+
+function updateSelectedSummary() {
+
+    const count =
+        document.getElementById(
+            "selectedCount"
+        );
+
+
+    const items =
+        document.getElementById(
+            "selectedItems"
+        );
+
+
+    count.textContent =
+        selectedCards.length;
+
+
+    if (
+        selectedCards.length === 0
+    ) {
+
+        items.innerHTML = `
+
+            <span
+                class="selected-chip"
+            >
+                아직 선택한 카드가 없습니다.
+            </span>
+
+        `;
+
+        return;
+
+    }
+
+
+    items.innerHTML =
+        selectedCards
+            .map(
+                card => `
+
+                    <span
+                        class="selected-chip"
+                    >
+                        ${card.name}
+                    </span>
+
+                `
+            )
+            .join("");
+
+}
+
+
+/* =========================================================
+   카테고리
+========================================================= */
+
+document
+    .querySelectorAll(
+        ".card-tab"
+    )
+    .forEach(
+        tab => {
+
+            tab.addEventListener(
+                "click",
+                () => {
+
+                    document
+                        .querySelectorAll(
+                            ".card-tab"
+                        )
+                        .forEach(
+                            item => {
+
+                                item.classList.remove(
+                                    "active"
+                                );
+
+                            }
+                        );
+
+
+                    tab.classList.add(
+                        "active"
+                    );
+
+
+                    renderCards(
+                        tab.dataset.category
+                    );
+
+                }
+            );
+
+        }
+    );
+
+
+/* =========================================================
+   카드 기계 상태
+========================================================= */
+
+let insertedCards = {};
+
+
+/* =========================================================
+   카드 기계 이동
+========================================================= */
+
+function goToMachine() {
+
+    if (
+        selectedCards.length === 0
+    ) {
+
+        alert(
+            "먼저 카드를 하나 이상 선택해주세요! ✨"
+        );
+
+        return;
+
+    }
+
+
+    insertedCards = {};
+
+
+    showScreen(
+        "machine"
+    );
+
+
+    renderMachineCards();
+
+
+    resetMachineSlots();
+
+}
+
+
+/* =========================================================
+   기계용 카드 렌더링
+========================================================= */
+
+function renderMachineCards() {
+
+    const list =
+        document.getElementById(
+            "machineCardList"
+        );
+
+
+    list.innerHTML =
+        "";
+
+
+    selectedCards.forEach(
+        card => {
+
+            const element =
+                document.createElement(
+                    "div"
+                );
+
+
+            element.className =
+                "machine-card";
+
+
+            element.dataset.id =
+                card.id;
+
+
+            element.innerHTML = `
+
+                <div
+                    class="machine-mini-art"
+                >
+
+                    <div
+                        class="
+                            card-clothing
+                            ${card.art}
+                        "
+                    ></div>
+
+                </div>
+
+                ${card.name}
+
+            `;
+
+
+            element.addEventListener(
+                "pointerdown",
+                startCardDrag
+            );
+
+
+            list.appendChild(
+                element
+            );
+
+        }
+    );
+
+}
+
+
+/* =========================================================
+   터치 드래그 변수
+========================================================= */
+
+let draggedCard = null;
+
+let dragClone = null;
+
+let dragOffsetX = 0;
+
+let dragOffsetY = 0;
+
+
+/* =========================================================
+   카드 드래그 시작
+========================================================= */
+
+function startCardDrag(
+    event
+) {
+
+    const element =
+        event.currentTarget;
+
+
+    const cardId =
+        Number(
+            element.dataset.id
+        );
+
+
+    const card =
+        selectedCards.find(
+            item =>
+                item.id === cardId
+        );
+
+
+    if (!card) {
+
+        return;
+
+    }
+
+
+    if (
+        insertedCards[
+            card.category
+        ]
+    ) {
+
+        return;
+
+    }
+
+
+    draggedCard =
+        card;
+
+
+    const rect =
+        element.getBoundingClientRect();
+
+
+    dragOffsetX =
+        event.clientX -
+        rect.left;
+
+
+    dragOffsetY =
+        event.clientY -
+        rect.top;
+
+
+    dragClone =
+        element.cloneNode(
+            true
+        );
+
+
+    dragClone.style.position =
+        "fixed";
+
+
+    dragClone.style.left =
+        `${
+            event.clientX -
+            dragOffsetX
+        }px`;
+
+
+    dragClone.style.top =
+        `${
+            event.clientY -
+            dragOffsetY
+        }px`;
+
+
+    dragClone.style.width =
+        `${rect.width}px`;
+
+
+    dragClone.style.zIndex =
+        "9999";
+
+
+    dragClone.style.pointerEvents =
+        "none";
+
+
+    dragClone.style.transform =
+        "scale(1.08) rotate(4deg)";
+
+
+    document.body.appendChild(
+        dragClone
+    );
+
+
+    element.style.opacity =
+        ".35";
+
+
+    document.addEventListener(
+        "pointermove",
+        moveCardDrag
+    );
+
+
+    document.addEventListener(
+        "pointerup",
+        endCardDrag,
+        {
+            once: true
+        }
+    );
+
+
+    event.preventDefault();
+
+}
+
+
+/* =========================================================
+   카드 이동
+========================================================= */
+
+function moveCardDrag(
+    event
+) {
+
+    if (
+        !dragClone
+    ) {
+
+        return;
+
+    }
+
+
+    dragClone.style.left =
+        `${
+            event.clientX -
+            dragOffsetX
+        }px`;
+
+
+    dragClone.style.top =
+        `${
+            event.clientY -
+            dragOffsetY
+        }px`;
+
+
+    const slot =
+        document.getElementById(
+            "cardSlot"
+        );
+
+
+    const rect =
+        slot.getBoundingClientRect();
+
+
+    const inside =
+        event.clientX >= rect.left &&
+        event.clientX <= rect.right &&
+        event.clientY >= rect.top &&
+        event.clientY <= rect.bottom;
+
+
+    if (inside) {
+
+        slot.classList.add(
+            "drag-over"
+        );
+
+    } else {
+
+        slot.classList.remove(
+            "drag-over"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   카드 드래그 종료
+========================================================= */
+
+function endCardDrag(
+    event
+) {
+
+    document.removeEventListener(
+        "pointermove",
+        moveCardDrag
+    );
+
+
+    const slot =
+        document.getElementById(
+            "cardSlot"
+        );
+
+
+    slot.classList.remove(
+        "drag-over"
+    );
+
+
+    if (!draggedCard) {
+
+        cleanupDrag();
+
+        return;
+
+    }
+
+
+    const rect =
+        slot.getBoundingClientRect();
+
+
+    const inside =
+        event.clientX >= rect.left &&
+        event.clientX <= rect.right &&
+        event.clientY >= rect.top &&
+        event.clientY <= rect.bottom;
+
+
+    if (inside) {
+
+        insertCard(
+            draggedCard
+        );
+
+    }
+
+
+    cleanupDrag();
+
+}
+
+
+/* =========================================================
+   드래그 정리
+========================================================= */
+
+function cleanupDrag() {
+
+    if (
+        dragClone
+    ) {
+
+        dragClone.remove();
+
+    }
+
+
+    if (
+        draggedCard
+    ) {
+
+        const original =
+            document.querySelector(
+                `.machine-card[data-id="${draggedCard.id}"]`
+            );
+
+
+        if (original) {
+
+            original.style.opacity =
+                insertedCards[
+                    draggedCard.category
+                ]
+                    ? ".3"
+                    : "1";
+
+        }
+
+    }
+
+
+    draggedCard =
+        null;
+
+
+    dragClone =
+        null;
+
+}
+
+
+/* =========================================================
+   카드 투입
+========================================================= */
+
+function insertCard(
+    card
+) {
+
+    if (
+        insertedCards[
+            card.category
+        ]
+    ) {
+
+        return;
+
+    }
+
+
+    insertedCards[
+        card.category
+    ] = card;
+
+
+    const slot =
+        document.getElementById(
+            "slot-" +
+            card.category
+        );
+
+
+    if (!slot) {
+
+        return;
+
+    }
+
+
+    slot.classList.add(
+        "filled"
+    );
+
+
+    slot.innerHTML = `
+
+        <div
+            class="slot-label"
+        >
+            ${card.type}
+        </div>
+
+        <div
+            class="slot-card"
+        >
+            ${card.name}
+        </div>
+
+    `;
+
+
+    const original =
+        document.querySelector(
+            `.machine-card[data-id="${card.id}"]`
+        );
+
+
+    if (original) {
+
+        original.classList.add(
+            "used"
+        );
+
+    }
+
+
+    const machineSlot =
+        document.getElementById(
+            "cardSlot"
+        );
+
+
+    machineSlot.innerHTML = `
+        ✦ ${card.name} 투입 완료! ✦
+    `;
+
+
+    checkTransformReady();
+
+}
+
+
+/* =========================================================
+   기계 초기화
+========================================================= */
+
+function resetMachineSlots() {
+
+    const categories = [
+
+        "top",
+
+        "skirt",
+
+        "shoe",
+
+        "accessory"
+
+    ];
+
+
+    categories.forEach(
+        category => {
+
+            const slot =
+                document.getElementById(
+                    "slot-" +
+                    category
+                );
+
+
+            slot.classList.remove(
+                "filled"
+            );
+
+
+            const label =
+                category === "top"
+                    ? "TOP"
+                    : category === "skirt"
+                    ? "BOTTOM"
+                    : category === "shoe"
+                    ? "SHOES"
+                    : "ACCESSORY";
+
+
+            slot.innerHTML = `
+
+                <div
+                    class="slot-label"
+                >
+                    ${label}
+                </div>
+
+                미투입
+
+            `;
+
+        }
+    );
+
+
+    document.getElementById(
+        "cardSlot"
+    ).innerHTML =
+        "카드를 이곳으로 끌어주세요 ✦";
+
+
+    document.getElementById(
+        "transformButton"
+    ).classList.remove(
+        "ready"
+    );
+
+}
+
+
+/* =========================================================
+   변신 가능 여부
+========================================================= */
+
+function checkTransformReady() {
+
+    const transformButton =
+        document.getElementById(
+            "transformButton"
+        );
+
+
+    const ready =
+
+        insertedCards.top &&
+
+        insertedCards.skirt &&
+
+        insertedCards.shoe;
+
+
+    if (ready) {
+
+        transformButton.classList.add(
+            "ready"
+        );
+
+    } else {
+
+        transformButton.classList.remove(
+            "ready"
+        );
+
+    }
+
+}
+
+
+/* =========================================================
+   변신 시작
+========================================================= */
+
+function startTransformation() {
+
+    if (
+
+        !insertedCards.top ||
+
+        !insertedCards.skirt ||
+
+        !insertedCards.shoe
+
+    ) {
+
+        alert(
+            "TOP, BOTTOM, SHOES 카드를 먼저 넣어주세요! ✨"
+        );
+
+        return;
+
+    }
+
+
+    showScreen(
+        "transform"
+    );
+
+
+    setTimeout(
+        () => {
+
+            applyOutfitToResult();
+
+
+            showScreen(
+                "result"
+            );
+
+        },
+        2600
+    );
+
+}
+
+
+/* =========================================================
+   결과 캐릭터 적용
+========================================================= */
+
+function applyOutfitToResult() {
+
+    const resultCharacter =
+        document.getElementById(
+            "resultCharacter"
+        );
+
+
+    const resultMouth =
+        document.getElementById(
+            "resultMouth"
+        );
+
+
+    /* 캐릭터 */
+
+    resultCharacter.style.setProperty(
+        "--skin",
+        characterState.skin
+    );
+
+
+    resultCharacter.style.setProperty(
+        "--eye-color",
+        characterState.eyeColor
+    );
+
+
+    resultCharacter.style.setProperty(
+        "--hair",
+        characterState.hairColor
+    );
+
+
+    resultCharacter.classList.remove(
+
+        "eyes-round",
+
+        "eyes-slim",
+
+        "eyes-droopy",
+
+        "eyes-sharp",
+
+        "eyes-happy"
+
+    );
+
+
+    resultCharacter.classList.add(
+        characterState.eyes
+    );
+
+
+    resultCharacter.classList.remove(
+
+        "hair-long",
+
+        "hair-bob",
+
+        "hair-wave",
+
+        "hair-ponytail",
+
+        "hair-twin"
+
+    );
+
+
+    resultCharacter.classList.add(
+        characterState.hair
+    );
+
+
+    resultMouth.className =
+        "mouth " +
+        characterState.mouth;
+
+
+    /* =====================================================
+       의상
+    ===================================================== */
+
+    const top =
+        insertedCards.top;
+
+
+    const skirt =
+        insertedCards.skirt;
+
+
+    const shoe =
+        insertedCards.shoe;
+
+
+    const accessory =
+        insertedCards.accessory;
+
+
+    const body =
+        resultCharacter.querySelector(
+            ".character-body"
+        );
+
+
+    const resultSkirt =
+        resultCharacter.querySelector(
+            ".character-skirt"
+        );
+
+
+    const shoes =
+        resultCharacter.querySelectorAll(
+            ".character-shoe"
+        );
+
+
+    /* TOP */
+
+    if (top) {
+
+        if (
+            top.id === 1
+        ) {
+
+            body.style.background =
+                "linear-gradient(135deg,#ff9fcf,#df6faf)";
+
+        }
+
+
+        if (
+            top.id === 2
+        ) {
+
+            body.style.background =
+                "linear-gradient(135deg,#fff,#f0d9e9)";
+
+        }
+
+
+        if (
+            top.id === 3
+        ) {
+
+            body.style.background =
+                "linear-gradient(135deg,#8ebbe8,#547bc4)";
+
+        }
+
+    }
+
+
+    /* BOTTOM */
+
+    if (skirt) {
+
+        if (
+            skirt.id === 4
+        ) {
+
+            resultSkirt.style.background =
+                "linear-gradient(135deg,#f7a9d0,#c879ba)";
+
+        }
+
+
+        if (
+            skirt.id === 5
+        ) {
+
+            resultSkirt.style.background =
+                "linear-gradient(135deg,#fff,#e9d9e7)";
+
+        }
+
+
+        if (
+            skirt.id === 6
+        ) {
+
+            resultSkirt.style.background =
+                "linear-gradient(135deg,#8ebbe8,#547bc4)";
+
+        }
+
+    }
+
+
+    /* SHOES */
+
+    if (shoe) {
+
+        if (
+            shoe.id === 7
+        ) {
+
+            shoes.forEach(
+                item => {
+
+                    item.style.background =
+                        "#e684b8";
+
+                }
+            );
+
+        }
+
+
+        if (
+            shoe.id === 8
+        ) {
+
+            shoes.forEach(
+                item => {
+
+                    item.style.background =
+                        "#f0b94d";
+
+                }
+            );
+
+        }
+
+
+        if (
+            shoe.id === 9
+        ) {
+
+            shoes.forEach(
+                item => {
+
+                    item.style.background =
+                        "#f5f1f4";
+
+                }
+            );
+
+        }
+
+    }
+
+
+    /* =====================================================
+       액세서리
+    ===================================================== */
+
+    const oldAccessory =
+        resultCharacter.querySelector(
+            ".result-accessory"
+        );
+
+
+    if (
+        oldAccessory
+    ) {
+
+        oldAccessory.remove();
+
+    }
+
+
+    if (
+        accessory
+    ) {
+
+        const decoration =
+            document.createElement(
+                "div"
+            );
+
+
+        decoration.className =
+            "result-accessory";
+
+
+        decoration.textContent =
+
+            accessory.id === 11
+                ? "♛"
+
+                : accessory.id === 12
+                ? "♡"
+
+                : "🎀";
+
+
+        resultCharacter.appendChild(
+            decoration
+        );
+
+    }
+
+
+    /* =====================================================
+       결과 설명
+    ===================================================== */
+
+    const names =
+        Object
+            .values(
+                insertedCards
+            )
+            .map(
+                card =>
+                    card.name
+            )
+            .join(
+                " · "
+            );
+
+
+    document.getElementById(
+        "resultInfo"
+    ).textContent =
+        names;
+
+}
+
+
+/* =========================================================
+   초기 실행
+========================================================= */
+
+renderCards();
+
+updateSelectedSummary();
+
+updateCharacter();
+
+</script>
+
+
+</body>
+
+</html>
