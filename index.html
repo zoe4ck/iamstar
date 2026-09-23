@@ -1,18 +1,22 @@
 <!doctype html>
 <html lang="ko">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>STAR DRESS UP</title>
+
+<title>MY IDOL — STAR DRESS</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Noto+Sans+KR:wght@400;600;800;900&display=swap');
 
 :root{
-    --pink:#e99bc6;
+    --pink:#e99bc8;
     --purple:#8e6caf;
-    --ink:#493d4c;
-    --panel:rgba(255,255,255,.90);
+    --ink:#604b68;
+    --bg1:#ffeaf8;
+    --bg2:#ece7ff;
+    --bg3:#e1f6ff;
 }
 
 *{
@@ -21,14 +25,24 @@
 
 body{
     margin:0;
-    color:#64526f;
-    font-family:'Noto Sans KR',sans-serif;
-    background:
-        radial-gradient(circle at 14% 15%,#fff 0 2px,transparent 3px),
-        radial-gradient(circle at 77% 24%,#fff 0 2px,transparent 3px),
-        linear-gradient(135deg,#ffeaf7,#eee9ff 48%,#e3f7ff);
-    background-size:190px 190px,240px 240px,100% 100%;
     min-height:100vh;
+    font-family:'Noto Sans KR',sans-serif;
+    color:var(--ink);
+
+    background:
+        radial-gradient(circle at 12% 18%,#fff 0 2px,transparent 3px),
+        radial-gradient(circle at 78% 28%,#fff 0 2px,transparent 3px),
+        linear-gradient(
+            135deg,
+            var(--bg1),
+            var(--bg2) 52%,
+            var(--bg3)
+        );
+
+    background-size:
+        180px 180px,
+        240px 240px,
+        100% 100%;
 }
 
 button{
@@ -41,121 +55,155 @@ button{
 }
 
 .screen.active{
-    display:flex;
+    display:block;
 }
 
 .page{
-    width:min(1280px,96vw);
+    width:min(1240px,95vw);
     margin:auto;
-    padding:28px 0 38px;
+    padding:24px 0 40px;
 }
 
 .title{
     text-align:center;
-    margin-bottom:18px;
+    margin-bottom:16px;
 }
 
 .title h1{
-    font:700 42px/1 'Baloo 2';
-    color:#8060a0;
     margin:0;
+    color:#80609e;
+    font:800 40px/1 'Baloo 2';
 }
 
 .title p{
+    margin:7px 0;
+    color:#a78eaf;
     font-size:13px;
-    color:#aa91b2;
-    margin:8px 0;
 }
 
-.pill{
-    border:2px solid #fff;
-    background:#fff9;
-    border-radius:999px;
-    padding:12px 25px;
-    color:#795b8c;
-    font-weight:900;
-    cursor:pointer;
-    box-shadow:0 5px 15px #8b70a31a;
-}
 
-.pill.primary{
-    background:linear-gradient(90deg,#ee9fc9,#b59bea);
-    color:#fff;
-    border-color:#fff;
-}
+/* =========================
+   START
+========================= */
 
 .start{
+    display:flex!important;
     align-items:center;
     justify-content:center;
 }
 
 .startbox{
     width:min(700px,90vw);
-    text-align:center;
-    background:#ffffffd9;
-    border:3px solid #fff;
-    border-radius:42px;
     padding:65px 30px;
-    box-shadow:0 25px 70px #7c639c25;
+    text-align:center;
+
+    background:#ffffffdf;
+    border:3px solid white;
+    border-radius:42px;
+
+    box-shadow:
+        0 25px 70px #80649b25;
 }
 
 .logo{
-    font:700 76px/1 'Baloo 2';
-    background:linear-gradient(90deg,#f29ac7,#a995e9,#7acde5);
+    font:800 76px/1 'Baloo 2';
+
+    background:
+        linear-gradient(
+            90deg,
+            #ef9cc8,
+            #a99ae8,
+            #79cde3
+        );
+
     -webkit-background-clip:text;
     color:transparent;
 }
 
-.subtitle{
-    letter-spacing:5px;
-    color:#9b82a7;
-    margin-top:8px;
+.sub{
+    letter-spacing:4px;
+    color:#9c83a8;
+}
+
+.startbtn,
+.primary{
+    border:0;
+    border-radius:999px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ee9dc9,
+            #a79ae7
+        );
+
+    color:white;
+    font-weight:900;
+    cursor:pointer;
+
+    box-shadow:
+        0 12px 28px #9e75b632;
 }
 
 .startbtn{
-    margin-top:38px;
-    border:0;
-    border-radius:999px;
-    padding:17px 55px;
-    background:linear-gradient(90deg,#f29bc8,#a997e8);
-    color:#fff;
-    font-weight:900;
+    padding:16px 55px;
+    margin-top:34px;
     letter-spacing:3px;
-    cursor:pointer;
-    box-shadow:0 12px 25px #9e75b633;
 }
+
+.primary{
+    padding:12px 25px;
+}
+
+.primary:disabled{
+    opacity:.4;
+    cursor:not-allowed;
+}
+
+
+/* =========================
+   CUSTOMIZE
+========================= */
 
 .custom{
     display:grid;
-    grid-template-columns:240px minmax(380px,1fr) 240px;
-    gap:20px;
+
+    grid-template-columns:
+        235px
+        minmax(400px,1fr)
+        235px;
+
+    gap:18px;
     align-items:start;
 }
 
 .panel{
-    background:var(--panel);
-    border:2px solid #fff;
+    background:#ffffffed;
+    border:2px solid white;
     border-radius:26px;
-    padding:17px;
-    box-shadow:0 12px 35px #80649b16;
+    padding:16px;
+
+    box-shadow:
+        0 14px 36px #80649b18;
 }
 
-.panel h3{
-    font:700 22px 'Baloo 2';
-    color:#906fa8;
-    margin:0 0 9px;
+.panel h2{
+    margin:0 0 10px;
+    color:#8e6eaa;
+    font:800 22px 'Baloo 2';
 }
 
 .group{
-    margin:0 0 18px;
+    margin-bottom:17px;
 }
 
-.group>label{
+.group label{
     display:block;
-    font-size:12px;
-    color:#9a83a2;
-    font-weight:900;
     margin-bottom:7px;
+
+    color:#9b83a4;
+    font-size:12px;
+    font-weight:900;
 }
 
 .opts{
@@ -165,153 +213,204 @@ button{
 }
 
 .opt{
+    min-height:42px;
+
     border:2px solid transparent;
-    background:#fff;
     border-radius:12px;
-    padding:9px 3px;
-    color:#6c5b75;
+
+    background:white;
+    color:#705c79;
+
     font-size:11px;
     cursor:pointer;
-    min-height:42px;
 }
 
-.opt.sel{
+.opt.active{
     border-color:var(--pink);
-    background:#fff3fa;
-    box-shadow:0 4px 12px #d989b622;
+    background:#fff1fa;
+
+    box-shadow:
+        0 4px 12px #d989b622;
+}
+
+.summary{
+    padding:12px;
+    border-radius:16px;
+
+    background:#fff4fa;
+    color:#967e9d;
+
+    font-size:11px;
+    line-height:1.75;
+}
+
+.hint,
+.note{
+    color:#a98fb2;
+    font-size:11px;
+    text-align:center;
+    line-height:1.7;
 }
 
 .stage{
-    height:700px;
+    height:760px;
+
     display:flex;
-    align-items:flex-start;
     justify-content:center;
+}
+
+.character{
     position:relative;
+
+    width:430px;
+    height:760px;
+
+    max-width:100%;
+
+    overflow:hidden;
 }
 
-.char{
-    width:min(510px,100%);
-    height:700px;
+.layer{
+    position:absolute;
+
+    display:block;
+
+    pointer-events:none;
+    user-select:none;
 }
 
-.hint{
-    font-size:11px;
-    color:#ad96b5;
+
+/*
+    ★★★ 중요 ★★★
+
+    네가 보내준 그림에서 실제로 잘라낸
+    파츠들을 여기서 배치한다.
+
+    따라서 SVG로 다시 그린 도형이 아니다.
+*/
+
+
+.backLayer{
+    left:48px;
+    top:0;
+    width:334px;
+}
+
+.bodyLayer{
+    left:98px;
+    top:205px;
+    width:235px;
+}
+
+.faceLayer{
+    left:107px;
+    top:42px;
+    width:216px;
+}
+
+.eyesLayer{
+    left:127px;
+    top:118px;
+    width:176px;
+}
+
+.browLayer{
+    left:128px;
+    top:128px;
+    width:174px;
+}
+
+.bangLayer{
+    left:103px;
+    top:20px;
+    width:224px;
+}
+
+.next{
     text-align:center;
-    margin-top:-10px;
+    margin-top:5px;
 }
 
-.outline{
-    stroke:#443747;
-    stroke-width:2.5;
-    stroke-linecap:round;
-    stroke-linejoin:round;
+.note{
+    margin-top:8px;
+    text-align:left;
 }
 
-.hairfill{
-    fill:#4a3444;
-}
 
-.hairhi{
-    fill:none;
-    stroke:#8a667f;
-    stroke-width:2;
-    stroke-linecap:round;
-    opacity:.6;
-}
+/* =========================
+   CARD
+========================= */
 
-.facefill{
-    fill:#f7d0bd;
-}
-
-.eyeWhite{
-    fill:#fff;
-}
-
-.eyeInk{
-    fill:#3d2d3e;
-}
-
-.iris{
-    fill:#765083;
-}
-
-.mouth{
-    fill:none;
-    stroke:#a65f74;
-    stroke-width:2.8;
-    stroke-linecap:round;
-}
-
-.brow{
-    fill:none;
-    stroke:#5c3e4e;
-    stroke-width:3.2;
-    stroke-linecap:round;
-}
-
-.naked{
-    fill:#f7d0bd;
-    stroke:#443747;
-    stroke-width:2.5;
-    stroke-linejoin:round;
-    stroke-linecap:round;
-}
-
-/* 카드 */
-
-.cardtabs{
+.tabs{
     display:flex;
-    gap:8px;
     justify-content:center;
+    gap:8px;
     flex-wrap:wrap;
-    margin-bottom:18px;
+
+    margin-bottom:16px;
 }
 
 .tab{
-    border:2px solid #fff;
-    background:#ffffffcf;
+    border:2px solid white;
+
+    background:#ffffffd0;
+    color:#836b90;
+
     border-radius:999px;
+
     padding:8px 17px;
-    color:#846d90;
-    font-weight:800;
+
     cursor:pointer;
+    font-weight:800;
 }
 
 .tab.active{
-    background:#e6a3c9;
-    color:#fff;
+    background:#e5a1c8;
+    color:white;
 }
 
 .cards{
     display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(185px,1fr));
+
+    grid-template-columns:
+        repeat(auto-fit,minmax(180px,1fr));
+
     gap:14px;
 }
 
 .card{
-    background:#fff;
+    background:white;
+
     border:3px solid transparent;
     border-radius:22px;
-    padding:10px;
-    cursor:pointer;
-    box-shadow:0 8px 25px #80649b18;
-    transition:.18s;
-}
 
-.card:hover{
-    transform:translateY(-3px);
+    padding:10px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 8px 25px #80649b18;
 }
 
 .card.selected{
-    border-color:#e19ac4;
-    box-shadow:0 0 0 4px #e19ac422;
+    border-color:#df9bc5;
+
+    box-shadow:
+        0 0 0 4px #df98c622;
 }
 
 .cardvisual{
-    height:175px;
+    height:170px;
+
     border-radius:16px;
-    background:linear-gradient(145deg,#fff2fa,#edf0ff);
+
+    background:
+        linear-gradient(
+            145deg,
+            #fff1fa,
+            #edf0ff
+        );
+
     display:flex;
     align-items:center;
     justify-content:center;
@@ -323,33 +422,40 @@ button{
 }
 
 .cardname{
-    font-weight:900;
-    color:#70577c;
     margin-top:8px;
+
+    color:#70577c;
+    font-weight:900;
 }
 
 .cardtype{
+    color:#aa91b3;
     font-size:10px;
-    color:#ae94b6;
 }
 
-.selectedmark{
+.check{
     float:right;
-    color:#db76ac;
-    font-weight:900;
+    color:#d978ad;
 }
 
-.bottom{
+.center{
     text-align:center;
     margin-top:20px;
 }
 
-/* 카드 머신 */
+
+/* =========================
+   MACHINE
+========================= */
 
 .machine{
     display:grid;
-    grid-template-columns:1fr 430px;
-    gap:24px;
+
+    grid-template-columns:
+        1fr
+        430px;
+
+    gap:22px;
 }
 
 .deck{
@@ -359,91 +465,132 @@ button{
 }
 
 .dragcard{
-    background:#fff;
+    background:white;
+
     border-radius:18px;
     padding:10px;
-    box-shadow:0 8px 24px #80649b18;
+
+    box-shadow:
+        0 8px 24px #80649b18;
+
     touch-action:none;
     cursor:grab;
 }
 
 .dragcard.dragging{
     position:fixed;
+
     z-index:1000;
+
     width:180px;
+
     pointer-events:none;
-    transform:rotate(3deg) scale(1.04);
-    box-shadow:0 20px 40px #60406a40;
+
+    transform:
+        rotate(3deg)
+        scale(1.04);
 }
 
 .slotbox{
-    background:#fff;
+    background:white;
+
     border:4px solid #dfc9ea;
     border-radius:30px;
+
     padding:20px;
-    box-shadow:0 15px 45px #80649b1f;
 }
 
 .slot{
     height:90px;
-    border:3px dashed #d3b9dd;
-    border-radius:17px;
+
     margin:9px 0;
+
+    border:
+        3px dashed
+        #d3b9dd;
+
+    border-radius:17px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
     color:#b092ba;
     font-weight:800;
+
     background:#fff9;
-    transition:.15s;
 }
 
 .slot.hover{
     background:#fff1fa;
     border-color:#df8fbe;
-    transform:scale(1.01);
 }
 
 .slot.filled{
     border-style:solid;
+
     border-color:#dc9bc5;
-    color:#795779;
+
     background:#fff5fb;
+
+    color:#795779;
 }
 
-/* 결과 */
+
+/* =========================
+   RESULT
+========================= */
 
 .result{
-    display:none;
+    display:flex;
     align-items:center;
     justify-content:center;
 }
 
 .resultbox{
-    text-align:center;
-    background:#ffffffdd;
-    border:3px solid #fff;
-    border-radius:35px;
+    width:min(700px,92vw);
+
     padding:25px;
-    box-shadow:0 20px 60px #80649b30;
+
+    text-align:center;
+
+    background:#ffffffdf;
+
+    border:
+        3px solid white;
+
+    border-radius:35px;
 }
 
-.resultbox svg{
-    width:380px;
-    height:570px;
+.resultbox .character{
+    margin:auto;
+    height:680px;
 }
 
-/* 변신 */
+
+/* =========================
+   TRANSFORM
+========================= */
 
 .overlay{
     position:fixed;
     inset:0;
-    background:
-        radial-gradient(circle,#fff,#ffdff4 25%,#9d8cda 72%,#594b85);
+
     display:none;
+
     align-items:center;
     justify-content:center;
+
     z-index:9999;
+
+    background:
+        radial-gradient(
+            circle,
+            #fff,
+            #ffdff4 25%,
+            #9d8cda 72%,
+            #594b85
+        );
 }
 
 .overlay.show{
@@ -451,22 +598,30 @@ button{
 }
 
 .magic{
-    width:340px;
-    height:340px;
+    width:330px;
+    height:330px;
+
     border-radius:50%;
-    border:4px solid #fff;
+
+    border:4px solid white;
+
     box-shadow:
-        0 0 30px #fff,
+        0 0 30px white,
         0 0 100px #ffc6ec;
-    animation:spin 1.5s linear infinite;
+
+    animation:
+        spin 1.5s linear infinite;
 }
 
 .magictext{
     position:absolute;
-    color:#fff;
-    font:700 34px 'Baloo 2';
+
+    color:white;
+
+    font:
+        800 34px 'Baloo 2';
+
     letter-spacing:3px;
-    text-shadow:0 2px 15px #745b9c;
 }
 
 @keyframes spin{
@@ -475,19 +630,16 @@ button{
     }
 }
 
-@media(max-width:900px){
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:920px){
 
     .custom,
     .machine{
         grid-template-columns:1fr;
-    }
-
-    .stage{
-        height:640px;
-    }
-
-    .char{
-        height:640px;
     }
 
     .panel{
@@ -496,14 +648,6 @@ button{
 
     .stage{
         order:1;
-    }
-
-    .machine .slotbox{
-        order:1;
-    }
-
-    .machine .deck{
-        order:2;
     }
 }
 
@@ -514,24 +658,16 @@ button{
     }
 
     .logo{
-        font-size:54px;
+        font-size:55px;
     }
 
-    .char{
-        height:590px;
+    .character{
+        transform:scale(.86);
+        transform-origin:top center;
     }
 
     .stage{
-        height:590px;
-    }
-
-    .opts{
-        gap:4px;
-    }
-
-    .opt{
-        font-size:10px;
-        padding:7px 1px;
+        height:680px;
     }
 
     .cards{
@@ -542,24 +678,32 @@ button{
         height:145px;
     }
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- =========================
-     START
-========================= -->
 
-<section id="start" class="screen start active">
+<!-- ==================================
+     START
+================================== -->
+
+<section
+    id="start"
+    class="screen start active"
+>
 
     <div class="startbox">
 
-        <div style="
-            font:700 16px 'Baloo 2';
+        <div
+            style="
+            font:800 16px 'Baloo 2';
             letter-spacing:5px;
-            color:#aa91b2;
-        ">
+            color:#aa91b2
+            "
+        >
             MAGICAL IDOL DRESS UP
         </div>
 
@@ -567,7 +711,7 @@ button{
             STAR☆DRESS
         </div>
 
-        <div class="subtitle">
+        <div class="sub">
             CREATE YOUR OWN STAR
         </div>
 
@@ -583,39 +727,55 @@ button{
 </section>
 
 
-<!-- =========================
-     CUSTOMIZE
-========================= -->
 
-<section id="customize" class="screen">
+<!-- ==================================
+     CUSTOMIZE
+================================== -->
+
+<section
+    id="customize"
+    class="screen"
+>
 
 <div class="page">
 
+
     <div class="title">
-        <h1>MY IDOL</h1>
+
+        <h1>
+            MY IDOL
+        </h1>
+
         <p>
-            네가 그린 파츠를 기준으로 캐릭터를 조합해보세요
+            네가 직접 그린 파츠를 그대로 조합해보세요
         </p>
+
     </div>
+
 
 
     <div class="custom">
 
-        <!-- FACE PANEL -->
+
+        <!-- FACE -->
 
         <div class="panel">
 
-            <h3>FACE</h3>
+            <h2>
+                FACE
+            </h2>
+
 
             <div class="group">
 
-                <label>얼굴형</label>
+                <label>
+                    얼굴형
+                </label>
 
                 <div class="opts">
 
                     <button
-                        class="opt sel"
-                        data-group="face"
+                        class="opt active"
                         onclick="pick('face','egg',this)"
                     >
                         계란
@@ -623,7 +783,6 @@ button{
 
                     <button
                         class="opt"
-                        data-group="face"
                         onclick="pick('face','round',this)"
                     >
                         둥근
@@ -631,7 +790,6 @@ button{
 
                     <button
                         class="opt"
-                        data-group="face"
                         onclick="pick('face','heart',this)"
                     >
                         하트
@@ -642,15 +800,17 @@ button{
             </div>
 
 
+
             <div class="group">
 
-                <label>눈</label>
+                <label>
+                    눈
+                </label>
 
                 <div class="opts">
 
                     <button
-                        class="opt sel"
-                        data-group="eyes"
+                        class="opt active"
                         onclick="pick('eyes','round',this)"
                     >
                         둥근눈
@@ -658,7 +818,6 @@ button{
 
                     <button
                         class="opt"
-                        data-group="eyes"
                         onclick="pick('eyes','up',this)"
                     >
                         올라간
@@ -666,7 +825,6 @@ button{
 
                     <button
                         class="opt"
-                        data-group="eyes"
                         onclick="pick('eyes','crescent',this)"
                     >
                         반달
@@ -677,15 +835,17 @@ button{
             </div>
 
 
+
             <div class="group">
 
-                <label>눈썹</label>
+                <label>
+                    눈썹
+                </label>
 
                 <div class="opts">
 
                     <button
-                        class="opt sel"
-                        data-group="brow"
+                        class="opt active"
                         onclick="pick('brow','straight',this)"
                     >
                         일자
@@ -693,7 +853,6 @@ button{
 
                     <button
                         class="opt"
-                        data-group="brow"
                         onclick="pick('brow','round',this)"
                     >
                         둥근
@@ -701,7 +860,6 @@ button{
 
                     <button
                         class="opt"
-                        data-group="brow"
                         onclick="pick('brow','up',this)"
                     >
                         올라간
@@ -714,522 +872,92 @@ button{
         </div>
 
 
+
         <!-- CHARACTER -->
 
         <div>
 
             <div class="stage">
 
-                <svg
-                    id="character"
-                    class="char"
-                    viewBox="0 0 430 690"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-
-                    <!-- 웨이브 뒷머리 -->
-
-                    <g id="back-wave">
-
-                        <path
-                            class="hairfill outline"
-                            d="
-                            M112 183
-                            C103 128 121 75 177 55
-                            C221 39 276 53 305 95
-                            C324 122 318 161 309 188
-                            C302 210 314 237 299 270
-                            C290 289 275 302 258 311
-                            C260 286 250 263 235 246
-                            C229 272 215 295 199 307
-                            C198 282 186 258 170 244
-                            C160 269 143 286 124 290
-                            C138 266 137 239 123 217
-                            C113 201 108 192 112 183Z
-                            "
-                        />
-
-                        <path
-                            class="hairhi"
-                            d="
-                            M132 91
-                            C151 65 181 55 207 54
-                            M275 77
-                            C298 102 300 132 293 157
-                            "
-                        />
-
-                    </g>
+                <div class="character">
 
 
-                    <!-- 단발 뒷머리 -->
-
-                    <g
-                        id="back-bob"
-                        style="display:none"
+                    <!-- 뒷머리 -->
+                    <img
+                        id="backLayer"
+                        class="layer backLayer"
                     >
-
-                        <path
-                            class="hairfill outline"
-                            d="
-                            M112 180
-                            C112 109 151 60 215 60
-                            C279 60 318 109 318 180
-                            L307 245
-                            C296 259 278 265 257 264
-                            C260 239 251 212 239 187
-                            C232 217 223 242 215 251
-                            C206 242 198 217 191 187
-                            C179 212 170 239 173 264
-                            C152 265 134 259 123 245Z
-                            "
-                        />
-
-                        <path
-                            class="hairhi"
-                            d="
-                            M137 91
-                            C160 66 186 61 212 61
-                            M283 83
-                            C301 109 302 139 297 169
-                            "
-                        />
-
-                    </g>
-
-
-                    <!-- 귀 -->
-
-                    <ellipse
-                        class="naked"
-                        cx="128"
-                        cy="185"
-                        rx="18"
-                        ry="28"
-                    />
-
-                    <ellipse
-                        class="naked"
-                        cx="302"
-                        cy="185"
-                        rx="18"
-                        ry="28"
-                    />
-
-
-                    <!-- 얼굴 -->
-
-                    <path
-                        id="face"
-                        class="facefill outline"
-                        d="
-                        M215 80
-                        C164 80 137 121 137 179
-                        C137 235 167 282 215 297
-                        C263 282 293 235 293 179
-                        C293 121 266 80 215 80Z
-                        "
-                    />
-
-
-                    <!-- 목 -->
-
-                    <path
-                        class="naked"
-                        d="
-                        M185 281
-                        L185 329
-                        C176 337 163 342 149 347
-                        L149 365
-                        L281 365
-                        L281 347
-                        C267 342 254 337 245 329
-                        L245 281Z
-                        "
-                    />
 
 
                     <!-- 몸 -->
-
-                    <path
-                        class="naked"
-                        d="
-                        M149 347
-                        C126 354 114 379 109 414
-                        L98 507
-                        C96 520 106 530 118 528
-                        L145 520
-                        L150 446
-                        L151 566
-                        L185 566
-                        L185 449
-                        L245 449
-                        L245 566
-                        L279 566
-                        L280 446
-                        L285 520
-                        L312 528
-                        C324 530 334 520 332 507
-                        L321 414
-                        C316 379 304 354 281 347Z
-                        "
-                    />
-
-
-                    <!-- 일자 눈썹 -->
-
-                    <g id="brow-straight">
-
-                        <path
-                            class="brow"
-                            d="M160 143L197 143"
-                        />
-
-                        <path
-                            class="brow"
-                            d="M233 143L270 143"
-                        />
-
-                    </g>
-
-
-                    <!-- 둥근 눈썹 -->
-
-                    <g
-                        id="brow-round"
-                        style="display:none"
+                    <img
+                        id="bodyLayer"
+                        class="layer bodyLayer"
                     >
 
-                        <path
-                            class="brow"
-                            d="M160 146Q179 132 197 146"
-                        />
 
-                        <path
-                            class="brow"
-                            d="M233 146Q251 132 270 146"
-                        />
-
-                    </g>
-
-
-                    <!-- 올라간 눈썹 -->
-
-                    <g
-                        id="brow-up"
-                        style="display:none"
+                    <!-- 얼굴 -->
+                    <img
+                        id="faceLayer"
+                        class="layer faceLayer"
                     >
 
-                        <path
-                            class="brow"
-                            d="M160 149Q180 130 198 138"
-                        />
 
-                        <path
-                            class="brow"
-                            d="M232 138Q250 130 270 149"
-                        />
-
-                    </g>
-
-
-                    <!-- 둥근 눈 -->
-
-                    <g id="eyes-round">
-
-                        <path
-                            class="eyeWhite outline"
-                            d="
-                            M157 179
-                            Q176 153 201 177
-                            Q181 204 157 179Z
-                            "
-                        />
-
-                        <path
-                            class="eyeWhite outline"
-                            d="
-                            M229 177
-                            Q254 153 273 179
-                            Q249 204 229 177Z
-                            "
-                        />
-
-                        <ellipse
-                            class="iris"
-                            cx="181"
-                            cy="177"
-                            rx="9"
-                            ry="13"
-                        />
-
-                        <ellipse
-                            class="iris"
-                            cx="249"
-                            cy="177"
-                            rx="9"
-                            ry="13"
-                        />
-
-                        <ellipse
-                            class="eyeInk"
-                            cx="181"
-                            cy="179"
-                            rx="4"
-                            ry="7"
-                        />
-
-                        <ellipse
-                            class="eyeInk"
-                            cx="249"
-                            cy="179"
-                            rx="4"
-                            ry="7"
-                        />
-
-                        <circle
-                            fill="#fff"
-                            cx="184"
-                            cy="173"
-                            r="3.5"
-                        />
-
-                        <circle
-                            fill="#fff"
-                            cx="252"
-                            cy="173"
-                            r="3.5"
-                        />
-
-                        <path
-                            fill="none"
-                            class="outline"
-                            d="
-                            M157 179
-                            Q176 150 201 177
-                            M229 177
-                            Q254 150 273 179
-                            "
-                        />
-
-                        <path
-                            fill="none"
-                            stroke="#443747"
-                            stroke-width="3"
-                            d="
-                            M162 164L157 159
-                            M169 159L165 153
-                            M264 159L269 153
-                            M257 159L261 153
-                            "
-                        />
-
-                    </g>
-
-
-                    <!-- 올라간 눈 -->
-
-                    <g
-                        id="eyes-up"
-                        style="display:none"
+                    <!-- 눈 -->
+                    <img
+                        id="eyesLayer"
+                        class="layer eyesLayer"
                     >
 
-                        <path
-                            class="eyeWhite outline"
-                            d="
-                            M157 182
-                            Q177 151 202 169
-                            Q180 168 157 182Z
-                            "
-                        />
 
-                        <path
-                            class="eyeWhite outline"
-                            d="
-                            M228 169
-                            Q253 151 273 182
-                            Q250 168 228 169Z
-                            "
-                        />
-
-                        <path
-                            class="outline"
-                            fill="none"
-                            d="
-                            M157 182
-                            Q177 149 202 169
-                            M228 169
-                            Q253 149 273 182
-                            "
-                        />
-
-                        <path
-                            fill="none"
-                            stroke="#443747"
-                            stroke-width="3"
-                            d="
-                            M161 165L156 160
-                            M169 158L165 152
-                            M269 160L274 155
-                            M261 154L265 149
-                            "
-                        />
-
-                    </g>
-
-
-                    <!-- 반달 눈 -->
-
-                    <g
-                        id="eyes-crescent"
-                        style="display:none"
+                    <!-- 눈썹 -->
+                    <img
+                        id="browLayer"
+                        class="layer browLayer"
                     >
 
-                        <path
-                            class="eyeInk"
-                            d="
-                            M157 180
-                            Q178 157 202 177
-                            Q180 169 157 180Z
-                            "
-                        />
 
-                        <path
-                            class="eyeInk"
-                            d="
-                            M228 177
-                            Q252 157 273 180
-                            Q250 169 228 177Z
-                            "
-                        />
-
-                        <path
-                            fill="none"
-                            stroke="#443747"
-                            stroke-width="3"
-                            d="
-                            M157 180
-                            Q178 155 202 177
-                            M228 177
-                            Q252 155 273 180
-                            "
-                        />
-
-                    </g>
-
-
-                    <!-- 코 -->
-
-                    <path
-                        d="
-                        M214 194
-                        Q210 209 215 213
-                        Q220 209 217 203
-                        "
-                        fill="none"
-                        stroke="#9d6c72"
-                        stroke-width="2"
-                        stroke-linecap="round"
-                    />
-
-
-                    <!-- 입 -->
-
-                    <path
-                        class="mouth"
-                        d="
-                        M199 230
-                        Q215 239 231 230
-                        "
-                    />
-
-
-                    <!-- 풀뱅 -->
-
-                    <g id="bang-full">
-
-                        <path
-                            class="hairfill outline"
-                            d="
-                            M135 149
-                            C135 92 164 55 215 55
-                            C266 55 295 92 295 149
-                            L284 168
-                            C276 159 268 145 261 126
-                            L255 169
-                            C245 176 234 168 230 125
-                            L221 170
-                            C212 176 202 171 198 125
-                            L188 169
-                            C178 172 167 163 164 126
-                            C157 145 148 159 135 149Z
-                            "
-                        />
-
-                    </g>
-
-
-                    <!-- 시스루뱅 -->
-
-                    <g
-                        id="bang-see"
-                        style="display:none"
+                    <!-- 앞머리 -->
+                    <img
+                        id="bangLayer"
+                        class="layer bangLayer"
                     >
 
-                        <path
-                            class="hairfill outline"
-                            d="
-                            M137 148
-                            C139 93 167 59 215 59
-                            C263 59 291 93 293 148
-                            C280 141 268 126 257 108
-                            C252 132 244 150 233 158
-                            L227 109
-                            C218 135 209 152 198 158
-                            L195 109
-                            C184 135 174 148 162 152
-                            L162 111
-                            C153 129 146 140 137 148Z
-                            "
-                        />
-
-                    </g>
-
-
-                    <!-- 앞머리 없음 -->
-
-                    <g
-                        id="bang-none"
-                        style="display:none"
-                    >
-                    </g>
-
-                </svg>
+                </div>
 
             </div>
 
+
             <div class="hint">
-                얼굴·눈·눈썹·앞머리·뒷머리를 각각 독립적으로 조합합니다.
+
+                각 카테고리는 하나의 이미지 레이어만 사용합니다.
+                따라서 눈이나 앞머리가 중첩되지 않습니다.
+
             </div>
 
         </div>
 
 
-        <!-- HAIR PANEL -->
+
+        <!-- HAIR -->
 
         <div class="panel">
 
-            <h3>HAIR</h3>
+            <h2>
+                HAIR
+            </h2>
+
 
             <div class="group">
 
-                <label>앞머리</label>
+                <label>
+                    앞머리
+                </label>
 
                 <div class="opts">
 
                     <button
-                        class="opt sel"
-                        data-group="bang"
+                        class="opt active"
                         onclick="pick('bang','full',this)"
                     >
                         풀뱅
@@ -1237,15 +965,13 @@ button{
 
                     <button
                         class="opt"
-                        data-group="bang"
                         onclick="pick('bang','see',this)"
                     >
-                        시스루
+                        시스루뱅
                     </button>
 
                     <button
                         class="opt"
-                        data-group="bang"
                         onclick="pick('bang','none',this)"
                     >
                         없음
@@ -1256,15 +982,17 @@ button{
             </div>
 
 
+
             <div class="group">
 
-                <label>뒷머리</label>
+                <label>
+                    뒷머리
+                </label>
 
                 <div class="opts">
 
                     <button
-                        class="opt sel"
-                        data-group="back"
+                        class="opt active"
                         onclick="pick('back','wave',this)"
                     >
                         웨이브
@@ -1272,7 +1000,6 @@ button{
 
                     <button
                         class="opt"
-                        data-group="back"
                         onclick="pick('back','bob',this)"
                     >
                         단발
@@ -1283,21 +1010,32 @@ button{
             </div>
 
 
-            <div style="
-                background:#fff4fa;
-                border-radius:17px;
-                padding:13px;
-                font-size:11px;
-                line-height:1.7;
-                color:#987f9e;
-            ">
 
-                <b>현재 선택</b>
+            <div class="summary">
+
+                <b>
+                    현재 선택
+                </b>
 
                 <div id="summary">
-                    계란형 · 둥근눈 · 일자눈썹<br>
+
+                    계란형 · 둥근눈 · 일자눈썹
+                    <br>
                     풀뱅 · 웨이브
+
                 </div>
+
+            </div>
+
+
+            <div class="note">
+
+                이번 버전은 네 그림을 다시 그린 SVG가 아니라,
+                네가 보내준 원본에서 실제 선을 파츠별로 잘라낸
+                이미지를 사용해.
+
+                그래서 눈 모양·앞머리 선·얼굴 윤곽이
+                이전처럼 다른 모양으로 바뀌지 않아.
 
             </div>
 
@@ -1306,10 +1044,11 @@ button{
     </div>
 
 
-    <div class="bottom">
+
+    <div class="next">
 
         <button
-            class="pill primary"
+            class="primary"
             onclick="showCards()"
         >
             다음 → 패션 카드
@@ -1322,17 +1061,24 @@ button{
 </section>
 
 
-<!-- =========================
-     CARD SELECT
-========================= -->
 
-<section id="cards" class="screen">
+<!-- ==================================
+     CARDS
+================================== -->
+
+<section
+    id="cards"
+    class="screen"
+>
 
 <div class="page">
 
+
     <div class="title">
 
-        <h1>FASHION CARD</h1>
+        <h1>
+            FASHION CARD
+        </h1>
 
         <p>
             각 카테고리에서 한 장씩 선택하세요.
@@ -1341,7 +1087,7 @@ button{
     </div>
 
 
-    <div class="cardtabs">
+    <div class="tabs">
 
         <button
             class="tab active"
@@ -1384,15 +1130,14 @@ button{
     <div
         id="cardsGrid"
         class="cards"
-    >
-    </div>
+    ></div>
 
 
-    <div class="bottom">
+    <div class="center">
 
         <button
             id="cardNext"
-            class="pill primary"
+            class="primary"
             disabled
             onclick="openMachine()"
         >
@@ -1406,17 +1151,24 @@ button{
 </section>
 
 
-<!-- =========================
-     MACHINE
-========================= -->
 
-<section id="machine" class="screen">
+<!-- ==================================
+     MACHINE
+================================== -->
+
+<section
+    id="machine"
+    class="screen"
+>
 
 <div class="page">
 
+
     <div class="title">
 
-        <h1>CARD MACHINE</h1>
+        <h1>
+            CARD MACHINE
+        </h1>
 
         <p>
             카드를 같은 종류의 슬롯으로 드래그하세요.
@@ -1427,14 +1179,15 @@ button{
 
     <div class="machine">
 
+
         <div
             id="deck"
             class="deck"
-        >
-        </div>
+        ></div>
 
 
         <div class="slotbox">
+
 
             <div
                 class="slot"
@@ -1443,6 +1196,7 @@ button{
                 TOP 카드
             </div>
 
+
             <div
                 class="slot"
                 data-type="bottom"
@@ -1450,12 +1204,14 @@ button{
                 BOTTOM 카드
             </div>
 
+
             <div
                 class="slot"
                 data-type="shoes"
             >
                 SHOES 카드
             </div>
+
 
             <div
                 class="slot"
@@ -1467,7 +1223,7 @@ button{
 
             <button
                 id="transformBtn"
-                class="pill primary"
+                class="primary"
                 style="width:100%;margin-top:10px"
                 disabled
                 onclick="transform()"
@@ -1484,52 +1240,81 @@ button{
 </section>
 
 
-<!-- =========================
+
+<!-- ==================================
      RESULT
-========================= -->
+================================== -->
 
 <section
     id="result"
     class="screen result"
 >
 
-    <div class="resultbox">
+<div class="resultbox">
 
-        <div class="title">
 
-            <h1>STAR DRESS UP!</h1>
+    <div class="title">
 
-            <p>
-                변신 완료 ✦
-            </p>
+        <h1>
+            STAR DRESS UP!
+        </h1>
 
-        </div>
-
-        <svg
-            viewBox="0 0 430 690"
-            width="380"
-            height="570"
-        >
-            <use href="#character"/>
-        </svg>
-
-        <br>
-
-        <button
-            class="pill primary"
-            onclick="show('customize')"
-        >
-            다시 꾸미기
-        </button>
+        <p>
+            변신 준비 완료 ✦
+        </p>
 
     </div>
+
+
+    <div class="character">
+
+        <img
+            id="rBack"
+            class="layer backLayer"
+        >
+
+        <img
+            id="rBody"
+            class="layer bodyLayer"
+        >
+
+        <img
+            id="rFace"
+            class="layer faceLayer"
+        >
+
+        <img
+            id="rEyes"
+            class="layer eyesLayer"
+        >
+
+        <img
+            id="rBrow"
+            class="layer browLayer"
+        >
+
+        <img
+            id="rBang"
+            class="layer bangLayer"
+        >
+
+    </div>
+
+
+    <button
+        class="primary"
+        onclick="show('customize')"
+    >
+        다시 꾸미기
+    </button>
+
+</div>
 
 </section>
 
 
-<!-- =========================
-     TRANSFORM
-========================= -->
+
+<!-- TRANSFORM -->
 
 <div
     id="overlay"
@@ -1545,26 +1330,173 @@ button{
 </div>
 
 
+
 <script>
 
-const S = {
+
+/* ==================================
+   실제 네 그림에서 잘라낸 파츠
+================================== */
+
+const A = {
+
+    body:
+        'assets/body_filled.webp',
+
+    faceEgg:
+        'assets/face_egg_filled.webp',
+
+    faceRound:
+        'assets/face_round_filled.webp',
+
+    faceHeart:
+        'assets/face_heart_filled.webp',
+
+
+    eyesRound:
+        'assets/eyes_round.webp',
+
+    eyesUp:
+        'assets/eyes_up.webp',
+
+    eyesCrescent:
+        'assets/eyes_cres.webp',
+
+
+    browStraight:
+        'assets/brow_straight.webp',
+
+    browRound:
+        'assets/brow_round.webp',
+
+    browUp:
+        'assets/brow_up.webp',
+
+
+    bangFull:
+        'assets/bang_full.webp',
+
+    bangSee:
+        'assets/bang_see.webp',
+
+    bangNone:
+        'assets/bang_none.webp',
+
+
+    backWave:
+        'assets/back_wave.webp',
+
+    backBob:
+        'assets/back_bob.webp'
+
+};
+
+
+
+/* 현재 캐릭터 */
+
+const state = {
+
     face:'egg',
     eyes:'round',
     brow:'straight',
     bang:'full',
     back:'wave'
+
 };
 
 
+
+/* 선택된 카드 */
+
 const chosen = {
+
     top:null,
     bottom:null,
     shoes:null,
     accessory:null
+
 };
 
 
-/* 화면 전환 */
+
+/* 이름 */
+
+const names = {
+
+    face:{
+        egg:'계란형',
+        round:'둥근형',
+        heart:'하트형'
+    },
+
+    eyes:{
+        round:'둥근눈',
+        up:'올라간눈',
+        crescent:'반달눈'
+    },
+
+    brow:{
+        straight:'일자눈썹',
+        round:'둥근눈썹',
+        up:'올라간눈썹'
+    },
+
+    bang:{
+        full:'풀뱅',
+        see:'시스루뱅',
+        none:'없음'
+    },
+
+    back:{
+        wave:'웨이브',
+        bob:'단발'
+    }
+
+};
+
+
+
+/* 각 선택 → 실제 이미지 */
+
+const map = {
+
+    face:{
+        egg:A.faceEgg,
+        round:A.faceRound,
+        heart:A.faceHeart
+    },
+
+    eyes:{
+        round:A.eyesRound,
+        up:A.eyesUp,
+        crescent:A.eyesCrescent
+    },
+
+    brow:{
+        straight:A.browStraight,
+        round:A.browRound,
+        up:A.browUp
+    },
+
+    bang:{
+        full:A.bangFull,
+        see:A.bangSee,
+        none:A.bangNone
+    },
+
+    back:{
+        wave:A.backWave,
+        bob:A.backBob
+    }
+
+};
+
+
+
+/* ==================================
+   화면 이동
+================================== */
 
 function show(id){
 
@@ -1579,175 +1511,98 @@ function show(id){
         .classList.add('active');
 
     window.scrollTo(0,0);
+
 }
 
 
-/* 캐릭터 선택 */
+
+/* ==================================
+   캐릭터 파츠 선택
+
+   ★ 핵심:
+   기존 파츠를 숨기는 방식이 아니라
+   같은 img의 src만 교체한다.
+
+   따라서 중첩될 수 없다.
+================================== */
 
 function pick(group,val,btn){
 
-    S[group]=val;
+    state[group] = val;
+
+
+    /* 버튼 선택 표시 */
 
     btn
         .parentElement
         .querySelectorAll('.opt')
         .forEach(x=>{
-            x.classList.remove('sel');
+            x.classList.remove('active');
         });
 
-    btn.classList.add('sel');
-
-    updateCharacter();
-}
+    btn.classList.add('active');
 
 
-/* 파츠 표시 */
-
-function display(id,val){
+    /* 해당 레이어의 이미지 교체 */
 
     document
-        .querySelectorAll('#'+id+'>*')
-        .forEach(x=>{
-            x.style.display='none';
-        });
-
-    const element =
-        document.getElementById(id+'-'+val);
-
-    if(element){
-        element.style.display='';
-    }
-}
+        .getElementById(group + 'Layer')
+        .src = map[group][val];
 
 
-/* 캐릭터 업데이트 */
+    /* 결과 화면도 같은 캐릭터로 */
 
-function updateCharacter(){
-
-    const face =
-        document.getElementById('face');
+    syncResult();
 
 
-    const paths = {
-
-        egg:
-        `
-        M215 80
-        C164 80 137 121 137 179
-        C137 235 167 282 215 297
-        C263 282 293 235 293 179
-        C293 121 266 80 215 80Z
-        `,
-
-        round:
-        `
-        M215 86
-        C163 86 132 125 132 185
-        C132 242 166 289 215 289
-        C264 289 298 242 298 185
-        C298 125 267 86 215 86Z
-        `,
-
-        heart:
-        `
-        M215 295
-        C194 282 153 252 143 207
-        C132 157 154 112 188 104
-        C201 101 211 109 215 122
-        C219 109 229 101 242 104
-        C276 112 298 157 287 207
-        C277 252 236 282 215 295Z
-        `
-
-    };
-
-
-    face.setAttribute(
-        'd',
-        paths[S.face]
-    );
-
-
-    display(
-        'eyes',
-        S.eyes
-    );
-
-    display(
-        'brow',
-        S.brow
-    );
-
-    display(
-        'bang',
-        S.bang
-    );
-
-    display(
-        'back',
-        S.back
-    );
-
-
-    const faceNames = {
-        egg:'계란형',
-        round:'둥근형',
-        heart:'하트형'
-    };
-
-
-    const eyeNames = {
-        round:'둥근눈',
-        up:'올라간눈',
-        crescent:'반달눈'
-    };
-
-
-    const browNames = {
-        straight:'일자눈썹',
-        round:'둥근눈썹',
-        up:'올라간눈썹'
-    };
-
-
-    const bangNames = {
-        full:'풀뱅',
-        see:'시스루뱅',
-        none:'없음'
-    };
-
-
-    const backNames = {
-        wave:'웨이브',
-        bob:'단발'
-    };
-
+    /* 선택 요약 */
 
     document
         .getElementById('summary')
         .innerHTML =
-        `${faceNames[S.face]} ·
-        ${eyeNames[S.eyes]} ·
-        ${browNames[S.brow]}
+
+        `${names.face[state.face]}
+        · ${names.eyes[state.eyes]}
+        · ${names.brow[state.brow]}
         <br>
-        ${bangNames[S.bang]} ·
-        ${backNames[S.back]}`;
+        ${names.bang[state.bang]}
+        · ${names.back[state.back]}`;
 
 }
 
 
-/* 카드 화면 */
 
-function showCards(){
+/* ==================================
+   결과 캐릭터 동기화
+================================== */
 
-    show('cards');
+function syncResult(){
 
-    renderCards('all');
+    document.getElementById('rBack').src =
+        map.back[state.back];
+
+    document.getElementById('rBody').src =
+        A.body;
+
+    document.getElementById('rFace').src =
+        map.face[state.face];
+
+    document.getElementById('rEyes').src =
+        map.eyes[state.eyes];
+
+    document.getElementById('rBrow').src =
+        map.brow[state.brow];
+
+    document.getElementById('rBang').src =
+        map.bang[state.bang];
 
 }
 
 
-/* 카드 데이터 */
+
+/* ==================================
+   FASHION CARDS
+================================== */
 
 const data = [
 
@@ -1824,18 +1679,17 @@ const data = [
 ];
 
 
-/* 카드 이미지 */
 
-function cardSVG(kind){
+/* 카드 그림 */
 
-    const common =
-        '<svg viewBox="0 0 150 160" xmlns="http://www.w3.org/2000/svg">';
+function cardSVG(k){
+
+    let b = '';
 
 
-    if(kind==='blouse'){
+    if(k === 'blouse'){
 
-        return common +
-
+        b =
         `
         <path
             d="
@@ -1859,24 +1713,17 @@ function cardSVG(kind){
         <path
             d="M60 34Q75 49 90 34"
             fill="none"
-            stroke="#fff"
+            stroke="white"
             stroke-width="3"
         />
-
-        <path
-            d="M70 40L75 47L80 40"
-            fill="#fff"
-        />
-
-        </svg>
         `;
+
     }
 
 
-    if(kind==='top2'){
+    else if(k === 'top2'){
 
-        return common +
-
+        b =
         `
         <path
             d="
@@ -1899,33 +1746,25 @@ function cardSVG(kind){
 
         <path
             d="M64 38H86L75 51Z"
-            fill="#fff"
+            fill="white"
         />
-
-        <circle
-            cx="75"
-            cy="63"
-            r="5"
-            fill="#f5c2dc"
-        />
-
-        </svg>
         `;
+
     }
 
 
-    if(
-        kind==='skirt' ||
-        kind==='skirt2'
+    else if(
+        k === 'skirt' ||
+        k === 'skirt2'
     ){
 
-        const color =
-            kind==='skirt'
+        let c =
+            k === 'skirt'
             ? '#9bd8e9'
             : '#f5b3d4';
 
-        return common +
 
+        b =
         `
         <path
             d="
@@ -1934,7 +1773,7 @@ function cardSVG(kind){
             L113 112
             Q75 132 37 112Z
             "
-            fill="${color}"
+            fill="${c}"
             stroke="#624e70"
             stroke-width="2"
         />
@@ -1946,23 +1785,21 @@ function cardSVG(kind){
             M78 48L78 125
             M91 48L88 121
             "
-            stroke="#fff"
+            stroke="white"
             stroke-width="3"
             opacity=".8"
         />
-
-        </svg>
         `;
+
     }
 
 
-    if(
-        kind==='heels' ||
-        kind==='shoes'
+    else if(
+        k === 'heels' ||
+        k === 'shoes'
     ){
 
-        return common +
-
+        b =
         `
         <path
             d="
@@ -1981,21 +1818,24 @@ function cardSVG(kind){
         />
 
         <path
-            d="M92 115L101 145H93L88 118"
+            d="
+            M92 115
+            L101 145
+            H93
+            L88 118
+            "
             fill="none"
             stroke="#654d6e"
             stroke-width="3"
         />
-
-        </svg>
         `;
+
     }
 
 
-    if(kind==='ribbon'){
+    else if(k === 'ribbon'){
 
-        return common +
-
+        b =
         `
         <path
             d="
@@ -2018,16 +1858,14 @@ function cardSVG(kind){
             stroke="#694d68"
             stroke-width="2"
         />
-
-        </svg>
         `;
+
     }
 
 
-    if(kind==='tiara'){
+    else if(k === 'tiara'){
 
-        return common +
-
+        b =
         `
         <path
             d="
@@ -2046,18 +1884,16 @@ function cardSVG(kind){
             cx="75"
             cy="79"
             r="5"
-            fill="#fff"
+            fill="white"
         />
-
-        </svg>
         `;
+
     }
 
 
-    if(kind==='flower'){
+    else if(k === 'flower'){
 
-        return common +
-
+        b =
         `
         <circle
             cx="75"
@@ -2093,50 +1929,76 @@ function cardSVG(kind){
             r="14"
             fill="#f6a8cc"
         />
-
-        </svg>
         `;
+
     }
 
 
-    return common +
+    else{
 
-    `
-    <text
-        x="75"
-        y="90"
-        text-anchor="middle"
-        font-size="40"
-        fill="#d3b8d8"
+        b =
+        `
+        <text
+            x="75"
+            y="90"
+            text-anchor="middle"
+            font-size="40"
+            fill="#d3b8d8"
+        >
+            ♡
+        </text>
+        `;
+
+    }
+
+
+    return `
+    <svg
+        viewBox="0 0 150 160"
+        xmlns="http://www.w3.org/2000/svg"
     >
-        ♡
-    </text>
+        ${b}
     </svg>
     `;
 
 }
 
 
-/* 카드 렌더링 */
+
+/* ==================================
+   카드 화면
+================================== */
+
+function showCards(){
+
+    show('cards');
+
+    renderCards('all');
+
+}
+
+
+
+/* 카드 렌더 */
 
 function renderCards(filter){
 
     const grid =
         document.getElementById('cardsGrid');
 
-    grid.innerHTML='';
+    grid.innerHTML = '';
 
 
     data
         .filter(
             c =>
-            filter==='all' ||
-            c.type===filter
+                filter === 'all' ||
+                c.type === filter
         )
         .forEach(c=>{
 
             const selected =
-                chosen[c.type]?.id===c.id;
+                chosen[c.type]?.id === c.id;
 
 
             const d =
@@ -2148,33 +2010,44 @@ function renderCards(filter){
                 (selected ? ' selected' : '');
 
 
-            d.innerHTML = `
+            d.innerHTML =
+            `
+            <div class="cardvisual">
 
-                <div class="cardvisual">
-                    ${cardSVG(c.kind)}
-                </div>
+                ${cardSVG(c.kind)}
 
-                <div class="cardname">
-                    ${c.name}
+            </div>
 
-                    ${
-                        selected
-                        ? '<span class="selectedmark">✓</span>'
-                        : ''
-                    }
+            <div class="cardname">
 
-                </div>
+                ${c.name}
 
-                <div class="cardtype">
-                    ${c.type.toUpperCase()}
-                </div>
+                ${
+                    selected
+                    ? '<span class="check">✓</span>'
+                    : ''
+                }
 
+            </div>
+
+            <div class="cardtype">
+
+                ${c.type.toUpperCase()}
+
+            </div>
             `;
 
 
             d.onclick = ()=>{
 
-                chosen[c.type]=c;
+                /*
+                    같은 카테고리를 클릭하면
+                    기존 카드가 자동으로 교체된다.
+                    따라서 한 카테고리에서
+                    두 장이 선택될 수 없다.
+                */
+
+                chosen[c.type] = c;
 
                 renderCards(filter);
 
@@ -2188,6 +2061,7 @@ function renderCards(filter){
         });
 
 }
+
 
 
 /* 카드 탭 */
@@ -2208,7 +2082,8 @@ function filterCards(filter,button){
 }
 
 
-/* 카드 다음 버튼 */
+
+/* 다음 버튼 */
 
 function updateCardButton(){
 
@@ -2222,7 +2097,10 @@ function updateCardButton(){
 }
 
 
-/* 머신 */
+
+/* ==================================
+   CARD MACHINE
+================================== */
 
 function openMachine(){
 
@@ -2233,14 +2111,13 @@ function openMachine(){
 }
 
 
-/* 선택 카드 렌더링 */
 
 function renderDeck(){
 
     const deck =
         document.getElementById('deck');
 
-    deck.innerHTML='';
+    deck.innerHTML = '';
 
 
     Object
@@ -2251,32 +2128,36 @@ function renderDeck(){
                 const d =
                     document.createElement('div');
 
-                d.className='dragcard';
 
-                d.dataset.type=type;
+                d.className =
+                    'dragcard';
 
 
-                d.innerHTML = `
+                d.dataset.type =
+                    type;
 
-                    <div
-                        class="cardvisual"
-                        style="height:150px"
-                    >
-                        ${cardSVG(c.kind)}
-                    </div>
 
-                    <div class="cardname">
-                        ${c.name}
-                    </div>
+                d.innerHTML =
+                `
+                <div
+                    class="cardvisual"
+                    style="height:150px"
+                >
+                    ${cardSVG(c.kind)}
+                </div>
 
-                    <div class="cardtype">
-                        ${type.toUpperCase()}
-                    </div>
+                <div class="cardname">
+                    ${c.name}
+                </div>
 
+                <div class="cardtype">
+                    ${type.toUpperCase()}
+                </div>
                 `;
 
 
                 bindDrag(d);
+
 
                 deck.appendChild(d);
 
@@ -2286,11 +2167,14 @@ function renderDeck(){
 }
 
 
-/* 드래그 */
 
-let drag=null;
-let ox=0;
-let oy=0;
+/* ==================================
+   DRAG
+================================== */
+
+let drag = null;
+let ox = 0;
+let oy = 0;
 
 
 function bindDrag(el){
@@ -2299,16 +2183,18 @@ function bindDrag(el){
         'pointerdown',
         e=>{
 
-            drag=el;
+            drag = el;
+
 
             const r =
                 el.getBoundingClientRect();
 
+
             ox =
-                e.clientX-r.left;
+                e.clientX - r.left;
 
             oy =
-                e.clientY-r.top;
+                e.clientY - r.top;
 
 
             el.setPointerCapture(
@@ -2322,10 +2208,10 @@ function bindDrag(el){
 
 
             el.style.left =
-                (e.clientX-ox)+'px';
+                e.clientX - ox + 'px';
 
             el.style.top =
-                (e.clientY-oy)+'px';
+                e.clientY - oy + 'px';
 
 
             el.addEventListener(
@@ -2346,7 +2232,6 @@ function bindDrag(el){
 }
 
 
-/* 드래그 이동 */
 
 function move(e){
 
@@ -2356,10 +2241,10 @@ function move(e){
 
 
     drag.style.left =
-        (e.clientX-ox)+'px';
+        e.clientX - ox + 'px';
 
     drag.style.top =
-        (e.clientY-oy)+'px';
+        e.clientY - oy + 'px';
 
 
     document
@@ -2371,10 +2256,10 @@ function move(e){
 
 
             const hit =
-                e.clientX>=r.left &&
-                e.clientX<=r.right &&
-                e.clientY>=r.top &&
-                e.clientY<=r.bottom;
+                e.clientX >= r.left &&
+                e.clientX <= r.right &&
+                e.clientY >= r.top &&
+                e.clientY <= r.bottom;
 
 
             s.classList.toggle(
@@ -2387,7 +2272,6 @@ function move(e){
 }
 
 
-/* 드롭 */
 
 function drop(e){
 
@@ -2418,15 +2302,17 @@ function drop(e){
 
     if(
         target &&
-        target.dataset.type===type
+        target.dataset.type === type
     ){
 
         target.classList.add(
             'filled'
         );
 
+
         target.textContent =
             chosen[type].name;
+
 
         drag.remove();
 
@@ -2438,16 +2324,14 @@ function drop(e){
             'dragging'
         );
 
-        drag.style.left='';
-
-        drag.style.top='';
-
-        drag.style.position='';
+        drag.style.left = '';
+        drag.style.top = '';
+        drag.style.position = '';
 
     }
 
 
-    drag=null;
+    drag = null;
 
 
     document
@@ -2457,43 +2341,85 @@ function drop(e){
             .querySelectorAll(
                 '.slot.filled'
             )
-            .length!==4;
+            .length !== 4;
 
 }
 
 
-/* 변신 */
+
+/* ==================================
+   TRANSFORM
+================================== */
 
 function transform(){
 
-    const overlay =
-        document.getElementById(
-            'overlay'
-        );
-
-
-    overlay.classList.add(
-        'show'
-    );
+    document
+        .getElementById('overlay')
+        .classList.add('show');
 
 
     setTimeout(()=>{
 
-        overlay.classList.remove(
-            'show'
-        );
+        document
+            .getElementById('overlay')
+            .classList.remove('show');
+
+
+        syncResult();
 
         show('result');
 
-    },1800);
+    },1600);
 
 }
 
 
-/* 초기화 */
 
-updateCharacter();
-updateCardButton();
+/* ==================================
+   INITIAL
+================================== */
+
+(function init(){
+
+    document
+        .getElementById('backLayer')
+        .src =
+        A.backWave;
+
+
+    document
+        .getElementById('bodyLayer')
+        .src =
+        A.body;
+
+
+    document
+        .getElementById('faceLayer')
+        .src =
+        A.faceEgg;
+
+
+    document
+        .getElementById('eyesLayer')
+        .src =
+        A.eyesRound;
+
+
+    document
+        .getElementById('browLayer')
+        .src =
+        A.browStraight;
+
+
+    document
+        .getElementById('bangLayer')
+        .src =
+        A.bangFull;
+
+
+    syncResult();
+
+})();
 
 </script>
 
