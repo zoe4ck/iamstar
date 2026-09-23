@@ -3,30 +3,49 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport"
-      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+      content="width=device-width,
+               initial-scale=1.0,
+               maximum-scale=1.0,
+               user-scalable=no">
 
-<title>Magic Academy Dress Up</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>Starlit Academy Dress Up</title>
 
 <style>
+@import url('https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Noto+Sans+KR:wght@400;500;600;700&display=swap');
+
+:root{
+    --bg:#f8f1f7;
+    --paper:#fffdfb;
+    --pink:#dfa0c0;
+    --pink-dark:#a96d91;
+    --lavender:#b9a5d7;
+    --lavender-light:#eee8f7;
+    --gold:#c99b54;
+    --brown:#665064;
+    --text:#4d3b50;
+    --sub:#96879a;
+    --line:#eadfea;
+    --shadow:0 18px 50px rgba(83,59,90,.13);
+}
+
 *{
     box-sizing:border-box;
-    -webkit-tap-highlight-color:transparent;
 }
 
 html,body{
     margin:0;
-    width:100%;
+    padding:0;
     min-height:100%;
-    background:#09091b;
-    color:#fff;
-    font-family:"Noto Sans KR",sans-serif;
 }
 
 body{
+    font-family:"Noto Sans KR",sans-serif;
+    color:var(--text);
+    background:
+        radial-gradient(circle at 5% 5%,#f7dce9 0,transparent 25%),
+        radial-gradient(circle at 95% 30%,#e7ddf7 0,transparent 28%),
+        radial-gradient(circle at 30% 100%,#f7ead9 0,transparent 25%),
+        var(--bg);
     overflow-x:hidden;
 }
 
@@ -34,1094 +53,788 @@ button{
     font-family:inherit;
 }
 
-.hidden{
-    display:none !important;
+button:focus{
+    outline:none;
 }
-
-/* =========================
-   BACKGROUND
-========================= */
-
-.app{
-    min-height:100vh;
-    background:
-        radial-gradient(circle at 50% 15%,rgba(119,89,255,.23),transparent 30%),
-        radial-gradient(circle at 15% 80%,rgba(53,124,255,.14),transparent 30%),
-        radial-gradient(circle at 85% 70%,rgba(219,82,255,.12),transparent 30%),
-        linear-gradient(145deg,#070817,#11102b 50%,#080817);
-    position:relative;
-    overflow:hidden;
-}
-
-.app::before{
-    content:"";
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    opacity:.45;
-    background-image:
-        radial-gradient(circle,#fff 0 1px,transparent 1.5px),
-        radial-gradient(circle,#fff 0 1px,transparent 1.5px);
-    background-size:97px 97px,151px 151px;
-    background-position:20px 30px,70px 90px;
-}
-
-/* =========================
-   COMMON
-========================= */
 
 .screen{
+    display:none;
     min-height:100vh;
-    position:relative;
-    z-index:2;
+    padding:24px;
 }
 
-.gold{
-    color:#f5d98a;
+.screen.active{
+    display:block;
 }
 
-.title{
-    font-family:"Cinzel",serif;
-    letter-spacing:3px;
+.shell{
+    width:min(1180px,100%);
+    margin:auto;
 }
 
-.section-title{
-    font-family:"Cinzel",serif;
-    letter-spacing:2px;
-    font-size:23px;
-    color:#f4d991;
+.logo-font{
+    font-family:"DM Serif Display",serif;
 }
 
-.sub-title{
-    color:#aaa9c5;
-    font-size:13px;
-    margin-top:4px;
+.opening{
+    min-height:calc(100vh - 48px);
+    display:grid;
+    place-items:center;
+}
+
+.open-card{
+    width:min(700px,100%);
+    text-align:center;
+    padding:70px 35px;
+    border-radius:44px;
+    background:rgba(255,255,255,.76);
+    border:1px solid rgba(255,255,255,.9);
+    box-shadow:var(--shadow);
+    backdrop-filter:blur(18px);
+}
+
+.open-small{
+    font-size:11px;
+    letter-spacing:.32em;
+    color:#a37e9b;
+    margin-bottom:10px;
+}
+
+.open-card h1{
+    margin:0;
+    font-family:"DM Serif Display",serif;
+    font-size:clamp(48px,9vw,82px);
+    font-weight:400;
+    color:#6d526f;
 }
 
 .magic-line{
-    width:100%;
+    width:170px;
     height:1px;
+    margin:22px auto;
     background:linear-gradient(
         90deg,
         transparent,
-        rgba(245,217,138,.7),
+        var(--gold),
         transparent
     );
 }
 
-/* =========================
-   START
-========================= */
-
-#startScreen{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    padding:30px;
-}
-
-.start-wrap{
-    width:min(520px,100%);
-    text-align:center;
-    position:relative;
-}
-
-.school-emblem{
-    width:145px;
-    height:145px;
-    margin:0 auto 28px;
-    border:1px solid rgba(245,217,138,.65);
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
-    box-shadow:
-        0 0 35px rgba(132,93,255,.25),
-        inset 0 0 30px rgba(255,255,255,.03);
-}
-
-.school-emblem::before,
-.school-emblem::after{
-    content:"";
-    position:absolute;
-    border:1px solid rgba(245,217,138,.35);
-    border-radius:50%;
-}
-
-.school-emblem::before{
-    inset:11px;
-}
-
-.school-emblem::after{
-    inset:25px;
-}
-
-.emblem-star{
-    font-size:54px;
-    color:#f5d98a;
-    filter:drop-shadow(0 0 12px rgba(245,217,138,.5));
-}
-
-.start-title{
-    font-family:"Cinzel",serif;
-    font-size:clamp(35px,9vw,62px);
-    letter-spacing:5px;
-    margin:0;
-    background:linear-gradient(90deg,#fff,#f5d98a,#d7c4ff,#fff);
-    -webkit-background-clip:text;
-    color:transparent;
-}
-
-.start-sub{
-    margin-top:14px;
-    color:#aaa9c8;
+.open-card p{
+    color:var(--sub);
     font-size:14px;
-    letter-spacing:2px;
+    line-height:1.8;
+    margin:0 0 30px;
 }
 
-.start-button{
-    margin-top:48px;
-    width:230px;
-    height:65px;
-    border-radius:40px;
-    border:1px solid #f5d98a;
-    color:#fff;
-    background:
-        linear-gradient(135deg,rgba(128,84,255,.8),rgba(48,36,109,.8));
-    box-shadow:
-        0 0 25px rgba(126,87,255,.35),
-        inset 0 0 20px rgba(255,255,255,.08);
-    font-family:"Cinzel",serif;
-    font-size:18px;
-    letter-spacing:4px;
+.primary{
+    border:0;
     cursor:pointer;
-    transition:.25s;
-}
-
-.start-button:hover{
-    transform:translateY(-3px);
+    padding:14px 31px;
+    border-radius:999px;
+    color:white;
+    font-weight:700;
+    background:linear-gradient(
+        135deg,
+        #dfa0c0,
+        #aa8ccf
+    );
     box-shadow:
-        0 0 40px rgba(126,87,255,.55),
-        inset 0 0 20px rgba(255,255,255,.12);
+        0 10px 25px rgba(176,127,166,.25);
+    transition:.2s;
 }
 
-/* =========================
-   TOP BAR
-========================= */
+.primary:hover{
+    transform:translateY(-2px);
+}
+
+.primary:disabled{
+    opacity:.35;
+    cursor:not-allowed;
+    transform:none;
+}
+
+.secondary{
+    border:1px solid var(--line);
+    background:white;
+    border-radius:999px;
+    padding:11px 20px;
+    cursor:pointer;
+    font-weight:600;
+}
 
 .topbar{
-    height:76px;
     display:flex;
-    align-items:center;
     justify-content:space-between;
-    padding:0 25px;
-    border-bottom:1px solid rgba(245,217,138,.15);
-    background:rgba(5,5,17,.72);
-    backdrop-filter:blur(18px);
-    position:sticky;
-    top:0;
-    z-index:50;
+    align-items:center;
+    gap:20px;
+    margin:4px 0 18px;
 }
 
-.logo{
-    font-family:"Cinzel",serif;
-    letter-spacing:2px;
-    color:#f5d98a;
-    font-size:17px;
+.title h2{
+    margin:0;
+    font-family:"DM Serif Display",serif;
+    font-size:36px;
+    font-weight:400;
+    color:#674f6a;
 }
 
-.step{
-    color:#777791;
-    font-size:12px;
+.title p{
+    margin:4px 0 0;
+    color:var(--sub);
+    font-size:13px;
 }
 
-.step strong{
-    color:#fff;
+.progress{
+    display:flex;
+    gap:6px;
 }
 
-/* =========================
-   CUSTOMIZE
-========================= */
-
-#customScreen{
-    padding-bottom:40px;
+.progress span{
+    width:30px;
+    height:7px;
+    border-radius:20px;
+    background:#e6dce8;
 }
 
-.custom-layout{
-    width:min(1250px,100%);
-    margin:auto;
-    padding:35px 25px;
+.progress span.on{
+    background:linear-gradient(
+        90deg,
+        #dfa0c0,
+        #ad91ce
+    );
+}
+
+.panel{
+    background:rgba(255,255,255,.79);
+    border:1px solid rgba(255,255,255,.9);
+    border-radius:28px;
+    box-shadow:var(--shadow);
+    backdrop-filter:blur(16px);
+}
+
+/* =====================================================
+   CHARACTER
+===================================================== */
+
+.character-layout{
     display:grid;
-    grid-template-columns:420px 1fr;
-    gap:35px;
+    grid-template-columns:410px 1fr;
+    gap:18px;
 }
 
 .character-panel{
-    min-height:720px;
-    border:1px solid rgba(245,217,138,.2);
-    border-radius:28px;
-    background:
-        radial-gradient(circle at 50% 25%,rgba(119,89,255,.18),transparent 40%),
-        rgba(11,11,30,.75);
-    box-shadow:0 20px 60px rgba(0,0,0,.25);
-    position:sticky;
-    top:105px;
+    min-height:730px;
+    position:relative;
+    display:grid;
+    place-items:center;
     overflow:hidden;
 }
 
 .character-panel::before{
-    content:"✦";
-    position:absolute;
-    top:18px;
-    left:22px;
-    color:#f5d98a;
-    opacity:.7;
-}
-
-.character-panel::after{
-    content:"✦";
-    position:absolute;
-    bottom:25px;
-    right:24px;
-    color:#f5d98a;
-    opacity:.7;
-}
-
-.character-stage{
-    width:100%;
-    height:640px;
-    display:flex;
-    align-items:flex-end;
-    justify-content:center;
-    position:relative;
-}
-
-.character-stage::before{
     content:"";
     position:absolute;
-    width:300px;
-    height:300px;
+    width:330px;
+    height:330px;
     border-radius:50%;
-    background:radial-gradient(circle,rgba(127,91,255,.2),transparent 68%);
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.95),
+            rgba(250,229,241,.75) 52%,
+            transparent 72%
+        );
 }
 
-.character-svg{
-    width:300px;
-    height:760px;
-    max-height:100%;
-    overflow:visible;
+.character-wrap{
+    width:350px;
+    height:690px;
     position:relative;
     z-index:2;
 }
 
-.character-name{
-    position:absolute;
-    bottom:18px;
-    left:0;
-    right:0;
-    text-align:center;
-    font-family:"Cinzel",serif;
-    color:#f5d98a;
-    letter-spacing:3px;
-    font-size:12px;
+.character-wrap svg{
+    width:100%;
+    height:100%;
+    overflow:visible;
 }
 
-.custom-panel{
-    min-width:0;
+.controls{
+    padding:22px;
+    max-height:730px;
+    overflow-y:auto;
 }
 
-.custom-header{
-    margin-bottom:24px;
+.controls::-webkit-scrollbar{
+    width:7px;
 }
 
-.custom-grid{
-    display:grid;
-    grid-template-columns:repeat(2,minmax(0,1fr));
-    gap:17px;
-}
-
-.option-box{
-    border:1px solid rgba(255,255,255,.09);
-    background:rgba(15,15,39,.78);
-    border-radius:18px;
-    padding:17px;
-}
-
-.option-label{
-    color:#eee;
-    font-weight:700;
-    font-size:14px;
-    margin-bottom:12px;
-}
-
-.options{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-}
-
-.option-btn{
-    border:1px solid rgba(255,255,255,.11);
-    background:#181833;
-    color:#bdbbd0;
-    min-height:39px;
-    padding:7px 12px;
+.controls::-webkit-scrollbar-thumb{
+    background:#dfd2e2;
     border-radius:10px;
-    cursor:pointer;
-    transition:.18s;
-    font-size:12px;
 }
 
-.option-btn:hover{
-    border-color:rgba(245,217,138,.5);
-    color:#fff;
+.group{
+    margin-bottom:20px;
 }
 
-.option-btn.active{
-    color:#fff;
-    border-color:#f5d98a;
-    background:linear-gradient(135deg,#59419e,#282047);
-    box-shadow:0 0 15px rgba(110,79,220,.25);
-}
-
-.color-btn{
-    width:35px;
-    height:35px;
-    min-height:35px;
-    padding:0;
-    border-radius:50%;
-    position:relative;
-}
-
-.color-btn.active::after{
-    content:"✓";
-    position:absolute;
-    inset:0;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    color:#fff;
-    font-weight:900;
-    text-shadow:0 1px 4px #000;
-}
-
-.continue-wrap{
-    margin-top:22px;
-    text-align:right;
-}
-
-.primary-btn{
-    border:1px solid #f5d98a;
-    border-radius:14px;
-    padding:13px 23px;
-    color:#fff;
-    background:linear-gradient(135deg,#6346a7,#312459);
-    cursor:pointer;
-    box-shadow:0 8px 25px rgba(80,52,150,.3);
+.group-title{
+    margin-bottom:9px;
+    font-size:13px;
     font-weight:700;
+    color:#735a76;
 }
 
-.primary-btn:hover{
-    transform:translateY(-2px);
+.option-grid{
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    gap:7px;
 }
 
-/* =========================
-   CHARACTER SVG
-========================= */
-
-.hairBack{
-    fill:var(--hair,#3a2444);
-    stroke:#25182d;
-    stroke-width:3;
+.opt{
+    min-height:48px;
+    padding:6px;
+    border:1px solid var(--line);
+    background:#fff;
+    border-radius:13px;
+    cursor:pointer;
+    font-size:11px;
+    transition:.15s;
 }
 
-.hairLight{
-    fill:var(--hairLight,#714c78);
+.opt:hover{
+    transform:translateY(-1px);
 }
 
-.skin{
-    fill:var(--skin,#f4c7ad);
+.opt.active{
+    background:#faedf5;
+    border-color:#bb86aa;
+    box-shadow:
+        inset 0 0 0 1px #bb86aa;
 }
 
-.eyeWhite{
-    fill:#fff;
-    stroke:#35253e;
-    stroke-width:2.5;
+.swatch{
+    width:23px;
+    height:23px;
+    border-radius:50%;
+    margin:0 auto 3px;
+    border:1px solid rgba(0,0,0,.08);
 }
 
-.iris{
-    fill:var(--eye,#6d4cff);
-}
-
-.pupil{
-    fill:#16111d;
-}
-
-.faceLine{
-    fill:none;
-    stroke:#8d5865;
-    stroke-width:2;
-    stroke-linecap:round;
-}
-
-.topColor{
-    fill:var(--top,#704fa6);
-}
-
-.skirtColor{
-    fill:var(--bottom,#a779d5);
-}
-
-.shoeColor{
-    fill:var(--shoe,#262143);
-}
-
-.accessoryColor{
-    fill:var(--accessory,#f5d98a);
-}
-
-/* =========================
-   CARDS
-========================= */
-
-#cardScreen{
-    padding-bottom:50px;
-}
-
-.card-page{
-    width:min(1250px,100%);
-    margin:auto;
-    padding:35px 25px;
-}
-
-.card-header{
+.bottom-actions{
     display:flex;
-    align-items:end;
-    justify-content:space-between;
-    gap:20px;
-    margin-bottom:22px;
-}
-
-.category-tabs{
-    display:flex;
+    justify-content:flex-end;
     gap:8px;
-    flex-wrap:wrap;
-    margin-bottom:25px;
+    margin-top:15px;
 }
 
-.category-tab{
-    border:1px solid rgba(255,255,255,.12);
-    background:rgba(15,15,39,.8);
-    color:#aaa9bf;
-    border-radius:30px;
-    padding:10px 17px;
+/* =====================================================
+   CARDS
+===================================================== */
+
+.cards-panel{
+    padding:20px;
+}
+
+.cards-head{
+    margin-bottom:15px;
+}
+
+.tabs{
+    display:flex;
+    gap:7px;
+    overflow-x:auto;
+    padding-bottom:3px;
+}
+
+.tab{
+    flex-shrink:0;
+    border:1px solid var(--line);
+    background:white;
+    border-radius:999px;
+    padding:8px 15px;
+    font-size:12px;
     cursor:pointer;
 }
 
-.category-tab.active{
-    background:#6346a7;
-    color:#fff;
-    border-color:#f5d98a;
+.tab.active{
+    background:#6d5673;
+    color:white;
+    border-color:#6d5673;
 }
 
 .card-grid{
     display:grid;
     grid-template-columns:repeat(4,1fr);
-    gap:17px;
+    gap:13px;
 }
 
 .fashion-card{
-    min-height:285px;
-    border-radius:19px;
-    padding:10px;
-    border:1px solid rgba(255,255,255,.1);
-    background:linear-gradient(145deg,#171735,#0e0e25);
-    cursor:pointer;
     position:relative;
+    background:white;
+    border:1px solid var(--line);
+    border-radius:20px;
+    padding:9px;
+    cursor:pointer;
     transition:.2s;
-    overflow:hidden;
 }
 
 .fashion-card:hover{
-    transform:translateY(-5px);
-    border-color:rgba(245,217,138,.65);
+    transform:translateY(-4px);
+    box-shadow:0 12px 28px rgba(86,61,95,.13);
 }
 
 .fashion-card.selected{
-    border:2px solid #f5d98a;
-    box-shadow:
-        0 0 0 3px rgba(245,217,138,.1),
-        0 10px 30px rgba(91,61,165,.35);
+    border:2px solid #b67ea8;
+    background:#fff7fc;
 }
 
-.selected-mark{
+.check{
     position:absolute;
-    top:10px;
-    right:10px;
-    background:#f5d98a;
-    color:#251b30;
-    border-radius:20px;
-    padding:5px 8px;
-    font-size:10px;
-    font-weight:800;
-    z-index:3;
+    right:9px;
+    top:9px;
+    width:25px;
+    height:25px;
+    display:none;
+    place-items:center;
+    border-radius:50%;
+    background:#aa78a1;
+    color:white;
+    font-size:13px;
+    z-index:4;
+}
+
+.fashion-card.selected .check{
+    display:grid;
 }
 
 .card-art{
-    height:205px;
-    border-radius:13px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:75px;
+    height:190px;
+    border-radius:15px;
+    overflow:hidden;
     background:
-        radial-gradient(circle at 50% 35%,rgba(255,255,255,.16),transparent 30%),
-        linear-gradient(145deg,#33235c,#14132e);
+        linear-gradient(
+            145deg,
+            #fbf7fc,
+            #eee7f5
+        );
+}
+
+.card-art svg{
+    width:100%;
+    height:100%;
 }
 
 .card-name{
-    margin-top:11px;
+    margin-top:8px;
+    font-size:12px;
     font-weight:700;
-    font-size:14px;
 }
 
 .card-type{
-    color:#85839e;
-    font-size:11px;
-    margin-top:4px;
+    margin-top:2px;
+    color:#a08fa3;
+    font-size:10px;
 }
 
-.selection-summary{
-    margin-top:28px;
-    border:1px solid rgba(245,217,138,.18);
-    background:rgba(12,12,31,.8);
-    border-radius:18px;
-    padding:17px;
+.selection-bar{
+    margin-top:15px;
+    padding:13px 15px;
+    border-radius:17px;
+    background:white;
+    border:1px solid var(--line);
+    font-size:12px;
+    color:#7c6d81;
 }
 
-.summary-items{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:9px;
-    margin-top:12px;
-}
-
-.summary-item{
-    background:#181833;
-    border-radius:11px;
-    padding:10px;
-    font-size:11px;
-    color:#aaa9bf;
-}
-
-.summary-item strong{
-    display:block;
-    color:#fff;
-    margin-top:3px;
-}
-
-/* =========================
+/* =====================================================
    MACHINE
-========================= */
-
-#machineScreen{
-    padding-bottom:40px;
-}
-
-.machine-page{
-    width:min(1100px,100%);
-    margin:auto;
-    padding:30px 20px 50px;
-}
+===================================================== */
 
 .machine-layout{
     display:grid;
-    grid-template-columns:300px 1fr;
-    gap:25px;
-    margin-top:25px;
+    grid-template-columns:350px 1fr;
+    gap:18px;
 }
 
-.selected-deck{
-    border:1px solid rgba(245,217,138,.18);
-    background:rgba(11,11,30,.82);
-    border-radius:22px;
-    padding:18px;
-    height:max-content;
+.deck{
+    padding:20px;
 }
 
-.deck-title{
-    font-family:"Cinzel",serif;
-    color:#f5d98a;
-    letter-spacing:1px;
-    margin-bottom:15px;
+.deck h3,
+.machine h3{
+    margin:0 0 13px;
+    font-family:"DM Serif Display",serif;
+    font-size:26px;
+    font-weight:400;
+}
+
+.drag-list{
+    display:grid;
+    gap:9px;
 }
 
 .drag-card{
-    height:83px;
-    border-radius:13px;
-    background:linear-gradient(135deg,#27204b,#15152e);
-    border:1px solid rgba(255,255,255,.12);
-    margin-bottom:10px;
-    display:flex;
+    display:grid;
+    grid-template-columns:70px 1fr;
+    gap:9px;
     align-items:center;
-    gap:12px;
-    padding:9px;
+    padding:8px;
+    border:1px solid var(--line);
+    background:white;
+    border-radius:15px;
     cursor:grab;
     touch-action:none;
     user-select:none;
-    position:relative;
 }
 
 .drag-card:active{
     cursor:grabbing;
 }
 
-.drag-card.inserted-source{
+.drag-card.inserted{
     opacity:.45;
 }
 
-.drag-card-icon{
-    width:62px;
-    height:62px;
-    border-radius:10px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#33285c;
-    font-size:30px;
-    flex:none;
-}
-
-.drag-card-info{
-    min-width:0;
-}
-
-.drag-card-info strong{
-    display:block;
-    font-size:12px;
-    white-space:nowrap;
+.mini-art{
+    height:72px;
     overflow:hidden;
-    text-overflow:ellipsis;
+    border-radius:10px;
+    background:#f7f0f8;
 }
 
-.drag-card-info span{
-    color:#85839e;
+.mini-art svg{
+    width:100%;
+    height:100%;
+}
+
+.drag-name{
+    font-size:12px;
+    font-weight:700;
+}
+
+.drag-type{
+    margin-top:3px;
+    color:#9d8e9f;
     font-size:10px;
 }
 
-.inserted-label{
-    position:absolute;
-    right:8px;
-    bottom:8px;
-    color:#f5d98a;
-    font-size:9px;
-    font-weight:800;
-}
-
 .machine{
-    min-height:600px;
-    border:1px solid rgba(245,217,138,.25);
-    border-radius:30px;
     padding:25px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+.machine-body{
+    width:min(600px,100%);
+    padding:27px;
+    border-radius:31px;
     background:
-        radial-gradient(circle at 50% 50%,rgba(98,67,175,.17),transparent 55%),
-        rgba(10,10,28,.8);
-    position:relative;
-    overflow:hidden;
-}
-
-.machine-ring{
-    width:330px;
-    height:330px;
-    border:1px solid rgba(245,217,138,.22);
-    border-radius:50%;
-    position:absolute;
-    left:50%;
-    top:48%;
-    transform:translate(-50%,-50%);
-    pointer-events:none;
-}
-
-.machine-ring::before,
-.machine-ring::after{
-    content:"";
-    position:absolute;
-    border-radius:50%;
-    border:1px dashed rgba(150,121,255,.25);
-}
-
-.machine-ring::before{
-    inset:30px;
-}
-
-.machine-ring::after{
-    inset:70px;
-}
-
-.machine-core{
-    position:absolute;
-    left:50%;
-    top:48%;
-    transform:translate(-50%,-50%);
-    font-size:45px;
-    color:#f5d98a;
-    opacity:.25;
+        linear-gradient(
+            145deg,
+            #fff,
+            #f0e8f4
+        );
+    border:1px solid white;
+    box-shadow:inset 0 0 0 1px #e6d8e8;
 }
 
 .slots{
-    position:relative;
-    z-index:3;
     display:grid;
     grid-template-columns:1fr 1fr;
-    gap:17px;
-    max-width:650px;
-    margin:40px auto 0;
+    gap:15px;
 }
 
 .slot{
-    min-height:185px;
-    border-radius:19px;
-    border:1px dashed rgba(245,217,138,.45);
-    background:rgba(18,17,42,.72);
+    min-height:190px;
+    border:2px dashed #d4bfd8;
+    border-radius:22px;
     display:flex;
     flex-direction:column;
     align-items:center;
     justify-content:center;
-    text-align:center;
+    gap:5px;
+    background:rgba(255,255,255,.52);
     transition:.2s;
-    position:relative;
-    overflow:hidden;
 }
 
-.slot::before{
-    content:"✦";
-    color:#f5d98a;
-    opacity:.4;
-    font-size:25px;
-}
-
-.slot.drag-over{
-    border-color:#fff;
-    background:rgba(91,62,163,.45);
-    transform:scale(1.02);
-    box-shadow:0 0 25px rgba(126,91,255,.35);
+.slot.over{
+    transform:scale(1.025);
+    background:#f9e9f4;
+    border-color:#ad78a5;
 }
 
 .slot.filled{
     border-style:solid;
-    border-color:#f5d98a;
-    background:linear-gradient(145deg,#32265b,#17152f);
+    border-color:#cba1c5;
+    background:white;
 }
 
-.slot-title{
-    margin-top:7px;
-    color:#aaa9bf;
-    font-size:11px;
+.slot-label{
+    font-size:12px;
+    font-weight:700;
+    color:#806980;
+    text-align:center;
 }
 
-.slot-card{
+.slot-hint{
+    font-size:10px;
+    color:#aaa;
+}
+
+.slot-art{
+    width:130px;
+    height:135px;
+}
+
+.slot-art svg{
     width:100%;
     height:100%;
-    padding:13px;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
 }
 
-.slot-card .slot-icon{
-    font-size:52px;
-}
-
-.slot-card strong{
-    margin-top:6px;
+.machine-msg{
+    height:26px;
+    margin:12px;
     font-size:12px;
-}
-
-.machine-message{
-    position:relative;
-    z-index:4;
+    color:#9a6d91;
     text-align:center;
-    margin-top:22px;
-    min-height:24px;
-    color:#aaa9bf;
-    font-size:12px;
 }
 
-.transform-wrap{
-    position:relative;
-    z-index:5;
-    text-align:center;
-    margin-top:18px;
-}
-
-.transform-btn{
-    border:1px solid #f5d98a;
-    background:linear-gradient(135deg,#7654bd,#34255e);
-    color:#fff;
-    padding:14px 34px;
-    border-radius:30px;
-    font-weight:800;
-    letter-spacing:1px;
-    cursor:pointer;
-    opacity:.4;
-    pointer-events:none;
-    transition:.2s;
-}
-
-.transform-btn.ready{
-    opacity:1;
-    pointer-events:auto;
-    box-shadow:0 0 30px rgba(121,83,221,.5);
-}
-
-.transform-btn.ready:hover{
-    transform:scale(1.04);
-}
-
-/* =========================
-   DRAG GHOST
-========================= */
-
-.drag-ghost{
+.ghost{
     position:fixed;
-    width:220px;
-    height:80px;
-    border-radius:14px;
-    background:linear-gradient(135deg,#3b2d6e,#17162f);
-    border:2px solid #f5d98a;
-    box-shadow:0 15px 40px rgba(0,0,0,.45);
+    width:135px;
+    padding:7px;
+    z-index:99999;
     pointer-events:none;
-    z-index:9999;
-    display:flex;
-    align-items:center;
-    gap:12px;
-    padding:10px;
-    transform:translate(-50%,-50%) rotate(2deg);
+    border-radius:15px;
+    background:white;
+    box-shadow:0 20px 45px rgba(69,46,75,.24);
+    transform:translate(-50%,-50%) rotate(3deg);
 }
 
-.drag-ghost .gicon{
-    font-size:30px;
-}
+/* =====================================================
+   TRANSFORM
+===================================================== */
 
-/* =========================
-   TRANSFORMATION
-========================= */
-
-#transformScreen{
+.transform{
     position:fixed;
     inset:0;
+    z-index:100000;
+    display:none;
+    place-items:center;
+    text-align:center;
+    color:white;
     background:
-        radial-gradient(circle,#7450c9 0%,#171238 35%,#060613 75%);
-    z-index:1000;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    overflow:hidden;
+        radial-gradient(
+            circle,
+            rgba(255,255,255,.98),
+            rgba(238,215,236,.96) 43%,
+            rgba(87,62,99,.97)
+        );
+}
+
+.transform.show{
+    display:grid;
 }
 
 .magic-circle{
-    width:min(80vw,650px);
-    aspect-ratio:1;
+    width:300px;
+    height:300px;
+    margin:auto;
+    position:relative;
+    border:2px solid rgba(255,255,255,.85);
     border-radius:50%;
-    border:2px solid rgba(245,217,138,.6);
-    box-shadow:
-        0 0 60px rgba(122,84,222,.7),
-        inset 0 0 60px rgba(122,84,222,.5);
-    position:absolute;
-    animation:spin 5s linear infinite;
-}
-
-.magic-circle::before,
-.magic-circle::after{
-    content:"";
-    position:absolute;
-    border-radius:50%;
-    border:1px dashed rgba(255,255,255,.5);
+    animation:spin 4s linear infinite;
 }
 
 .magic-circle::before{
-    inset:40px;
+    content:"";
+    position:absolute;
+    inset:25px;
+    border:1px dashed rgba(255,255,255,.9);
+    border-radius:50%;
 }
 
 .magic-circle::after{
-    inset:100px;
+    content:"✦";
+    position:absolute;
+    inset:0;
+    display:grid;
+    place-items:center;
+    font-size:80px;
 }
 
-.transform-text{
-    position:relative;
-    z-index:2;
-    text-align:center;
-}
-
-.transform-text .big{
-    font-family:"Cinzel",serif;
-    font-size:clamp(30px,8vw,65px);
-    letter-spacing:7px;
-    color:#fff;
-    text-shadow:0 0 25px #fff,0 0 60px #8661ff;
-    animation:pulse 1s infinite alternate;
-}
-
-.transform-text .small{
-    margin-top:12px;
-    color:#f5d98a;
-    letter-spacing:4px;
+.transform h2{
+    margin:22px 0 5px;
+    font-family:"DM Serif Display",serif;
+    font-size:40px;
+    font-weight:400;
 }
 
 @keyframes spin{
-    from{transform:rotate(0)}
-    to{transform:rotate(360deg)}
+    to{
+        transform:rotate(360deg);
+    }
 }
 
-@keyframes pulse{
-    from{transform:scale(.96);opacity:.75}
-    to{transform:scale(1.05);opacity:1}
-}
-
-/* =========================
+/* =====================================================
    RESULT
-========================= */
+===================================================== */
 
-#resultScreen{
-    padding-bottom:50px;
-}
-
-.result-page{
-    min-height:calc(100vh - 76px);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    padding:30px 20px;
-    text-align:center;
-}
-
-.result-title{
-    font-family:"Cinzel",serif;
-    color:#f5d98a;
-    font-size:36px;
-    letter-spacing:5px;
-    margin-bottom:20px;
+.result-layout{
+    display:grid;
+    grid-template-columns:450px 1fr;
+    gap:18px;
 }
 
 .result-character{
-    width:320px;
-    height:650px;
-    max-width:90vw;
+    min-height:730px;
+    display:grid;
+    place-items:center;
+    overflow:hidden;
 }
 
 .result-info{
-    margin-top:12px;
-    color:#aaa9bf;
+    padding:35px;
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
 }
 
-.restart-btn{
-    margin-top:25px;
+.result-info h2{
+    margin:5px 0 7px;
+    font-family:"DM Serif Display",serif;
+    font-size:46px;
+    font-weight:400;
 }
 
-/* =========================
-   RESPONSIVE
-========================= */
+.result-sub{
+    color:#928196;
+    line-height:1.7;
+    font-size:13px;
+}
+
+.outfit-list{
+    display:grid;
+    gap:9px;
+    margin:22px 0;
+}
+
+.outfit-row{
+    display:flex;
+    justify-content:space-between;
+    gap:15px;
+    padding:12px 14px;
+    border:1px solid var(--line);
+    background:white;
+    border-radius:13px;
+    font-size:12px;
+}
+
+.outfit-row span{
+    color:#958598;
+}
+
+.outfit-row b{
+    text-align:right;
+}
+
+/* =====================================================
+   CHARACTER SVG
+===================================================== */
+
+.face-outline{
+    stroke:#6c5369;
+    stroke-width:2.1;
+    stroke-linejoin:round;
+}
+
+.soft-line{
+    fill:none;
+    stroke:#84677e;
+    stroke-width:1.7;
+    stroke-linecap:round;
+    stroke-linejoin:round;
+}
+
+.hair-outline{
+    stroke:#624b61;
+    stroke-width:2.2;
+    stroke-linejoin:round;
+}
 
 @media(max-width:950px){
-    .custom-layout{
+
+    .character-layout,
+    .machine-layout,
+    .result-layout{
         grid-template-columns:1fr;
     }
 
-    .character-panel{
-        position:relative;
-        top:auto;
-        min-height:650px;
+    .character-panel,
+    .result-character{
+        min-height:620px;
+    }
+
+    .controls{
+        max-height:none;
     }
 
     .card-grid{
         grid-template-columns:repeat(3,1fr);
     }
-
-    .machine-layout{
-        grid-template-columns:1fr;
-    }
 }
 
-@media(max-width:650px){
+@media(max-width:600px){
+
+    .screen{
+        padding:12px;
+    }
+
+    .open-card{
+        padding:45px 20px;
+    }
+
     .topbar{
-        height:64px;
-        padding:0 15px;
+        align-items:flex-start;
     }
 
-    .custom-layout,
-    .card-page{
-        padding:22px 14px;
-    }
-
-    .custom-grid{
-        grid-template-columns:1fr;
+    .title h2{
+        font-size:29px;
     }
 
     .character-panel{
-        min-height:600px;
+        min-height:570px;
     }
 
-    .character-stage{
-        height:550px;
+    .character-wrap{
+        transform:scale(.84);
     }
 
-    .character-svg{
-        height:650px;
+    .option-grid{
+        grid-template-columns:repeat(3,1fr);
     }
 
     .card-grid{
         grid-template-columns:repeat(2,1fr);
-        gap:10px;
-    }
-
-    .fashion-card{
-        min-height:245px;
+        gap:9px;
     }
 
     .card-art{
         height:165px;
-        font-size:58px;
     }
 
-    .summary-items{
-        grid-template-columns:repeat(2,1fr);
-    }
-
-    .machine{
+    .machine-body{
         padding:14px;
-        min-height:650px;
     }
 
     .slots{
-        gap:10px;
-        margin-top:55px;
+        gap:8px;
     }
 
     .slot{
         min-height:155px;
-    }
-
-    .machine-ring{
-        width:310px;
-        height:310px;
-    }
-}
-
-@media(max-width:400px){
-    .slots{
-        grid-template-columns:1fr;
-    }
-
-    .slot{
-        min-height:120px;
-    }
-
-    .machine-ring{
-        width:270px;
-        height:270px;
     }
 }
 </style>
@@ -1129,886 +842,236 @@ button{
 
 <body>
 
-<div class="app">
+<div class="screen active" id="opening">
+    <div class="opening shell">
+        <div class="open-card">
 
-<!-- =========================
-     START
-========================= -->
+            <div class="open-small">
+                MAGIC ACADEMY • DRESS UP
+            </div>
 
-<section id="startScreen" class="screen">
+            <h1>Starlit Academy</h1>
 
-    <div class="start-wrap">
+            <div class="magic-line"></div>
 
-        <div class="school-emblem">
-            <div class="emblem-star">✦</div>
+            <p>
+                나만의 캐릭터를 만들고<br>
+                패션 카드를 골라 마법처럼 변신해 보세요.
+            </p>
+
+            <button class="primary" onclick="go('custom')">
+                START ✦
+            </button>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- =====================================================
+     CHARACTER CUSTOMIZATION
+===================================================== -->
+
+<section class="screen" id="custom">
+
+    <div class="shell">
+
+        <div class="topbar">
+
+            <div class="title">
+                <h2>Character Atelier</h2>
+                <p>나만의 미소녀를 만들어 주세요.</p>
+            </div>
+
+            <div class="progress">
+                <span class="on"></span>
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+
         </div>
 
-        <h1 class="start-title">
-            MAGIC ACADEMY
-        </h1>
 
-        <div class="start-sub">
-            CARD DRESS UP ADVENTURE
+        <div class="character-layout">
+
+            <div class="panel character-panel">
+
+                <div
+                    class="character-wrap"
+                    id="customCharacter">
+                </div>
+
+            </div>
+
+
+            <div
+                class="panel controls"
+                id="controls">
+            </div>
+
         </div>
 
-        <button class="start-button" id="startBtn">
-            START
-        </button>
+
+        <div class="bottom-actions">
+
+            <button
+                class="primary"
+                onclick="go('cards')">
+                패션 카드 고르기 →
+            </button>
+
+        </div>
 
     </div>
 
 </section>
 
 
-<!-- =========================
-     CUSTOMIZATION
-========================= -->
+<!-- =====================================================
+     CARD SELECTION
+===================================================== -->
 
-<section id="customScreen" class="screen hidden">
+<section class="screen" id="cards">
 
-    <div class="topbar">
-        <div class="logo">MAGIC ACADEMY</div>
-        <div class="step">STEP <strong>01</strong> · CHARACTER</div>
-    </div>
+    <div class="shell">
 
-    <div class="custom-layout">
+        <div class="topbar">
 
-        <div class="character-panel">
-
-            <div class="character-stage">
-
-                <svg
-                    id="character"
-                    class="character-svg"
-                    viewBox="0 0 300 800"
-                    xmlns="http://www.w3.org/2000/svg"
-                >
-
-                    <!-- ================= BACK HAIR ================= -->
-
-                    <g id="hairLong" class="hairStyle">
-                        <path
-                            class="hairBack"
-                            d="M54 205
-                               Q38 105 80 53
-                               Q111 18 150 20
-                               Q191 18 222 54
-                               Q264 105 247 205
-                               L246 430
-                               Q226 500 193 518
-                               L175 420
-                               L150 440
-                               L125 420
-                               L107 518
-                               Q73 500 54 430Z"/>
-                        <path class="hairLight"
-                              d="M73 113 Q93 46 145 39 Q104 88 96 180Z"/>
-                    </g>
-
-                    <g id="hairBob" class="hairStyle hidden">
-                        <path
-                            class="hairBack"
-                            d="M55 205
-                               Q43 100 81 56
-                               Q112 20 150 22
-                               Q190 20 221 56
-                               Q258 100 245 205
-                               L239 342
-                               Q220 367 190 373
-                               L172 310
-                               L150 328
-                               L128 310
-                               L110 373
-                               Q80 367 61 342Z"/>
-                        <path class="hairLight"
-                              d="M75 115 Q95 48 145 42 Q107 90 98 180Z"/>
-                    </g>
-
-                    <g id="hairWave" class="hairStyle hidden">
-                        <path
-                            class="hairBack"
-                            d="M52 210
-                               Q37 108 80 55
-                               Q111 17 150 20
-                               Q192 17 222 55
-                               Q266 108 249 210
-                               Q267 270 240 315
-                               Q270 380 232 438
-                               Q208 476 189 508
-                               Q176 529 160 493
-                               L150 452
-                               L137 500
-                               Q120 529 103 505
-                               Q82 476 68 438
-                               Q30 380 60 315
-                               Q33 270 52 210Z"/>
-                        <path class="hairLight"
-                              d="M72 112 Q96 45 144 40 Q103 92 94 190Z"/>
-                    </g>
-
-                    <!-- 포니테일: 다른 머리와 확실히 다른 구조 -->
-
-                    <g id="hairPony" class="hairStyle hidden">
-                        <path
-                            class="hairBack"
-                            d="M67 210
-                               Q51 108 86 61
-                               Q112 25 150 25
-                               Q188 25 214 61
-                               Q249 108 233 210
-                               L229 400
-                               Q207 430 182 425
-                               L171 350
-                               L150 370
-                               L129 350
-                               L118 425
-                               Q92 430 71 400Z"/>
-
-                        <path
-                            class="hairBack"
-                            d="M207 120
-                               Q247 98 270 123
-                               Q289 144 279 190
-                               Q270 248 239 292
-                               Q219 316 202 288
-                               Q224 250 231 211
-                               Q239 168 207 120Z"/>
-
-                        <path
-                            class="hairLight"
-                            d="M76 116 Q100 50 145 45 Q107 92 98 181Z"/>
-                    </g>
-
-                    <!-- 트윈테일 -->
-
-                    <g id="hairTwin" class="hairStyle hidden">
-
-                        <path
-                            class="hairBack"
-                            d="M67 208
-                               Q51 108 86 61
-                               Q112 25 150 25
-                               Q188 25 214 61
-                               Q249 108 233 208
-                               L228 365
-                               Q205 395 181 390
-                               L170 335
-                               L150 352
-                               L130 335
-                               L119 390
-                               Q95 395 72 365Z"/>
-
-                        <path
-                            class="hairBack"
-                            d="M80 117
-                               Q48 98 25 126
-                               Q7 151 21 194
-                               Q34 244 63 278
-                               Q80 296 96 273
-                               Q74 231 70 190
-                               Q67 147 80 117Z"/>
-
-                        <path
-                            class="hairBack"
-                            d="M220 117
-                               Q252 98 275 126
-                               Q293 151 279 194
-                               Q266 244 237 278
-                               Q220 296 204 273
-                               Q226 231 230 190
-                               Q233 147 220 117Z"/>
-
-                        <path
-                            class="hairLight"
-                            d="M76 116 Q100 50 145 45 Q107 92 98 181Z"/>
-                    </g>
-
-
-                    <!-- ================= BODY ================= -->
-
-                    <path
-                        class="skin"
-                        d="M130 282 L130 326 L170 326 L170 282Z"
-                    />
-
-                    <!-- arms -->
-                    <path
-                        class="skin"
-                        d="M111 340
-                           Q91 358 83 411
-                           Q80 438 93 443
-                           Q106 448 111 425
-                           L128 369Z"
-                    />
-
-                    <path
-                        class="skin"
-                        d="M189 340
-                           Q209 358 217 411
-                           Q220 438 207 443
-                           Q194 448 189 425
-                           L172 369Z"
-                    />
-
-                    <!-- torso -->
-                    <path
-                        id="outfitTop"
-                        class="topColor"
-                        d="M111 333
-                           Q150 313 189 333
-                           L203 464
-                           Q177 480 150 480
-                           Q123 480 97 464Z"
-                    />
-
-                    <!-- collar -->
-                    <path
-                        d="M127 328 L150 350 L173 328 L167 319 L150 338 L133 319Z"
-                        fill="#f5d98a"
-                        opacity=".9"
-                    />
-
-                    <!-- skirt -->
-                    <path
-                        id="outfitBottom"
-                        class="skirtColor"
-                        d="M98 453
-                           Q150 470 202 453
-                           L222 566
-                           Q188 589 150 590
-                           Q112 589 78 566Z"
-                    />
-
-                    <path
-                        d="M92 486 Q150 506 208 486"
-                        fill="none"
-                        stroke="#f5d98a"
-                        stroke-width="3"
-                        opacity=".65"
-                    />
-
-                    <!-- legs -->
-                    <path
-                        class="skin"
-                        d="M110 570 L143 570 L139 727 L107 727Z"
-                    />
-
-                    <path
-                        class="skin"
-                        d="M157 570 L190 570 L193 727 L161 727Z"
-                    />
-
-                    <!-- shoes -->
-                    <path
-                        id="outfitShoes"
-                        class="shoeColor"
-                        d="M104 716
-                           Q122 708 141 720
-                           L148 748
-                           Q126 766 94 751
-                           Q88 736 104 716Z"
-                    />
-
-                    <path
-                        id="outfitShoes2"
-                        class="shoeColor"
-                        d="M157 720
-                           Q177 708 195 716
-                           Q211 736 205 751
-                           Q173 766 151 748Z"
-                    />
-
-                    <!-- ================= FACE ================= -->
-
-                    <g id="faceGroup">
-
-                        <path id="faceShape"
-                              class="skin"
-                              d="
-                              M82 143
-                              Q82 76 150 68
-                              Q218 76 218 143
-                              L211 226
-                              Q201 274 150 291
-                              Q99 274 89 226Z"/>
-
-                        <!-- ears -->
-                        <ellipse class="skin" cx="83" cy="201" rx="13" ry="21"/>
-                        <ellipse class="skin" cx="217" cy="201" rx="13" ry="21"/>
-
-                    </g>
-
-
-                    <!-- ================= EYES ================= -->
-
-                    <g id="leftEye">
-
-                        <path id="leftEyeWhite"
-                              class="eyeWhite"
-                              d="M88 170
-                                 Q105 151 122 170
-                                 Q105 188 88 170Z"/>
-
-                        <ellipse id="leftIris"
-                                 class="iris"
-                                 cx="105"
-                                 cy="170"
-                                 rx="7"
-                                 ry="9"/>
-
-                        <ellipse id="leftPupil"
-                                 class="pupil"
-                                 cx="105"
-                                 cy="170"
-                                 rx="3"
-                                 ry="5"/>
-
-                        <circle
-                            cx="108"
-                            cy="166"
-                            r="2"
-                            fill="#fff"
-                        />
-
-                    </g>
-
-                    <g id="rightEye">
-
-                        <path id="rightEyeWhite"
-                              class="eyeWhite"
-                              d="M178 170
-                                 Q195 151 212 170
-                                 Q195 188 178 170Z"/>
-
-                        <ellipse id="rightIris"
-                                 class="iris"
-                                 cx="195"
-                                 cy="170"
-                                 rx="7"
-                                 ry="9"/>
-
-                        <ellipse id="rightPupil"
-                                 class="pupil"
-                                 cx="195"
-                                 cy="170"
-                                 rx="3"
-                                 ry="5"/>
-
-                        <circle
-                            cx="198"
-                            cy="166"
-                            r="2"
-                            fill="#fff"
-                        />
-
-                    </g>
-
-                    <!-- crescent eyes -->
-
-                    <g id="crescentEyes" class="hidden">
-
-                        <path
-                            d="M89 174 Q105 153 121 174"
-                            fill="none"
-                            stroke="#35253e"
-                            stroke-width="6"
-                            stroke-linecap="round"
-                        />
-
-                        <path
-                            d="M179 174 Q195 153 211 174"
-                            fill="none"
-                            stroke="#35253e"
-                            stroke-width="6"
-                            stroke-linecap="round"
-                        />
-
-                    </g>
-
-
-                    <!-- eyebrows -->
-
-                    <path
-                        id="leftBrow"
-                        d="M91 151 Q105 143 119 150"
-                        fill="none"
-                        stroke="#5a3744"
-                        stroke-width="3"
-                        stroke-linecap="round"
-                    />
-
-                    <path
-                        id="rightBrow"
-                        d="M181 150 Q195 143 209 151"
-                        fill="none"
-                        stroke="#5a3744"
-                        stroke-width="3"
-                        stroke-linecap="round"
-                    />
-
-
-                    <!-- nose -->
-
-                    <path
-                        id="nose"
-                        class="faceLine"
-                        d="M150 188 Q145 205 150 207 Q155 205 151 202"
-                    />
-
-
-                    <!-- ================= MOUTH ================= -->
-
-                    <g id="mouthSmile">
-
-                        <!-- 위쪽 곡선 -->
-                        <path
-                            d="M128 225
-                               Q150 238 172 225
-                               Q169 249 150 253
-                               Q131 249 128 225Z"
-                            fill="#8c355d"
-                            stroke="#5d2747"
-                            stroke-width="2"
-                        />
-
-                        <!-- teeth -->
-                        <path
-                            d="M132 230 Q150 239 168 230 L165 237 Q150 244 135 237Z"
-                            fill="#fff8ef"
-                        />
-
-                        <!-- tongue -->
-                        <path
-                            d="M141 246 Q150 239 159 246 Q155 251 150 251 Q145 251 141 246Z"
-                            fill="#ee7395"
-                        />
-
-                    </g>
-
-                    <path
-                        id="mouthNeutral"
-                        class="faceLine hidden"
-                        d="M140 235 Q150 238 160 235"
-                        stroke-width="3"
-                    />
-
-                    <path
-                        id="mouthSmall"
-                        class="faceLine hidden"
-                        d="M145 235 Q150 237 155 235"
-                        stroke-width="3"
-                    />
-
-
-                    <!-- ================= BANGS ================= -->
-
-                    <!-- NONE = 아무것도 없음 -->
-
-                    <g id="bangFull" class="bangStyle hidden">
-
-                        <path
-                            class="hairBack"
-                            d="M82 137
-                               Q86 67 150 65
-                               Q214 67 218 137
-                               L204 132
-                               L197 163
-                               L183 136
-                               L169 166
-                               L153 135
-                               L137 166
-                               L121 136
-                               L105 163
-                               L96 132Z"
-                        />
-
-                    </g>
-
-                    <g id="bangSee" class="bangStyle hidden">
-
-                        <path
-                            d="M87 129 Q105 88 121 126"
-                            fill="none"
-                            stroke="var(--hair)"
-                            stroke-width="12"
-                            stroke-linecap="round"
-                            opacity=".72"
-                        />
-
-                        <path
-                            d="M122 126 Q137 87 150 126"
-                            fill="none"
-                            stroke="var(--hair)"
-                            stroke-width="10"
-                            stroke-linecap="round"
-                            opacity=".6"
-                        />
-
-                        <path
-                            d="M151 126 Q168 87 181 127"
-                            fill="none"
-                            stroke="var(--hair)"
-                            stroke-width="11"
-                            stroke-linecap="round"
-                            opacity=".6"
-                        />
-
-                        <path
-                            d="M182 127 Q198 88 213 130"
-                            fill="none"
-                            stroke="var(--hair)"
-                            stroke-width="10"
-                            stroke-linecap="round"
-                            opacity=".72"
-                        />
-
-                    </g>
-
-                    <g id="bangSide" class="bangStyle hidden">
-
-                        <path
-                            class="hairBack"
-                            d="M83 137
-                               Q91 78 150 67
-                               Q187 69 215 102
-                               Q177 95 145 112
-                               Q116 128 87 171Z"
-                        />
-
-                        <path
-                            class="hairLight"
-                            d="M93 119 Q119 83 164 78 Q127 102 104 143Z"
-                        />
-
-                    </g>
-
-
-                    <!-- accessory -->
-
-                    <g id="resultAccessory" class="hidden">
-
-                        <path
-                            d="M117 100
-                               L128 77
-                               L139 94
-                               L150 67
-                               L161 94
-                               L172 77
-                               L183 100
-                               Q150 117 117 100Z"
-                            fill="var(--accessory,#f5d98a)"
-                            stroke="#9a6d22"
-                            stroke-width="3"
-                        />
-
-                        <circle cx="150" cy="84" r="5" fill="#fff"/>
-                    </g>
-
-                </svg>
-
+            <div class="title">
+                <h2>Fashion Card Library</h2>
+                <p>
+                    각 카테고리에서 한 장씩 골라 주세요.
+                </p>
             </div>
 
-            <div class="character-name">
-                YOUR MAGIC IDOL
+            <div class="progress">
+                <span class="on"></span>
+                <span class="on"></span>
+                <span></span>
+                <span></span>
             </div>
 
         </div>
 
 
-        <!-- CUSTOM OPTIONS -->
+        <div class="panel cards-panel">
 
-        <div class="custom-panel">
-
-            <div class="custom-header">
-                <div class="section-title">
-                    CHARACTER CUSTOMIZE
-                </div>
-                <div class="sub-title">
-                    나만의 마법학교 아이돌을 만들어보세요
+            <div class="cards-head">
+                <div
+                    class="tabs"
+                    id="tabs">
                 </div>
             </div>
 
-            <div class="custom-grid">
 
-                <div class="option-box">
-                    <div class="option-label">얼굴형</div>
+            <div
+                class="card-grid"
+                id="cardGrid">
+            </div>
 
-                    <div class="options">
-                        <button class="option-btn active"
-                                data-option="face"
-                                data-value="egg">계란형</button>
 
-                        <button class="option-btn"
-                                data-option="face"
-                                data-value="round">둥근형</button>
+            <div
+                class="selection-bar"
+                id="selectionBar">
+            </div>
 
-                        <button class="option-btn"
-                                data-option="face"
-                                data-value="heart">하트형</button>
-
-                        <button class="option-btn"
-                                data-option="face"
-                                data-value="long">긴형</button>
-                    </div>
-                </div>
+        </div>
 
 
-                <div class="option-box">
-                    <div class="option-label">피부색</div>
-
-                    <div class="options">
-
-                        <button class="option-btn color-btn active"
-                                style="background:#f4c7ad"
-                                data-option="skin"
-                                data-value="#f4c7ad"></button>
+        <div class="bottom-actions">
 
-                        <button class="option-btn color-btn"
-                                style="background:#e5a987"
-                                data-option="skin"
-                                data-value="#e5a987"></button>
+            <button
+                class="secondary"
+                onclick="go('custom')">
+                ← 캐릭터 수정
+            </button>
 
-                        <button class="option-btn color-btn"
-                                style="background:#c98360"
-                                data-option="skin"
-                                data-value="#c98360"></button>
+            <button
+                class="primary"
+                onclick="enterMachine()">
+                카드 머신으로 →
+            </button>
 
-                        <button class="option-btn color-btn"
-                                style="background:#9e5f45"
-                                data-option="skin"
-                                data-value="#9e5f45"></button>
+        </div>
 
-                    </div>
-                </div>
+    </div>
 
-
-                <div class="option-box">
-                    <div class="option-label">눈 모양</div>
+</section>
 
-                    <div class="options">
 
-                        <button class="option-btn active"
-                                data-option="eyeShape"
-                                data-value="round">
-                            동그란 눈
-                        </button>
+<!-- =====================================================
+     CARD MACHINE
+===================================================== -->
 
-                        <button class="option-btn"
-                                data-option="eyeShape"
-                                data-value="slim">
-                            가는 눈
-                        </button>
+<section class="screen" id="machineScreen">
 
-                        <button class="option-btn"
-                                data-option="eyeShape"
-                                data-value="droop">
-                            처진 눈
-                        </button>
+    <div class="shell">
 
-                        <button class="option-btn"
-                                data-option="eyeShape"
-                                data-value="sharp">
-                            올라간 눈
-                        </button>
+        <div class="topbar">
 
-                        <button class="option-btn"
-                                data-option="eyeShape"
-                                data-value="crescent">
-                            초승달
-                        </button>
+            <div class="title">
+                <h2>Card Machine</h2>
+                <p>
+                    카드를 알맞은 슬롯에 끌어다 놓아 주세요.
+                </p>
+            </div>
 
-                    </div>
-                </div>
-
-
-                <div class="option-box">
-                    <div class="option-label">눈동자 색</div>
-
-                    <div class="options">
-
-                        <button class="option-btn color-btn active"
-                                style="background:#6d4cff"
-                                data-option="eyeColor"
-                                data-value="#6d4cff"></button>
-
-                        <button class="option-btn color-btn"
-                                style="background:#46a7ff"
-                                data-option="eyeColor"
-                                data-value="#46a7ff"></button>
-
-                        <button class="option-btn color-btn"
-                                style="background:#4fc47b"
-                                data-option="eyeColor"
-                                data-value="#4fc47b"></button>
-
-                        <button class="option-btn color-btn"
-                                style="background:#7b442d"
-                                data-option="eyeColor"
-                                data-value="#7b442d"></button>
-
-                        <button class="option-btn color-btn"
-                                style="background:#db4b91"
-                                data-option="eyeColor"
-                                data-value="#db4b91"></button>
-
-                        <button class="option-btn color-btn"
-                                style="background:#191522"
-                                data-option="eyeColor"
-                                data-value="#191522"></button>
-
-                    </div>
-                </div>
-
-
-                <div class="option-box">
-                    <div class="option-label">표정</div>
-
-                    <div class="options">
+            <div class="progress">
+                <span class="on"></span>
+                <span class="on"></span>
+                <span class="on"></span>
+                <span></span>
+            </div>
 
-                        <button class="option-btn active"
-                                data-option="expression"
-                                data-value="smile">
-                            활짝 웃음
-                        </button>
-
-                        <button class="option-btn"
-                                data-option="expression"
-                                data-value="neutral">
-                            무표정
-                        </button>
-
-                        <button class="option-btn"
-                                data-option="expression"
-                                data-value="small">
-                            작은 미소
-                        </button>
-
-                    </div>
-                </div>
-
-
-                <div class="option-box">
-                    <div class="option-label">헤어스타일</div>
-
-                    <div class="options">
-
-                        <button class="option-btn active"
-                                data-option="hair"
-                                data-value="long">
-                            긴 생머리
-                        </button>
-
-                        <button class="option-btn"
-                                data-option="hair"
-                                data-value="bob">
-                            단발
-                        </button>
-
-                        <button class="option-btn"
-                                data-option="hair"
-                                data-value="wave">
-                            웨이브
-                        </button>
-
-                        <button class="option-btn"
-                                data-option="hair"
-                                data-value="pony">
-                            포니테일
-                        </button>
-
-                        <button class="option-btn"
-                                data-option="hair"
-                                data-value="twin">
-                            트윈테일
-                        </button>
-
-                    </div>
-                </div>
-
-
-                <div class="option-box">
-                    <div class="option-label">앞머리</div>
-
-                    <div class="options">
-
-                        <button class="option-btn active"
-                                data-option="bang"
-                                data-value="none">
-                            없음
-                        </button>
-
-                        <button class="option-btn"
-                                data-option="bang"
-                                data-value="full">
-                            풀뱅
-                        </button>
-
-                        <button class="option-btn"
-                                data-option="bang"
-                                data-value="see">
-                            시스루
-                        </button>
-
-                        <button class="option-btn"
-                                data-option="bang"
-                                data-value="side">
-                            옆머리
-                        </button>
-
-                    </div>
-                </div>
-
-
-                <div class="option-box">
-                    <div class="option-label">머리색</div>
-
-                    <div class="options">
-
-                        <button class="option-btn color-btn active"
-                                style="background:#3a2444"
-                                data-option="hairColor"
-                                data-value="#3a2444"></button>
-
-                        <button class="option-btn color-btn"
-                                style="background:#15151a"
-                                data-option="hairColor"
-                                data-value="#15151a"></button>
-
-                        <button class="option-btn color-btn"
-                                style="background:#7b4b35"
-                                data-option="hairColor"
-                                data-value="#7b4b35"></button>
-
-                        <button class="option-btn color-btn"
-                                style="background:#c18b45"
-                                data-option="hairColor"
-                                data-value="#c18b45"></button>
-
-                        <button class="option-btn color-btn"
-                                style="background:#e1a5b5"
-                                data-option="hairColor"
-                                data-value="#e1a5b5"></button>
-
-                        <button class="option-btn color-btn"
-                                style="background:#7364c9"
-                                data-option="hairColor"
-                                data-value="#7364c9"></button>
-
-                        <button class="option-btn color-btn"
-                                style="background:#69a9b6"
-                                data-option="hairColor"
-                                data-value="#69a9b6"></button>
-
-                    </div>
+        </div>
+
+
+        <div class="machine-layout">
+
+
+            <div class="panel deck">
+
+                <h3>My Cards</h3>
+
+                <div
+                    class="drag-list"
+                    id="dragList">
                 </div>
 
             </div>
 
 
-            <div class="continue-wrap">
+            <div class="panel machine">
 
-                <button class="primary-btn" id="toCardsBtn">
-                    다음 · FASHION CARDS →
+                <h3>
+                    MAGIC DRESS MACHINE
+                </h3>
+
+
+                <div class="machine-body">
+
+                    <div
+                        class="slots"
+                        id="slots">
+                    </div>
+
+                </div>
+
+
+                <div
+                    class="machine-msg"
+                    id="machineMsg">
+                    카드를 슬롯으로 끌어 주세요.
+                </div>
+
+
+                <button
+                    class="primary"
+                    id="transformBtn"
+                    disabled
+                    onclick="transform()">
+                    ✦ TRANSFORM ✦
                 </button>
 
             </div>
@@ -2020,194 +1083,83 @@ button{
 </section>
 
 
-<!-- =========================
-     CARDS
-========================= -->
+<!-- =====================================================
+     RESULT
+===================================================== -->
 
-<section id="cardScreen" class="screen hidden">
+<section class="screen" id="result">
 
-    <div class="topbar">
-        <div class="logo">MAGIC ACADEMY</div>
-        <div class="step">STEP <strong>02</strong> · FASHION CARDS</div>
-    </div>
+    <div class="shell">
 
-    <div class="card-page">
+        <div class="topbar">
 
-        <div class="card-header">
+            <div class="title">
+                <h2>Transformation Complete</h2>
+                <p>
+                    당신만의 아카데미 스타일이 완성되었습니다.
+                </p>
+            </div>
 
-            <div>
-                <div class="section-title">
-                    FASHION CARD COLLECTION
-                </div>
-
-                <div class="sub-title">
-                    카드를 눌러 한 장씩 선택하세요
-                </div>
+            <div class="progress">
+                <span class="on"></span>
+                <span class="on"></span>
+                <span class="on"></span>
+                <span class="on"></span>
             </div>
 
         </div>
 
 
-        <div class="category-tabs">
+        <div class="result-layout">
 
-            <button class="category-tab active"
-                    data-category="all">
-                ALL
-            </button>
+            <div class="panel result-character">
 
-            <button class="category-tab"
-                    data-category="top">
-                TOP
-            </button>
-
-            <button class="category-tab"
-                    data-category="bottom">
-                BOTTOM
-            </button>
-
-            <button class="category-tab"
-                    data-category="shoes">
-                SHOES
-            </button>
-
-            <button class="category-tab"
-                    data-category="accessory">
-                ACCESSORY
-            </button>
-
-        </div>
-
-
-        <div id="cardGrid" class="card-grid"></div>
-
-
-        <div class="selection-summary">
-
-            <div class="section-title" style="font-size:17px;">
-                YOUR SELECTION
-            </div>
-
-            <div id="summaryItems" class="summary-items"></div>
-
-        </div>
-
-
-        <div style="text-align:right;margin-top:20px;">
-
-            <button
-                id="toMachineBtn"
-                class="primary-btn">
-                GO TO CARD MACHINE →
-            </button>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- =========================
-     MACHINE
-========================= -->
-
-<section id="machineScreen" class="screen hidden">
-
-    <div class="topbar">
-        <div class="logo">MAGIC ACADEMY</div>
-        <div class="step">STEP <strong>03</strong> · CARD MACHINE</div>
-    </div>
-
-    <div class="machine-page">
-
-        <div class="section-title">
-            MAGIC CARD MACHINE
-        </div>
-
-        <div class="sub-title">
-            카드를 올바른 슬롯으로 드래그해주세요
-        </div>
-
-
-        <div class="machine-layout">
-
-            <div class="selected-deck">
-
-                <div class="deck-title">
-                    SELECTED CARDS
+                <div
+                    class="character-wrap"
+                    id="resultCharacter">
                 </div>
-
-                <div id="dragCards"></div>
 
             </div>
 
 
-            <div class="machine">
+            <div class="panel result-info">
 
-                <div class="machine-ring"></div>
-
-                <div class="machine-core">
-                    ✦
+                <div
+                    style="
+                    font-size:12px;
+                    color:#9b7895;
+                    letter-spacing:.15em;
+                    ">
+                    YOUR MAGIC LOOK
                 </div>
 
+                <h2>Starlit Look</h2>
 
-                <div class="slots">
-
-                    <div class="slot"
-                         data-accept="top">
-
-                        <div class="slot-title">
-                            TOP
-                        </div>
-
-                    </div>
-
-
-                    <div class="slot"
-                         data-accept="bottom">
-
-                        <div class="slot-title">
-                            BOTTOM
-                        </div>
-
-                    </div>
-
-
-                    <div class="slot"
-                         data-accept="shoes">
-
-                        <div class="slot-title">
-                            SHOES
-                        </div>
-
-                    </div>
-
-
-                    <div class="slot"
-                         data-accept="accessory">
-
-                        <div class="slot-title">
-                            ACCESSORY
-                        </div>
-
-                    </div>
-
+                <div class="result-sub">
+                    선택한 패션 카드가 캐릭터에게 적용되었습니다.
                 </div>
 
 
                 <div
-                    id="machineMessage"
-                    class="machine-message">
-                    선택한 카드를 각 슬롯으로 끌어주세요.
+                    class="outfit-list"
+                    id="outfitList">
                 </div>
 
 
-                <div class="transform-wrap">
+                <div
+                    class="bottom-actions"
+                    style="justify-content:flex-start">
 
                     <button
-                        id="transformBtn"
-                        class="transform-btn">
-                        ✦ TRANSFORM ✦
+                        class="secondary"
+                        onclick="go('cards')">
+                        카드 다시 고르기
+                    </button>
+
+                    <button
+                        class="primary"
+                        onclick="go('custom')">
+                        캐릭터 다시 꾸미기
                     </button>
 
                 </div>
@@ -2221,1638 +1173,2945 @@ button{
 </section>
 
 
-<!-- =========================
-     TRANSFORMATION
-========================= -->
+<!-- =====================================================
+     TRANSFORM OVERLAY
+===================================================== -->
 
-<section id="transformScreen" class="hidden">
+<div
+    class="transform"
+    id="transformOverlay">
 
-    <div class="magic-circle"></div>
+    <div>
 
-    <div class="transform-text">
+        <div class="magic-circle"></div>
 
-        <div class="big">
-            TRANSFORM
-        </div>
+        <h2>MAGIC TRANSFORM</h2>
 
-        <div class="small">
-            MAGIC ACADEMY IDOL
+        <div style="opacity:.8;font-size:13px;">
+            별빛이 당신의 스타일을 완성하고 있어요…
         </div>
 
     </div>
-
-</section>
-
-
-<!-- =========================
-     RESULT
-========================= -->
-
-<section id="resultScreen" class="screen hidden">
-
-    <div class="topbar">
-        <div class="logo">MAGIC ACADEMY</div>
-        <div class="step">FINAL · YOUR IDOL</div>
-    </div>
-
-
-    <div class="result-page">
-
-        <div class="result-title">
-            MAGIC COMPLETE
-        </div>
-
-        <svg
-            id="resultCharacter"
-            class="result-character"
-            viewBox="0 0 300 800"
-            xmlns="http://www.w3.org/2000/svg">
-        </svg>
-
-        <div class="result-info">
-            당신만의 마법학교 아이돌이 완성되었습니다.
-        </div>
-
-        <button
-            id="restartBtn"
-            class="primary-btn restart-btn">
-            다시 만들기
-        </button>
-
-    </div>
-
-</section>
-
 
 </div>
 
 
 <script>
 
-/* =========================================================
+/* =====================================================
    STATE
-========================================================= */
+===================================================== */
 
 const state = {
 
     face:"egg",
 
-    skin:"#f4c7ad",
+    skin:"#f3c8b7",
 
-    eyeShape:"round",
+    eye:"round",
 
-    eyeColor:"#6d4cff",
+    eyeColor:"#5b416d",
 
     expression:"smile",
 
     hair:"long",
 
-    bang:"none",
+    bang:"see",
 
-    hairColor:"#3a2444",
+    hairColor:"#5b445d",
 
-    currentCategory:"all",
+    accessory:"none",
 
-    selectedCards:{
+    category:"all",
+
+    selected:{
         top:null,
         bottom:null,
         shoes:null,
-        accessory:null
+        accessory:"accNone"
     },
 
-    inserted:{
-        top:null,
-        bottom:null,
-        shoes:null,
-        accessory:null
-    }
+    slots:{}
 
 };
 
 
-/* =========================================================
-   SCREEN
-========================================================= */
+/* =====================================================
+   BASIC DATA
+===================================================== */
 
-const screens = {
+const skinColors = [
 
-    start:document.getElementById("startScreen"),
+    ["#f3c8b7","피치"],
 
-    custom:document.getElementById("customScreen"),
+    ["#e8b59e","베이지"],
 
-    cards:document.getElementById("cardScreen"),
+    ["#d59a7d","웜 브라운"],
 
-    machine:document.getElementById("machineScreen"),
+    ["#f7ddd0","아이보리"]
 
-    result:document.getElementById("resultScreen"),
+];
 
-    transform:document.getElementById("transformScreen")
 
-};
+const eyeColors = [
 
-function showScreen(name){
+    ["#5b416d","바이올렛"],
 
-    Object.values(screens).forEach(el=>{
-        el.classList.add("hidden");
-    });
+    ["#456b99","블루"],
 
-    screens[name].classList.remove("hidden");
+    ["#4c7c67","그린"],
 
-    window.scrollTo({
-        top:0,
-        behavior:"instant"
-    });
+    ["#76513e","브라운"],
 
-}
+    ["#29283b","블랙"],
 
+    ["#a45f86","로즈"]
 
-/* =========================================================
-   START
-========================================================= */
+];
 
-document
-    .getElementById("startBtn")
-    .addEventListener("click",()=>{
 
-        showScreen("custom");
+const hairColors = [
 
-    });
+    ["#5b445d","다크 플럼"],
 
+    ["#303c60","미드나잇 블루"],
 
-/* =========================================================
-   CHARACTER CSS VARIABLES
-========================================================= */
+    ["#865849","로즈 브라운"],
 
-const character =
-    document.getElementById("character");
+    ["#b28a4f","허니 브라운"],
 
-function updateCharacterColors(){
+    ["#d9969f","로지 핑크"],
 
-    character.style.setProperty(
-        "--skin",
-        state.skin
-    );
+    ["#d4c4ae","밀크티"]
 
-    character.style.setProperty(
-        "--eye",
-        state.eyeColor
-    );
+];
 
-    character.style.setProperty(
-        "--hair",
-        state.hairColor
-    );
 
-    character.style.setProperty(
-        "--hairLight",
-        lighten(state.hairColor)
-    );
-
-}
-
-function lighten(hex){
-
-    const num=parseInt(hex.replace("#",""),16);
-
-    let r=(num>>16)&255;
-    let g=(num>>8)&255;
-    let b=num&255;
-
-    r=Math.min(255,r+45);
-    g=Math.min(255,g+35);
-    b=Math.min(255,b+45);
-
-    return "#" +
-        [r,g,b]
-        .map(v=>v.toString(16).padStart(2,"0"))
-        .join("");
-
-}
-
-
-/* =========================================================
-   FACE
-========================================================= */
-
-function updateFace(){
-
-    const face =
-        document.getElementById("faceShape");
-
-    /*
-      각각 실루엣이 확실히 다르게 보이도록
-      아예 path 자체를 교체한다.
-    */
-
-    const paths={
-
-        egg:
-        `
-        M82 143
-        Q82 78 150 68
-        Q218 78 218 143
-        L211 225
-        Q201 273 150 291
-        Q99 273 89 225
-        Z
-        `,
-
-        round:
-        `
-        M77 145
-        Q78 82 150 72
-        Q222 82 223 145
-        L216 217
-        Q208 263 150 278
-        Q92 263 84 217
-        Z
-        `,
-
-        heart:
-        `
-        M80 132
-        Q89 74 150 70
-        Q211 74 220 132
-        Q216 161 208 187
-        Q199 238 150 289
-        Q101 238 92 187
-        Q84 161 80 132
-        Z
-        `,
-
-        long:
-        `
-        M91 120
-        Q96 70 150 64
-        Q204 70 209 120
-        L207 236
-        Q198 281 150 307
-        Q102 281 93 236
-        Z
-        `
-
-    };
-
-    face.setAttribute(
-        "d",
-        paths[state.face]
-    );
-
-}
-
-
-/* =========================================================
-   EYES
-========================================================= */
-
-function updateEyes(){
-
-    const leftWhite =
-        document.getElementById("leftEyeWhite");
-
-    const rightWhite =
-        document.getElementById("rightEyeWhite");
-
-    const leftIris =
-        document.getElementById("leftIris");
-
-    const rightIris =
-        document.getElementById("rightIris");
-
-    const leftPupil =
-        document.getElementById("leftPupil");
-
-    const rightPupil =
-        document.getElementById("rightPupil");
-
-    const normalEyes=[
-        leftWhite,
-        rightWhite,
-        leftIris,
-        rightIris,
-        leftPupil,
-        rightPupil
-    ];
-
-    const crescent =
-        document.getElementById("crescentEyes");
-
-    normalEyes.forEach(el=>{
-        el.classList.remove("hidden");
-    });
-
-    crescent.classList.add("hidden");
-
-
-    if(state.eyeShape==="crescent"){
-
-        normalEyes.forEach(el=>{
-            el.classList.add("hidden");
-        });
-
-        crescent.classList.remove("hidden");
-
-        return;
-    }
-
-
-    const eyePaths={
-
-        round:{
-            left:"M88 170 Q105 151 122 170 Q105 189 88 170Z",
-            right:"M178 170 Q195 151 212 170 Q195 189 178 170Z"
-        },
-
-        slim:{
-            left:"M88 170 Q105 160 122 170 Q105 180 88 170Z",
-            right:"M178 170 Q195 160 212 170 Q195 180 178 170Z"
-        },
-
-        droop:{
-            left:"M88 166 Q105 153 122 177 Q105 184 88 166Z",
-            right:"M178 177 Q195 153 212 166 Q195 184 178 177Z"
-        },
-
-        sharp:{
-            left:"M88 177 Q105 153 122 166 Q105 180 88 177Z",
-            right:"M178 166 Q195 153 212 177 Q195 180 178 166Z"
-        }
-
-    };
-
-    const p =
-        eyePaths[state.eyeShape];
-
-    leftWhite.setAttribute(
-        "d",
-        p.left
-    );
-
-    rightWhite.setAttribute(
-        "d",
-        p.right
-    );
-
-
-    /*
-      홍채 위치를 눈 모양에 맞춰 같이 이동.
-    */
-
-    let y=170;
-
-    if(state.eyeShape==="droop"){
-        y=171;
-    }
-
-    if(state.eyeShape==="sharp"){
-        y=168;
-    }
-
-    if(state.eyeShape==="slim"){
-        y=170;
-    }
-
-    leftIris.setAttribute("cy",y);
-    rightIris.setAttribute("cy",y);
-
-    leftPupil.setAttribute("cy",y);
-    rightPupil.setAttribute("cy",y);
-
-}
-
-
-/* =========================================================
-   MOUTH
-========================================================= */
-
-function updateMouth(){
-
-    document
-        .getElementById("mouthSmile")
-        .classList.add("hidden");
-
-    document
-        .getElementById("mouthNeutral")
-        .classList.add("hidden");
-
-    document
-        .getElementById("mouthSmall")
-        .classList.add("hidden");
-
-
-    if(state.expression==="smile"){
-
-        document
-            .getElementById("mouthSmile")
-            .classList.remove("hidden");
-
-    }
-
-    else if(state.expression==="neutral"){
-
-        document
-            .getElementById("mouthNeutral")
-            .classList.remove("hidden");
-
-    }
-
-    else{
-
-        document
-            .getElementById("mouthSmall")
-            .classList.remove("hidden");
-
-    }
-
-}
-
-
-/* =========================================================
-   HAIR
-========================================================= */
-
-function updateHair(){
-
-    document
-        .querySelectorAll(".hairStyle")
-        .forEach(el=>{
-            el.classList.add("hidden");
-        });
-
-
-    document
-        .getElementById(
-            "hair"+capitalize(state.hair)
-        )
-        .classList.remove("hidden");
-
-}
-
-function capitalize(str){
-
-    return str.charAt(0).toUpperCase()+str.slice(1);
-
-}
-
-
-/* =========================================================
-   BANG
-========================================================= */
-
-function updateBang(){
-
-    document
-        .querySelectorAll(".bangStyle")
-        .forEach(el=>{
-            el.classList.add("hidden");
-        });
-
-
-    if(state.bang==="none"){
-        return;
-    }
-
-    document
-        .getElementById(
-            "bang"+capitalize(
-                state.bang==="see"
-                    ? "See"
-                    : state.bang
-            )
-        )
-        .classList.remove("hidden");
-
-}
-
-
-/* =========================================================
-   OPTION BUTTONS
-========================================================= */
-
-document
-    .querySelectorAll(".option-btn[data-option]")
-    .forEach(btn=>{
-
-        btn.addEventListener("click",()=>{
-
-            const option =
-                btn.dataset.option;
-
-            const value =
-                btn.dataset.value;
-
-
-            state[option]=value;
-
-
-            document
-                .querySelectorAll(
-                    `.option-btn[data-option="${option}"]`
-                )
-                .forEach(other=>{
-                    other.classList.remove("active");
-                });
-
-            btn.classList.add("active");
-
-
-            updateCharacterColors();
-
-            updateFace();
-
-            updateEyes();
-
-            updateMouth();
-
-            updateHair();
-
-            updateBang();
-
-        });
-
-    });
-
-
-updateCharacterColors();
-updateFace();
-updateEyes();
-updateMouth();
-updateHair();
-updateBang();
-
-
-/* =========================================================
+/* =====================================================
    FASHION CARDS
-========================================================= */
+===================================================== */
 
-const cards=[
+const cards = [
 
     {
-        id:"royalTop",
-        category:"top",
-        name:"Royal Academy Top",
-        icon:"👗"
+        id:"top1",
+        cat:"top",
+        name:"로즈 아카데미 블라우스",
+        style:"rose",
+        type:"TOP"
     },
 
     {
-        id:"moonTop",
-        category:"top",
-        name:"Moonlight Top",
-        icon:"🌙"
+        id:"top2",
+        cat:"top",
+        name:"라벤더 리본 블라우스",
+        style:"lavender",
+        type:"TOP"
     },
 
     {
-        id:"starTop",
-        category:"top",
-        name:"Starlight Top",
-        icon:"⭐"
+        id:"top3",
+        cat:"top",
+        name:"미드나잇 세일러",
+        style:"navy",
+        type:"TOP"
+    },
+
+
+    {
+        id:"bottom1",
+        cat:"bottom",
+        name:"플럼 플리츠 스커트",
+        style:"plum",
+        type:"BOTTOM"
     },
 
     {
-        id:"lavenderBottom",
-        category:"bottom",
-        name:"Lavender Skirt",
-        icon:"💜"
+        id:"bottom2",
+        cat:"bottom",
+        name:"밀키 튀튀 스커트",
+        style:"tutu",
+        type:"BOTTOM"
     },
 
     {
-        id:"nightBottom",
-        category:"bottom",
-        name:"Night Ribbon Skirt",
-        icon:"🎀"
+        id:"bottom3",
+        cat:"bottom",
+        name:"로즈 체크 스커트",
+        style:"check",
+        type:"BOTTOM"
+    },
+
+
+    {
+        id:"shoes1",
+        cat:"shoes",
+        name:"크리스탈 메리제인",
+        style:"crystal",
+        type:"SHOES"
     },
 
     {
-        id:"princessBottom",
-        category:"bottom",
-        name:"Princess Skirt",
-        icon:"👑"
+        id:"shoes2",
+        cat:"shoes",
+        name:"리본 플랫폼",
+        style:"ribbon",
+        type:"SHOES"
     },
 
     {
-        id:"magicShoes",
-        category:"shoes",
-        name:"Magic Shoes",
-        icon:"👠"
+        id:"shoes3",
+        cat:"shoes",
+        name:"스타 부츠",
+        style:"boot",
+        type:"SHOES"
+    },
+
+
+    {
+        id:"accNone",
+        cat:"accessory",
+        name:"선택 안 함",
+        style:"none",
+        type:"ACCESSORY"
     },
 
     {
-        id:"starShoes",
-        category:"shoes",
-        name:"Star Heels",
-        icon:"✨"
+        id:"acc1",
+        cat:"accessory",
+        name:"문라이트 티아라",
+        style:"tiara",
+        type:"ACCESSORY"
     },
 
     {
-        id:"moonShoes",
-        category:"shoes",
-        name:"Moon Shoes",
-        icon:"🌙"
+        id:"acc2",
+        cat:"accessory",
+        name:"핑크 리본",
+        style:"ribbon",
+        type:"ACCESSORY"
     },
 
     {
-        id:"academyCrown",
-        category:"accessory",
-        name:"Academy Crown",
-        icon:"👑"
-    },
-
-    {
-        id:"magicRibbon",
-        category:"accessory",
-        name:"Magic Ribbon",
-        icon:"🎀"
-    },
-
-    {
-        id:"starWand",
-        category:"accessory",
-        name:"Star Wand",
-        icon:"🪄"
+        id:"acc3",
+        cat:"accessory",
+        name:"별꽃 헤어핀",
+        style:"flower",
+        type:"ACCESSORY"
     }
 
 ];
 
 
-const cardGrid =
-    document.getElementById("cardGrid");
+state.selected.top = "top1";
+state.selected.bottom = "bottom1";
+state.selected.shoes = "shoes1";
 
 
-function renderCards(){
+/* =====================================================
+   SCREEN NAVIGATION
+===================================================== */
 
-    cardGrid.innerHTML="";
+function go(id){
 
-    const filtered =
-        state.currentCategory==="all"
-            ? cards
-            : cards.filter(
-                card=>card.category===state.currentCategory
-            );
-
-
-    filtered.forEach(card=>{
-
-        const div =
-            document.createElement("div");
-
-        div.className="fashion-card";
-
-
-        if(
-            state.selectedCards[card.category]?.id
-            ===
-            card.id
-        ){
-
-            div.classList.add("selected");
-
-        }
-
-
-        div.innerHTML=`
-
-            ${
-                div.classList.contains("selected")
-                ? `<div class="selected-mark">SELECTED</div>`
-                : ""
-            }
-
-            <div class="card-art">
-                ${card.icon}
-            </div>
-
-            <div class="card-name">
-                ${card.name}
-            </div>
-
-            <div class="card-type">
-                ${categoryName(card.category)}
-            </div>
-
-        `;
-
-
-        div.addEventListener("click",()=>{
-
-            /*
-              카테고리당 무조건 하나만 저장.
-              기존 카드가 있으면 새 카드로 교체.
-            */
-
-            state.selectedCards[card.category]=card;
-
-            renderCards();
-            renderSummary();
-
+    document
+        .querySelectorAll(".screen")
+        .forEach(screen=>{
+            screen.classList.remove("active");
         });
 
+    document
+        .getElementById(id)
+        .classList.add("active");
 
-        cardGrid.appendChild(div);
+    if(id==="custom"){
 
-    });
+        renderControls();
+        renderCharacter("customCharacter");
 
-}
+    }
 
-
-function categoryName(category){
-
-    return {
-
-        top:"TOP",
-
-        bottom:"BOTTOM",
-
-        shoes:"SHOES",
-
-        accessory:"ACCESSORY"
-
-    }[category];
-
-}
-
-
-/* =========================================================
-   CATEGORY TABS
-========================================================= */
-
-document
-    .querySelectorAll(".category-tab")
-    .forEach(tab=>{
-
-        tab.addEventListener("click",()=>{
-
-            state.currentCategory =
-                tab.dataset.category;
-
-
-            document
-                .querySelectorAll(".category-tab")
-                .forEach(t=>{
-                    t.classList.remove("active");
-                });
-
-            tab.classList.add("active");
-
-            renderCards();
-
-        });
-
-    });
-
-
-/* =========================================================
-   SUMMARY
-========================================================= */
-
-function renderSummary(){
-
-    const summary =
-        document.getElementById("summaryItems");
-
-    summary.innerHTML="";
-
-
-    ["top","bottom","shoes","accessory"]
-        .forEach(category=>{
-
-            const card =
-                state.selectedCards[category];
-
-
-            const div =
-                document.createElement("div");
-
-            div.className="summary-item";
-
-
-            div.innerHTML=`
-
-                ${categoryName(category)}
-
-                <strong>
-                    ${
-                        card
-                        ? card.name
-                        : "선택해주세요"
-                    }
-                </strong>
-
-            `;
-
-
-            summary.appendChild(div);
-
-        });
-
-}
-
-
-/* =========================================================
-   GO CARD SCREEN
-========================================================= */
-
-document
-    .getElementById("toCardsBtn")
-    .addEventListener("click",()=>{
-
-        showScreen("cards");
+    if(id==="cards"){
 
         renderCards();
 
-        renderSummary();
+    }
 
+    window.scrollTo({
+        top:0,
+        behavior:"smooth"
     });
+}
 
 
-/* =========================================================
-   MACHINE
-========================================================= */
+/* =====================================================
+   CHARACTER FACE SHAPES
+===================================================== */
 
-document
-    .getElementById("toMachineBtn")
-    .addEventListener("click",()=>{
+function getFacePath(type){
 
-        const missing =
-            ["top","bottom","shoes","accessory"]
-            .filter(
-                category=>
-                    !state.selectedCards[category]
-            );
+    if(type==="egg"){
 
+        return `
+        M150 69
 
-        if(missing.length){
+        C111 69
+         84 97
+         84 145
 
-            alert(
-                "TOP / BOTTOM / SHOES / ACCESSORY 카드를 모두 선택해주세요."
-            );
+        C84 197
+         107 235
+         150 242
 
-            return;
-        }
+        C193 235
+         216 197
+         216 145
 
+        C216 97
+         189 69
+         150 69
 
-        /*
-          머신에 들어갈 때마다
-          이전 슬롯 상태 초기화.
-        */
+        Z
+        `;
 
-        state.inserted={
-            top:null,
-            bottom:null,
-            shoes:null,
-            accessory:null
-        };
+    }
 
 
-        showScreen("machine");
+    if(type==="round"){
 
-        renderMachineCards();
+        return `
+        M150 78
 
-        resetSlots();
+        C110 78
+         87 105
+         87 151
 
-        updateTransformButton();
+        C87 197
+         109 229
+         150 234
 
-    });
+        C191 229
+         213 197
+         213 151
 
+        C213 105
+         190 78
+         150 78
 
-/* =========================================================
-   MACHINE CARDS
-========================================================= */
+        Z
+        `;
 
-const dragCards =
-    document.getElementById("dragCards");
-
-
-function renderMachineCards(){
-
-    dragCards.innerHTML="";
-
-
-    ["top","bottom","shoes","accessory"]
-        .forEach(category=>{
-
-            const card =
-                state.selectedCards[category];
-
-            if(!card) return;
+    }
 
 
-            const div =
-                document.createElement("div");
+    return `
+    M150 69
 
-            div.className="drag-card";
+    C128 69
+     111 79
+     96 100
 
-            div.dataset.category=category;
-            div.dataset.id=card.id;
+    C87 116
+     84 140
+     87 166
+
+    C92 208
+     115 236
+     150 242
+
+    C185 236
+     208 208
+     213 166
+
+    C216 140
+     213 116
+     204 100
+
+    C189 79
+     172 69
+     150 69
+
+    Z
+    `;
+}
 
 
-            div.innerHTML=`
+/* =====================================================
+   EYES
+===================================================== */
 
-                <div class="drag-card-icon">
-                    ${card.icon}
-                </div>
+function createEye(type,cx,cy,color){
 
-                <div class="drag-card-info">
+    if(type==="crescent"){
 
-                    <strong>
-                        ${card.name}
-                    </strong>
+        return `
 
-                    <span>
-                        ${categoryName(category)}
-                    </span>
+        <path
+            d="
+            M${cx-24} ${cy+7}
+            Q${cx} ${cy-13}
+             ${cx+24} ${cy+7}
+            Q${cx} ${cy+1}
+             ${cx-24} ${cy+7}
+            Z"
+            fill="${color}"
+            opacity=".95"
+        />
 
-                </div>
+        <path
+            d="
+            M${cx-24} ${cy+7}
+            Q${cx} ${cy-13}
+             ${cx+24} ${cy+7}"
+            fill="none"
+            stroke="#61485f"
+            stroke-width="2.4"
+            stroke-linecap="round"
+        />
 
-            `;
+        <path
+            d="
+            M${cx-22} ${cy+7}
+            Q${cx-29} ${cy+11}
+             ${cx-31} ${cy+8}"
+            fill="none"
+            stroke="#61485f"
+            stroke-width="2"
+        />
+
+        <path
+            d="
+            M${cx+22} ${cy+7}
+            Q${cx+29} ${cy+11}
+             ${cx+31} ${cy+8}"
+            fill="none"
+            stroke="#61485f"
+            stroke-width="2"
+        />
+
+        `;
+
+    }
 
 
-            dragCards.appendChild(div);
+    let whitePath = "";
 
-            setupDrag(div);
 
-        });
+    if(type==="round"){
+
+        whitePath = `
+        M${cx-25} ${cy+2}
+        Q${cx} ${cy-20}
+         ${cx+25} ${cy+2}
+        Q${cx} ${cy+23}
+         ${cx-25} ${cy+2}
+        Z
+        `;
+
+    }
+
+
+    if(type==="slim"){
+
+        whitePath = `
+        M${cx-25} ${cy+2}
+        Q${cx} ${cy-8}
+         ${cx+25} ${cy+2}
+        Q${cx} ${cy+10}
+         ${cx-25} ${cy+2}
+        Z
+        `;
+
+    }
+
+
+    /*
+       진짜 처진 눈:
+       눈의 바깥쪽 끝이 아래로 내려감.
+    */
+
+    if(type==="droop"){
+
+        whitePath = `
+        M${cx-25} ${cy-1}
+
+        Q${cx-9} ${cy+5}
+         ${cx+2} ${cy+10}
+
+        Q${cx+15} ${cy+15}
+         ${cx+25} ${cy+11}
+
+        Q${cx+2} ${cy+22}
+         ${cx-25} ${cy-1}
+
+        Z
+        `;
+
+    }
+
+
+    /*
+       진짜 올라간 눈:
+       바깥쪽 끝이 위로 올라감.
+    */
+
+    if(type==="sharp"){
+
+        whitePath = `
+        M${cx-25} ${cy+7}
+
+        Q${cx-8} ${cy-10}
+         ${cx+25} ${cy-7}
+
+        Q${cx+7} ${cy+11}
+         ${cx-25} ${cy+7}
+
+        Z
+        `;
+
+    }
+
+
+    const irisY =
+        type==="droop"
+        ? cy+4
+        : type==="sharp"
+        ? cy
+        : cy+2;
+
+
+    return `
+
+    <path
+        d="${whitePath}"
+        fill="white"
+        stroke="#654c62"
+        stroke-width="2.2"
+    />
+
+    <ellipse
+        cx="${cx}"
+        cy="${irisY}"
+        rx="${type==="slim"?7:10}"
+        ry="${type==="slim"?6:12}"
+        fill="${color}"
+        stroke="#60485f"
+        stroke-width="1.3"
+    />
+
+    <ellipse
+        cx="${cx}"
+        cy="${irisY+2}"
+        rx="4"
+        ry="7"
+        fill="#211b29"
+    />
+
+    <circle
+        cx="${cx-3}"
+        cy="${irisY-4}"
+        r="3"
+        fill="white"
+    />
+
+    <circle
+        cx="${cx+3}"
+        cy="${irisY+5}"
+        r="1.4"
+        fill="white"
+    />
+
+    `;
 
 }
 
 
-/* =========================================================
-   RESET SLOTS
-========================================================= */
+/* =====================================================
+   MOUTH
+===================================================== */
 
-function resetSlots(){
+function createMouth(){
 
-    document
-        .querySelectorAll(".slot")
-        .forEach(slot=>{
+    if(state.expression==="smile"){
 
-            slot.classList.remove(
-                "filled",
-                "drag-over"
-            );
+        return `
 
-            slot.innerHTML=`
+        <path
+            d="
+            M130 202
+            Q150 220
+             170 202
 
-                <div class="slot-title">
-                    ${categoryName(
-                        slot.dataset.accept
-                    )}
+            Q167 226
+             150 230
+
+            Q133 226
+             130 202
+            Z"
+            fill="#9b506b"
+        />
+
+        <path
+            d="
+            M136 207
+            Q150 213
+             164 207
+
+            L162 212
+
+            Q150 216
+             138 212
+            Z"
+            fill="white"
+        />
+
+        <path
+            d="
+            M142 222
+            Q150 218
+             158 222
+
+            Q155 227
+             150 227
+
+            Q145 227
+             142 222
+            Z"
+            fill="#e487a2"
+        />
+
+        `;
+
+    }
+
+
+    if(state.expression==="neutral"){
+
+        return `
+
+        <path
+            d="M138 217 Q150 219 162 217"
+            fill="none"
+            stroke="#805d77"
+            stroke-width="1.8"
+            stroke-linecap="round"
+        />
+
+        `;
+
+    }
+
+
+    return `
+
+    <ellipse
+        cx="150"
+        cy="217"
+        rx="7"
+        ry="4.5"
+        fill="#a65e76"
+    />
+
+    `;
+
+}
+
+
+/* =====================================================
+   HAIR
+===================================================== */
+
+function createBackHair(){
+
+    const h = state.hairColor;
+
+
+    if(state.hair==="long"){
+
+        return `
+
+        <path
+            d="
+            M91 155
+
+            C62 123
+             65 72
+             103 43
+
+            C140 15
+             201 27
+             220 70
+
+            C239 113
+             226 170
+             209 222
+
+            C198 257
+             180 289
+             150 300
+
+            C120 289
+             102 257
+             91 222
+
+            C74 170
+             61 113
+             91 155
+            Z"
+            fill="${h}"
+            class="hair-outline"
+        />
+
+        <path
+            d="
+            M93 88
+            Q75 158 101 239"
+            fill="none"
+            stroke="#ffffff"
+            stroke-opacity=".10"
+            stroke-width="12"
+            stroke-linecap="round"
+        />
+
+        <path
+            d="
+            M207 87
+            Q225 157 199 239"
+            fill="none"
+            stroke="#ffffff"
+            stroke-opacity=".08"
+            stroke-width="9"
+            stroke-linecap="round"
+        />
+
+        `;
+
+    }
+
+
+    if(state.hair==="bob"){
+
+        return `
+
+        <path
+            d="
+            M87 158
+
+            C65 125
+             68 77
+             104 47
+
+            C139 18
+             198 28
+             219 69
+
+            C237 105
+             227 163
+             207 210
+
+            L191 230
+            L181 183
+
+            L119 183
+            L109 230
+            L93 210
+
+            C73 182
+             69 173
+             87 158
+            Z"
+            fill="${h}"
+            class="hair-outline"
+        />
+
+        `;
+
+    }
+
+
+    if(state.hair==="wave"){
+
+        return `
+
+        <path
+            d="
+            M88 154
+
+            C60 118
+             67 63
+             108 39
+
+            C149 16
+             205 33
+             222 77
+
+            C237 118
+             219 155
+             230 188
+
+            C240 216
+             223 239
+             203 222
+
+            C188 208
+             181 238
+             165 226
+
+            C149 213
+             143 244
+             127 228
+
+            C111 212
+             105 237
+             91 219
+
+            C74 197
+             77 171
+             88 154
+            Z"
+            fill="${h}"
+            class="hair-outline"
+        />
+
+        <path
+            d="
+            M86 89
+            Q72 151 96 204
+
+            M214 91
+            Q228 151 205 205"
+            fill="none"
+            stroke="white"
+            stroke-opacity=".09"
+            stroke-width="11"
+            stroke-linecap="round"
+        />
+
+        `;
+
+    }
+
+
+    if(state.hair==="pony"){
+
+        return `
+
+        <path
+            d="
+            M88 156
+
+            C64 121
+             68 67
+             107 40
+
+            C144 16
+             201 28
+             220 72
+
+            C233 105
+             226 153
+             208 191
+
+            L193 211
+            L179 181
+            L121 181
+            L107 211
+            L91 191
+            Z"
+            fill="${h}"
+            class="hair-outline"
+        />
+
+        <path
+            d="
+            M202 78
+
+            C237 64
+             271 83
+             262 122
+
+            C256 151
+             231 176
+             204 164
+
+            C218 138
+             219 106
+             202 78
+            Z"
+            fill="${h}"
+            class="hair-outline"
+        />
+
+        <path
+            d="
+            M235 91
+            Q256 114 225 149"
+            fill="none"
+            stroke="white"
+            stroke-opacity=".12"
+            stroke-width="8"
+            stroke-linecap="round"
+        />
+
+        `;
+
+    }
+
+
+    return `
+
+    <path
+        d="
+        M89 156
+
+        C63 121
+         68 66
+         107 40
+
+        C144 16
+         201 28
+         220 72
+
+        C234 108
+         225 153
+         208 191
+
+        L193 211
+        L179 181
+        L121 181
+        L107 211
+        L91 191
+        Z"
+        fill="${h}"
+        class="hair-outline"
+    />
+
+    <path
+        d="
+        M98 81
+
+        C68 69
+         41 91
+         47 126
+
+        C52 153
+         75 176
+         98 163
+
+        C85 136
+         84 107
+         98 81
+        Z"
+        fill="${h}"
+        class="hair-outline"
+    />
+
+    <path
+        d="
+        M202 81
+
+        C232 69
+         259 91
+         253 126
+
+        C248 153
+         225 176
+         202 163
+
+        C215 136
+         216 107
+         202 81
+        Z"
+        fill="${h}"
+        class="hair-outline"
+    />
+
+    `;
+
+}
+
+
+/* =====================================================
+   BANGS
+===================================================== */
+
+function createBangs(){
+
+    if(state.bang==="none"){
+        return "";
+    }
+
+    const h=state.hairColor;
+
+
+    if(state.bang==="full"){
+
+        return `
+
+        <path
+            d="
+            M87 111
+
+            Q91 65
+             150 60
+
+            Q209 65
+             213 111
+
+            Q194 94
+             180 101
+
+            Q166 121
+             150 96
+
+            Q134 121
+             120 101
+
+            Q106 94
+             87 111
+            Z"
+            fill="${h}"
+            class="hair-outline"
+        />
+
+        `;
+
+    }
+
+
+    if(state.bang==="see"){
+
+        return `
+
+        <path
+            d="
+            M88 108
+
+            Q93 65
+             150 61
+
+            Q207 65
+             212 108
+
+            Q193 94
+             179 100
+
+            Q165 111
+             150 94
+
+            Q135 111
+             121 100
+
+            Q107 94
+             88 108
+            Z"
+            fill="${h}"
+            fill-opacity=".82"
+            class="hair-outline"
+        />
+
+        <path
+            d="
+            M102 91
+            Q112 80 123 77
+
+            M130 92
+            Q141 78 150 76
+
+            M159 76
+            Q170 79 180 92
+
+            M188 77
+            Q199 81 207 92"
+            fill="none"
+            stroke="white"
+            stroke-opacity=".16"
+            stroke-width="3"
+            stroke-linecap="round"
+        />
+
+        `;
+
+    }
+
+
+    return `
+
+    <path
+        d="
+        M88 107
+
+        Q93 63
+         150 61
+
+        Q205 63
+         212 105
+
+        Q188 90
+         162 111
+
+        L150 88
+
+        L137 108
+
+        Q111 93
+         88 107
+        Z"
+        fill="${h}"
+        class="hair-outline"
+    />
+
+    `;
+
+}
+
+
+/* =====================================================
+   ACCESSORY
+===================================================== */
+
+function createAccessory(){
+
+    if(state.accessory==="none"){
+        return "";
+    }
+
+
+    if(state.accessory==="tiara"){
+
+        return `
+
+        <path
+            d="
+            M119 73
+            L128 48
+            L141 62
+            L150 42
+            L159 62
+            L172 48
+            L181 73
+
+            Q150 82
+             119 73
+            Z"
+            fill="url(#gold)"
+            class="hair-outline"
+        />
+
+        <circle
+            cx="150"
+            cy="50"
+            r="4"
+            fill="#fff2ad"
+        />
+
+        `;
+
+    }
+
+
+    if(state.accessory==="ribbon"){
+
+        return `
+
+        <path
+            d="
+            M145 73
+            Q118 54
+             107 72
+
+            Q112 92
+             145 79
+            Z"
+            fill="#d991b0"
+            class="hair-outline"
+        />
+
+        <path
+            d="
+            M155 73
+            Q182 54
+             193 72
+
+            Q188 92
+             155 79
+            Z"
+            fill="#d991b0"
+            class="hair-outline"
+        />
+
+        <circle
+            cx="150"
+            cy="76"
+            r="7"
+            fill="#ebb4ca"
+        />
+
+        `;
+
+    }
+
+
+    return `
+
+    <path
+        d="
+        M150 46
+        L154 57
+        L166 58
+        L157 66
+        L160 78
+        L150 72
+        L140 78
+        L143 66
+        L134 58
+        L146 57
+        Z"
+        fill="#e5aec4"
+        class="hair-outline"
+    />
+
+    `;
+
+}
+
+
+/* =====================================================
+   FACE
+===================================================== */
+
+function createFace(){
+
+    return `
+
+    <path
+        d="${getFacePath(state.face)}"
+        fill="${state.skin}"
+        class="face-outline"
+    />
+
+    <!-- ears -->
+    <path
+        d="
+        M87 147
+        Q72 141
+         76 161
+        Q79 174
+         87 173"
+        fill="${state.skin}"
+        class="face-outline"
+    />
+
+    <path
+        d="
+        M213 147
+        Q228 141
+         224 161
+        Q221 174
+         213 173"
+        fill="${state.skin}"
+        class="face-outline"
+    />
+
+
+    <!-- eyes -->
+
+    ${createEye(
+        state.eye,
+        115,
+        151,
+        state.eyeColor
+    )}
+
+    ${createEye(
+        state.eye,
+        185,
+        151,
+        state.eyeColor
+    )}
+
+
+    <!-- eyebrows -->
+
+    <path
+        d="M98 117 Q112 110 126 116"
+        class="soft-line"
+    />
+
+    <path
+        d="M174 116 Q188 110 202 117"
+        class="soft-line"
+    />
+
+
+    <!-- nose -->
+
+    <path
+        d="
+        M150 169
+        Q146 181
+         151 184
+        Q155 185
+         157 182"
+        class="soft-line"
+    />
+
+
+    <!-- blush -->
+
+    <ellipse
+        cx="103"
+        cy="190"
+        rx="14"
+        ry="6"
+        fill="#e88f9f"
+        opacity=".16"
+    />
+
+    <ellipse
+        cx="197"
+        cy="190"
+        rx="14"
+        ry="6"
+        fill="#e88f9f"
+        opacity=".16"
+    />
+
+
+    <!-- mouth -->
+
+    ${createMouth()}
+
+    `;
+
+}
+
+
+/* =====================================================
+   CHARACTER BODY
+===================================================== */
+
+function createCharacterSVG(){
+
+    return `
+
+    <svg
+        viewBox="0 0 300 530"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+
+        <defs>
+
+            <linearGradient
+                id="gold"
+                x1="0"
+                x2="1"
+            >
+                <stop
+                    offset="0"
+                    stop-color="#f1d38d"
+                />
+
+                <stop
+                    offset=".5"
+                    stop-color="#bf8840"
+                />
+
+                <stop
+                    offset="1"
+                    stop-color="#f1d895"
+                />
+
+            </linearGradient>
+
+        </defs>
+
+
+        <!-- back hair -->
+        ${createBackHair()}
+
+
+        <!-- neck -->
+
+        <path
+            d="
+            M127 228
+            L127 272
+            Q150 283 173 272
+            L173 228
+            Z"
+            fill="${state.skin}"
+            class="face-outline"
+        />
+
+
+        <!-- arms behind clothes -->
+
+        <path
+            d="
+            M117 268
+            Q96 282
+             92 317"
+            fill="none"
+            stroke="${state.skin}"
+            stroke-width="18"
+            stroke-linecap="round"
+        />
+
+        <path
+            d="
+            M183 268
+            Q204 282
+             208 317"
+            fill="none"
+            stroke="${state.skin}"
+            stroke-width="18"
+            stroke-linecap="round"
+        />
+
+
+        <!-- upper outfit -->
+
+        <path
+            d="
+            M115 265
+            Q150 251
+             185 265
+
+            L203 339
+
+            Q150 354
+             97 339
+
+            Z"
+            fill="${getTopColor()}"
+            stroke="#70556d"
+            stroke-width="2.2"
+        />
+
+
+        <!-- collar -->
+
+        <path
+            d="
+            M126 264
+            L150 289
+            L174 264"
+            fill="none"
+            stroke="white"
+            stroke-width="4"
+            stroke-linecap="round"
+        />
+
+
+        <!-- buttons -->
+
+        <circle
+            cx="150"
+            cy="307"
+            r="3"
+            fill="#f5dcaa"
+        />
+
+        <circle
+            cx="150"
+            cy="322"
+            r="3"
+            fill="#f5dcaa"
+        />
+
+
+        <!-- skirt -->
+
+        <path
+            d="
+            M111 329
+
+            Q150 343
+             189 329
+
+            L185 374
+
+            Q150 393
+             115 374
+
+            Z"
+            fill="${getBottomColor()}"
+            stroke="#70556d"
+            stroke-width="2.2"
+        />
+
+
+        <!-- skirt folds -->
+
+        <path
+            d="
+            M121 338
+            L123 373
+
+            M136 342
+            L137 381
+
+            M150 344
+            L150 385
+
+            M164 342
+            L163 381
+
+            M179 338
+            L177 373"
+            fill="none"
+            stroke="white"
+            stroke-opacity=".38"
+            stroke-width="2.5"
+        />
+
+
+        <!-- legs -->
+
+        <path
+            d="
+            M120 381
+            L139 381
+            L136 493
+            L111 493
+            Z"
+            fill="${state.skin}"
+            class="face-outline"
+        />
+
+        <path
+            d="
+            M161 381
+            L180 381
+            L189 493
+            L164 493
+            Z"
+            fill="${state.skin}"
+            class="face-outline"
+        />
+
+
+        <!-- socks -->
+
+        <path
+            d="
+            M111 465
+            L138 465
+            L136 495
+            L111 495
+            Z"
+            fill="#f4edf5"
+        />
+
+        <path
+            d="
+            M163 465
+            L189 465
+            L191 495
+            L165 495
+            Z"
+            fill="#f4edf5"
+        />
+
+
+        <!-- shoes -->
+
+        <path
+            d="
+            M106 488
+            Q124 480
+             141 491
+
+            L138 509
+
+            L102 509
+
+            Q96 500
+             106 488
+            Z"
+            fill="${getShoeColor()}"
+            stroke="#68536a"
+            stroke-width="2.2"
+        />
+
+        <path
+            d="
+            M160 491
+            Q177 480
+             194 488
+
+            Q204 500
+             198 509
+
+            L163 509
+
+            Z"
+            fill="${getShoeColor()}"
+            stroke="#68536a"
+            stroke-width="2.2"
+        />
+
+
+        <!-- hands -->
+
+        <circle
+            cx="105"
+            cy="319"
+            r="10"
+            fill="${state.skin}"
+        />
+
+        <circle
+            cx="195"
+            cy="319"
+            r="10"
+            fill="${state.skin}"
+        />
+
+
+        <!-- face -->
+
+        ${createFace()}
+
+
+        <!-- bangs -->
+
+        ${createBangs()}
+
+
+        <!-- accessory -->
+
+        ${createAccessory()}
+
+    </svg>
+
+    `;
+
+}
+
+
+/* =====================================================
+   OUTFIT COLORS
+===================================================== */
+
+function getTopColor(){
+
+    const id=state.selected.top;
+
+    if(id==="top2"){
+        return "#b79bd8";
+    }
+
+    if(id==="top3"){
+        return "#667ba5";
+    }
+
+    return "#cf91ad";
+}
+
+
+function getBottomColor(){
+
+    const id=state.selected.bottom;
+
+    if(id==="bottom2"){
+        return "#d8b9db";
+    }
+
+    if(id==="bottom3"){
+        return "#b77d99";
+    }
+
+    return "#8e76b7";
+}
+
+
+function getShoeColor(){
+
+    const id=state.selected.shoes;
+
+    if(id==="shoes2"){
+        return "#d18daa";
+    }
+
+    if(id==="shoes3"){
+        return "#5a536a";
+    }
+
+    return "#817093";
+}
+
+
+/* =====================================================
+   CHARACTER RENDER
+===================================================== */
+
+function renderCharacter(target){
+
+    document.getElementById(target).innerHTML =
+        createCharacterSVG();
+
+}
+
+
+/* =====================================================
+   CUSTOMIZATION OPTIONS
+===================================================== */
+
+const customizationGroups = [
+
+    [
+        "얼굴형",
+        "face",
+        [
+            ["egg","계란형"],
+            ["round","둥근형"],
+            ["heart","하트형"]
+        ]
+    ],
+
+
+    [
+        "피부톤",
+        "skin",
+        skinColors
+    ],
+
+
+    [
+        "눈 모양",
+        "eye",
+        [
+            ["round","동그란 눈"],
+            ["slim","가는 눈"],
+            ["droop","처진 눈"],
+            ["sharp","올라간 눈"],
+            ["crescent","초승달 눈"]
+        ]
+    ],
+
+
+    [
+        "눈동자",
+        "eyeColor",
+        eyeColors
+    ],
+
+
+    [
+        "표정",
+        "expression",
+        [
+            ["smile","활짝 웃음"],
+            ["neutral","무표정"],
+            ["small","작은 미소"]
+        ]
+    ],
+
+
+    [
+        "헤어스타일",
+        "hair",
+        [
+            ["long","긴 웨이브"],
+            ["bob","단발"],
+            ["wave","풍성 웨이브"],
+            ["pony","포니테일"],
+            ["twin","트윈테일"]
+        ]
+    ],
+
+
+    [
+        "앞머리",
+        "bang",
+        [
+            ["none","앞머리 없음"],
+            ["full","풀뱅"],
+            ["see","시스루"],
+            ["side","사이드"]
+        ]
+    ],
+
+
+    [
+        "헤어 컬러",
+        "hairColor",
+        hairColors
+    ],
+
+
+    [
+        "악세사리",
+        "accessory",
+        [
+            ["none","선택 안 함"],
+            ["tiara","문라이트 티아라"],
+            ["ribbon","핑크 리본"],
+            ["flower","별꽃 헤어핀"]
+        ]
+    ]
+
+];
+
+
+function renderControls(){
+
+    const container =
+        document.getElementById("controls");
+
+
+    container.innerHTML =
+        customizationGroups.map(group=>{
+
+            const title=group[0];
+            const key=group[1];
+            const options=group[2];
+
+
+            return `
+
+            <div class="group">
+
+                <div class="group-title">
+                    ${title}
                 </div>
+
+                <div class="option-grid">
+
+                    ${options.map(option=>{
+
+                        const value=option[0];
+                        const label=option[1];
+
+                        const isColor =
+                            key==="skin" ||
+                            key==="eyeColor" ||
+                            key==="hairColor";
+
+
+                        return `
+
+                        <button
+                            class="opt ${
+                                state[key]===value
+                                ? "active"
+                                : ""
+                            }"
+                            onclick="
+                                setOption(
+                                    '${key}',
+                                    '${value}'
+                                )
+                            "
+                        >
+
+                            ${
+                                isColor
+                                ?
+                                `
+                                <div
+                                    class="swatch"
+                                    style="
+                                    background:${value}
+                                    "
+                                ></div>
+                                `
+                                :
+                                ""
+                            }
+
+                            ${label}
+
+                        </button>
+
+                        `;
+
+                    }).join("")}
+
+                </div>
+
+            </div>
 
             `;
 
-        });
+        }).join("");
 
+}
+
+
+function setOption(key,value){
+
+    state[key]=value;
+
+    renderControls();
+
+    renderCharacter("customCharacter");
+
+}
+
+
+/* =====================================================
+   CARD PREVIEW SVG
+===================================================== */
+
+function cardSVG(card){
+
+    if(card.cat==="top"){
+
+        let color="#cf91ad";
+
+        if(card.style==="lavender"){
+            color="#b79bd8";
+        }
+
+        if(card.style==="navy"){
+            color="#667ba5";
+        }
+
+
+        return `
+
+        <svg
+            viewBox="0 0 300 360"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+
+            <path
+                d="
+                M82 115
+                Q150 82
+                 218 115
+
+                L200 290
+                L100 290
+                Z"
+                fill="${color}"
+                stroke="#74566e"
+                stroke-width="3"
+            />
+
+            <path
+                d="
+                M101 133
+                L150 180
+                L199 133"
+                fill="none"
+                stroke="white"
+                stroke-width="7"
+            />
+
+            <path
+                d="
+                M112 105
+                Q150 127
+                 188 105"
+                fill="none"
+                stroke="white"
+                stroke-width="9"
+                opacity=".8"
+            />
+
+            <circle
+                cx="150"
+                cy="213"
+                r="8"
+                fill="#f1d38d"
+            />
+
+        </svg>
+
+        `;
+
+    }
+
+
+    if(card.cat==="bottom"){
+
+        let color="#8e76b7";
+
+        if(card.style==="tutu"){
+            color="#d8b9db";
+        }
+
+        if(card.style==="check"){
+            color="#b77d99";
+        }
+
+
+        return `
+
+        <svg
+            viewBox="0 0 300 360"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+
+            <path
+                d="
+                M82 91
+                Q150 111
+                 218 91
+
+                L232 282
+
+                Q150 320
+                 68 282
+
+                Z"
+                fill="${color}"
+                stroke="#74566e"
+                stroke-width="3"
+            />
+
+            <path
+                d="
+                M94 138
+                L206 138
+
+                M88 184
+                L212 184
+
+                M84 230
+                L216 230"
+                stroke="white"
+                stroke-width="5"
+                opacity=".4"
+            />
+
+        </svg>
+
+        `;
+
+    }
+
+
+    if(card.cat==="shoes"){
+
+        if(card.style==="boot"){
+
+            return `
+
+            <svg
+                viewBox="0 0 300 360"
+                xmlns="http://www.w3.org/2000/svg"
+            >
+
+                <path
+                    d="
+                    M99 58
+                    L160 58
+                    L160 205
+
+                    L197 248
+
+                    Q202 268
+                     181 277
+
+                    L83 277
+
+                    Q67 268
+                     77 248
+
+                    L104 203
+                    Z"
+                    fill="#5e556c"
+                    stroke="#74566e"
+                    stroke-width="4"
+                />
+
+                <path
+                    d="
+                    M104 98
+                    L160 98"
+                    stroke="#e6c47e"
+                    stroke-width="8"
+                />
+
+            </svg>
+
+            `;
+
+        }
+
+
+        const shoeColor =
+            card.style==="ribbon"
+            ? "#cf91ad"
+            : "#8d78a0";
+
+
+        return `
+
+        <svg
+            viewBox="0 0 300 360"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+
+            <path
+                d="
+                M95 103
+                Q150 74
+                 205 103
+
+                L198 205
+
+                L220 245
+
+                Q226 267
+                 201 276
+
+                L99 276
+
+                Q75 267
+                 81 245
+
+                L102 205
+                Z"
+                fill="${shoeColor}"
+                stroke="#74566e"
+                stroke-width="4"
+            />
+
+            <path
+                d="
+                M126 124
+                Q150 146
+                 174 124"
+                fill="none"
+                stroke="#f2d58b"
+                stroke-width="7"
+            />
+
+            <circle
+                cx="150"
+                cy="137"
+                r="9"
+                fill="#fff0b7"
+            />
+
+        </svg>
+
+        `;
+
+    }
+
+
+    /* ACCESSORIES */
+
+    if(card.style==="none"){
+
+        return `
+
+        <svg
+            viewBox="0 0 300 360"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+
+            <circle
+                cx="150"
+                cy="180"
+                r="72"
+                fill="#f3edf5"
+                stroke="#d3c4d7"
+                stroke-width="3"
+            />
+
+            <path
+                d="
+                M114 144
+                L186 216
+
+                M186 144
+                L114 216"
+                stroke="#c5b2c8"
+                stroke-width="10"
+                stroke-linecap="round"
+            />
+
+        </svg>
+
+        `;
+
+    }
+
+
+    if(card.style==="tiara"){
+
+        return `
+
+        <svg
+            viewBox="0 0 300 360"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+
+            <path
+                d="
+                M75 205
+                L96 105
+                L128 148
+                L150 84
+                L172 148
+                L204 105
+                L225 205
+
+                Q150 230
+                 75 205
+                Z"
+                fill="#d9ad5c"
+                stroke="#80613e"
+                stroke-width="4"
+            />
+
+            <circle
+                cx="150"
+                cy="103"
+                r="15"
+                fill="#fff0ad"
+            />
+
+        </svg>
+
+        `;
+
+    }
+
+
+    if(card.style==="ribbon"){
+
+        return `
+
+        <svg
+            viewBox="0 0 300 360"
+            xmlns="http://www.w3.org/2000/svg"
+        >
+
+            <path
+                d="
+                M145 167
+                Q72 101
+                 70 176
+
+                Q76 232
+                 145 191
+                Z"
+                fill="#d892b1"
+                stroke="#80576e"
+                stroke-width="4"
+            />
+
+            <path
+                d="
+                M155 167
+                Q228 101
+                 230 176
+
+                Q224 232
+                 155 191
+                Z"
+                fill="#d892b1"
+                stroke="#80576e"
+                stroke-width="4"
+            />
+
+            <circle
+                cx="150"
+                cy="180"
+                r="25"
+                fill="#edb6cd"
+                stroke="#80576e"
+                stroke-width="4"
+            />
+
+        </svg>
+
+        `;
+
+    }
+
+
+    return `
+
+    <svg
+        viewBox="0 0 300 360"
+        xmlns="http://www.w3.org/2000/svg"
+    >
+
+        <path
+            d="
+            M150 70
+            L168 126
+            L227 128
+            L180 163
+            L195 221
+            L150 187
+            L105 221
+            L120 163
+            L73 128
+            L132 126
+            Z"
+            fill="#e3aec4"
+            stroke="#80576e"
+            stroke-width="4"
+        />
+
+        <circle
+            cx="150"
+            cy="150"
+            r="17"
+            fill="#fff1b5"
+        />
+
+    </svg>
+
+    `;
+
+}
+
+
+/* =====================================================
+   CARD TABS
+===================================================== */
+
+const categoryTabs=[
+
+    ["all","전체"],
+
+    ["top","상의"],
+
+    ["bottom","하의"],
+
+    ["shoes","신발"],
+
+    ["accessory","악세사리"]
+
+];
+
+
+function renderTabs(){
+
+    document.getElementById("tabs").innerHTML =
+
+        categoryTabs.map(item=>{
+
+            const value=item[0];
+            const name=item[1];
+
+            return `
+
+            <button
+                class="
+                    tab
+                    ${
+                        state.category===value
+                        ? "active"
+                        : ""
+                    }
+                "
+                onclick="
+                    state.category='${value}';
+                    renderCards();
+                "
+            >
+                ${name}
+            </button>
+
+            `;
+
+        }).join("");
+
+}
+
+
+/* =====================================================
+   CARD PAGE
+===================================================== */
+
+function renderCards(){
+
+    renderTabs();
+
+
+    const list =
+        state.category==="all"
+        ? cards
+        : cards.filter(
+            card=>card.cat===state.category
+        );
+
+
+    document.getElementById("cardGrid").innerHTML =
+
+        list.map(card=>{
+
+            const selected =
+                state.selected[card.cat]===card.id;
+
+
+            return `
+
+            <div
+                class="
+                    fashion-card
+                    ${selected?"selected":""}
+                "
+                onclick="
+                    selectCard('${card.id}')
+                "
+            >
+
+                <div class="check">
+                    ✓
+                </div>
+
+                <div class="card-art">
+                    ${cardSVG(card)}
+                </div>
+
+                <div class="card-name">
+                    ${card.name}
+                </div>
+
+                <div class="card-type">
+                    ${card.type}
+                </div>
+
+            </div>
+
+            `;
+
+        }).join("");
+
+
+    const selectedNames = [
+
+        cards.find(
+            x=>x.id===state.selected.top
+        )?.name,
+
+        cards.find(
+            x=>x.id===state.selected.bottom
+        )?.name,
+
+        cards.find(
+            x=>x.id===state.selected.shoes
+        )?.name,
+
+        cards.find(
+            x=>x.id===state.selected.accessory
+        )?.name
+
+    ];
+
+
+    document.getElementById(
+        "selectionBar"
+    ).innerHTML = `
+
+        <b>현재 선택:</b>
+        ${selectedNames.join(" · ")}
+
+    `;
+
+}
+
+
+function selectCard(id){
+
+    const card =
+        cards.find(x=>x.id===id);
+
+    if(!card){
+        return;
+    }
+
+    state.selected[card.cat]=id;
+
+    renderCards();
+
+}
+
+
+/* =====================================================
+   MACHINE
+===================================================== */
+
+function enterMachine(){
+
+    state.slots={};
+
+    renderMachine();
+
+    go("machineScreen");
+
+    renderMachine();
+
+}
+
+
+function renderMachine(){
+
+    const order=[
+        "top",
+        "bottom",
+        "shoes",
+        "accessory"
+    ];
+
+
+    /* LEFT CARD LIST */
+
+    document.getElementById("dragList").innerHTML =
+
+        order.map(cat=>{
+
+            const card =
+                cards.find(
+                    x=>x.id===state.selected[cat]
+                );
+
+
+            return `
+
+            <div
+                class="
+                    drag-card
+                    ${
+                        state.slots[cat]
+                        ? "inserted"
+                        : ""
+                    }
+                "
+                data-card="${card.id}"
+                data-cat="${cat}"
+            >
+
+                <div class="mini-art">
+                    ${cardSVG(card)}
+                </div>
+
+                <div>
+
+                    <div class="drag-name">
+                        ${card.name}
+                    </div>
+
+                    <div class="drag-type">
+                        ${card.type}
+                        ${
+                            state.slots[cat]
+                            ? " · INSERTED"
+                            : ""
+                        }
+                    </div>
+
+                </div>
+
+            </div>
+
+            `;
+
+        }).join("");
+
+
+    /* SLOTS */
+
+    document.getElementById("slots").innerHTML =
+
+        order.map(cat=>{
+
+            const card =
+                state.slots[cat]
+                ? cards.find(
+                    x=>x.id===state.slots[cat]
+                )
+                : null;
+
+
+            const categoryName =
+                cat==="top"
+                ? "상의"
+                : cat==="bottom"
+                ? "하의"
+                : cat==="shoes"
+                ? "신발"
+                : "악세사리";
+
+
+            return `
+
+            <div
+                class="
+                    slot
+                    ${card?"filled":""}
+                "
+                data-cat="${cat}"
+            >
+
+                ${
+                    card
+
+                    ?
+
+                    `
+                    <div class="slot-art">
+                        ${cardSVG(card)}
+                    </div>
+
+                    <div class="slot-label">
+                        ${card.name}
+                    </div>
+                    `
+
+                    :
+
+                    `
+                    <div
+                        style="
+                        font-size:30px;
+                        opacity:.25;
+                        "
+                    >
+                        ✦
+                    </div>
+
+                    <div class="slot-label">
+                        ${categoryName}
+                    </div>
+
+                    <div class="slot-hint">
+                        이곳에 카드를 넣어주세요
+                    </div>
+                    `
+                }
+
+            </div>
+
+            `;
+
+        }).join("");
+
+
+    const complete =
+        order.every(
+            cat=>state.slots[cat]
+        );
+
+
+    document.getElementById(
+        "transformBtn"
+    ).disabled=!complete;
+
+
+    attachDrag();
+
+}
+
+
+/* =====================================================
+   DRAG & DROP
+===================================================== */
+
+let dragging=null;
+
+
+function attachDrag(){
 
     document
         .querySelectorAll(".drag-card")
         .forEach(card=>{
-            card.classList.remove(
-                "inserted-source"
+
+            card.addEventListener(
+                "pointerdown",
+                startDrag
             );
-        });
-
-}
-
-
-/* =========================================================
-   DRAG SYSTEM
-========================================================= */
-
-let dragState=null;
-
-let ghost=null;
-
-let raf=null;
-
-
-function setupDrag(element){
-
-    element.addEventListener(
-        "pointerdown",
-        startDrag
-    );
-
-}
-
-
-function startDrag(event){
-
-    event.preventDefault();
-
-    const source=event.currentTarget;
-
-    const category =
-        source.dataset.category;
-
-
-    source.setPointerCapture(
-        event.pointerId
-    );
-
-
-    dragState={
-
-        source,
-
-        category,
-
-        pointerId:event.pointerId,
-
-        x:event.clientX,
-
-        y:event.clientY
-
-    };
-
-
-    createGhost(
-        source,
-        event.clientX,
-        event.clientY
-    );
-
-
-    source.classList.add("dragging");
-
-
-    source.addEventListener(
-        "pointermove",
-        moveDrag
-    );
-
-    source.addEventListener(
-        "pointerup",
-        endDrag,
-        {once:true}
-    );
-
-    source.addEventListener(
-        "pointercancel",
-        endDrag,
-        {once:true}
-    );
-
-}
-
-
-function moveDrag(event){
-
-    if(!dragState) return;
-
-    dragState.x=event.clientX;
-    dragState.y=event.clientY;
-
-
-    if(!raf){
-
-        raf=requestAnimationFrame(()=>{
-
-            if(ghost){
-
-                ghost.style.left =
-                    dragState.x+"px";
-
-                ghost.style.top =
-                    dragState.y+"px";
-
-            }
-
-            raf=null;
 
         });
 
+}
+
+
+function startDrag(e){
+
+    if(
+        e.pointerType==="mouse" &&
+        e.button!==0
+    ){
+        return;
     }
 
 
-    /*
-      현재 포인터 아래 슬롯 강조
-    */
+    const card=e.currentTarget;
+
+    const cardData =
+        cards.find(
+            x=>x.id===card.dataset.card
+        );
+
+
+    const ghost =
+        document.createElement("div");
+
+
+    ghost.className="ghost";
+
+    ghost.innerHTML =
+        cardSVG(cardData);
+
+
+    document.body.appendChild(ghost);
+
+
+    dragging={
+        card:card,
+        category:card.dataset.cat,
+        cardId:card.dataset.card,
+        ghost:ghost
+    };
+
+
+    moveGhost(e);
+
+
+    document.addEventListener(
+        "pointermove",
+        dragMove,
+        {passive:false}
+    );
+
+
+    document.addEventListener(
+        "pointerup",
+        dragEnd,
+        {once:true}
+    );
+
+}
+
+
+function moveGhost(e){
+
+    if(!dragging){
+        return;
+    }
+
+    dragging.ghost.style.left =
+        e.clientX+"px";
+
+    dragging.ghost.style.top =
+        e.clientY+"px";
+
+}
+
+
+function dragMove(e){
+
+    if(!dragging){
+        return;
+    }
+
+    e.preventDefault();
+
+    moveGhost(e);
+
 
     document
         .querySelectorAll(".slot")
         .forEach(slot=>{
-
-            slot.classList.remove("drag-over");
-
+            slot.classList.remove("over");
         });
 
 
     const target =
-        document.elementFromPoint(
-            event.clientX,
-            event.clientY
-        );
+        document
+            .elementFromPoint(
+                e.clientX,
+                e.clientY
+            )
+            ?.closest(".slot");
 
 
-    const slot =
-        target?.closest(".slot");
+    if(target){
 
-
-    if(
-        slot &&
-        slot.dataset.accept===dragState.category
-    ){
-
-        slot.classList.add("drag-over");
+        target.classList.add("over");
 
     }
 
 }
 
 
-function endDrag(event){
+function dragEnd(e){
 
-    if(!dragState) return;
-
-
-    const source =
-        dragState.source;
-
-    const category =
-        dragState.category;
+    if(!dragging){
+        return;
+    }
 
 
-    const x=event.clientX;
-    const y=event.clientY;
+    const current=dragging;
+
+    dragging=null;
 
 
-    const target =
-        document.elementFromPoint(x,y);
+    document.removeEventListener(
+        "pointermove",
+        dragMove
+    );
 
 
-    const slot =
-        target?.closest(".slot");
+    current.ghost.remove();
 
 
     document
         .querySelectorAll(".slot")
-        .forEach(s=>{
-            s.classList.remove("drag-over");
+        .forEach(slot=>{
+            slot.classList.remove("over");
         });
 
 
+    const target =
+        document
+            .elementFromPoint(
+                e.clientX,
+                e.clientY
+            )
+            ?.closest(".slot");
+
+
+    if(!target){
+        return;
+    }
+
+
+    const targetCat =
+        target.dataset.cat;
+
+
     if(
-        slot &&
-        slot.dataset.accept===category
+        targetCat===current.category
     ){
 
-        insertCard(
-            category,
-            state.selectedCards[category],
-            slot,
-            source
-        );
+        state.slots[targetCat]=
+            current.cardId;
+
+
+        document.getElementById(
+            "machineMsg"
+        ).textContent=
+            "카드가 슬롯에 장착되었습니다 ✦";
+
+
+        renderMachine();
 
     }
 
-    else if(slot){
+    else{
 
-        showMachineMessage(
-            "이 카드는 이 슬롯에 넣을 수 없어요 ✦"
-        );
+        document.getElementById(
+            "machineMsg"
+        ).textContent=
+            "이 카드는 다른 카테고리 슬롯에 넣어야 해요.";
 
-        slot.animate(
+        target.animate(
             [
                 {transform:"translateX(-5px)"},
                 {transform:"translateX(5px)"},
                 {transform:"translateX(-4px)"},
-                {transform:"translateX(4px)"},
                 {transform:"translateX(0)"}
             ],
             {
-                duration:260
+                duration:250
             }
         );
 
     }
 
-
-    source.classList.remove("dragging");
-
-    source.removeEventListener(
-        "pointermove",
-        moveDrag
-    );
-
-
-    if(ghost){
-
-        ghost.remove();
-
-        ghost=null;
-
-    }
-
-
-    dragState=null;
-
 }
 
 
-function createGhost(source,x,y){
-
-    ghost =
-        document.createElement("div");
-
-    ghost.className="drag-ghost";
-
-    const icon =
-        source.querySelector(
-            ".drag-card-icon"
-        )?.textContent.trim();
-
-    const title =
-        source.querySelector(
-            "strong"
-        )?.textContent.trim();
-
-
-    ghost.innerHTML=`
-
-        <div class="gicon">
-            ${icon || "✦"}
-        </div>
-
-        <strong>
-            ${title || ""}
-        </strong>
-
-    `;
-
-
-    ghost.style.left=x+"px";
-    ghost.style.top=y+"px";
-
-    document.body.appendChild(ghost);
-
-}
-
-
-/* =========================================================
-   INSERT
-========================================================= */
-
-function insertCard(
-    category,
-    card,
-    slot,
-    source
-){
-
-    /*
-      같은 카테고리 카드 하나만 존재.
-      기존 카드가 있으면 새 카드로 교체.
-    */
-
-    state.inserted[category]=card;
-
-
-    slot.classList.add("filled");
-
-
-    slot.innerHTML=`
-
-        <div class="slot-card">
-
-            <div class="slot-icon">
-                ${card.icon}
-            </div>
-
-            <strong>
-                ${card.name}
-            </strong>
-
-            <div class="slot-title">
-                INSERTED
-            </div>
-
-        </div>
-
-    `;
-
-
-    source.classList.add(
-        "inserted-source"
-    );
-
-
-    /*
-      이미 넣은 카드를 다시 끌 수 있게
-      opacity만 낮추고 실제 source는 유지.
-    */
-
-    updateTransformButton();
-
-    showMachineMessage(
-        `${categoryName(category)} 카드가 장착되었습니다 ✦`
-    );
-
-}
-
-
-/* =========================================================
-   MACHINE MESSAGE
-========================================================= */
-
-function showMachineMessage(message){
-
-    const el =
-        document.getElementById(
-            "machineMessage"
-        );
-
-    el.textContent=message;
-
-}
-
-
-/* =========================================================
-   TRANSFORM BUTTON
-========================================================= */
-
-function updateTransformButton(){
-
-    const btn =
-        document.getElementById(
-            "transformBtn"
-        );
-
-
-    const ready =
-        ["top","bottom","shoes","accessory"]
-        .every(
-            category=>
-                state.inserted[category]
-        );
-
-
-    btn.classList.toggle(
-        "ready",
-        ready
-    );
-
-
-    if(ready){
-
-        showMachineMessage(
-            "모든 카드가 준비되었습니다. 변신을 시작하세요 ✦"
-        );
-
-    }
-
-}
-
-
-/* =========================================================
+/* =====================================================
    TRANSFORMATION
-========================================================= */
+===================================================== */
 
-document
-    .getElementById("transformBtn")
-    .addEventListener("click",()=>{
+function transform(){
 
-        const ready =
-            ["top","bottom","shoes","accessory"]
-            .every(
-                category=>
-                    state.inserted[category]
-            );
-
-
-        if(!ready) return;
-
-
-        showScreen("transform");
-
-
-        setTimeout(()=>{
-
-            applyOutfit();
-
-            showScreen("result");
-
-            renderResultCharacter();
-
-        },3200);
-
-    });
-
-
-/* =========================================================
-   OUTFIT
-========================================================= */
-
-function applyOutfit(){
-
-    const top =
-        state.selectedCards.top;
-
-    const bottom =
-        state.selectedCards.bottom;
-
-    const shoes =
-        state.selectedCards.shoes;
-
-    const accessory =
-        state.selectedCards.accessory;
-
-
-    const topColors={
-
-        royalTop:"#7050a8",
-
-        moonTop:"#394c99",
-
-        starTop:"#8c4f9d"
-
-    };
-
-
-    const bottomColors={
-
-        lavenderBottom:"#a779d5",
-
-        nightBottom:"#4350a4",
-
-        princessBottom:"#d878a9"
-
-    };
-
-
-    const shoeColors={
-
-        magicShoes:"#292348",
-
-        starShoes:"#60448e",
-
-        moonShoes:"#365184"
-
-    };
-
-
-    const accessoryColors={
-
-        academyCrown:"#f5d98a",
-
-        magicRibbon:"#df78aa",
-
-        starWand:"#7db9ff"
-
-    };
-
-
-    character.style.setProperty(
-        "--top",
-        topColors[top.id] || "#7050a8"
-    );
-
-
-    character.style.setProperty(
-        "--bottom",
-        bottomColors[bottom.id] || "#a779d5"
-    );
-
-
-    character.style.setProperty(
-        "--shoe",
-        shoeColors[shoes.id] || "#292348"
-    );
-
-
-    character.style.setProperty(
-        "--accessory",
-        accessoryColors[accessory.id] || "#f5d98a"
-    );
-
-
-    /*
-      액세서리 카드는 결과 캐릭터 위에
-      작은 크라운으로 표현.
-    */
-
-    const accessoryLayer =
+    const overlay =
         document.getElementById(
-            "resultAccessory"
+            "transformOverlay"
         );
 
 
-    accessoryLayer.classList.remove(
-        "hidden"
-    );
-
-}
+    overlay.classList.add("show");
 
 
-/* =========================================================
-   RESULT
-========================================================= */
+    setTimeout(()=>{
 
-function renderResultCharacter(){
-
-    const result =
-        document.getElementById(
+        renderCharacter(
             "resultCharacter"
         );
 
 
-    result.innerHTML =
-        character.innerHTML;
+        document.getElementById(
+            "outfitList"
+        ).innerHTML = [
+
+            ["top","상의"],
+
+            ["bottom","하의"],
+
+            ["shoes","신발"],
+
+            ["accessory","악세사리"]
+
+        ].map(item=>{
+
+            const cat=item[0];
+            const name=item[1];
+
+            const card =
+                cards.find(
+                    x=>x.id===state.selected[cat]
+                );
 
 
-    result.style.setProperty(
-        "--skin",
-        state.skin
-    );
+            return `
 
-    result.style.setProperty(
-        "--eye",
-        state.eyeColor
-    );
+            <div class="outfit-row">
 
-    result.style.setProperty(
-        "--hair",
-        state.hairColor
-    );
+                <span>
+                    ${name}
+                </span>
 
-    result.style.setProperty(
-        "--hairLight",
-        lighten(state.hairColor)
-    );
+                <b>
+                    ${card.name}
+                </b>
+
+            </div>
+
+            `;
+
+        }).join("");
 
 
-    result.style.setProperty(
-        "--top",
-        getComputedStyle(character)
-            .getPropertyValue("--top")
-    );
+        overlay.classList.remove("show");
 
-    result.style.setProperty(
-        "--bottom",
-        getComputedStyle(character)
-            .getPropertyValue("--bottom")
-    );
+        go("result");
 
-    result.style.setProperty(
-        "--shoe",
-        getComputedStyle(character)
-            .getPropertyValue("--shoe")
-    );
-
-    result.style.setProperty(
-        "--accessory",
-        getComputedStyle(character)
-            .getPropertyValue("--accessory")
-    );
+    },1800);
 
 }
 
 
-/* =========================================================
-   RESTART
-========================================================= */
+/* =====================================================
+   INITIALIZE
+===================================================== */
 
-document
-    .getElementById("restartBtn")
-    .addEventListener("click",()=>{
+renderControls();
 
-        state.selectedCards={
-            top:null,
-            bottom:null,
-            shoes:null,
-            accessory:null
-        };
+renderCharacter(
+    "customCharacter"
+);
 
-
-        state.inserted={
-            top:null,
-            bottom:null,
-            shoes:null,
-            accessory:null
-        };
-
-
-        document
-            .getElementById(
-                "resultAccessory"
-            )
-            .classList.add("hidden");
-
-
-        showScreen("custom");
-
-    });
-
-
-/* =========================================================
-   INITIAL
-========================================================= */
-
-updateCharacterColors();
-updateFace();
-updateEyes();
-updateMouth();
-updateHair();
-updateBang();
+renderCards();
 
 </script>
 
