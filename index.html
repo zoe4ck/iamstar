@@ -2,764 +2,782 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>STARLIGHT IDOL DRESS UP</title>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>STAR DRESS UP</title>
 
 <style>
-:root{
-  --pink:#ff72b6;
-  --pink2:#ffb8dc;
-  --purple:#a98df5;
-  --purple2:#d8c8ff;
-  --blue:#8bdfff;
-  --yellow:#ffe77d;
-  --mint:#9be8d5;
-  --text:#765675;
-  --sub:#b08faf;
-  --white:#fff;
-  --line:#efd8ea;
-}
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700&family=Noto+Sans+KR:wght@400;500;700;900&display=swap');
 
 *{
-  box-sizing:border-box;
-}
-
-html,body{
-  margin:0;
-  min-height:100%;
-  font-family:'Noto Sans KR',sans-serif;
-  color:var(--text);
-  background:#fff7fd;
+    box-sizing:border-box;
 }
 
 body{
-  overflow-x:hidden;
+    margin:0;
+    min-height:100vh;
+    font-family:'Noto Sans KR',sans-serif;
+    background:
+        radial-gradient(circle at 20% 20%,rgba(255,255,255,.9) 0 2px,transparent 3px),
+        radial-gradient(circle at 80% 15%,rgba(255,255,255,.8) 0 2px,transparent 3px),
+        radial-gradient(circle at 70% 70%,rgba(255,255,255,.65) 0 1.5px,transparent 3px),
+        linear-gradient(135deg,#ffe9f5,#e8e6ff 45%,#dff6ff);
+    background-size:180px 180px,220px 220px,150px 150px,100% 100%;
+    color:#55436e;
 }
 
 button{
-  font:inherit;
-  border:0;
-  cursor:pointer;
+    font-family:inherit;
 }
 
-button:active{
-  transform:scale(.97);
-}
-
-#app{
-  min-height:100vh;
-  position:relative;
-  overflow:hidden;
-  background:
-    radial-gradient(circle at 10% 10%,#fff 0 7%,transparent 25%),
-    radial-gradient(circle at 90% 15%,#ffe1f1 0 8%,transparent 25%),
-    linear-gradient(180deg,#fffaff,#fff3fa 55%,#f0edff);
-}
-
-/* 별 */
-.bg-star{
-  position:fixed;
-  pointer-events:none;
-  z-index:0;
-  animation:twinkle 2.4s ease-in-out infinite;
-}
-
-.bg-star:nth-child(2n){
-  color:#a9e8ff;
-  animation-delay:.7s;
-}
-
-.bg-star:nth-child(3n){
-  color:#d2a9ff;
-  animation-delay:1.2s;
-}
-
-@keyframes twinkle{
-  0%,100%{
-    opacity:.25;
-    transform:scale(.7) rotate(0);
-  }
-  50%{
-    opacity:1;
-    transform:scale(1.15) rotate(20deg);
-  }
-}
-
-/* 화면 */
 .screen{
-  display:none;
-  min-height:100vh;
-  position:relative;
-  z-index:1;
+    display:none;
+    min-height:100vh;
 }
 
 .screen.active{
-  display:block;
+    display:flex;
 }
 
 /* =========================
-   INTRO
+   START
 ========================= */
 
-.intro{
-  display:grid;
-  place-items:center;
-  min-height:100vh;
-  text-align:center;
-  padding:30px;
-  background:
-    radial-gradient(circle at 50% 28%,#fff 0 13%,#ffe6f4 36%,#e8dcff 70%,#ccefff);
+#startScreen{
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    overflow:hidden;
 }
 
-.intro-box{
-  position:relative;
-  width:min(700px,94vw);
-  padding:65px 30px;
-  border:2px solid #fff;
-  border-radius:55px;
-  background:#ffffff66;
-  backdrop-filter:blur(12px);
-  box-shadow:
-    inset 0 0 60px #fff,
-    0 30px 90px #c18eb544;
+.startDecor{
+    position:absolute;
+    inset:0;
+    pointer-events:none;
 }
 
-.logo-small{
-  font-family:Fredoka;
-  font-size:15px;
-  letter-spacing:5px;
-  color:#a184b5;
+.star{
+    position:absolute;
+    color:#fff;
+    font-size:28px;
+    animation:floatStar 3s ease-in-out infinite;
+    text-shadow:0 0 12px #fff;
+}
+
+.star:nth-child(1){left:12%;top:18%;}
+.star:nth-child(2){right:15%;top:25%;font-size:20px;animation-delay:.5s;}
+.star:nth-child(3){left:20%;bottom:22%;font-size:18px;animation-delay:1s;}
+.star:nth-child(4){right:23%;bottom:18%;font-size:30px;animation-delay:1.5s;}
+
+@keyframes floatStar{
+    0%,100%{transform:translateY(0) scale(1);}
+    50%{transform:translateY(-12px) scale(1.12);}
+}
+
+.startBox{
+    width:min(720px,90%);
+    padding:65px 35px 55px;
+    text-align:center;
+    background:rgba(255,255,255,.75);
+    border:3px solid white;
+    border-radius:42px;
+    box-shadow:
+        0 25px 70px rgba(123,91,157,.18),
+        inset 0 0 40px rgba(255,255,255,.8);
+    backdrop-filter:blur(12px);
+    position:relative;
+}
+
+.logoSmall{
+    font-family:'Baloo 2',sans-serif;
+    color:#c69adf;
+    letter-spacing:6px;
+    font-size:18px;
+    font-weight:700;
 }
 
 .logo{
-  margin:10px 0 0;
-  font-family:Fredoka;
-  font-size:clamp(55px,12vw,105px);
-  line-height:.85;
-  letter-spacing:-5px;
-  color:white;
-  text-shadow:
-    0 4px 0 #ff8dc5,
-    0 10px 25px #d69bd088;
+    margin:4px 0 5px;
+    font-family:'Baloo 2',sans-serif;
+    font-size:72px;
+    line-height:1;
+    font-weight:700;
+    background:linear-gradient(90deg,#ff9bc7,#a990ed,#72c9ee);
+    -webkit-background-clip:text;
+    color:transparent;
+    filter:drop-shadow(0 4px 3px rgba(130,90,170,.12));
 }
 
-.logo span{
-  color:#fff28a;
-  text-shadow:
-    0 3px 0 #ff91c4,
-    0 8px 20px #d69bd088;
+.logoSub{
+    color:#8b769d;
+    font-size:15px;
+    letter-spacing:4px;
 }
 
-.intro-sub{
-  margin:28px 0 34px;
-  color:#9878a5;
-  letter-spacing:2px;
-  font-size:13px;
+.startButton{
+    margin-top:45px;
+    width:230px;
+    padding:17px 30px;
+    border:0;
+    border-radius:999px;
+    background:linear-gradient(90deg,#ff9fca,#b9a1f4,#8bd7ed);
+    color:white;
+    font-size:19px;
+    font-weight:900;
+    letter-spacing:3px;
+    cursor:pointer;
+    box-shadow:0 10px 25px rgba(167,120,204,.3);
+    transition:.25s;
 }
 
-.start-btn{
-  position:relative;
-  padding:18px 58px;
-  border-radius:999px;
-  background:linear-gradient(90deg,var(--pink),var(--purple));
-  color:#fff;
-  font-family:Fredoka;
-  font-size:23px;
-  font-weight:700;
-  box-shadow:
-    0 12px 30px #bb83d655,
-    0 0 0 6px #ffffffaa;
-}
-
-.start-btn::before{
-  content:"✦";
-  position:absolute;
-  left:20px;
-}
-
-.start-btn::after{
-  content:"✦";
-  position:absolute;
-  right:20px;
+.startButton:hover{
+    transform:translateY(-4px) scale(1.03);
 }
 
 /* =========================
    COMMON
 ========================= */
 
-.topbar{
-  height:74px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  padding:12px 22px;
-  position:sticky;
-  top:0;
-  z-index:50;
-  background:#fffdfde8;
-  backdrop-filter:blur(15px);
-  border-bottom:1px solid #f2dce9;
+.page{
+    width:min(1250px,95%);
+    margin:auto;
+    padding:25px 0 45px;
 }
 
-.brand{
-  font-family:Fredoka;
-  color:#ff70b2;
-  font-size:23px;
-  text-shadow:0 2px #fff;
+.topTitle{
+    text-align:center;
+    margin-bottom:25px;
 }
 
-.step{
-  font-size:11px;
-  color:#ae91b7;
-  font-weight:800;
-  letter-spacing:1px;
+.topTitle h1{
+    margin:0;
+    color:#8e68ae;
+    font-family:'Baloo 2',sans-serif;
+    font-size:34px;
 }
 
-.back-btn{
-  padding:9px 15px;
-  border-radius:999px;
-  color:#96759f;
-  background:#fff;
-  border:1px solid var(--line);
-  font-weight:700;
+.topTitle p{
+    margin:3px 0 0;
+    color:#a18cac;
+    font-size:13px;
 }
 
-.content{
-  width:min(1250px,100%);
-  margin:auto;
-  padding:30px 20px 70px;
+.nextButton{
+    border:0;
+    border-radius:999px;
+    padding:14px 35px;
+    color:white;
+    background:linear-gradient(90deg,#f6a2ca,#b99aed);
+    font-weight:900;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(150,110,190,.2);
 }
 
-.title{
-  text-align:center;
-  margin-bottom:25px;
-}
-
-.title h2{
-  margin:0 0 5px;
-  font-family:Fredoka;
-  color:#78577f;
-  font-size:36px;
-}
-
-.title p{
-  margin:0;
-  font-size:13px;
-  color:#ae91b7;
-}
-
-.panel{
-  background:#ffffffdd;
-  border:1px solid #f1dce9;
-  border-radius:30px;
-  box-shadow:0 20px 60px #ba8bb520;
-  padding:20px;
+.nextButton:disabled{
+    opacity:.35;
+    cursor:not-allowed;
 }
 
 /* =========================
-   CUSTOMIZATION
+   CUSTOMIZE
 ========================= */
 
-.custom-layout{
-  display:grid;
-  grid-template-columns:380px 1fr;
-  gap:25px;
-  align-items:start;
+.customLayout{
+    display:grid;
+    grid-template-columns:250px 1fr 250px;
+    gap:20px;
+    align-items:start;
 }
 
-.preview{
-  position:sticky;
-  top:95px;
-  border-radius:32px;
-  border:2px solid #f4d8e9;
-  background:
-    radial-gradient(circle at 50% 20%,#fff,#fff0f8 65%,#eee7ff);
-  padding:15px;
-  box-shadow:0 20px 60px #bb8fb72b;
+.optionPanel{
+    background:rgba(255,255,255,.78);
+    border:2px solid white;
+    border-radius:25px;
+    padding:17px;
+    box-shadow:0 12px 35px rgba(120,90,150,.1);
 }
 
-.preview-title{
-  text-align:center;
-  font-family:Fredoka;
-  font-size:12px;
-  letter-spacing:2px;
-  color:#dc86b4;
-  margin-bottom:5px;
+.optionTitle{
+    color:#9974b3;
+    font-weight:900;
+    margin-bottom:10px;
 }
 
-.character-stage{
-  height:630px;
-  display:grid;
-  place-items:center;
-  position:relative;
+.optionGroup{
+    margin-bottom:20px;
 }
 
-.character-stage::after{
-  content:"";
-  position:absolute;
-  bottom:25px;
-  width:175px;
-  height:28px;
-  border-radius:50%;
-  background:#ad83c633;
-  filter:blur(8px);
+.optionGroup label{
+    display:block;
+    color:#a28daa;
+    font-size:12px;
+    font-weight:700;
+    margin-bottom:7px;
 }
 
-.character{
-  width:300px;
-  height:640px;
-  position:relative;
-  z-index:2;
-  filter:drop-shadow(0 20px 18px #80537d22);
+.optionGrid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:6px;
 }
 
-.character svg{
-  width:100%;
-  height:100%;
-  overflow:visible;
+.opt{
+    border:2px solid transparent;
+    background:#fff;
+    border-radius:13px;
+    padding:5px 3px;
+    cursor:pointer;
+    color:#6f5b7e;
+    font-size:11px;
+    min-height:47px;
+    transition:.2s;
 }
 
-/* 컨트롤 */
-.controls{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:13px;
+.opt:hover{
+    transform:translateY(-2px);
 }
 
-.control{
-  padding:14px;
-  background:#fff;
-  border:1px solid #f0dce9;
-  border-radius:20px;
+.opt.selected{
+    border-color:#dc9ac8;
+    background:#fff1f8;
+    box-shadow:0 4px 10px rgba(200,130,180,.15);
 }
 
-.control.full{
-  grid-column:1/-1;
+.characterArea{
+    min-height:720px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
 }
 
-.control h3{
-  margin:0 0 10px;
-  font-size:13px;
-  color:#896b95;
+.characterStage{
+    width:430px;
+    height:690px;
+    position:relative;
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
 }
 
-.options{
-  display:flex;
-  flex-wrap:wrap;
-  gap:7px;
+.characterSVG{
+    width:430px;
+    height:690px;
+    overflow:visible;
 }
 
-.option{
-  padding:9px 12px;
-  border-radius:13px;
-  background:#fff8fc;
-  border:1px solid #efd9e9;
-  color:#927399;
-  font-size:12px;
-  font-weight:700;
-}
-
-.option.active{
-  color:white;
-  border-color:transparent;
-  background:linear-gradient(135deg,#ff83bc,#ad94fa);
-  box-shadow:0 5px 14px #d48eb544;
-}
-
-.color{
-  width:31px;
-  height:31px;
-  padding:0;
-  border-radius:50%;
-  border:3px solid white;
-  box-shadow:0 0 0 1px #ead8e7;
-}
-
-.color.active{
-  box-shadow:0 0 0 3px #ff83b9;
-}
-
-.continue{
-  width:100%;
-  margin-top:16px;
-  padding:15px;
-  border-radius:17px;
-  color:#fff;
-  font-weight:900;
-  background:linear-gradient(90deg,#ff82bb,#a38df6);
-  box-shadow:0 10px 25px #bd8bdd44;
+.previewLabel{
+    margin-top:-5px;
+    color:#a38aac;
+    font-size:12px;
 }
 
 /* =========================
-   CARD SELECT
+   SVG
 ========================= */
 
-.filters{
-  display:flex;
-  justify-content:center;
-  flex-wrap:wrap;
-  gap:8px;
-  margin-bottom:18px;
+.skin{
+    fill:#f8d5c1;
+    stroke:#4e3b4e;
+    stroke-width:2.5;
+    stroke-linejoin:round;
 }
 
-.filter{
-  padding:9px 15px;
-  border-radius:999px;
-  background:#fff;
-  color:#98759f;
-  border:1px solid #efd8e8;
-  font-size:12px;
-  font-weight:800;
+.bodyLine{
+    fill:#f8d5c1;
+    stroke:#4e3b4e;
+    stroke-width:2.5;
+    stroke-linejoin:round;
+    stroke-linecap:round;
 }
 
-.filter.active{
-  background:#ff7eb9;
-  color:#fff;
-  border-color:#ff7eb9;
+.face{
+    fill:#f8d5c1;
+    stroke:#4e3b4e;
+    stroke-width:2.6;
 }
 
-.note{
-  text-align:center;
-  font-size:12px;
-  color:#ad8bb4;
-  margin-bottom:18px;
+.hair{
+    fill:#473345;
+    stroke:#39293c;
+    stroke-width:2.8;
+    stroke-linejoin:round;
 }
 
-.cards{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
+.hairLight{
+    fill:none;
+    stroke:#806077;
+    stroke-width:2;
+    opacity:.6;
+    stroke-linecap:round;
 }
 
-.fashion-card{
-  position:relative;
-  padding:11px;
-  background:linear-gradient(145deg,#fff,#fff6fc);
-  border:1px solid #efd7e9;
-  border-radius:22px;
-  cursor:pointer;
-  transition:.18s;
-  box-shadow:0 9px 22px #bd91b21a;
+.eyeWhite{
+    fill:white;
 }
 
-.fashion-card:hover{
-  transform:translateY(-4px);
+.eyeLine{
+    fill:none;
+    stroke:#39283d;
+    stroke-width:4;
+    stroke-linecap:round;
+    stroke-linejoin:round;
 }
 
-.fashion-card.selected{
-  border:2px solid #ff78b7;
-  box-shadow:
-    0 0 0 5px #ffb4d733,
-    0 15px 30px #bd91b238;
+.eyeDetail{
+    fill:#5a365f;
 }
 
-.fashion-card.selected::after{
-  content:"✓";
-  position:absolute;
-  top:8px;
-  right:8px;
-  width:27px;
-  height:27px;
-  display:grid;
-  place-items:center;
-  border-radius:50%;
-  color:#fff;
-  background:#ff78b7;
-  font-weight:900;
+.eyeHighlight{
+    fill:white;
 }
 
-.mini{
-  height:160px;
-  display:grid;
-  place-items:center;
-  overflow:hidden;
-  border-radius:17px;
-  background:
-    radial-gradient(circle at 50% 25%,#fff,#fdf0fa 60%,#eee8ff);
+.brow{
+    fill:none;
+    stroke:#553848;
+    stroke-width:4;
+    stroke-linecap:round;
 }
 
-.mini svg{
-  width:110px;
-  height:150px;
+/* =========================
+   FACE SHAPES
+========================= */
+
+.faceEgg{
+    d:path("M215 82
+            C166 82 139 119 139 177
+            C139 235 166 283 215 295
+            C264 283 291 235 291 177
+            C291 119 264 82 215 82 Z");
 }
 
-.fashion-card h4{
-  margin:9px 2px 2px;
-  font-size:13px;
-  color:#765579;
+.faceRound{
+    d:path("M215 88
+            C164 88 135 123 135 183
+            C135 241 168 286 215 286
+            C262 286 295 241 295 183
+            C295 123 266 88 215 88 Z");
 }
 
-.fashion-card p{
-  margin:0 2px;
-  font-size:10px;
-  color:#b193b8;
+.faceHeart{
+    d:path("M215 291
+            C194 279 153 252 145 207
+            C136 157 157 113 188 106
+            C201 103 210 110 215 121
+            C220 110 229 103 242 106
+            C273 113 294 157 285 207
+            C277 252 236 279 215 291 Z");
 }
 
-.next{
-  display:flex;
-  justify-content:center;
-  margin-top:25px;
+/* ears */
+
+.ear{
+    fill:#f8d5c1;
+    stroke:#4e3b4e;
+    stroke-width:2.5;
 }
 
-.next button{
-  padding:14px 38px;
-  border-radius:999px;
-  color:#fff;
-  font-weight:900;
-  background:linear-gradient(90deg,#ff83bb,#a18cff);
+/* =========================
+   BANGS
+========================= */
+
+.bangFull{
+    fill:#473345;
+    stroke:#39293c;
+    stroke-width:2.8;
+    d:path("M137 150
+            C137 92 164 58 215 58
+            C266 58 293 92 293 150
+            L283 168
+            C274 160 267 147 260 129
+            L254 170
+            C244 176 234 170 230 128
+            L221 170
+            C212 175 202 172 198 128
+            L188 169
+            C178 171 167 164 164 128
+            C157 146 149 160 137 150 Z");
+}
+
+.bangSee{
+    fill:#473345;
+    stroke:#39293c;
+    stroke-width:2.8;
+    d:path("M139 147
+            C141 94 167 62 215 62
+            C263 62 289 94 291 147
+            C279 140 268 126 258 110
+            C252 133 245 148 234 156
+            L227 111
+            C219 135 209 151 198 157
+            L195 111
+            C185 134 174 147 162 151
+            L162 112
+            C154 128 147 139 139 147 Z");
+}
+
+.bangNone{
+    display:none;
+}
+
+.sideBang{
+    fill:#473345;
+    stroke:#39293c;
+    stroke-width:2.8;
+    d:path("M138 146
+            C140 91 166 61 215 61
+            C266 61 291 96 291 147
+            C280 141 267 130 256 111
+            C251 139 242 159 229 173
+            C237 139 237 111 229 91
+            C211 119 190 139 166 147
+            C159 153 147 152 138 146 Z");
+}
+
+/* =========================
+   BACK HAIR
+========================= */
+
+.backWave{
+    fill:#473345;
+    stroke:#39293c;
+    stroke-width:2.8;
+    d:path("M137 150
+            C128 112 147 72 181 59
+            C219 44 267 58 286 92
+            C298 113 294 142 289 162
+            C281 194 294 224 279 256
+            C271 274 260 281 251 291
+            C253 266 244 248 230 236
+            C224 259 214 280 200 290
+            C198 267 187 249 174 238
+            C165 258 151 271 137 274
+            C147 251 147 228 137 210
+            C126 190 125 169 137 150 Z");
+}
+
+.backBob{
+    fill:#473345;
+    stroke:#39293c;
+    stroke-width:2.8;
+    d:path("M137 158
+            C137 98 165 63 215 63
+            C265 63 293 98 293 158
+            L283 226
+            C271 238 260 244 249 245
+            C251 225 246 204 239 185
+            C231 210 224 227 215 237
+            C206 227 199 210 191 185
+            C184 204 179 225 181 245
+            C170 244 159 238 147 226 Z");
+}
+
+/* =========================
+   EYES
+========================= */
+
+.eyeRoundLeft,
+.eyeRoundRight{
+    fill:white;
+    stroke:#39283d;
+    stroke-width:3;
+}
+
+.eyeRoundLeft{
+    d:path("M166 177 C174 161 195 161 203 177 C196 194 174 194 166 177 Z");
+}
+
+.eyeRoundRight{
+    d:path("M227 177 C235 161 256 161 264 177 C256 194 235 194 227 177 Z");
+}
+
+.eyeUpLeft{
+    fill:white;
+    stroke:#39283d;
+    stroke-width:3;
+    d:path("M165 181 C174 163 193 158 204 171 C193 166 177 169 165 181 Z");
+}
+
+.eyeUpRight{
+    fill:white;
+    stroke:#39283d;
+    stroke-width:3;
+    d:path("M226 171 C237 158 256 163 265 181 C253 169 237 166 226 171 Z");
+}
+
+.eyeCrescentLeft{
+    fill:#39283d;
+    d:path("M165 179
+            C174 164 193 164 204 177
+            C193 174 177 174 165 179 Z");
+}
+
+.eyeCrescentRight{
+    fill:#39283d;
+    d:path("M226 177
+            C237 164 256 164 265 179
+            C253 174 237 174 226 177 Z");
+}
+
+/* iris */
+
+.iris{
+    fill:#8b5e99;
+    stroke:#39283d;
+    stroke-width:2;
+}
+
+.pupil{
+    fill:#35253b;
+}
+
+.highlight{
+    fill:white;
+}
+
+/* eyelashes */
+
+.lash{
+    fill:none;
+    stroke:#39283d;
+    stroke-width:3;
+    stroke-linecap:round;
+}
+
+/* =========================
+   BODY
+========================= */
+
+.bodyBase{
+    fill:#f8d5c1;
+    stroke:#4e3b4e;
+    stroke-width:2.5;
+}
+
+.bodyTop{
+    fill:#fff;
+    stroke:#4e3b4e;
+    stroke-width:2.5;
+}
+
+.bodyBottom{
+    fill:#fff;
+    stroke:#4e3b4e;
+    stroke-width:2.5;
+}
+
+/* =========================
+   OPTION MINI PREVIEWS
+========================= */
+
+.miniFace{
+    width:40px;
+    height:38px;
+}
+
+.miniHair{
+    width:45px;
+    height:40px;
+}
+
+.miniEye{
+    width:45px;
+    height:30px;
+}
+
+/* =========================
+   CARD PAGE
+========================= */
+
+.cardPage{
+    width:min(1200px,95%);
+    margin:auto;
+    padding:25px 0 45px;
+}
+
+.cardCategories{
+    display:flex;
+    justify-content:center;
+    gap:8px;
+    flex-wrap:wrap;
+    margin-bottom:20px;
+}
+
+.categoryBtn{
+    border:2px solid white;
+    background:rgba(255,255,255,.75);
+    color:#876d9a;
+    padding:9px 18px;
+    border-radius:999px;
+    cursor:pointer;
+    font-weight:700;
+}
+
+.categoryBtn.active{
+    background:#eab0d2;
+    color:white;
+}
+
+.cardGrid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(190px,1fr));
+    gap:15px;
+}
+
+.fashionCard{
+    background:rgba(255,255,255,.88);
+    border:3px solid transparent;
+    border-radius:22px;
+    padding:12px;
+    cursor:pointer;
+    transition:.2s;
+    box-shadow:0 8px 25px rgba(120,90,150,.1);
+}
+
+.fashionCard:hover{
+    transform:translateY(-5px);
+}
+
+.fashionCard.selected{
+    border-color:#df91bf;
+    box-shadow:0 0 0 4px rgba(223,145,191,.12);
+}
+
+.cardVisual{
+    height:180px;
+    border-radius:15px;
+    background:linear-gradient(145deg,#fff2fa,#edf1ff);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:70px;
+}
+
+.cardName{
+    font-weight:900;
+    color:#71547e;
+    margin-top:10px;
+}
+
+.cardType{
+    color:#ae91b7;
+    font-size:11px;
 }
 
 /* =========================
    MACHINE
 ========================= */
 
-.machine-layout{
-  display:grid;
-  grid-template-columns:1fr 450px;
-  gap:25px;
-  align-items:center;
+.machineLayout{
+    display:grid;
+    grid-template-columns:1fr 420px;
+    gap:25px;
+    align-items:start;
 }
 
-.deck{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:12px;
+.selectedDeck{
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
 }
 
-.deck-card{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  padding:10px;
-  background:#fff;
-  border:1px solid #ecd7e8;
-  border-radius:17px;
-  cursor:grab;
-  touch-action:none;
-  user-select:none;
-  box-shadow:0 8px 20px #bd91b21a;
+.selectedCard{
+    background:white;
+    border-radius:18px;
+    padding:12px;
+    box-shadow:0 8px 25px rgba(120,90,150,.1);
+    cursor:grab;
+    touch-action:none;
 }
 
-.deck-card.used{
-  opacity:.3;
+.selectedCard.dragging{
+    position:fixed;
+    z-index:1000;
+    width:150px;
+    pointer-events:none;
+    transform:rotate(4deg) scale(1.05);
+    box-shadow:0 15px 35px rgba(100,70,120,.25);
 }
 
-.thumb{
-  width:65px;
-  height:78px;
-  display:grid;
-  place-items:center;
-  border-radius:12px;
-  background:#fff3fa;
-}
-
-.thumb svg{
-  width:52px;
-  height:68px;
-}
-
-.deck-card b{
-  font-size:12px;
-}
-
-.deck-card span{
-  display:block;
-  margin-top:3px;
-  color:#ae91b7;
-  font-size:10px;
-}
-
-.machine{
-  padding:20px;
-  border-radius:36px;
-  background:linear-gradient(180deg,#fff,#fff1f9);
-  border:2px solid #efcce4;
-  box-shadow:0 25px 70px #bc87b43d;
-}
-
-.machine-title{
-  text-align:center;
-  font-family:Fredoka;
-  color:#d879ad;
-  letter-spacing:1px;
-}
-
-.machine-ring{
-  width:290px;
-  height:290px;
-  margin:15px auto;
-  padding:30px;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  grid-template-rows:1fr 1fr;
-  gap:10px;
-  position:relative;
-  border-radius:50%;
-  border:4px solid white;
-  background:
-    radial-gradient(circle,#fff 0 33%,#ffe7f4 34% 47%,#d9c5ff 48% 50%,#fff4fc 51%);
-  box-shadow:
-    0 0 0 2px #edcce5,
-    0 0 40px #ff9fd34d;
-}
-
-.machine-ring::before{
-  content:"✦";
-  position:absolute;
-  inset:0;
-  display:grid;
-  place-items:center;
-  color:#ff9ac7;
-  font-size:30px;
+.slotMachine{
+    padding:25px;
+    border-radius:30px;
+    background:linear-gradient(145deg,#fff,#f5eaff);
+    border:4px solid #e2c8ee;
+    box-shadow:0 15px 45px rgba(120,90,150,.18);
 }
 
 .slot{
-  position:relative;
-  z-index:2;
-  min-height:82px;
-  display:grid;
-  place-items:center;
-  text-align:center;
-  border:2px dashed #d7b9d9;
-  border-radius:15px;
-  background:#fff9fd;
-  color:#b08db2;
-  font-size:11px;
-  font-weight:800;
+    height:100px;
+    margin:10px 0;
+    border:3px dashed #d4b9df;
+    border-radius:18px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    color:#b59bc0;
+    background:rgba(255,255,255,.5);
+    transition:.2s;
+}
+
+.slot.hover{
+    background:#fff1fa;
+    border-color:#e59bc7;
 }
 
 .slot.filled{
-  border-style:solid;
-  border-color:#ff8bbd;
-  background:#fff0f8;
-}
-
-.slot svg{
-  width:60px;
-  height:68px;
-}
-
-.transform{
-  width:100%;
-  padding:15px;
-  border-radius:18px;
-  color:#fff;
-  font-weight:900;
-  background:linear-gradient(90deg,#ff80bb,#a28cff);
-  box-shadow:0 9px 25px #bd89db55;
-}
-
-.transform:disabled{
-  opacity:.4;
-  filter:grayscale(.3);
+    border-style:solid;
+    border-color:#dba2cb;
+    color:#76587f;
 }
 
 /* =========================
-   RESULT
+   TRANSFORMATION
 ========================= */
 
-.result{
-  min-height:calc(100vh - 74px);
-  display:grid;
-  place-items:center;
-  padding:30px;
-  background:
-    radial-gradient(circle at 50% 45%,#fff 0 12%,#ffe5f3 32%,#ddd2ff 68%,#c9ecff);
+#transformOverlay{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:none;
+    align-items:center;
+    justify-content:center;
+    background:
+        radial-gradient(circle,#fff 0%,rgba(255,230,250,.95) 18%,rgba(170,143,225,.9) 55%,rgba(88,66,135,.98) 100%);
 }
 
-.result-box{
-  width:min(850px,95vw);
-  padding:35px;
-  text-align:center;
-  border-radius:45px;
-  background:#ffffffbb;
-  border:2px solid white;
-  box-shadow:0 25px 90px #ac82c944;
-  backdrop-filter:blur(15px);
+#transformOverlay.show{
+    display:flex;
+    animation:magicIn .5s ease forwards;
 }
 
-.result h2{
-  margin:0;
-  font-family:Fredoka;
-  color:#ff73b5;
-  font-size:45px;
+.magicCircle{
+    width:350px;
+    height:350px;
+    border:4px solid rgba(255,255,255,.9);
+    border-radius:50%;
+    box-shadow:
+        0 0 30px white,
+        0 0 80px #ffc9ed,
+        inset 0 0 40px white;
+    animation:spinMagic 1.8s linear infinite;
 }
 
-.result p{
-  color:#9c7aa7;
+.magicText{
+    position:absolute;
+    color:white;
+    font-family:'Baloo 2',sans-serif;
+    font-size:34px;
+    font-weight:700;
+    letter-spacing:5px;
 }
 
-.result-character{
-  width:320px;
-  height:650px;
-  margin:0 auto;
+@keyframes spinMagic{
+    to{transform:rotate(360deg);}
 }
 
-.restart{
-  padding:14px 30px;
-  border-radius:999px;
-  color:white;
-  font-weight:900;
-  background:linear-gradient(90deg,#ff83bb,#a18cff);
-}
-
-/* =========================
-   MAGIC
-========================= */
-
-.magic{
-  position:fixed;
-  inset:0;
-  z-index:1000;
-  display:none;
-  place-items:center;
-  background:#fff6fcdd;
-  backdrop-filter:blur(5px);
-}
-
-.magic.show{
-  display:grid;
-  animation:magicBg 2s ease both;
-}
-
-.magic-circle{
-  width:310px;
-  height:310px;
-  border-radius:50%;
-  border:5px solid #fff;
-  box-shadow:
-    0 0 0 8px #ffb8dc,
-    0 0 0 14px #bca6ff,
-    0 0 80px #ff7ecb;
-  animation:spin 2s linear infinite;
-}
-
-.magic-text{
-  position:absolute;
-  font-family:Fredoka;
-  font-size:34px;
-  color:#ff71b6;
-  text-shadow:0 3px #fff;
-  animation:pulse 1s infinite alternate;
-}
-
-@keyframes spin{
-  to{transform:rotate(360deg)}
-}
-
-@keyframes pulse{
-  from{transform:scale(.9)}
-  to{transform:scale(1.1)}
-}
-
-@keyframes magicBg{
-  0%{opacity:0}
-  15%,85%{opacity:1}
-  100%{opacity:0}
+@keyframes magicIn{
+    from{opacity:0;}
+    to{opacity:1;}
 }
 
 /* =========================
@@ -767,2476 +785,1393 @@ button:active{
 ========================= */
 
 @media(max-width:900px){
+    .customLayout{
+        grid-template-columns:1fr;
+    }
 
-  .custom-layout{
-    grid-template-columns:1fr;
-  }
+    .optionPanel{
+        order:2;
+    }
 
-  .preview{
-    position:relative;
-    top:auto;
-    max-width:500px;
-    width:100%;
-    margin:auto;
-  }
+    .characterArea{
+        order:1;
+    }
 
-  .controls{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .machine-layout{
-    grid-template-columns:1fr;
-  }
-
-  .machine{
-    max-width:500px;
-    width:100%;
-    margin:auto;
-  }
-
-  .cards{
-    grid-template-columns:repeat(2,1fr);
-  }
+    .machineLayout{
+        grid-template-columns:1fr;
+    }
 }
 
-@media(max-width:600px){
+@media(max-width:500px){
+    .logo{
+        font-size:52px;
+    }
 
-  .topbar{
-    padding:10px 13px;
-  }
-
-  .brand{
-    font-size:18px;
-  }
-
-  .content{
-    padding:22px 12px 55px;
-  }
-
-  .title h2{
-    font-size:29px;
-  }
-
-  .controls{
-    grid-template-columns:1fr;
-  }
-
-  .control.full{
-    grid-column:auto;
-  }
-
-  .cards{
-    grid-template-columns:repeat(2,1fr);
-    gap:10px;
-  }
-
-  .machine-ring{
-    width:270px;
-    height:270px;
-  }
-
-  .deck{
-    grid-template-columns:1fr;
-  }
-
-  .character{
-    transform:scale(.92);
-  }
+    .characterStage,
+    .characterSVG{
+        width:340px;
+        height:600px;
+    }
 }
 </style>
 </head>
 
 <body>
 
-<div id="app">
+<!-- =========================
+START
+========================= -->
 
-  <!-- 배경 별 -->
-  <div class="bg-star" style="top:8%;left:8%;font-size:24px">✦</div>
-  <div class="bg-star" style="top:18%;left:88%;font-size:17px">✦</div>
-  <div class="bg-star" style="top:42%;left:5%;font-size:14px">✦</div>
-  <div class="bg-star" style="top:67%;left:93%;font-size:27px">✦</div>
-  <div class="bg-star" style="top:82%;left:13%;font-size:18px">✦</div>
-  <div class="bg-star" style="top:76%;left:78%;font-size:13px">✦</div>
+<section id="startScreen" class="screen active">
 
-  <!-- ================= INTRO ================= -->
-
-  <section id="intro" class="screen active intro">
-
-    <div class="intro-box">
-
-      <div class="logo-small">
-        ✦ ORIGINAL IDOL DRESS UP ✦
-      </div>
-
-      <div class="logo">
-        STAR<span>LIGHT</span>
-      </div>
-
-      <div class="intro-sub">
-        당신만의 아이돌 캐릭터를 만들어보세요
-      </div>
-
-      <button class="start-btn" onclick="go('custom')">
-        START
-      </button>
-
+    <div class="startDecor">
+        <div class="star">✦</div>
+        <div class="star">✧</div>
+        <div class="star">✦</div>
+        <div class="star">✧</div>
     </div>
 
-  </section>
+    <div class="startBox">
+        <div class="logoSmall">MAGICAL IDOL DRESS UP</div>
+        <div class="logo">STAR☆DRESS</div>
+        <div class="logoSub">CREATE YOUR OWN STAR</div>
 
-
-  <!-- ================= CUSTOM ================= -->
-
-  <section id="custom" class="screen">
-
-    <div class="topbar">
-      <button class="back-btn" onclick="go('intro')">←</button>
-      <div class="brand">STARLIGHT</div>
-      <div class="step">01 CHARACTER</div>
+        <button class="startButton" onclick="openCustomize()">
+            START
+        </button>
     </div>
 
-    <div class="content">
+</section>
 
-      <div class="title">
-        <h2>CHARACTER MAKE</h2>
-        <p>네가 그린 캐릭터를 바탕으로 나만의 아이돌을 만들어보세요.</p>
-      </div>
 
-      <div class="custom-layout">
+<!-- =========================
+CUSTOMIZE
+========================= -->
 
-        <!-- 캐릭터 -->
-        <div class="preview">
+<section id="customizeScreen" class="screen">
 
-          <div class="preview-title">
-            ✦ STAR DRESS STUDIO ✦
-          </div>
+<div class="page">
 
-          <div class="character-stage">
-            <div id="character" class="character"></div>
-          </div>
+    <div class="topTitle">
+        <h1>MY IDOL</h1>
+        <p>원하는 파츠를 골라 나만의 아이돌을 만들어보세요</p>
+    </div>
+
+    <div class="customLayout">
+
+        <!-- LEFT -->
+
+        <div class="optionPanel">
+
+            <div class="optionTitle">FACE</div>
+
+            <div class="optionGroup">
+                <label>얼굴형</label>
+
+                <div class="optionGrid">
+
+                    <button class="opt selected"
+                    onclick="setFace('egg',this)">
+                        계란
+                    </button>
+
+                    <button class="opt"
+                    onclick="setFace('round',this)">
+                        둥근
+                    </button>
+
+                    <button class="opt"
+                    onclick="setFace('heart',this)">
+                        하트
+                    </button>
+
+                </div>
+            </div>
+
+            <div class="optionGroup">
+
+                <label>눈</label>
+
+                <div class="optionGrid">
+
+                    <button class="opt selected"
+                    onclick="setEyes('round',this)">
+                        둥근눈
+                    </button>
+
+                    <button class="opt"
+                    onclick="setEyes('up',this)">
+                        올라간눈
+                    </button>
+
+                    <button class="opt"
+                    onclick="setEyes('crescent',this)">
+                        반달눈
+                    </button>
+
+                </div>
+
+            </div>
+
+            <div class="optionGroup">
+
+                <label>눈썹</label>
+
+                <div class="optionGrid">
+
+                    <button class="opt selected"
+                    onclick="setBrow('straight',this)">
+                        일자
+                    </button>
+
+                    <button class="opt"
+                    onclick="setBrow('round',this)">
+                        둥근
+                    </button>
+
+                    <button class="opt"
+                    onclick="setBrow('up',this)">
+                        올라간
+                    </button>
+
+                </div>
+
+            </div>
 
         </div>
 
 
-        <!-- 옵션 -->
-        <div class="panel">
+        <!-- CHARACTER -->
 
-          <div class="controls">
+        <div class="characterArea">
 
-            <div class="control">
-              <h3>얼굴형</h3>
-              <div class="options" id="faceOptions"></div>
+            <div class="characterStage">
+
+                <svg
+                    class="characterSVG"
+                    viewBox="0 0 430 690"
+                    xmlns="http://www.w3.org/2000/svg"
+                >
+
+                    <!-- BACK HAIR -->
+                    <g id="backWaveGroup">
+
+                        <path
+                            class="backWave"
+                            d="M137 150
+                            C128 112 147 72 181 59
+                            C219 44 267 58 286 92
+                            C298 113 294 142 289 162
+                            C281 194 294 224 279 256
+                            C271 274 260 281 251 291
+                            C253 266 244 248 230 236
+                            C224 259 214 280 200 290
+                            C198 267 187 249 174 238
+                            C165 258 151 271 137 274
+                            C147 251 147 228 137 210
+                            C126 190 125 169 137 150 Z"
+                        />
+
+                    </g>
+
+
+                    <g id="backBobGroup" style="display:none">
+
+                        <path
+                            class="backBob"
+                            d="M137 158
+                            C137 98 165 63 215 63
+                            C265 63 293 98 293 158
+                            L283 226
+                            C271 238 260 244 249 245
+                            C251 225 246 204 239 185
+                            C231 210 224 227 215 237
+                            C206 227 199 210 191 185
+                            C184 204 179 225 181 245
+                            C170 244 159 238 147 226 Z"
+                        />
+
+                    </g>
+
+
+                    <!-- EARS -->
+
+                    <ellipse
+                        id="leftEar"
+                        class="ear"
+                        cx="143"
+                        cy="180"
+                        rx="18"
+                        ry="28"
+                    />
+
+                    <ellipse
+                        id="rightEar"
+                        class="ear"
+                        cx="287"
+                        cy="180"
+                        rx="18"
+                        ry="28"
+                    />
+
+
+                    <!-- FACE -->
+
+                    <path
+                        id="faceShape"
+                        class="face faceEgg"
+                        d="M215 82
+                        C166 82 139 119 139 177
+                        C139 235 166 283 215 295
+                        C264 283 291 235 291 177
+                        C291 119 264 82 215 82 Z"
+                    />
+
+
+                    <!-- NECK -->
+
+                    <path
+                        class="bodyBase"
+                        d="M188 276 L188 322
+                        C180 330 166 335 151 338
+                        L151 353
+                        L279 353
+                        L279 338
+                        C264 335 250 330 242 322
+                        L242 276 Z"
+                    />
+
+
+                    <!-- BODY -->
+
+                    <path
+                        class="bodyBase"
+                        d="M151 338
+                        C130 345 117 368 112 403
+                        L100 497
+                        C98 510 108 520 119 519
+                        L145 512
+                        L151 430
+                        L151 559
+                        L182 559
+                        L182 438
+                        L248 438
+                        L248 559
+                        L279 559
+                        L279 430
+                        L285 512
+                        L311 519
+                        C322 520 332 510 330 497
+                        L318 403
+                        C313 368 300 345 279 338 Z"
+                    />
+
+                    <!-- FACE FEATURES -->
+
+                    <!-- brows -->
+
+                    <g id="browStraight">
+                        <path
+                            class="brow"
+                            d="M165 143 L197 143"
+                        />
+                        <path
+                            class="brow"
+                            d="M233 143 L265 143"
+                        />
+                    </g>
+
+                    <g id="browRound" style="display:none">
+                        <path
+                            class="brow"
+                            d="M165 146 Q181 134 197 146"
+                        />
+                        <path
+                            class="brow"
+                            d="M233 146 Q249 134 265 146"
+                        />
+                    </g>
+
+                    <g id="browUp" style="display:none">
+                        <path
+                            class="brow"
+                            d="M165 149 Q181 132 197 138"
+                        />
+                        <path
+                            class="brow"
+                            d="M233 138 Q249 132 265 149"
+                        />
+                    </g>
+
+
+                    <!-- ROUND EYES -->
+
+                    <g id="eyesRound">
+
+                        <path
+                            class="eyeRoundLeft"
+                            d="M166 177 C174 161 195 161 203 177 C196 194 174 194 166 177 Z"
+                        />
+
+                        <path
+                            class="eyeRoundRight"
+                            d="M227 177 C235 161 256 161 264 177 C256 194 235 194 227 177 Z"
+                        />
+
+                        <ellipse
+                            class="iris"
+                            cx="185"
+                            cy="177"
+                            rx="9"
+                            ry="11"
+                        />
+
+                        <ellipse
+                            class="iris"
+                            cx="245"
+                            cy="177"
+                            rx="9"
+                            ry="11"
+                        />
+
+                        <ellipse
+                            class="pupil"
+                            cx="185"
+                            cy="179"
+                            rx="4"
+                            ry="6"
+                        />
+
+                        <ellipse
+                            class="pupil"
+                            cx="245"
+                            cy="179"
+                            rx="4"
+                            ry="6"
+                        />
+
+                        <circle
+                            class="highlight"
+                            cx="188"
+                            cy="173"
+                            r="3"
+                        />
+
+                        <circle
+                            class="highlight"
+                            cx="248"
+                            cy="173"
+                            r="3"
+                        />
+
+                        <path
+                            class="lash"
+                            d="M166 177 Q174 158 192 160"
+                        />
+
+                        <path
+                            class="lash"
+                            d="M238 160 Q256 158 264 177"
+                        />
+
+                    </g>
+
+
+                    <!-- UP EYES -->
+
+                    <g id="eyesUp" style="display:none">
+
+                        <path
+                            class="eyeUpLeft"
+                            d="M165 181 C174 163 193 158 204 171 C193 166 177 169 165 181 Z"
+                        />
+
+                        <path
+                            class="eyeUpRight"
+                            d="M226 171 C237 158 256 163 265 181 C253 169 237 166 226 171 Z"
+                        />
+
+                        <path
+                            class="lash"
+                            d="M165 181 Q176 158 204 171"
+                        />
+
+                        <path
+                            class="lash"
+                            d="M226 171 Q254 158 265 181"
+                        />
+
+                    </g>
+
+
+                    <!-- CRESCENT -->
+
+                    <g id="eyesCrescent" style="display:none">
+
+                        <path
+                            class="eyeCrescentLeft"
+                            d="M165 179
+                            C174 164 193 164 204 177
+                            C193 174 177 174 165 179 Z"
+                        />
+
+                        <path
+                            class="eyeCrescentRight"
+                            d="M226 177
+                            C237 164 256 164 265 179
+                            C253 174 237 174 226 177 Z"
+                        />
+
+                    </g>
+
+
+                    <!-- NOSE -->
+
+                    <path
+                        d="M214 191
+                        Q210 207 215 211
+                        Q220 207 216 201"
+                        fill="none"
+                        stroke="#9c6d72"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                    />
+
+
+                    <!-- MOUTH -->
+
+                    <path
+                        d="M201 224 Q215 233 229 224"
+                        fill="none"
+                        stroke="#9c596e"
+                        stroke-width="3"
+                        stroke-linecap="round"
+                    />
+
+
+                    <!-- BANGS -->
+
+                    <g id="bangFullGroup">
+
+                        <path
+                            class="bangFull"
+                            d="M137 150
+                            C137 92 164 58 215 58
+                            C266 58 293 92 293 150
+                            L283 168
+                            C274 160 267 147 260 129
+                            L254 170
+                            C244 176 234 170 230 128
+                            L221 170
+                            C212 175 202 172 198 128
+                            L188 169
+                            C178 171 167 164 164 128
+                            C157 146 149 160 137 150 Z"
+                        />
+
+                    </g>
+
+
+                    <g id="bangSeeGroup" style="display:none">
+
+                        <path
+                            class="bangSee"
+                            d="M139 147
+                            C141 94 167 62 215 62
+                            C263 62 289 94 291 147
+                            C279 140 268 126 258 110
+                            C252 133 245 148 234 156
+                            L227 111
+                            C219 135 209 151 198 157
+                            L195 111
+                            C185 134 174 147 162 151
+                            L162 112
+                            C154 128 147 139 139 147 Z"
+                        />
+
+                    </g>
+
+
+                    <g id="bangSideGroup" style="display:none">
+
+                        <path
+                            class="sideBang"
+                            d="M138 146
+                            C140 91 166 61 215 61
+                            C266 61 291 96 291 147
+                            C280 141 267 130 256 111
+                            C251 139 242 159 229 173
+                            C237 139 237 111 229 91
+                            C211 119 190 139 166 147
+                            C159 153 147 152 138 146 Z"
+                        />
+
+                    </g>
+
+                </svg>
+
             </div>
 
-            <div class="control">
-              <h3>눈</h3>
-              <div class="options" id="eyeOptions"></div>
+            <div class="previewLabel">
+                네가 그린 파츠를 기준으로 조합 중
             </div>
-
-            <div class="control">
-              <h3>눈썹</h3>
-              <div class="options" id="browOptions"></div>
-            </div>
-
-            <div class="control">
-              <h3>앞머리</h3>
-              <div class="options" id="bangOptions"></div>
-            </div>
-
-            <div class="control">
-              <h3>뒷머리</h3>
-              <div class="options" id="backHairOptions"></div>
-            </div>
-
-            <div class="control">
-              <h3>표정</h3>
-              <div class="options" id="mouthOptions"></div>
-            </div>
-
-            <div class="control">
-              <h3>피부색</h3>
-              <div class="options" id="skinOptions"></div>
-            </div>
-
-            <div class="control">
-              <h3>머리색</h3>
-              <div class="options" id="hairColorOptions"></div>
-            </div>
-
-            <div class="control full">
-              <h3>눈동자색</h3>
-              <div class="options" id="eyeColorOptions"></div>
-            </div>
-
-          </div>
-
-          <button class="continue" onclick="goCards()">
-            캐릭터 완성 → 패션 카드 선택
-          </button>
 
         </div>
 
-      </div>
 
-    </div>
+        <!-- RIGHT -->
 
-  </section>
+        <div class="optionPanel">
 
+            <div class="optionTitle">HAIR</div>
 
-  <!-- ================= CARDS ================= -->
+            <div class="optionGroup">
 
-  <section id="cards" class="screen">
+                <label>앞머리</label>
 
-    <div class="topbar">
-      <button class="back-btn" onclick="go('custom')">←</button>
-      <div class="brand">STARLIGHT</div>
-      <div class="step">02 FASHION CARD</div>
-    </div>
+                <div class="optionGrid">
 
-    <div class="content">
+                    <button class="opt selected"
+                    onclick="setBang('full',this)">
+                        풀뱅
+                    </button>
 
-      <div class="title">
-        <h2>FASHION CARD</h2>
-        <p>TOP · BOTTOM · SHOES · ACCESSORY를 하나씩 골라주세요.</p>
-      </div>
+                    <button class="opt"
+                    onclick="setBang('see',this)">
+                        시스루
+                    </button>
 
-      <div class="panel">
+                    <button class="opt"
+                    onclick="setBang('none',this)">
+                        없음
+                    </button>
 
-        <div id="filters" class="filters"></div>
+                </div>
 
-        <div id="note" class="note"></div>
-
-        <div id="cardsGrid" class="cards"></div>
-
-        <div class="next">
-          <button onclick="goMachine()">
-            카드 머신으로 이동 →
-          </button>
-        </div>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- ================= MACHINE ================= -->
-
-  <section id="machineScreen" class="screen">
-
-    <div class="topbar">
-      <button class="back-btn" onclick="go('cards')">←</button>
-      <div class="brand">STARLIGHT</div>
-      <div class="step">03 DRESS MACHINE</div>
-    </div>
-
-    <div class="content">
-
-      <div class="title">
-        <h2>DRESS MACHINE</h2>
-        <p>카드를 올바른 슬롯으로 드래그하세요.</p>
-      </div>
-
-      <div class="machine-layout">
-
-        <div class="panel">
-
-          <h3 style="margin-top:0">
-            SELECTED CARDS
-          </h3>
-
-          <div id="deck" class="deck"></div>
-
-        </div>
-
-
-        <div class="machine">
-
-          <div class="machine-title">
-            ✦ STAR DRESS MACHINE ✦
-          </div>
-
-          <div class="machine-ring">
-
-            <div class="slot" data-cat="top">
-              TOP
             </div>
 
-            <div class="slot" data-cat="bottom">
-              BOTTOM
+
+            <div class="optionGroup">
+
+                <label>뒷머리</label>
+
+                <div class="optionGrid">
+
+                    <button class="opt selected"
+                    onclick="setBackHair('wave',this)">
+                        웨이브
+                    </button>
+
+                    <button class="opt"
+                    onclick="setBackHair('bob',this)">
+                        단발
+                    </button>
+
+                </div>
+
             </div>
 
-            <div class="slot" data-cat="shoes">
-              SHOES
+
+            <div style="
+                margin-top:25px;
+                padding:15px;
+                background:#fff5fa;
+                border-radius:17px;
+                font-size:12px;
+                line-height:1.7;
+                color:#9c809e;
+            ">
+                <b style="color:#8d699e;">현재 반영된 디자인</b><br>
+                계란형 얼굴<br>
+                둥근 눈<br>
+                일자 눈썹<br>
+                풀뱅<br>
+                웨이브 뒷머리
             </div>
-
-            <div class="slot" data-cat="accessory">
-              ACCESSORY
-            </div>
-
-          </div>
-
-          <button id="transformBtn" class="transform" onclick="transform()" disabled>
-            ✦ TRANSFORM ✦
-          </button>
 
         </div>
 
-      </div>
-
     </div>
 
-  </section>
+
+    <div style="
+        text-align:center;
+        margin-top:10px;
+    ">
+        <button class="nextButton"
+        onclick="openCards()">
+            다음 → 패션 카드
+        </button>
+    </div>
+
+</div>
+
+</section>
 
 
-  <!-- ================= RESULT ================= -->
+<!-- =========================
+CARDS
+========================= -->
 
-  <section id="result" class="screen">
+<section id="cardScreen" class="screen">
 
-    <div class="result">
+<div class="cardPage">
 
-      <div class="result-box">
+    <div class="topTitle">
+        <h1>FASHION CARD</h1>
+        <p>마음에 드는 패션 카드를 골라주세요</p>
+    </div>
 
-        <h2>TRANSFORM COMPLETE!</h2>
+    <div class="cardCategories">
 
-        <p>
-          당신만의 아이돌 스타일이 완성됐어요 ✦
-        </p>
-
-        <div id="resultCharacter" class="result-character"></div>
-
-        <button class="restart" onclick="go('custom')">
-          다시 꾸미기
+        <button
+            class="categoryBtn active"
+            onclick="filterCards('all',this)">
+            ALL
         </button>
 
-      </div>
+        <button
+            class="categoryBtn"
+            onclick="filterCards('top',this)">
+            TOP
+        </button>
+
+        <button
+            class="categoryBtn"
+            onclick="filterCards('bottom',this)">
+            BOTTOM
+        </button>
+
+        <button
+            class="categoryBtn"
+            onclick="filterCards('shoes',this)">
+            SHOES
+        </button>
+
+        <button
+            class="categoryBtn"
+            onclick="filterCards('accessory',this)">
+            ACCESSORY
+        </button>
 
     </div>
 
-  </section>
+    <div id="cardGrid" class="cardGrid"></div>
+
+    <div style="text-align:center;margin-top:25px;">
+        <button
+            id="toMachine"
+            class="nextButton"
+            onclick="openMachine()">
+            카드 장착하기 →
+        </button>
+    </div>
+
+</div>
+
+</section>
 
 
-  <!-- MAGIC -->
+<!-- =========================
+MACHINE
+========================= -->
 
-  <div id="magic" class="magic">
-    <div class="magic-circle"></div>
-    <div class="magic-text">TRANSFORM!</div>
-  </div>
+<section id="machineScreen" class="screen">
+
+<div class="page">
+
+    <div class="topTitle">
+        <h1>CARD MACHINE</h1>
+        <p>카드를 알맞은 위치에 넣어주세요</p>
+    </div>
+
+    <div class="machineLayout">
+
+        <div>
+
+            <div id="selectedDeck" class="selectedDeck"></div>
+
+        </div>
+
+        <div class="slotMachine">
+
+            <div
+                class="slot"
+                data-type="top">
+                TOP
+            </div>
+
+            <div
+                class="slot"
+                data-type="bottom">
+                BOTTOM
+            </div>
+
+            <div
+                class="slot"
+                data-type="shoes">
+                SHOES
+            </div>
+
+            <div
+                class="slot"
+                data-type="accessory">
+                ACCESSORY
+            </div>
+
+            <button
+                id="transformButton"
+                class="nextButton"
+                style="width:100%;margin-top:15px;"
+                disabled
+                onclick="transform()">
+                TRANSFORM
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+TRANSFORM
+========================= -->
+
+<div id="transformOverlay">
+
+    <div class="magicCircle"></div>
+
+    <div class="magicText">
+        STAR DRESS UP!
+    </div>
 
 </div>
 
 
 <script>
 
-/* =====================================================
-   상태
-===================================================== */
+/* =========================
+STATE
+========================= */
 
 const state = {
 
-  face:'egg',
+    face:'egg',
 
-  eye:'round',
+    eyes:'round',
 
-  brow:'straight',
+    brow:'straight',
 
-  bang:'full',
+    bang:'full',
 
-  backHair:'wave',
+    backHair:'wave'
 
-  mouth:'smile',
+};
 
-  skin:'#ffe0c6',
+const selectedCards = {
 
-  hair:'#76527c',
-
-  eyeColor:'#7bbde8',
-
-  filter:'all',
-
-  selected:{
     top:null,
-    bottom:null,
-    shoes:null,
-    accessory:null
-  },
 
-  inserted:{
-    top:null,
     bottom:null,
+
     shoes:null,
+
     accessory:null
-  }
 
 };
 
 
-/* =====================================================
-   기본 옵션
-===================================================== */
+/* =========================
+SCREEN
+========================= */
 
-const optionData = {
+function showScreen(id){
 
-  face:[
-    ['egg','계란형'],
-    ['round','둥근형'],
-    ['heart','하트형']
-  ],
+    document.querySelectorAll('.screen')
+        .forEach(el=>{
+            el.classList.remove('active');
+        });
 
-  eye:[
-    ['round','둥근 눈'],
-    ['up','올라간 눈'],
-    ['half','반달 눈']
-  ],
-
-  brow:[
-    ['straight','일자'],
-    ['round','둥근'],
-    ['up','올라간']
-  ],
-
-  bang:[
-    ['full','풀뱅'],
-    ['see','시스루뱅'],
-    ['none','없음']
-  ],
-
-  backHair:[
-    ['wave','웨이브'],
-    ['short','단발']
-  ],
-
-  mouth:[
-    ['smile','활짝 웃음'],
-    ['small','작은 미소'],
-    ['neutral','무표정']
-  ],
-
-  skin:[
-    ['#ffe0c6',''],
-    ['#f7c9aa',''],
-    ['#eeb58d',''],
-    ['#d89b72','']
-  ],
-
-  hairColor:[
-    ['#76527c',''],
-    ['#4b405d',''],
-    ['#a66d7c',''],
-    ['#d58a9f',''],
-    ['#c79a61',''],
-    ['#e6b86c',''],
-    ['#8a9bd2','']
-  ],
-
-  eyeColor:[
-    ['#7bbde8',''],
-    ['#5e9fca',''],
-    ['#7fcf9f',''],
-    ['#8e76c7',''],
-    ['#8b5f55',''],
-    ['#4c4c61','']
-  ]
-
-};
-
-
-/* =====================================================
-   화면 이동
-===================================================== */
-
-function go(id){
-
-  document.querySelectorAll('.screen')
-    .forEach(s=>s.classList.remove('active'));
-
-  document.getElementById(id)
-    .classList.add('active');
-
-  window.scrollTo({
-    top:0,
-    behavior:'instant'
-  });
+    document.getElementById(id)
+        .classList.add('active');
 
 }
 
 
-/* =====================================================
-   옵션 UI
-===================================================== */
+/* =========================
+START
+========================= */
 
-function renderOptionGroup(
-  id,
-  key,
-  isColor=false
-){
+function openCustomize(){
 
-  const box=document.getElementById(id);
-
-  box.innerHTML='';
-
-  optionData[key].forEach(([value,label])=>{
-
-    const button=document.createElement('button');
-
-    if(isColor){
-
-      button.className='option color';
-
-      button.style.background=value;
-
-      if(state[key]===value){
-        button.classList.add('active');
-      }
-
-    }else{
-
-      button.className='option';
-
-      button.textContent=label;
-
-      if(state[key]===value){
-        button.classList.add('active');
-      }
-
-    }
-
-    button.onclick=()=>{
-
-      state[key]=value;
-
-      renderControls();
-
-      renderCharacter();
-
-    };
-
-    box.appendChild(button);
-
-  });
+    showScreen('customizeScreen');
 
 }
 
 
-function renderControls(){
+/* =========================
+FACE
+========================= */
 
-  renderOptionGroup('faceOptions','face');
+function setFace(type,button){
 
-  renderOptionGroup('eyeOptions','eye');
+    state.face=type;
 
-  renderOptionGroup('browOptions','brow');
-
-  renderOptionGroup('bangOptions','bang');
-
-  renderOptionGroup('backHairOptions','backHair');
-
-  renderOptionGroup('mouthOptions','mouth');
-
-  renderOptionGroup('skinOptions','skin',true);
-
-  renderOptionGroup('hairColorOptions','hair',true);
-
-  renderOptionGroup('eyeColorOptions','eyeColor',true);
-
-}
-
-
-/* =====================================================
-   얼굴
-===================================================== */
-
-function facePath(){
-
-  if(state.face==='round'){
-
-    return `
-      M150 93
-      C103 93 82 125 84 174
-      C86 226 110 258 150 263
-      C190 258 214 226 216 174
-      C218 125 197 93 150 93Z
-    `;
-
-  }
-
-  if(state.face==='heart'){
-
-    return `
-      M150 104
-      C133 91 107 91 96 112
-      C82 137 91 185 108 220
-      C120 244 136 258 150 265
-      C164 258 180 244 192 220
-      C209 185 218 137 204 112
-      C193 91 167 91 150 104Z
-    `;
-
-  }
-
-  return `
-    M150 91
-    C108 91 87 119 87 170
-    C87 222 110 255 150 265
-    C190 255 213 222 213 170
-    C213 119 192 91 150 91Z
-  `;
-
-}
-
-
-/* =====================================================
-   눈
-===================================================== */
-
-function eyesSVG(){
-
-  const c=state.eyeColor;
-
-  if(state.eye==='up'){
-
-    return `
-      <g>
-
-        <path
-          d="M106 171 Q122 153 141 164"
-          fill="white"
-          stroke="#4b3c4d"
-          stroke-width="3"
-        />
-
-        <path
-          d="M159 164 Q178 153 194 171"
-          fill="white"
-          stroke="#4b3c4d"
-          stroke-width="3"
-        />
-
-        <ellipse cx="126" cy="166" rx="8" ry="11" fill="${c}"/>
-        <ellipse cx="174" cy="166" rx="8" ry="11" fill="${c}"/>
-
-        <circle cx="126" cy="168" r="4" fill="#45354e"/>
-        <circle cx="174" cy="168" r="4" fill="#45354e"/>
-
-        <circle cx="129" cy="162" r="2.8" fill="white"/>
-        <circle cx="177" cy="162" r="2.8" fill="white"/>
-
-        <path
-          d="M105 169 Q122 149 142 162"
-          fill="none"
-          stroke="#463649"
-          stroke-width="4"
-          stroke-linecap="round"
-        />
-
-        <path
-          d="M158 162 Q178 149 195 169"
-          fill="none"
-          stroke="#463649"
-          stroke-width="4"
-          stroke-linecap="round"
-        />
-
-      </g>
-    `;
-
-  }
-
-
-  if(state.eye==='half'){
-
-    return `
-      <g>
-
-        <path
-          d="M106 170
-             Q123 153 142 170
-             Q123 184 106 170Z"
-          fill="white"
-          stroke="#4b3c4d"
-          stroke-width="3"
-        />
-
-        <path
-          d="M158 170
-             Q177 153 194 170
-             Q177 184 158 170Z"
-          fill="white"
-          stroke="#4b3c4d"
-          stroke-width="3"
-        />
-
-        <path
-          d="M109 168 Q123 151 141 168"
-          fill="none"
-          stroke="#463649"
-          stroke-width="4"
-          stroke-linecap="round"
-        />
-
-        <path
-          d="M159 168 Q177 151 191 168"
-          fill="none"
-          stroke="#463649"
-          stroke-width="4"
-          stroke-linecap="round"
-        />
-
-        <circle cx="125" cy="169" r="5" fill="${c}"/>
-        <circle cx="175" cy="169" r="5" fill="${c}"/>
-
-        <circle cx="126" cy="168" r="2" fill="white"/>
-        <circle cx="176" cy="168" r="2" fill="white"/>
-
-      </g>
-    `;
-
-  }
-
-
-  return `
-    <g>
-
-      <ellipse
-        cx="123"
-        cy="170"
-        rx="19"
-        ry="22"
-        fill="white"
-        stroke="#4b3c4d"
-        stroke-width="3"
-      />
-
-      <ellipse
-        cx="177"
-        cy="170"
-        rx="19"
-        ry="22"
-        fill="white"
-        stroke="#4b3c4d"
-        stroke-width="3"
-      />
-
-      <ellipse cx="123" cy="172" rx="10" ry="14" fill="${c}"/>
-      <ellipse cx="177" cy="172" rx="10" ry="14" fill="${c}"/>
-
-      <ellipse cx="123" cy="174" rx="5" ry="8" fill="#49384e"/>
-      <ellipse cx="177" cy="174" rx="5" ry="8" fill="#49384e"/>
-
-      <circle cx="127" cy="165" r="3.8" fill="white"/>
-      <circle cx="181" cy="165" r="3.8" fill="white"/>
-
-      <path
-        d="M103 160 Q122 143 143 159"
-        fill="none"
-        stroke="#463649"
-        stroke-width="4"
-        stroke-linecap="round"
-      />
-
-      <path
-        d="M157 159 Q178 143 197 160"
-        fill="none"
-        stroke="#463649"
-        stroke-width="4"
-        stroke-linecap="round"
-      />
-
-      <path d="M105 158 l-7 -5" stroke="#463649" stroke-width="2.5"/>
-      <path d="M195 158 l7 -5" stroke="#463649" stroke-width="2.5"/>
-
-    </g>
-  `;
-
-}
-
-
-/* =====================================================
-   눈썹
-===================================================== */
-
-function browsSVG(){
-
-  let left='';
-  let right='';
-
-  if(state.brow==='round'){
-
-    left='M105 137 Q123 128 141 138';
-    right='M159 138 Q177 128 195 137';
-
-  }else if(state.brow==='up'){
-
-    left='M105 140 Q123 124 141 130';
-    right='M159 130 Q177 124 195 140';
-
-  }else{
-
-    left='M106 136 Q123 135 141 136';
-    right='M159 136 Q177 135 194 136';
-
-  }
-
-  return `
-    <path
-      d="${left}"
-      fill="none"
-      stroke="#624754"
-      stroke-width="4"
-      stroke-linecap="round"
-    />
-
-    <path
-      d="${right}"
-      fill="none"
-      stroke="#624754"
-      stroke-width="4"
-      stroke-linecap="round"
-    />
-  `;
-
-}
-
-
-/* =====================================================
-   입
-===================================================== */
-
-function mouthSVG(){
-
-  if(state.mouth==='neutral'){
-
-    return `
-      <path
-        d="M140 222 Q150 224 160 222"
-        fill="none"
-        stroke="#a45170"
-        stroke-width="2.5"
-        stroke-linecap="round"
-      />
-    `;
-
-  }
-
-  if(state.mouth==='small'){
-
-    return `
-      <path
-        d="M139 220 Q150 227 161 220"
-        fill="none"
-        stroke="#a45170"
-        stroke-width="3"
-        stroke-linecap="round"
-      />
-    `;
-
-  }
-
-  return `
-    <path
-      d="M135 217
-         Q150 226 165 217
-         Q163 238 150 240
-         Q137 238 135 217Z"
-      fill="#ee789f"
-      stroke="#a94e70"
-      stroke-width="2"
-    />
-
-    <path
-      d="M139 220 Q150 224 161 220"
-      fill="none"
-      stroke="#fff"
-      stroke-width="2"
-    />
-  `;
-
-}
-
-
-/* =====================================================
-   뒷머리
-===================================================== */
-
-function backHairSVG(){
-
-  const h=state.hair;
-
-  if(state.backHair==='short'){
-
-    return `
-      <path
-        d="
-          M92 169
-          Q82 103 111 68
-          Q150 25 189 68
-          Q218 103 208 169
-          L198 226
-          Q190 251 170 265
-          L177 202
-          Q190 181 186 145
-          Q170 108 150 104
-          Q130 108 114 145
-          Q110 181 123 202
-          L130 265
-          Q110 251 102 226Z
-        "
-        fill="${h}"
-        stroke="#49384d"
-        stroke-width="3"
-        stroke-linejoin="round"
-      />
-
-      <path
-        d="M108 105 Q120 58 150 52 Q180 58 192 105"
-        fill="none"
-        stroke="#fff"
-        stroke-width="5"
-        opacity=".12"
-      />
-    `;
-
-  }
-
-
-  return `
-    <path
-      d="
-        M91 174
-        Q80 101 110 65
-        Q150 20 190 65
-        Q220 101 209 174
-        L202 263
-        Q195 292 178 307
-        Q185 274 171 250
-        Q162 282 150 299
-        Q138 282 129 250
-        Q115 274 122 307
-        Q105 292 98 263Z
-      "
-      fill="${h}"
-      stroke="#49384d"
-      stroke-width="3"
-      stroke-linejoin="round"
-    />
-
-    <path
-      d="M103 113
-         Q113 61 150 48
-         Q187 61 197 113"
-      fill="none"
-      stroke="#fff"
-      stroke-width="6"
-      opacity=".13"
-      stroke-linecap="round"
-    />
-
-    <path
-      d="M108 217 Q105 265 120 281"
-      fill="none"
-      stroke="#fff"
-      stroke-width="4"
-      opacity=".12"
-      stroke-linecap="round"
-    />
-
-    <path
-      d="M192 217 Q195 265 180 281"
-      fill="none"
-      stroke="#fff"
-      stroke-width="4"
-      opacity=".12"
-      stroke-linecap="round"
-    />
-  `;
-
-}
-
-
-/* =====================================================
-   앞머리
-===================================================== */
-
-function bangsSVG(){
-
-  const h=state.hair;
-
-  if(state.bang==='none'){
-    return '';
-  }
-
-
-  if(state.bang==='see'){
-
-    return `
-      <path
-        d="
-          M93 129
-          Q94 74 150 69
-          Q206 74 207 129
-          Q198 113 189 103
-          L182 151
-          Q172 135 166 102
-          L157 156
-          Q150 137 146 100
-          Q138 137 129 156
-          L123 102
-          Q113 135 101 147
-          L98 112Z
-        "
-        fill="${h}"
-        stroke="#49384d"
-        stroke-width="3"
-        stroke-linejoin="round"
-      />
-    `;
-
-  }
-
-
-  return `
-    <path
-      d="
-        M92 129
-        Q93 72 150 68
-        Q207 72 208 129
-        Q198 118 190 105
-        L184 155
-        Q174 143 168 104
-        L159 160
-        Q151 145 149 101
-        Q142 145 134 160
-        L124 104
-        Q117 143 105 153
-        L99 104
-        Q95 119 92 129Z
-      "
-      fill="${h}"
-      stroke="#49384d"
-      stroke-width="3"
-      stroke-linejoin="round"
-    />
-  `;
-
-}
-
-
-/* =====================================================
-   캐릭터
-===================================================== */
-
-function characterSVG(outfit=null){
-
-  const face=facePath();
-
-  return `
-  <svg
-    viewBox="0 0 300 650"
-    xmlns="http://www.w3.org/2000/svg"
-  >
-
-    <!-- 뒷머리 -->
-    ${backHairSVG()}
-
-
-    <!-- 목 -->
-    <path
-      d="
-        M128 245
-        L128 330
-        Q150 342 172 330
-        L172 245Z
-      "
-      fill="${state.skin}"
-      stroke="#594652"
-      stroke-width="2.3"
-    />
-
-
-    <!-- 얼굴 -->
-    <path
-      d="${face}"
-      fill="${state.skin}"
-      stroke="#594652"
-      stroke-width="2.5"
-      stroke-linejoin="round"
-    />
-
-
-    <!-- 귀 -->
-    <path
-      d="M88 167 Q72 157 78 184 Q82 202 94 195"
-      fill="${state.skin}"
-      stroke="#594652"
-      stroke-width="2"
-    />
-
-    <path
-      d="M212 167 Q228 157 222 184 Q218 202 206 195"
-      fill="${state.skin}"
-      stroke="#594652"
-      stroke-width="2"
-    />
-
-
-    <!-- 눈썹 -->
-    ${browsSVG()}
-
-
-    <!-- 눈 -->
-    ${eyesSVG()}
-
-
-    <!-- 코 -->
-    <path
-      d="M150 181 Q146 196 150 199 Q154 201 157 198"
-      fill="none"
-      stroke="#b87478"
-      stroke-width="1.8"
-      stroke-linecap="round"
-    />
-
-
-    <!-- 볼 -->
-    <ellipse
-      cx="108"
-      cy="207"
-      rx="15"
-      ry="7"
-      fill="#f39ab1"
-      opacity=".2"
-    />
-
-    <ellipse
-      cx="192"
-      cy="207"
-      rx="15"
-      ry="7"
-      fill="#f39ab1"
-      opacity=".2"
-    />
-
-
-    <!-- 입 -->
-    ${mouthSVG()}
-
-
-    <!-- 앞머리 -->
-    ${bangsSVG()}
-
-
-    <!-- 몸 -->
-    <g>
-
-      <!-- 상체 -->
-      <path
-        d="
-          M126 330
-          Q150 341 174 330
-          L194 341
-          Q204 349 208 365
-          L216 438
-          Q217 450 206 454
-          L192 445
-          L191 501
-          L109 501
-          L108 445
-          L94 454
-          Q83 450 84 438
-          L92 365
-          Q96 349 106 341Z
-        "
-        fill="#fff"
-        stroke="#594652"
-        stroke-width="2.3"
-      />
-
-
-      <!-- 허리 -->
-      <path
-        d="
-          M109 445
-          L191 445
-          L191 501
-          L109 501Z
-        "
-        fill="#fff8fc"
-        stroke="#594652"
-        stroke-width="2"
-      />
-
-
-      <!-- 왼쪽 다리 -->
-      <path
-        d="
-          M109 501
-          L133 501
-          L130 608
-          Q127 626 108 625
-          L100 612Z
-        "
-        fill="${state.skin}"
-        stroke="#594652"
-        stroke-width="2.3"
-      />
-
-
-      <!-- 오른쪽 다리 -->
-      <path
-        d="
-          M167 501
-          L192 501
-          L200 612
-          Q192 626 170 625
-          L170 610Z
-        "
-        fill="${state.skin}"
-        stroke="#594652"
-        stroke-width="2.3"
-      />
-
-
-      <!-- 왼발 -->
-      <path
-        d="
-          M100 608
-          Q115 618 130 609
-          Q133 627 113 632
-          Q96 632 88 623Z
-        "
-        fill="${state.skin}"
-        stroke="#594652"
-        stroke-width="2.3"
-      />
-
-
-      <!-- 오른발 -->
-      <path
-        d="
-          M170 609
-          Q185 618 200 608
-          Q212 622 195 632
-          Q176 632 170 625Z
-        "
-        fill="${state.skin}"
-        stroke="#594652"
-        stroke-width="2.3"
-      />
-
-
-      <!-- 손 -->
-      <circle
-        cx="91"
-        cy="444"
-        r="9"
-        fill="${state.skin}"
-        stroke="#594652"
-        stroke-width="2"
-      />
-
-      <circle
-        cx="209"
-        cy="444"
-        r="9"
-        fill="${state.skin}"
-        stroke="#594652"
-        stroke-width="2"
-      />
-
-    </g>
-
-
-    <!-- 의상 -->
-    ${outfit ? outfitSVG(outfit) : ''}
-
-  </svg>
-  `;
-
-}
-
-
-/* =====================================================
-   의상
-===================================================== */
-
-function outfitSVG(outfit){
-
-  const topColors={
-    top1:'#ff91c4',
-    top2:'#9d8df3',
-    top3:'#84d9ee',
-    top4:'#f4d76e'
-  };
-
-  const bottomColors={
-    bottom1:'#ff9ac8',
-    bottom2:'#a48df2',
-    bottom3:'#8fdcc7',
-    bottom4:'#f0c96c'
-  };
-
-  const shoeColors={
-    shoes1:'#ff79b8',
-    shoes2:'#8cb9ed',
-    shoes3:'#9c8ae8',
-    shoes4:'#fff'
-  };
-
-  const tc=topColors[outfit.top?.id] || '#ff91c4';
-  const bc=bottomColors[outfit.bottom?.id] || '#ff9ac8';
-  const sc=shoeColors[outfit.shoes?.id] || '#ff79b8';
-
-  let accessory='';
-
-  if(outfit.accessory?.type==='tiara'){
-
-    accessory=`
-      <path
-        d="
-          M119 82
-          L127 59
-          L139 72
-          L150 50
-          L161 72
-          L174 59
-          L181 82
-          Q150 91 119 82Z
-        "
-        fill="#ffdb6e"
-        stroke="#725267"
-        stroke-width="2"
-      />
-
-      <circle
-        cx="150"
-        cy="59"
-        r="4"
-        fill="#ff72b6"
-      />
-    `;
-
-  }else if(outfit.accessory?.type==='ribbon'){
-
-    accessory=`
-      <path
-        d="
-          M150 82
-          C137 65 115 67 116 82
-          C117 97 137 96 150 85
-          C163 96 183 97 184 82
-          C185 67 163 65 150 82Z
-        "
-        fill="#ff78b8"
-        stroke="#725267"
-        stroke-width="2"
-      />
-    `;
-
-  }else if(outfit.accessory?.type==='flower'){
-
-    accessory=`
-      <g stroke="#725267" stroke-width="2">
-        <circle cx="150" cy="67" r="9" fill="#ffe170"/>
-        <circle cx="150" cy="53" r="9" fill="#ffacd0"/>
-        <circle cx="137" cy="62" r="9" fill="#ffacd0"/>
-        <circle cx="163" cy="62" r="9" fill="#ffacd0"/>
-      </g>
-    `;
-
-  }else if(outfit.accessory?.type==='hairpin'){
-
-    accessory=`
-      <path
-        d="M188 91 L209 70"
-        stroke="#78c8ec"
-        stroke-width="5"
-      />
-      <circle
-        cx="209"
-        cy="70"
-        r="6"
-        fill="#fff"
-        stroke="#78c8ec"
-        stroke-width="3"
-      />
-    `;
-
-  }
-
-  return `
-    <g>
-
-      <!-- 상의 -->
-      <path
-        d="
-          M111 337
-          L87 350
-          Q77 356 74 373
-          L83 432
-          Q86 443 97 438
-          L108 402
-          L108 439
-          Q150 455 192 439
-          L192 402
-          L203 438
-          Q214 443 217 432
-          L226 373
-          Q223 356 213 350
-          L189 337
-          Q175 329 164 327
-          Q150 338 136 327
-          Q125 329 111 337Z
-        "
-        fill="${tc}"
-        stroke="#594652"
-        stroke-width="2.3"
-      />
-
-      <!-- 상의 리본 -->
-      <path
-        d="M119 338 Q150 357 181 338"
-        fill="none"
-        stroke="#fff"
-        stroke-width="5"
-        opacity=".9"
-      />
-
-
-      <!-- 하의 -->
-      <path
-        d="
-          M108 400
-          Q150 416 192 400
-          L192 440
-          Q150 456 108 440Z
-        "
-        fill="${bc}"
-        stroke="#594652"
-        stroke-width="2"
-      />
-
-
-      <!-- 치마/하의 디테일 -->
-      <path
-        d="
-          M109 438
-          Q150 452 191 438
-          L188 486
-          Q150 500 112 486Z
-        "
-        fill="${bc}"
-        stroke="#594652"
-        stroke-width="2"
-      />
-
-      <path
-        d="
-          M114 452 L121 487
-          M130 456 L135 492
-          M150 458 L150 495
-          M170 456 L165 492
-          M186 452 L179 487
-        "
-        stroke="#fff"
-        stroke-width="2"
-        opacity=".5"
-      />
-
-
-      <!-- 신발 -->
-      <path
-        d="
-          M108 500
-          L133 500
-          L129 530
-          L104 530Z
-        "
-        fill="${sc}"
-        stroke="#594652"
-        stroke-width="2"
-      />
-
-      <path
-        d="
-          M167 500
-          L192 500
-          L196 530
-          L171 530Z
-        "
-        fill="${sc}"
-        stroke="#594652"
-        stroke-width="2"
-      />
-
-      <path
-        d="
-          M105 518 L130 518
-          M170 518 L195 518
-        "
-        stroke="#fff"
-        stroke-width="3"
-        opacity=".8"
-      />
-
-
-      <!-- 액세서리 -->
-      ${accessory}
-
-    </g>
-  `;
-
-}
-
-
-/* =====================================================
-   캐릭터 렌더
-===================================================== */
-
-function renderCharacter(){
-
-  const box=document.getElementById('character');
-
-  if(box){
-    box.innerHTML=characterSVG();
-  }
-
-  const result=document.getElementById('resultCharacter');
-
-  if(result){
-    result.innerHTML=characterSVG(getResultOutfit());
-  }
-
-}
-
-
-/* =====================================================
-   카드 데이터
-===================================================== */
-
-const categories=[
-  ['all','ALL'],
-  ['top','TOP'],
-  ['bottom','BOTTOM'],
-  ['shoes','SHOES'],
-  ['accessory','ACCESSORY']
-];
-
-
-const outfits=[
-
-  {
-    id:'top1',
-    cat:'top',
-    name:'Pink Heart Top',
-    sub:'TOP · 핑크 하트',
-    type:'pink'
-  },
-
-  {
-    id:'top2',
-    cat:'top',
-    name:'Lavender Star Top',
-    sub:'TOP · 라벤더 스타',
-    type:'lav'
-  },
-
-  {
-    id:'top3',
-    cat:'top',
-    name:'Sky Ribbon Top',
-    sub:'TOP · 스카이 리본',
-    type:'blue'
-  },
-
-  {
-    id:'top4',
-    cat:'top',
-    name:'Sunny Stage Top',
-    sub:'TOP · 옐로 스테이지',
-    type:'yellow'
-  },
-
-
-  {
-    id:'bottom1',
-    cat:'bottom',
-    name:'Pink Tulle Skirt',
-    sub:'BOTTOM · 핑크 튤',
-    type:'pink'
-  },
-
-  {
-    id:'bottom2',
-    cat:'bottom',
-    name:'Lavender Pleats',
-    sub:'BOTTOM · 라벤더',
-    type:'lav'
-  },
-
-  {
-    id:'bottom3',
-    cat:'bottom',
-    name:'Mint Frill Skirt',
-    sub:'BOTTOM · 민트',
-    type:'mint'
-  },
-
-  {
-    id:'bottom4',
-    cat:'bottom',
-    name:'Sunny Mini Skirt',
-    sub:'BOTTOM · 옐로',
-    type:'yellow'
-  },
-
-
-  {
-    id:'shoes1',
-    cat:'shoes',
-    name:'Pink Stage Shoes',
-    sub:'SHOES · 핑크',
-    type:'pink'
-  },
-
-  {
-    id:'shoes2',
-    cat:'shoes',
-    name:'Sky Ribbon Shoes',
-    sub:'SHOES · 하늘색',
-    type:'blue'
-  },
-
-  {
-    id:'shoes3',
-    cat:'shoes',
-    name:'Lavender Shoes',
-    sub:'SHOES · 라벤더',
-    type:'lav'
-  },
-
-  {
-    id:'shoes4',
-    cat:'shoes',
-    name:'Pure White Shoes',
-    sub:'SHOES · 화이트',
-    type:'white'
-  },
-
-
-  {
-    id:'accessory-none',
-    cat:'accessory',
-    name:'선택 안 함',
-    sub:'ACCESSORY · NONE',
-    type:'none'
-  },
-
-  {
-    id:'accessory-tiara',
-    cat:'accessory',
-    name:'Star Tiara',
-    sub:'ACCESSORY · TIARA',
-    type:'tiara'
-  },
-
-  {
-    id:'accessory-ribbon',
-    cat:'accessory',
-    name:'Pink Ribbon',
-    sub:'ACCESSORY · RIBBON',
-    type:'ribbon'
-  },
-
-  {
-    id:'accessory-flower',
-    cat:'accessory',
-    name:'Dream Flower',
-    sub:'ACCESSORY · FLOWER',
-    type:'flower'
-  },
-
-  {
-    id:'accessory-hairpin',
-    cat:'accessory',
-    name:'Crystal Hairpin',
-    sub:'ACCESSORY · HAIRPIN',
-    type:'hairpin'
-  }
-
-];
-
-
-/* =====================================================
-   카드 미리보기
-===================================================== */
-
-function miniSVG(item){
-
-  const skin='#ffe0c6';
-  const hair='#76527c';
-
-  if(item.cat==='accessory'){
-
-    if(item.type==='none'){
-
-      return `
-        <svg viewBox="0 0 100 130">
-
-          <circle
-            cx="50"
-            cy="50"
-            r="29"
-            fill="${skin}"
-            stroke="#594652"
-            stroke-width="2"
-          />
-
-          <path
-            d="M24 52 Q28 15 50 12 Q72 15 76 52"
-            fill="${hair}"
-          />
-
-          <path
-            d="M37 76 Q50 82 63 76"
-            fill="none"
-            stroke="#e98aa8"
-            stroke-width="3"
-          />
-
-        </svg>
-      `;
-
-    }
-
-    return `
-      <svg viewBox="0 0 100 130">
-
-        <circle
-          cx="50"
-          cy="50"
-          r="29"
-          fill="${skin}"
-          stroke="#594652"
-          stroke-width="2"
-        />
-
-        <path
-          d="M24 52 Q28 15 50 12 Q72 15 76 52"
-          fill="${hair}"
-        />
-
-        ${
-          item.type==='tiara'
-          ?
-          `
-          <path
-            d="
-              M27 48
-              L36 27
-              L48 41
-              L58 22
-              L70 41
-              L78 27
-              L73 50
-              Q50 56 27 48Z
-            "
-            fill="#ffdc6d"
-            stroke="#594652"
-            stroke-width="2"
-          />
-          `
-          :
-          ''
-        }
-
-        ${
-          item.type==='ribbon'
-          ?
-          `
-          <path
-            d="
-              M50 50
-              C40 34 24 36 25 49
-              C26 60 40 59 50 51
-              C60 59 74 60 75 49
-              C76 36 60 34 50 50Z
-            "
-            fill="#ff78b8"
-            stroke="#594652"
-            stroke-width="2"
-          />
-          `
-          :
-          ''
-        }
-
-        ${
-          item.type==='flower'
-          ?
-          `
-          <g stroke="#594652" stroke-width="1.5">
-            <circle cx="50" cy="48" r="7" fill="#ffe06f"/>
-            <circle cx="50" cy="37" r="8" fill="#ffafd1"/>
-            <circle cx="40" cy="44" r="8" fill="#ffafd1"/>
-            <circle cx="60" cy="44" r="8" fill="#ffafd1"/>
-          </g>
-          `
-          :
-          ''
-        }
-
-        ${
-          item.type==='hairpin'
-          ?
-          `
-          <path
-            d="M68 44 L82 30"
-            stroke="#76c7eb"
-            stroke-width="4"
-          />
-
-          <circle
-            cx="83"
-            cy="29"
-            r="5"
-            fill="white"
-            stroke="#76c7eb"
-            stroke-width="2"
-          />
-          `
-          :
-          ''
-        }
-
-      </svg>
-    `;
-
-  }
-
-
-  let color='#ff8fbd';
-
-  if(item.type==='blue') color='#8bcaf0';
-  if(item.type==='lav') color='#b69aff';
-  if(item.type==='mint') color='#91dfcb';
-  if(item.type==='white') color='#fff';
-  if(item.type==='yellow') color='#f3d66f';
-
-
-  if(item.cat==='top'){
-
-    return `
-      <svg viewBox="0 0 100 140">
-
-        <circle
-          cx="50"
-          cy="22"
-          r="13"
-          fill="${skin}"
-        />
-
-        <path
-          d="M25 25 Q28 7 50 6 Q72 7 75 25"
-          fill="${hair}"
-        />
-
-        <path
-          d="
-            M36 35
-            L20 45
-            Q15 50 18 80
-            L30 77
-            L32 111
-            Q50 120 68 111
-            L70 77
-            L82 80
-            Q85 50 80 45
-            L64 35
-            Q50 43 36 35Z
-          "
-          fill="${color}"
-          stroke="#594652"
-          stroke-width="2"
-        />
-
-        <path
-          d="M36 36 Q50 45 64 36"
-          fill="none"
-          stroke="#fff"
-          stroke-width="3"
-        />
-
-      </svg>
-    `;
-
-  }
-
-
-  if(item.cat==='bottom'){
-
-    return `
-      <svg viewBox="0 0 100 140">
-
-        <path
-          d="
-            M27 35
-            L73 35
-            L82 66
-            Q50 82 18 66Z
-          "
-          fill="${color}"
-          stroke="#594652"
-          stroke-width="2"
-        />
-
-        <path
-          d="
-            M25 45 L75 45
-            M30 53 L70 53
-            M36 61 L64 61
-          "
-          stroke="#fff"
-          stroke-width="2"
-          opacity=".8"
-        />
-
-      </svg>
-    `;
-
-  }
-
-
-  return `
-    <svg viewBox="0 0 100 140">
-
-      <path
-        d="
-          M26 50
-          L44 50
-          L42 95
-          L22 95Z
-        "
-        fill="${color}"
-        stroke="#594652"
-        stroke-width="2"
-      />
-
-      <path
-        d="
-          M56 50
-          L74 50
-          L78 95
-          L58 95Z
-        "
-        fill="${color}"
-        stroke="#594652"
-        stroke-width="2"
-      />
-
-      <path
-        d="
-          M23 82 L42 82
-          M58 82 L77 82
-        "
-        stroke="#fff"
-        stroke-width="3"
-      />
-
-    </svg>
-  `;
-
-}
-
-
-/* =====================================================
-   카드 필터
-===================================================== */
-
-function renderFilters(){
-
-  const box=document.getElementById('filters');
-
-  box.innerHTML='';
-
-  categories.forEach(([key,label])=>{
-
-    const button=document.createElement('button');
-
-    button.className='filter';
-
-    if(state.filter===key){
-      button.classList.add('active');
-    }
-
-    button.textContent=label;
-
-    button.onclick=()=>{
-
-      state.filter=key;
-
-      renderCards();
-
-    };
-
-    box.appendChild(button);
-
-  });
-
-}
-
-
-/* =====================================================
-   카드 렌더
-===================================================== */
-
-function renderCards(){
-
-  renderFilters();
-
-  let list;
-
-  if(state.filter==='all'){
-    list=outfits;
-  }else{
-    list=outfits.filter(x=>x.cat===state.filter);
-  }
-
-  const box=document.getElementById('cardsGrid');
-
-  box.innerHTML='';
-
-  list.forEach(item=>{
-
-    const card=document.createElement('div');
-
-    card.className='fashion-card';
-
-    if(state.selected[item.cat]?.id===item.id){
-      card.classList.add('selected');
-    }
-
-    card.innerHTML=`
-      <div class="mini">
-        ${miniSVG(item)}
-      </div>
-
-      <h4>${item.name}</h4>
-
-      <p>${item.sub}</p>
-    `;
-
-    card.onclick=()=>{
-
-      state.selected[item.cat]=item;
-
-      renderCards();
-
-    };
-
-    box.appendChild(card);
-
-  });
-
-
-  const count=
-    Object.values(state.selected)
-      .filter(Boolean)
-      .length;
-
-  document.getElementById('note').textContent=
-    `선택 완료 ${count} / 4 · TOP · BOTTOM · SHOES · ACCESSORY를 하나씩 선택하세요.`;
-
-}
-
-
-/* =====================================================
-   머신
-===================================================== */
-
-function goCards(){
-
-  go('cards');
-
-  renderCards();
-
-}
-
-
-function goMachine(){
-
-  if(
-    !state.selected.top ||
-    !state.selected.bottom ||
-    !state.selected.shoes ||
-    !state.selected.accessory
-  ){
-
-    alert(
-      'TOP, BOTTOM, SHOES, ACCESSORY를 하나씩 선택해 주세요!'
+    document.querySelectorAll(
+        '.optionGroup:nth-child(2) .opt'
     );
 
-    return;
-  }
+    document.querySelectorAll('.opt')
+        .forEach(x=>{
+            if(x.parentElement===button.parentElement){
+                x.classList.remove('selected');
+            }
+        });
 
-  state.inserted={
-    top:null,
-    bottom:null,
-    shoes:null,
-    accessory:null
-  };
+    button.classList.add('selected');
 
-  go('machineScreen');
+    const face=document.getElementById('faceShape');
 
-  renderMachine();
+    if(type==='egg'){
+
+        face.setAttribute(
+            'd',
+            `M215 82
+            C166 82 139 119 139 177
+            C139 235 166 283 215 295
+            C264 283 291 235 291 177
+            C291 119 264 82 215 82 Z`
+        );
+
+    }
+
+    if(type==='round'){
+
+        face.setAttribute(
+            'd',
+            `M215 88
+            C164 88 135 123 135 183
+            C135 241 168 286 215 286
+            C262 286 295 241 295 183
+            C295 123 266 88 215 88 Z`
+        );
+
+    }
+
+    if(type==='heart'){
+
+        face.setAttribute(
+            'd',
+            `M215 291
+            C194 279 153 252 145 207
+            C136 157 157 113 188 106
+            C201 103 210 110 215 121
+            C220 110 229 103 242 106
+            C273 113 294 157 285 207
+            C277 252 236 279 215 291 Z`
+        );
+
+    }
+
+}
+
+
+/* =========================
+EYES
+========================= */
+
+function setEyes(type,button){
+
+    state.eyes=type;
+
+    button.parentElement
+        .querySelectorAll('.opt')
+        .forEach(x=>x.classList.remove('selected'));
+
+    button.classList.add('selected');
+
+    document.getElementById('eyesRound')
+        .style.display =
+        type==='round' ? '' : 'none';
+
+    document.getElementById('eyesUp')
+        .style.display =
+        type==='up' ? '' : 'none';
+
+    document.getElementById('eyesCrescent')
+        .style.display =
+        type==='crescent' ? '' : 'none';
+
+}
+
+
+/* =========================
+BROW
+========================= */
+
+function setBrow(type,button){
+
+    state.brow=type;
+
+    button.parentElement
+        .querySelectorAll('.opt')
+        .forEach(x=>x.classList.remove('selected'));
+
+    button.classList.add('selected');
+
+    document.getElementById('browStraight')
+        .style.display =
+        type==='straight' ? '' : 'none';
+
+    document.getElementById('browRound')
+        .style.display =
+        type==='round' ? '' : 'none';
+
+    document.getElementById('browUp')
+        .style.display =
+        type==='up' ? '' : 'none';
+
+}
+
+
+/* =========================
+BANG
+========================= */
+
+function setBang(type,button){
+
+    state.bang=type;
+
+    button.parentElement
+        .querySelectorAll('.opt')
+        .forEach(x=>x.classList.remove('selected'));
+
+    button.classList.add('selected');
+
+    document.getElementById('bangFullGroup')
+        .style.display =
+        type==='full' ? '' : 'none';
+
+    document.getElementById('bangSeeGroup')
+        .style.display =
+        type==='see' ? '' : 'none';
+
+    document.getElementById('bangSideGroup')
+        .style.display =
+        type==='side' ? '' : 'none';
+
+}
+
+
+/* =========================
+BACK HAIR
+========================= */
+
+function setBackHair(type,button){
+
+    state.backHair=type;
+
+    button.parentElement
+        .querySelectorAll('.opt')
+        .forEach(x=>x.classList.remove('selected'));
+
+    button.classList.add('selected');
+
+    document.getElementById('backWaveGroup')
+        .style.display =
+        type==='wave' ? '' : 'none';
+
+    document.getElementById('backBobGroup')
+        .style.display =
+        type==='bob' ? '' : 'none';
+
+}
+
+
+/* =========================
+CARDS
+========================= */
+
+const cards=[
+
+    {
+        id:1,
+        type:'top',
+        name:'Twinkle Blouse',
+        emoji:'🎀'
+    },
+
+    {
+        id:2,
+        type:'top',
+        name:'Dreamy Stage Top',
+        emoji:'✨'
+    },
+
+    {
+        id:3,
+        type:'bottom',
+        name:'Star Pleated Skirt',
+        emoji:'🌸'
+    },
+
+    {
+        id:4,
+        type:'bottom',
+        name:'Candy Mini Skirt',
+        emoji:'🍬'
+    },
+
+    {
+        id:5,
+        type:'shoes',
+        name:'Crystal Pumps',
+        emoji:'👠'
+    },
+
+    {
+        id:6,
+        type:'shoes',
+        name:'Ribbon Shoes',
+        emoji:'🎀'
+    },
+
+    {
+        id:7,
+        type:'accessory',
+        name:'Ribbon',
+        emoji:'🎀'
+    },
+
+    {
+        id:8,
+        type:'accessory',
+        name:'Tiara',
+        emoji:'👑'
+    },
+
+    {
+        id:9,
+        type:'accessory',
+        name:'Flower',
+        emoji:'🌸'
+    },
+
+    {
+        id:10,
+        type:'accessory',
+        name:'선택 안 함',
+        emoji:'♡'
+    }
+
+];
+
+
+function openCards(){
+
+    showScreen('cardScreen');
+
+    renderCards('all');
+
+}
+
+
+function filterCards(type,button){
+
+    document.querySelectorAll('.categoryBtn')
+        .forEach(x=>x.classList.remove('active'));
+
+    button.classList.add('active');
+
+    renderCards(type);
+
+}
+
+
+function renderCards(type){
+
+    const grid=
+        document.getElementById('cardGrid');
+
+    grid.innerHTML='';
+
+    cards
+        .filter(card =>
+            type==='all' || card.type===type
+        )
+        .forEach(card=>{
+
+            const div=
+                document.createElement('div');
+
+            div.className='fashionCard';
+
+            if(selectedCards[card.type]?.id===card.id){
+                div.classList.add('selected');
+            }
+
+            div.innerHTML=`
+
+                <div class="cardVisual">
+                    ${card.emoji}
+                </div>
+
+                <div class="cardName">
+                    ${card.name}
+                </div>
+
+                <div class="cardType">
+                    ${card.type.toUpperCase()}
+                </div>
+
+            `;
+
+            div.onclick=()=>{
+
+                selectedCards[card.type]=card;
+
+                renderCards(type);
+
+            };
+
+            grid.appendChild(div);
+
+        });
+
+}
+
+
+/* =========================
+MACHINE
+========================= */
+
+function openMachine(){
+
+    const missing =
+        Object.keys(selectedCards)
+        .filter(type=>selectedCards[type]===null);
+
+    if(missing.length){
+
+        alert(
+            'TOP / BOTTOM / SHOES / ACCESSORY를 모두 골라주세요.'
+        );
+
+        return;
+
+    }
+
+    showScreen('machineScreen');
+
+    renderMachine();
 
 }
 
 
 function renderMachine(){
 
-  const deck=document.getElementById('deck');
+    const deck=
+        document.getElementById('selectedDeck');
 
-  deck.innerHTML='';
+    deck.innerHTML='';
 
-  Object.values(state.selected).forEach(item=>{
+    Object.entries(selectedCards)
+        .forEach(([type,card])=>{
 
-    const card=document.createElement('div');
+            const div=
+                document.createElement('div');
 
-    card.className='deck-card';
+            div.className='selectedCard';
 
-    card.dataset.id=item.id;
-    card.dataset.cat=item.cat;
+            div.dataset.type=type;
 
-    card.innerHTML=`
-      <div class="thumb">
-        ${miniSVG(item)}
-      </div>
+            div.innerHTML=`
 
-      <div>
-        <b>${item.name}</b>
-        <span>${item.sub}</span>
-      </div>
-    `;
+                <div style="
+                    font-size:42px;
+                    text-align:center;
+                    padding:12px;
+                ">
+                    ${card.emoji}
+                </div>
 
-    if(state.inserted[item.cat]){
-      card.classList.add('used');
-    }
+                <div style="
+                    font-weight:900;
+                    color:#74587d;
+                ">
+                    ${card.name}
+                </div>
 
-    deck.appendChild(card);
+                <div style="
+                    font-size:10px;
+                    color:#ad91b7;
+                ">
+                    ${type.toUpperCase()}
+                </div>
 
-  });
+            `;
 
+            addDrag(div);
 
-  document.querySelectorAll('.slot')
-    .forEach(slot=>{
+            deck.appendChild(div);
 
-      const item=
-        state.inserted[slot.dataset.cat];
-
-      if(item){
-
-        slot.innerHTML=`
-          ${miniSVG(item)}
-        `;
-
-        slot.classList.add('filled');
-
-      }else{
-
-        slot.innerHTML=
-          slot.dataset.cat.toUpperCase();
-
-        slot.classList.remove('filled');
-
-      }
-
-    });
-
-
-  const complete=
-    Object.values(state.inserted)
-      .every(Boolean);
-
-  document.getElementById('transformBtn').disabled=
-    !complete;
-
-  attachDrag();
+        });
 
 }
 
 
-/* =====================================================
-   DRAG
-===================================================== */
+/* =========================
+DRAG
+========================= */
 
-let drag=null;
+let dragging=null;
+let offsetX=0;
+let offsetY=0;
 
+function addDrag(el){
 
-function attachDrag(){
-
-  document
-    .querySelectorAll('.deck-card')
-    .forEach(card=>{
-
-      card.addEventListener(
+    el.addEventListener(
         'pointerdown',
-        dragStart
-      );
-
-    });
+        startDrag
+    );
 
 }
 
 
-function dragStart(e){
+function startDrag(e){
 
-  if(
-    e.pointerType==='mouse' &&
-    e.button!==0
-  ){
-    return;
-  }
+    dragging=this;
 
-  const card=e.currentTarget;
+    const rect=
+        dragging.getBoundingClientRect();
 
-  if(card.classList.contains('used')){
-    return;
-  }
+    offsetX=e.clientX-rect.left;
+    offsetY=e.clientY-rect.top;
 
-  const rect=
-    card.getBoundingClientRect();
+    dragging.setPointerCapture(e.pointerId);
 
-  const ghost=
-    card.cloneNode(true);
+    dragging.classList.add('dragging');
 
-  ghost.style.position='fixed';
-  ghost.style.zIndex='9999';
-  ghost.style.pointerEvents='none';
-  ghost.style.width=rect.width+'px';
-  ghost.style.left=
-    (e.clientX-rect.width/2)+'px';
-  ghost.style.top=
-    (e.clientY-35)+'px';
-  ghost.style.opacity='.9';
-  ghost.style.transform=
-    'rotate(3deg) scale(1.03)';
+    dragging.style.left=
+        (e.clientX-offsetX)+'px';
 
-  document.body.appendChild(ghost);
+    dragging.style.top=
+        (e.clientY-offsetY)+'px';
 
-  drag={
-    card,
-    ghost,
-    id:card.dataset.id,
-    cat:card.dataset.cat
-  };
+    dragging.addEventListener(
+        'pointermove',
+        moveDrag
+    );
 
-  card.setPointerCapture?.(e.pointerId);
-
-  card.addEventListener(
-    'pointermove',
-    dragMove
-  );
-
-  card.addEventListener(
-    'pointerup',
-    dragEnd,
-    {once:true}
-  );
-
-  card.addEventListener(
-    'pointercancel',
-    dragEnd,
-    {once:true}
-  );
+    dragging.addEventListener(
+        'pointerup',
+        endDrag,
+        {once:true}
+    );
 
 }
 
 
-function dragMove(e){
+function moveDrag(e){
 
-  if(!drag){
-    return;
-  }
+    if(!dragging)return;
 
-  drag.ghost.style.left=
-    (e.clientX-drag.ghost.offsetWidth/2)+'px';
+    dragging.style.left=
+        (e.clientX-offsetX)+'px';
 
-  drag.ghost.style.top=
-    (e.clientY-35)+'px';
+    dragging.style.top=
+        (e.clientY-offsetY)+'px';
 
-
-  document
-    .querySelectorAll('.slot')
-    .forEach(slot=>{
-      slot.style.boxShadow='';
-    });
+}
 
 
-  const target=
-    document
-      .elementFromPoint(
-        e.clientX,
-        e.clientY
-      )
-      ?.closest('.slot');
+function endDrag(e){
 
+    if(!dragging)return;
 
-  if(target){
+    const type=
+        dragging.dataset.type;
 
-    if(target.dataset.cat===drag.cat){
+    const target=
+        document.elementFromPoint(
+            e.clientX,
+            e.clientY
+        )?.closest('.slot');
 
-      target.style.boxShadow=
-        '0 0 0 4px #8fe7d277';
+    if(
+        target &&
+        target.dataset.type===type
+    ){
 
-    }else{
+        target.classList.add('filled');
 
-      target.style.boxShadow=
-        '0 0 0 4px #ff8a9a77';
+        target.innerHTML=
+            selectedCards[type].name;
+
+        dragging.remove();
 
     }
 
-  }
+    else{
+
+        dragging.classList.remove('dragging');
+
+        dragging.style.position='';
+        dragging.style.left='';
+        dragging.style.top='';
+
+    }
+
+    dragging=null;
+
+    checkMachine();
 
 }
 
 
-function dragEnd(e){
+function checkMachine(){
 
-  if(!drag){
-    return;
-  }
+    const filled=
+        document.querySelectorAll(
+            '.slot.filled'
+        ).length;
 
-  const target=
-    document
-      .elementFromPoint(
-        e.clientX,
-        e.clientY
-      )
-      ?.closest('.slot');
-
-
-  document
-    .querySelectorAll('.slot')
-    .forEach(slot=>{
-      slot.style.boxShadow='';
-    });
-
-
-  const item=
-    outfits.find(
-      x=>x.id===drag.id
-    );
-
-
-  if(
-    target &&
-    target.dataset.cat===drag.cat
-  ){
-
-    state.inserted[drag.cat]=item;
-
-    renderMachine();
-
-  }else if(target){
-
-    target.animate(
-      [
-        {transform:'translateX(-5px)'},
-        {transform:'translateX(5px)'},
-        {transform:'translateX(0)'}
-      ],
-      {
-        duration:220
-      }
-    );
-
-  }
-
-
-  drag.ghost.remove();
-
-  drag.card.removeEventListener(
-    'pointermove',
-    dragMove
-  );
-
-  drag=null;
+    document.getElementById(
+        'transformButton'
+    ).disabled =
+        filled!==4;
 
 }
 
 
-/* =====================================================
-   결과 의상
-===================================================== */
-
-function getResultOutfit(){
-
-  return {
-
-    top:state.inserted.top,
-
-    bottom:state.inserted.bottom,
-
-    shoes:state.inserted.shoes,
-
-    accessory:state.inserted.accessory
-
-  };
-
-}
-
-
-/* =====================================================
-   변신
-===================================================== */
+/* =========================
+TRANSFORM
+========================= */
 
 function transform(){
 
-  const complete=
-    Object.values(state.inserted)
-      .every(Boolean);
+    const overlay=
+        document.getElementById(
+            'transformOverlay'
+        );
 
-  if(!complete){
-    return;
-  }
+    overlay.classList.add('show');
 
-  const magic=
-    document.getElementById('magic');
+    setTimeout(()=>{
 
-  magic.classList.add('show');
+        overlay.classList.remove('show');
 
-  setTimeout(()=>{
+        alert(
+            '✨ 변신 완료! ✨'
+        );
 
-    document.getElementById(
-      'resultCharacter'
-    ).innerHTML=
-      characterSVG(
-        getResultOutfit()
-      );
-
-    go('result');
-
-  },1000);
-
-
-  setTimeout(()=>{
-
-    magic.classList.remove('show');
-
-  },2200);
+    },2500);
 
 }
-
-
-/* =====================================================
-   초기 실행
-===================================================== */
-
-renderControls();
-
-renderCharacter();
-
-renderCards();
 
 </script>
 
